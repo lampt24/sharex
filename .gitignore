@@ -332,3 +332,6 @@ ASALocalRun/
 Output/
 APIKeysLocal.cs
 ResXManager.config.xml
+
+# Agent worktrees
+.worktrees/
