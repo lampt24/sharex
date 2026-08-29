@@ -13,6 +13,7 @@ internal static class CapXBrandingTests
         AssertContains(Path.Combine(root, "ShareX", "ShareX.csproj"), "<AssemblyName>CapX</AssemblyName>");
         AssertContains(Path.Combine(root, "ShareX", "ShareX.csproj"), "<RootNamespace>ShareX</RootNamespace>");
         AssertDoesNotContain(Path.Combine(root, "ShareX", "ShareX.csproj"), "<RootNamespace>CapX</RootNamespace>");
+        AssertContains(Path.Combine(root, "ShareX.NativeMessagingHost", "Program.cs"), "FileHelpers.GetAbsolutePath(\"CapX.exe\")");
         AssertContains(Path.Combine(root, "ShareX.Setup", "InnoSetup", "ShareX-setup.iss"), "#define MyAppName \"CapX\"");
         AssertContains(Path.Combine(root, "ShareX.Setup", "MicrosoftStore", "AppxManifest.xml"), "Executable=\"CapX.exe\"");
     }
