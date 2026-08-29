@@ -306,7 +306,7 @@ namespace ShareX.Steam
             {
                 while (IsShareXRunning())
                 {
-                    if (MessageBox.Show("ShareX is currently running.\r\n\r\nPlease close ShareX and press \"Retry\" button after it is closed.", "ShareX - Uninstaller",
+                    if (MessageBox.Show("CapX is currently running.\r\n\r\nPlease close CapX and press \"Retry\" button after it is closed.", "CapX - Uninstaller",
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                     {
                         return;

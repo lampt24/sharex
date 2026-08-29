@@ -26,6 +26,19 @@ internal static class CapXBrandingTests
 
         AssertEnglishResourceValuesUseCapX(root);
 
+        string integrationHelpersPath = Path.Combine(root, "ShareX", "IntegrationHelpers.cs");
+        AssertContains(integrationHelpersPath, "ShellCustomUploaderAssociateValue = \"CapX custom uploader\"");
+        AssertContains(integrationHelpersPath, "ShellImageEffectAssociateValue = \"CapX image effect\"");
+        AssertContains(integrationHelpersPath, "ShellCustomUploaderExtensionValue = \"ShareX.sxcu\"");
+        AssertContains(integrationHelpersPath, "ShellImageEffectExtensionValue = \"ShareX.sxie\"");
+
+        AssertContains(Path.Combine(root, "ShareX.Steam", "Helpers.cs"),
+            "MessageBox.Show(e.ToString(), \"CapX - Error\"");
+        string steamLauncherPath = Path.Combine(root, "ShareX.Steam", "Launcher.cs");
+        AssertContains(steamLauncherPath,
+            "\"CapX is currently running.\\r\\n\\r\\nPlease close CapX and press \\\"Retry\\\" button after it is closed.\"");
+        AssertContains(steamLauncherPath, "\"CapX - Uninstaller\"");
+
         // Deferred Task 5 packaging contracts intentionally remain after Task 4 UI contracts.
         AssertContains(Path.Combine(root, "ShareX.Setup", "InnoSetup", "ShareX-setup.iss"), "#define MyAppName \"CapX\"");
         AssertContains(Path.Combine(root, "ShareX.Setup", "MicrosoftStore", "AppxManifest.xml"), "Executable=\"CapX.exe\"");

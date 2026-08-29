@@ -58,7 +58,7 @@ namespace ShareX
         private static readonly string ShellCustomUploaderExtensionPath = @"Software\Classes\.sxcu";
         private static readonly string ShellCustomUploaderExtensionValue = "ShareX.sxcu";
         private static readonly string ShellCustomUploaderAssociatePath = $@"Software\Classes\{ShellCustomUploaderExtensionValue}";
-        private static readonly string ShellCustomUploaderAssociateValue = "ShareX custom uploader";
+        private static readonly string ShellCustomUploaderAssociateValue = "CapX custom uploader";
         private static readonly string ShellCustomUploaderIconPath = $@"{ShellCustomUploaderAssociatePath}\DefaultIcon";
         private static readonly string ShellCustomUploaderIconValue = $"{FileIconPath}";
         private static readonly string ShellCustomUploaderCommandPath = $@"{ShellCustomUploaderAssociatePath}\shell\open\command";
@@ -67,7 +67,7 @@ namespace ShareX
         private static readonly string ShellImageEffectExtensionPath = @"Software\Classes\.sxie";
         private static readonly string ShellImageEffectExtensionValue = "ShareX.sxie";
         private static readonly string ShellImageEffectAssociatePath = $@"Software\Classes\{ShellImageEffectExtensionValue}";
-        private static readonly string ShellImageEffectAssociateValue = "ShareX image effect";
+        private static readonly string ShellImageEffectAssociateValue = "CapX image effect";
         private static readonly string ShellImageEffectIconPath = $@"{ShellImageEffectAssociatePath}\DefaultIcon";
         private static readonly string ShellImageEffectIconValue = $"{FileIconPath}";
         private static readonly string ShellImageEffectCommandPath = $@"{ShellImageEffectAssociatePath}\shell\open\command";
