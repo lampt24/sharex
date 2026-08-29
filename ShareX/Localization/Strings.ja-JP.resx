@@ -62,7 +62,7 @@
     <value>画像を結合</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>ここにドロップしたファイルは ShareX によってアップロードされます。</value>
+    <value>ここにドロップしたファイルは CapX によってアップロードされます。</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>横方向</value>
@@ -77,10 +77,10 @@
     <value>離してテキストをアップロード</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>ShareX ホットキー</value>
+    <value>CapX ホットキー</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>ここにドロップしたテキストは ShareX によってアップロードされます。</value>
+    <value>ここにドロップしたテキストは CapX によってアップロードされます。</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>縦方向</value>
@@ -200,7 +200,7 @@
     <value>フォルダー</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>ShareX をフォロー...</value>
+    <value>CapX をフォロー...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>フォーラム画像</value>
@@ -386,7 +386,7 @@
     <value>応答を表示...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>ShareX を表示</value>
+    <value>CapX を表示</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>アップロードを停止</value>
@@ -476,10 +476,10 @@
     <value>開く</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - アプリの設定</value>
+    <value>CapX - アプリの設定</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>この変更を適用するには ShareX を再起動してください。</value>
+    <value>この変更を適用するには CapX を再起動してください。</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>今すぐ再起動</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>エクスプローラのコンテキストメニューに「ShareXでアップロード」を表示</value>
+    <value>エクスプローラのコンテキストメニューに「CapXでアップロード」を表示</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>エクスプローラのコンテキストメニューに「ShareXで画像編集」を表示</value>
+    <value>エクスプローラのコンテキストメニューに「CapXで画像編集」を表示</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>「送る」メニューにShareXを表示</value>
+    <value>「送る」メニューにCapXを表示</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Chrome 拡張機能</value>
@@ -599,13 +599,13 @@
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>ShareX起動中は、Steamの「ゲーム中」に表示</value>
+    <value>CapX起動中は、Steamの「ゲーム中」に表示</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>パス</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>ShareX 個人用フォルダー</value>
+    <value>CapX 個人用フォルダー</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>参照...</value>
@@ -794,19 +794,19 @@
     <value>キャンセル</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>ShareX の個人用フォルダーのパスを選択</value>
+    <value>CapX の個人用フォルダーのパスを選択</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>スクリーンショット フォルダーのパスを選択</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>ShareX バックアップをエクスポート</value>
+    <value>CapX バックアップをエクスポート</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>ShareX バックアップ</value>
+    <value>CapX バックアップ</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>ShareX バックアップをインポート</value>
+    <value>CapX バックアップをインポート</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>クリップボード形式を編集</value>
@@ -980,7 +980,7 @@
     <value>右下</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - ホットキー設定</value>
+    <value>CapX - ホットキー設定</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>追加</value>
@@ -1028,7 +1028,7 @@
     <value>ホットキーをリセットしますか？</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>すべてのホットキーとカスタムタスク設定が ShareX の既定値に置き換えられます。</value>
+    <value>すべてのホットキーとカスタムタスク設定が CapX の既定値に置き換えられます。</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>キャンセル</value>
@@ -1133,10 +1133,10 @@
     <value>ボタンが設定されていません。通知ツールバーは非表示になります。</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>ShareX - タスク設定</value>
+    <value>CapX - タスク設定</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>ShareX - {0} のタスク設定</value>
+    <value>CapX - {0} のタスク設定</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>アクションを編集</value>
@@ -1763,7 +1763,7 @@
     <value>オーディオファイルを選択</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - ドラッグ＆ドロップでアップロード</value>
+    <value>CapX - ドラッグ＆ドロップでアップロード</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>ここにドロップ</value>
@@ -1793,13 +1793,13 @@
     <value>クリップボードが空か、サポートされていないデータが含まれています。</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>ShareX - ファイルをどのように保存しますか？</value>
+    <value>CapX - ファイルをどのように保存しますか？</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>同じ名前のファイルが既に存在します</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>新しいファイル名を選択するか、ShareX の処理方法を選択してください。</value>
+    <value>新しいファイル名を選択するか、CapX の処理方法を選択してください。</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>新しいファイル名</value>
@@ -1817,7 +1817,7 @@
     <value>キャンセル</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>ShareX - 大きなファイルのアップロード</value>
+    <value>CapX - 大きなファイルのアップロード</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>大きなファイルをアップロードしようとしています。</value>
@@ -1832,7 +1832,7 @@
     <value>キャンセル</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>ShareX - ファイルのアップロード</value>
+    <value>CapX - ファイルのアップロード</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>{0} 個のファイルをアップロードしますか？</value>
@@ -1847,7 +1847,7 @@
     <value>キャンセル</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>ShareX - デバッグログ</value>
+    <value>CapX - デバッグログ</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>読み込まれたアセンブリ</value>
@@ -1874,19 +1874,19 @@
     <value>アップロード</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>ShareX の初回設定</value>
+    <value>CapX の初回設定</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>ShareX と Windows の連携方法を選択してください。</value>
+    <value>CapX と Windows の連携方法を選択してください。</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>エクスプローラーのコンテキストメニューに「ShareX でアップロード」を表示</value>
+    <value>エクスプローラーのコンテキストメニューに「CapX でアップロード」を表示</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>「送る」メニューに ShareX を表示</value>
+    <value>「送る」メニューに CapX を表示</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>ShareX の起動中、Steam に「アプリ内」と表示</value>
+    <value>CapX の起動中、Steam に「アプリ内」と表示</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>これらの設定は後でアプリケーション設定 → 統合から変更できます。</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Windows の起動時に ShareX を実行</value>
+    <value>Windows の起動時に CapX を実行</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>タスク マネージャーで自動起動が無効にされています</value>
@@ -1907,7 +1907,7 @@
     <value>組織によって自動起動が有効にされています</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>ShareX - URL の短縮</value>
+    <value>CapX - URL の短縮</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>URL の短縮</value>
@@ -1925,7 +1925,7 @@
     <value>短縮</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - URL のアップロード</value>
+    <value>CapX - URL のアップロード</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>URL のアップロード</value>
@@ -1946,7 +1946,7 @@
     <value>アップロード</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - アップロード前</value>
+    <value>CapX - アップロード前</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>アップロード前</value>
@@ -1976,7 +1976,7 @@
     <value>プレビューを利用できません</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - アクションツールバーの編集</value>
+    <value>CapX - アクションツールバーの編集</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>追加...</value>
@@ -1997,7 +1997,7 @@
     <value>閉じる</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>ShareX - アクションツールバー</value>
+    <value>CapX - アクションツールバー</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>ドロップしてアップロード</value>
@@ -2015,13 +2015,13 @@
     <value>常に手前に表示</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>ShareX の起動時に開く</value>
+    <value>CapX の起動時に開く</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>編集...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - キャプチャ後</value>
+    <value>CapX - キャプチャ後</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>キャプチャ後</value>
@@ -2057,7 +2057,7 @@
     <value>カスタム [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - アップロード後</value>
+    <value>CapX - アップロード後</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>アップロード完了</value>
@@ -2102,7 +2102,7 @@
     <value>リンク</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - 自動キャプチャ</value>
+    <value>CapX - 自動キャプチャ</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>カスタム領域</value>
@@ -2156,7 +2156,7 @@
     <value>削除</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - クイックタスクメニューエディター</value>
+    <value>CapX - クイックタスクメニューエディター</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>追加...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  アップロード後: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>ShareX - バージョン情報</value>
+    <value>CapX - バージョン情報</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Copyright © 2007–2026 ShareX Team</value>
+    <value>Copyright © 2007–2026 CapX Team</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Steam ビルド</value>
@@ -2243,10 +2243,10 @@
     <value>更新の確認に失敗しました。</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>新しいバージョンの ShareX を利用できます</value>
+    <value>新しいバージョンの CapX を利用できます</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>ShareX は最新です。</value>
+    <value>CapX は最新です。</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>リンク</value>
@@ -2270,7 +2270,7 @@
     <value>チーム</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>ShareX - カスタムアップローダー設定</value>
+    <value>CapX - カスタムアップローダー設定</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>アップローダーライブラリ</value>
@@ -2381,10 +2381,10 @@
     <value>閉じる</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>ShareX - 確認</value>
+    <value>CapX - 確認</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>ShareX カスタムアップローダー</value>
+    <value>CapX カスタムアップローダー</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>削除 URL</value>
@@ -2516,7 +2516,7 @@
     <value>テキストまたは URL 入力</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>ShareX テキストアップロードテスト</value>
+    <value>CapX テキストアップロードテスト</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>サムネイル URL</value>
@@ -2562,7 +2562,7 @@
     <value>「{0}」を {1} のカスタムアップローダーとして使用しますか？</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>ShareX - カスタムアップローダーの確認</value>
+    <value>CapX - カスタムアップローダーの確認</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>バックアップのエクスポート中にエラーが発生しました:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>ShareX - エラー</value>
+    <value>CapX - エラー</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>{0} エラー</value>
@@ -2588,7 +2588,7 @@
     <value>画像名</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>ShareX はシステムトレイに最小化されています。</value>
+    <value>CapX はシステムトレイに最小化されています。</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>使用可能な変数: {0} とその他の変数、たとえば {1} など。</value>
@@ -2609,7 +2609,7 @@
     <value>このメニューを編集...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>最新版のShareXです！</value>
+    <value>最新版のCapXです！</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>デバッグのログには詳細な情報が含まれます。続行しますか？</value>
@@ -2621,7 +2621,7 @@
     <value>URL短縮サービス: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Windows開始時に ShareX を起動</value>
+    <value>Windows開始時に CapX を起動</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>本当にこのファイルを削除しますか？</value>
@@ -2630,7 +2630,7 @@
     <value>フォルダーを作成できません:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>ShareX の用意する FFmpeg は、64ビットOSにしか対応していません。</value>
+    <value>CapX の用意する FFmpeg は、64ビットOSにしか対応していません。</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>アップロード中</value>
@@ -2639,7 +2639,7 @@
     <value>共有 URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>設定を反映するには、Steam から ShareX を開きなおしてください。</value>
+    <value>設定を反映するには、Steam から CapX を開きなおしてください。</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>スタートアップの設定は組織によって無効にされています</value>
@@ -2677,7 +2677,7 @@
 後で「キャプチャー後のタスク」から無効化もできます。</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>ShareX で画像編集</value>
+    <value>CapX で画像編集</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>クリップボードに画像が含まれません。</value>
@@ -2686,7 +2686,7 @@
     <value>エラー</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>アンチウィルスソフトやWindowsのフォルダアクセス権限により、ShareX の使用が阻止されている可能性があります。</value>
+    <value>アンチウィルスソフトやWindowsのフォルダアクセス権限により、CapX の使用が阻止されている可能性があります。</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>タスクの完了</value>
@@ -2734,19 +2734,19 @@
     <value>FFmpeg の映像とオーディオ両方を同時に None にはできません。</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>画面録画中はShareXを閉じることができません。
+    <value>画面録画中はCapXを閉じることができません。
 
 現在の画面録画を中止しますか？</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>ShareX でアップロード</value>
+    <value>CapX でアップロード</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>ホットキーを無効にしました。</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>ファイル「{0}」にアクセスできません。
-個人フォルダー パスを変更するには、ShareX を管理者で実行してください。</value>
+個人フォルダー パスを変更するには、CapX を管理者で実行してください。</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>スタートアップの設定はタスクマネージャーで無効にされています</value>
@@ -2758,7 +2758,7 @@
     <value>指定のタイトルを持つウィンドウは見つかりません。</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>ShareX の設定を初期化しますか？</value>
+    <value>CapX の設定を初期化しますか？</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>設定の保存に失敗しました</value>
@@ -2795,7 +2795,7 @@
 
 {1}
 
-別のホットキーを選択するか、競合するアプリケーションを終了し、ShareXを再起動してください。</value>
+別のホットキーを選択するか、競合するアプリケーションを終了し、CapXを再起動してください。</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>スクリーンショットを{0}秒後に起動する</value>

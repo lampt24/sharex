@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>ShareX – Indstillinger for skærmoptagelse</value>
+    <value>CapX – Indstillinger for skærmoptagelse</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Skærmoptagelse</value>
@@ -152,7 +152,7 @@
     <value>Konstant kvalitetsfaktor (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Lavere værdier giver højere kvalitet og større filer. 0 er tabsfrit; ShareX standardværdi er 28.</value>
+    <value>Lavere værdier giver højere kvalitet og større filer. 0 er tabsfrit; CapX standardværdi er 28.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Målbithastighed (kbit/s)</value>
@@ -230,7 +230,7 @@
     <value>Der blev ikke fundet nogen DirectShow-enheder. Skrivebordsoptagelse er klar.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>ShareX – Skærmoptagelse</value>
+    <value>CapX – Skærmoptagelse</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Start</value>
@@ -251,7 +251,7 @@
     <value>Annuller</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX – Rullende optagelse</value>
+    <value>CapX – Rullende optagelse</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Tag billede...</value>

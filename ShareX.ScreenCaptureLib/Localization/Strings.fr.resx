@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>ShareX - Options d’enregistrement d’écran</value>
+    <value>CapX - Options d’enregistrement d’écran</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Enregistrement d’écran</value>
@@ -152,7 +152,7 @@
     <value>Facteur de débit constant (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Les valeurs faibles améliorent la qualité et augmentent la taille du fichier. 0 est sans perte ; 28 est la valeur par défaut de ShareX.</value>
+    <value>Les valeurs faibles améliorent la qualité et augmentent la taille du fichier. 0 est sans perte ; 28 est la valeur par défaut de CapX.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Débit cible (kb/s)</value>
@@ -230,7 +230,7 @@
     <value>Aucun périphérique DirectShow trouvé. La capture du bureau est prête.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>ShareX - Enregistrement d’écran</value>
+    <value>CapX - Enregistrement d’écran</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Démarrer</value>
@@ -251,7 +251,7 @@
     <value>Annuler</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Capture avec défilement</value>
+    <value>CapX - Capture avec défilement</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Capturer...</value>

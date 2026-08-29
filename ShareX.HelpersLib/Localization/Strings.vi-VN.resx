@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>ShareX - Bộ chọn màu</value>
+    <value>CapX - Bộ chọn màu</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Chế độ màu</value>
@@ -161,7 +161,7 @@
     <value>Hủy</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>ShareX - Lỗi</value>
+    <value>CapX - Lỗi</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Đã xảy ra lỗi</value>
@@ -191,7 +191,7 @@
     <value>Đã xảy ra lỗi không mong muốn.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>ShareX - Trình xem ảnh</value>
+    <value>CapX - Trình xem ảnh</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Mở ảnh</value>
@@ -200,13 +200,13 @@
     <value>Đầu vào</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX - {0}</value>
+    <value>CapX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Đầu ra</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX - {0}</value>
+    <value>CapX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Sao chép tất cả</value>
@@ -215,7 +215,7 @@
     <value>Đóng</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>ShareX - Tùy chọn in</value>
+    <value>CapX - Tùy chọn in</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Tùy chọn in</value>
@@ -245,13 +245,13 @@
     <value>Xem trước...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>ShareX - Trình tải tệp</value>
+    <value>CapX - Trình tải tệp</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Trình tải tệp</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>Tải xuống bản cập nhật ShareX và các tệp bắt buộc khác.</value>
+    <value>Tải xuống bản cập nhật CapX và các tệp bắt buộc khác.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Tải xuống</value>
@@ -260,7 +260,7 @@
     <value>Xem nhật ký thay đổi</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>Bản cập nhật ShareX khả dụng</value>
+    <value>Bản cập nhật CapX khả dụng</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Màu đỏ (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Kéo và thả để tải lên</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Thoát ShareX</value>
+    <value>Thoát CapX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Tải lên tệp tin</value>

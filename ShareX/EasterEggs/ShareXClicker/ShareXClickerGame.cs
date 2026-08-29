@@ -26,13 +26,13 @@ public sealed class ShareXClickerGame
     public static readonly IReadOnlyList<ShareXClickerBuilding> Buildings =
     [
         new("auto-clicker", "Auto Clicker", LucideIcons.mouse_pointer_click, 15, 1, 10),
-        new("sharex-bot", "ShareX Bot", LucideIcons.bot, 100, 1, 100),
+        new("sharex-bot", $"{Program.AppName} Bot", LucideIcons.bot, 100, 1, 100),
         new("screenshot-station", "Screenshot Station", LucideIcons.monitor, 550, 5, 500),
         new("upload-server", "Upload Server", LucideIcons.server, 3000, 25, 2500),
         new("screenshot-factory", "Screenshot Factory", LucideIcons.factory, 12000, 100, 10000),
-        new("sharex-datacenter", "ShareX Datacenter", LucideIcons.database, 60000, 450, 50000),
+        new("sharex-datacenter", $"{Program.AppName} Datacenter", LucideIcons.database, 60000, 450, 50000),
         new("capture-cloud", "Capture Cloud", LucideIcons.cloud, 300000, 2000, 250000),
-        new("sharex-satellite", "ShareX Satellite", LucideIcons.satellite, 1250000, 10000, 1000000)
+        new("sharex-satellite", $"{Program.AppName} Satellite", LucideIcons.satellite, 1250000, 10000, 1000000)
     ];
 
     public static readonly IReadOnlyList<ShareXClickerUpgrade> Upgrades =

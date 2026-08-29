@@ -62,7 +62,7 @@
     <value>Kombinér billeder</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>Filer, der slippes her, bliver uploadet af ShareX.</value>
+    <value>Filer, der slippes her, bliver uploadet af CapX.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>Vandret</value>
@@ -77,10 +77,10 @@
     <value>Slip for at uploade tekst</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>ShareX-genvejstaster</value>
+    <value>CapX-genvejstaster</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>Tekst, der slippes her, bliver uploadet af ShareX.</value>
+    <value>Tekst, der slippes her, bliver uploadet af CapX.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>Lodret</value>
@@ -200,7 +200,7 @@
     <value>Mappe</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>Følg ShareX...</value>
+    <value>Følg CapX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Forumbillede</value>
@@ -386,7 +386,7 @@
     <value>Vis svar...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>Vis ShareX</value>
+    <value>Vis CapX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>Stop upload</value>
@@ -476,10 +476,10 @@
     <value>Åbn</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX – Programindstillinger</value>
+    <value>CapX – Programindstillinger</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>Genstart ShareX for at anvende ændringen.</value>
+    <value>Genstart CapX for at anvende ændringen.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>Genstart nu</value>
@@ -506,7 +506,7 @@
     <value>Vis fremskridt i Proceslinjens knap</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>Brug hvid ShareX-ikon</value>
+    <value>Brug hvid CapX-ikon</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>Husk hovedvinduets position</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Vis knappen ”Upload med ShareX” i Stifinders hurtigmenu</value>
+    <value>Vis knappen ”Upload med CapX” i Stifinders hurtigmenu</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Vis knappen ”Rediger med ShareX” i Stifinders hurtigmenu</value>
+    <value>Vis knappen ”Rediger med CapX” i Stifinders hurtigmenu</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Vis ShareX på menuen ”Send til”</value>
+    <value>Vis CapX på menuen ”Send til”</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Chrome-udvidelse</value>
@@ -584,7 +584,7 @@
     <value>Aktivér understøttelse for Chrome-udvidelse</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>Installér ShareX-udvidelsen for Chrome...</value>
+    <value>Installér CapX-udvidelsen for Chrome...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Firefox-udvidelse</value>
@@ -593,19 +593,19 @@
     <value>Aktivér understøttelse for Firefox-udvidelse</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>Installér ShareX-udvidelsen for Firefox...</value>
+    <value>Installér CapX-udvidelsen for Firefox...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>Vis ”I appen” i Steam mens ShareX er åbent</value>
+    <value>Vis ”I appen” i Steam mens CapX er åbent</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>Stier</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>Personlig ShareX-mappe</value>
+    <value>Personlig CapX-mappe</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>Gennemse...</value>
@@ -794,19 +794,19 @@
     <value>Annuller</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>Vælg sti til personlig ShareX-mappe</value>
+    <value>Vælg sti til personlig CapX-mappe</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>Vælg sti til skærmbilledmappe</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>Eksportér ShareX-sikkerhedskopi</value>
+    <value>Eksportér CapX-sikkerhedskopi</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>ShareX-sikkerhedskopi</value>
+    <value>CapX-sikkerhedskopi</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>Importér ShareX-sikkerhedskopi</value>
+    <value>Importér CapX-sikkerhedskopi</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>Rediger Udklipsformat</value>
@@ -980,7 +980,7 @@
     <value>Nederst til højre</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX – Genvejstastindstillinger</value>
+    <value>CapX – Genvejstastindstillinger</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>Tilføj</value>
@@ -1028,7 +1028,7 @@
     <value>Gendanne genvejstaster?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>Alle genvejstaster og deres brugerdefinerede opgaveindstillinger erstattes med ShareX' standardværdier.</value>
+    <value>Alle genvejstaster og deres brugerdefinerede opgaveindstillinger erstattes med CapX' standardværdier.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>Annuller</value>
@@ -1133,10 +1133,10 @@
     <value>Ingen knapper er konfigureret. Meddelelsesværktøjslinjen skjules.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>ShareX – Opgaveindstillinger</value>
+    <value>CapX – Opgaveindstillinger</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>ShareX – Opgaveindstillinger for {0}</value>
+    <value>CapX – Opgaveindstillinger for {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>Rediger handling</value>
@@ -1763,7 +1763,7 @@
     <value>Vælg lydfil</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>ShareX – Upload med træk og slip</value>
+    <value>CapX – Upload med træk og slip</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>Slip her</value>
@@ -1793,13 +1793,13 @@
     <value>Udklipsholderen er tom eller indeholder data, der ikke understøttes.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>ShareX – Hvordan skal filen gemmes?</value>
+    <value>CapX – Hvordan skal filen gemmes?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>En fil med det her navnet findes allerede</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>Vælg et nyt filnavn eller hvordan ShareX skal fortsætte.</value>
+    <value>Vælg et nyt filnavn eller hvordan CapX skal fortsætte.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>Nyt filnavn</value>
@@ -1817,7 +1817,7 @@
     <value>Annuller</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>ShareX - Upload af stor fil</value>
+    <value>CapX - Upload af stor fil</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>Du forsøger upload en stor fil.</value>
@@ -1832,7 +1832,7 @@
     <value>Annuller</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>ShareX - Upload filer</value>
+    <value>CapX - Upload filer</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>Vil du virkelig upload {0} filer?</value>
@@ -1847,7 +1847,7 @@
     <value>Annuller</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>ShareX - Fejlfindingslog</value>
+    <value>CapX - Fejlfindingslog</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>Indlæste sammensætninger</value>
@@ -1874,19 +1874,19 @@
     <value>Upload</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>Førstegangskonfiguration af ShareX</value>
+    <value>Førstegangskonfiguration af CapX</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>Vælg hvordan ShareX integreres med Windows.</value>
+    <value>Vælg hvordan CapX integreres med Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Vis "Upload med ShareX" i Stifinders hurtigmenu</value>
+    <value>Vis "Upload med CapX" i Stifinders hurtigmenu</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>Vis ShareX i menuen "Send til"</value>
+    <value>Vis CapX i menuen "Send til"</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>Vis "I spillet" i Steam mens ShareX er åbent</value>
+    <value>Vis "I spillet" i Steam mens CapX er åbent</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>Du kan ændre disse indstillinger senere under Programindstillinger → Integration.</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Kør ShareX når Windows starter</value>
+    <value>Kør CapX når Windows starter</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>Autostart har deaktiveret i Jobliste</value>
@@ -1907,7 +1907,7 @@
     <value>Autostart har aktiveret af din organisation</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>ShareX - Forkort URL</value>
+    <value>CapX - Forkort URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>Forkort URL</value>
@@ -1925,7 +1925,7 @@
     <value>Forkort</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - URL-upload</value>
+    <value>CapX - URL-upload</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>URL-upload</value>
@@ -1946,7 +1946,7 @@
     <value>Upload</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - Før upload</value>
+    <value>CapX - Før upload</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>Før upload</value>
@@ -1976,7 +1976,7 @@
     <value>Ingen eksempelvisning tilgængelig</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - Rediger handlingsværktøjslinje</value>
+    <value>CapX - Rediger handlingsværktøjslinje</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>Tilføj...</value>
@@ -1997,7 +1997,7 @@
     <value>Luk</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>ShareX - Handlingsværktøjslinje</value>
+    <value>CapX - Handlingsværktøjslinje</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>Slip for at uploade</value>
@@ -2015,13 +2015,13 @@
     <value>Altid øverst</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>Åbn ved start af ShareX</value>
+    <value>Åbn ved start af CapX</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>Rediger...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Efter optagelse</value>
+    <value>CapX - Efter optagelse</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>Efter optagelse</value>
@@ -2057,7 +2057,7 @@
     <value>Brugerdefineret [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - Efter upload</value>
+    <value>CapX - Efter upload</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>Uploaden er færdig</value>
@@ -2102,7 +2102,7 @@
     <value>Links</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Automatisk optagelse</value>
+    <value>CapX - Automatisk optagelse</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>Brugerdefineret område</value>
@@ -2156,7 +2156,7 @@
     <value>Fjern</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - Editor for hurtigopgavemenu</value>
+    <value>CapX - Editor for hurtigopgavemenu</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>Tilføj...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  -  Efter upload: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>ShareX - Om</value>
+    <value>CapX - Om</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Copyright © 2007-2026 ShareX Team</value>
+    <value>Copyright © 2007-2026 CapX Team</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Steam-version</value>
@@ -2243,10 +2243,10 @@
     <value>Det var ikke muligt at søge efter opdateringer.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>En nyere version af ShareX findes tilgængelig</value>
+    <value>En nyere version af CapX findes tilgængelig</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>ShareX er opdateret.</value>
+    <value>CapX er opdateret.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>Links</value>
@@ -2270,7 +2270,7 @@
     <value>Team</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>ShareX - Indstillinger for brugerdefinerede uploadere</value>
+    <value>CapX - Indstillinger for brugerdefinerede uploadere</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>Uploaderbibliotek</value>
@@ -2381,10 +2381,10 @@
     <value>Luk</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>ShareX - Bekræftelse</value>
+    <value>CapX - Bekræftelse</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>Brugerdefineret ShareX-uploadere</value>
+    <value>Brugerdefineret CapX-uploadere</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>Slette-URL</value>
@@ -2516,7 +2516,7 @@
     <value>Tekst- eller URL-input</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>Test af tekstupload i ShareX</value>
+    <value>Test af tekstupload i CapX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>Miniature-URL</value>
@@ -2562,7 +2562,7 @@
     <value>Vil du angive "{0}" som aktiv brugerdefineret uploader for {1}?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>ShareX - Bekræftelse af brugerdefineret uploader</value>
+    <value>CapX - Bekræftelse af brugerdefineret uploader</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>Fejl ved export af sikkerhedskopien:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>ShareX - Fejl</value>
+    <value>CapX - Fejl</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>{0}-fejl</value>
@@ -2588,7 +2588,7 @@
     <value>Billednavn</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>ShareX er minimeret til meddelelsesområdet.</value>
+    <value>CapX er minimeret til meddelelsesområdet.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>Variabler som understøttes: {0} og andre variabler som {1} osv.</value>
@@ -2609,7 +2609,7 @@
     <value>Rediger denne menuen...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>ShareX er opdateret!</value>
+    <value>CapX er opdateret!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>Fejlfindingsloggen kan indeholde følsomme oplysninger. Vil du fortsætte?</value>
@@ -2621,7 +2621,7 @@
     <value>URL-forkortere: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Kør ShareX når Windows starter</value>
+    <value>Kør CapX når Windows starter</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>Vil du virkelig fjern denne filen?</value>
@@ -2630,7 +2630,7 @@
     <value>Det går ikke at oprette mappen:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>Den FFmpeg-version, som følger med ShareX, understøtter kun 64-bit-operativsystemer.</value>
+    <value>Den FFmpeg-version, som følger med CapX, understøtter kun 64-bit-operativsystemer.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>Uploader</value>
@@ -2639,7 +2639,7 @@
     <value>Del URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>ShareX skal åbnes igen fra Steam for at indstillingerne skal træde i kraft.</value>
+    <value>CapX skal åbnes igen fra Steam for at indstillingerne skal træde i kraft.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>Autostart har deaktiveret af din organisation</value>
@@ -2677,7 +2677,7 @@
 Du kan deaktivere dem senere fra menuen ”Opgaver efter optagelse”.</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>Rediger med ShareX</value>
+    <value>Rediger med CapX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>Udklipsholder indeholder intet billede.</value>
@@ -2686,7 +2686,7 @@ Du kan deaktivere dem senere fra menuen ”Opgaver efter optagelse”.</value>
     <value>Fejl</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Dit antivirusprogram eller funktionen Kontrolleret mappeadgang i Windows kan blokere ShareX.</value>
+    <value>Dit antivirusprogram eller funktionen Kontrolleret mappeadgang i Windows kan blokere CapX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>Opgaven blev fuldført</value>
@@ -2734,19 +2734,19 @@ Du kan deaktivere dem senere fra menuen ”Opgaver efter optagelse”.</value>
     <value>Video- og lydkilden i FFmpeg kan ikke begge være "Ingen".</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>ShareX kan ikke lukkes, mens en skærmoptagelse er i gang.
+    <value>CapX kan ikke lukkes, mens en skærmoptagelse er i gang.
 
 Vil du afbryde den aktive skærmoptagelse?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>Upload med ShareX</value>
+    <value>Upload med CapX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>Genvejstaster har deaktiveret.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>Der er ikke adgang til filen ”{0}”.
-Kør ShareX som administrator for at ændre stien til den personlige mappe.</value>
+Kør CapX som administrator for at ændre stien til den personlige mappe.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>Autostart har deaktiveret i Jobliste</value>
@@ -2758,7 +2758,7 @@ Kør ShareX som administrator for at ændre stien til den personlige mappe.</val
     <value>Det går ikke at finde et vindue med den angivne vinduestitlen.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>Vil du gendanne ShareX-indstillingerne?</value>
+    <value>Vil du gendanne CapX-indstillingerne?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Det var ikke muligt at gemme indstillingerne</value>
@@ -2795,7 +2795,7 @@ Kør ShareX som administrator for at ændre stien til den personlige mappe.</val
 
 {1}
 
-Vælg en anden genvejstast, eller afslut det program, der forårsager konflikten, og åbn ShareX igen.</value>
+Vælg en anden genvejstast, eller afslut det program, der forårsager konflikten, og åbn CapX igen.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>Forsinkelse af skærmbillede: {0} s</value>

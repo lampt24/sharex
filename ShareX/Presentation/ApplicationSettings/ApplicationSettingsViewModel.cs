@@ -787,7 +787,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     {
         bool confirmed = InvokeOnMainThread(() => MessageBox.Show(
             Strings.ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings,
-            "ShareX - " + Strings.Confirmation,
+            Program.AppName + " - " + Strings.Confirmation,
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Exclamation) == MessageBoxResult.Yes);
 

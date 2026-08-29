@@ -304,7 +304,7 @@ namespace ShareX
 
                     if (restartRequested)
                     {
-                        DebugHelper.WriteLine("ShareX restarting.");
+                        DebugHelper.WriteLine($"{AppName} restarting.");
 
                         if (restartAsAdmin)
                         {
@@ -325,7 +325,7 @@ namespace ShareX
         {
             ApplicationConfiguration.Initialize();
 
-            DebugHelper.WriteLine("ShareX starting.");
+            DebugHelper.WriteLine($"{AppName} starting.");
             DebugHelper.WriteLine("Version: " + VersionText);
             DebugHelper.WriteLine("Build: " + Build);
             DebugHelper.WriteLine("Command line: " + Environment.CommandLine);
@@ -393,13 +393,13 @@ namespace ShareX
             {
                 closeSequenceStarted = true;
 
-                DebugHelper.WriteLine("ShareX closing.");
+                DebugHelper.WriteLine($"{AppName} closing.");
 
                 WatchFolderManager?.Dispose();
                 SettingManager.HistoryClose();
                 SettingManager.SaveAllSettings();
 
-                DebugHelper.WriteLine("ShareX closed.");
+                DebugHelper.WriteLine($"{AppName} closed.");
             }
         }
 

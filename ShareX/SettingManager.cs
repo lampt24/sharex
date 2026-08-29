@@ -174,7 +174,7 @@ namespace ShareX
                 message = e.Message;
             }
 
-            TaskHelpers.ShowNotificationTip(message, "ShareX - " + Strings.FailedToSaveSettings, 5000);
+            TaskHelpers.ShowNotificationTip(message, Program.AppName + " - " + Strings.FailedToSaveSettings, 5000);
         }
 
         public static void LoadUploadersConfig(bool fallbackSupport = true)

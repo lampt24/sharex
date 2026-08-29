@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>ShareX - خيارات تسجيل الشاشة</value>
+    <value>CapX - خيارات تسجيل الشاشة</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>تسجيل الشاشة</value>
@@ -152,7 +152,7 @@
     <value>عامل المعدل الثابت (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>تؤدي القيم الأقل إلى تحسين الجودة وزيادة حجم الملف. القيمة 0 بلا فقد؛ والقيمة الافتراضية في ShareX هي 28.</value>
+    <value>تؤدي القيم الأقل إلى تحسين الجودة وزيادة حجم الملف. القيمة 0 بلا فقد؛ والقيمة الافتراضية في CapX هي 28.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>معدل البت المستهدف (كبت/ث)</value>
@@ -230,7 +230,7 @@
     <value>لم يتم العثور على أجهزة DirectShow. التقاط سطح المكتب جاهز.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>ShareX - تسجيل الشاشة</value>
+    <value>CapX - تسجيل الشاشة</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>بدء</value>
@@ -251,7 +251,7 @@
     <value>إلغاء</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - الالتقاط بالتمرير</value>
+    <value>CapX - الالتقاط بالتمرير</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>التقاط...</value>
