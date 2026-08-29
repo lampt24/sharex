@@ -35,12 +35,12 @@ namespace ShareX.Steam
     public static class Launcher
     {
         private static string ContentFolderPath = Helpers.GetAbsolutePath("ShareX");
-        private static string ContentExecutablePath = Path.Combine(ContentFolderPath, "ShareX.exe");
+        private static string ContentExecutablePath = Path.Combine(ContentFolderPath, "CapX.exe");
         private static string ContentSteamFilePath = Path.Combine(ContentFolderPath, "Steam");
         private static string UpdatingTempFilePath = Path.Combine(ContentFolderPath, "Updating");
 
         private static string UpdateFolderPath = Helpers.GetAbsolutePath("Updates");
-        private static string UpdateExecutablePath = Path.Combine(UpdateFolderPath, "ShareX.exe");
+        private static string UpdateExecutablePath = Path.Combine(UpdateFolderPath, "CapX.exe");
 
         private static bool IsFirstTimeRunning, IsStartupRun, ShowInApp, IsSteamInit;
         private static Stopwatch SteamInitStopwatch;
