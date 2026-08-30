@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>ShareX - स्क्रीन रिकॉर्डिंग विकल्प</value>
+    <value>CapX - स्क्रीन रिकॉर्डिंग विकल्प</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>स्क्रीन रिकॉर्डिंग</value>
@@ -152,7 +152,7 @@
     <value>स्थिर दर गुणक (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>कम मान गुणवत्ता बढ़ाते और फ़ाइल आकार बड़ा करते हैं। 0 दोषरहित है; ShareX का डिफ़ॉल्ट 28 है।</value>
+    <value>कम मान गुणवत्ता बढ़ाते और फ़ाइल आकार बड़ा करते हैं। 0 दोषरहित है; CapX का डिफ़ॉल्ट 28 है।</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>लक्ष्य बिटरेट (kbps)</value>
@@ -230,7 +230,7 @@
     <value>कोई DirectShow उपकरण नहीं मिला। डेस्कटॉप कैप्चर तैयार है।</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>ShareX - स्क्रीन रिकॉर्डिंग</value>
+    <value>CapX - स्क्रीन रिकॉर्डिंग</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>आरंभ करें</value>
@@ -251,7 +251,7 @@
     <value>रद्द करें</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - स्क्रॉलिंग कैप्चर</value>
+    <value>CapX - स्क्रॉलिंग कैप्चर</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>कैप्चर करें...</value>

@@ -62,7 +62,7 @@
     <value>Kết hợp hình ảnh</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>Các tệp được thả vào đây sẽ được ShareX tải lên.</value>
+    <value>Các tệp được thả vào đây sẽ được CapX tải lên.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>Chiều ngang</value>
@@ -77,10 +77,10 @@
     <value>Thả để tải văn bản lên</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>Phím tắt ShareX</value>
+    <value>Phím tắt CapX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>Văn bản được thả vào đây sẽ được ShareX tải lên.</value>
+    <value>Văn bản được thả vào đây sẽ được CapX tải lên.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>Chiều dọc</value>
@@ -200,7 +200,7 @@
     <value>Thư mục</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>Theo dõi ShareX...</value>
+    <value>Theo dõi CapX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Hình ảnh diễn đàn</value>
@@ -386,7 +386,7 @@
     <value>Hiển thị phản hồi...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>Hiển thị ShareX</value>
+    <value>Hiển thị CapX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>Dừng tải lên</value>
@@ -476,10 +476,10 @@
     <value>Mở</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - Thiết lập ứng dụng</value>
+    <value>CapX - Thiết lập ứng dụng</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>Khởi động lại ShareX để áp dụng thay đổi này.</value>
+    <value>Khởi động lại CapX để áp dụng thay đổi này.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>Khởi động lại ngay</value>
@@ -506,7 +506,7 @@
     <value>Hiện tiến độ ở nút thanh tác vụ</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>Dùng biểu tượng ShareX màu trắng</value>
+    <value>Dùng biểu tượng CapX màu trắng</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>Nhớ vị trí cửa sổ chính</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Hiện nút &quot;Tải lên với ShareX&quot; trong menu ngữ cảnh của Windows Explorer</value>
+    <value>Hiện nút &quot;Tải lên với CapX&quot; trong menu ngữ cảnh của Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Hiện nút &quot;Chỉnh sửa với ShareX&quot; trong menu ngữ cảnh của Windows Explorer</value>
+    <value>Hiện nút &quot;Chỉnh sửa với CapX&quot; trong menu ngữ cảnh của Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Hiện ShareX trong menu &quot;Send to&quot;</value>
+    <value>Hiện CapX trong menu &quot;Send to&quot;</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Tiện ích mở rộng Chrome</value>
@@ -584,7 +584,7 @@
     <value>Kích hoạt hỗ trợ tiện ích mở rộng cho Chrome</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>Cài đặt tiện ích mở rộng ShareX cho Chrome...</value>
+    <value>Cài đặt tiện ích mở rộng CapX cho Chrome...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Tiện ích mở rộng cho Firefox</value>
@@ -593,19 +593,19 @@
     <value>Kích hoạt hỗ trợ tiện ích mở rộng cho Firefox</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>Cài đặt tiện ích mở rộng ShareX cho Firefox...</value>
+    <value>Cài đặt tiện ích mở rộng CapX cho Firefox...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>Khi ShareX đang chạy, hiện &quot;In-App&quot; trong Steam</value>
+    <value>Khi CapX đang chạy, hiện &quot;In-App&quot; trong Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>Đường dẫn</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>Thư mục cá nhân ShareX</value>
+    <value>Thư mục cá nhân CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>Duyệt...</value>
@@ -794,19 +794,19 @@
     <value>Hủy</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>Chọn đường dẫn thư mục cá nhân ShareX</value>
+    <value>Chọn đường dẫn thư mục cá nhân CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>Chọn đường dẫn thư mục ảnh chụp màn hình</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>Xuất bản sao lưu ShareX</value>
+    <value>Xuất bản sao lưu CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>Bản sao lưu ShareX</value>
+    <value>Bản sao lưu CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>Nhập bản sao lưu ShareX</value>
+    <value>Nhập bản sao lưu CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>Sửa định dạng bảng tạm</value>
@@ -980,7 +980,7 @@
     <value>Dưới phải</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - Cài đặt phím tắt</value>
+    <value>CapX - Cài đặt phím tắt</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>Thêm</value>
@@ -1028,7 +1028,7 @@
     <value>Đặt lại phím tắt?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>Tất cả phím tắt và cài đặt tác vụ tùy chỉnh của chúng sẽ được thay thế bằng giá trị mặc định của ShareX.</value>
+    <value>Tất cả phím tắt và cài đặt tác vụ tùy chỉnh của chúng sẽ được thay thế bằng giá trị mặc định của CapX.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>Hủy</value>
@@ -1133,10 +1133,10 @@
     <value>Chưa cấu hình nút nào. Thanh công cụ thông báo sẽ bị ẩn.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>ShareX - Cài đặt tác vụ</value>
+    <value>CapX - Cài đặt tác vụ</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>ShareX - Cài đặt tác vụ cho {0}</value>
+    <value>CapX - Cài đặt tác vụ cho {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>Chỉnh sửa hành động</value>
@@ -1763,7 +1763,7 @@
     <value>Chọn tệp âm thanh</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - Tải lên bằng cách kéo và thả</value>
+    <value>CapX - Tải lên bằng cách kéo và thả</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>Thả vào đây</value>
@@ -1793,13 +1793,13 @@
     <value>Bảng nhớ tạm trống hoặc chứa dữ liệu không được hỗ trợ.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>ShareX - Nên lưu tệp như thế nào?</value>
+    <value>CapX - Nên lưu tệp như thế nào?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>Đã có tệp mang tên này</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>Chọn tên tệp mới hoặc chọn cách ShareX tiếp tục.</value>
+    <value>Chọn tên tệp mới hoặc chọn cách CapX tiếp tục.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>Tên tệp mới</value>
@@ -1817,7 +1817,7 @@
     <value>Hủy</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>ShareX - Tải lên tệp lớn</value>
+    <value>CapX - Tải lên tệp lớn</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>Bạn đang cố tải lên một tệp lớn.</value>
@@ -1832,7 +1832,7 @@
     <value>Hủy</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>ShareX - Tải tệp lên</value>
+    <value>CapX - Tải tệp lên</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>Bạn có chắc muốn tải lên {0} tệp không?</value>
@@ -1847,7 +1847,7 @@
     <value>Hủy</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>ShareX - Nhật ký gỡ lỗi</value>
+    <value>CapX - Nhật ký gỡ lỗi</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>Các hợp ngữ đã tải</value>
@@ -1874,19 +1874,19 @@
     <value>Tải lên</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>Cấu hình ShareX lần đầu</value>
+    <value>Cấu hình CapX lần đầu</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>Chọn cách ShareX tích hợp với Windows.</value>
+    <value>Chọn cách CapX tích hợp với Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Hiển thị &quot;Tải lên bằng ShareX&quot; trong menu ngữ cảnh của Windows Explorer</value>
+    <value>Hiển thị &quot;Tải lên bằng CapX&quot; trong menu ngữ cảnh của Windows Explorer</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>Hiển thị ShareX trong menu &quot;Gửi đến&quot;</value>
+    <value>Hiển thị CapX trong menu &quot;Gửi đến&quot;</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>Khi ShareX đang mở, hiển thị &quot;Trong ứng dụng&quot; trên Steam</value>
+    <value>Khi CapX đang mở, hiển thị &quot;Trong ứng dụng&quot; trên Steam</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>Bạn có thể thay đổi các tùy chọn này sau trong Cài đặt ứng dụng → Tích hợp.</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Chạy ShareX khi Windows khởi động</value>
+    <value>Chạy CapX khi Windows khởi động</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>Khởi động đã bị tắt trong Trình quản lý Tác vụ</value>
@@ -1907,7 +1907,7 @@
     <value>Khởi động đã được tổ chức của bạn bật</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>ShareX - Rút gọn URL</value>
+    <value>CapX - Rút gọn URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>Rút gọn URL</value>
@@ -1925,7 +1925,7 @@
     <value>Rút gọn</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - Tải lên URL</value>
+    <value>CapX - Tải lên URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>Tải lên URL</value>
@@ -1946,7 +1946,7 @@
     <value>Tải lên</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - Trước khi tải lên</value>
+    <value>CapX - Trước khi tải lên</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>Trước khi tải lên</value>
@@ -1976,7 +1976,7 @@
     <value>Không có bản xem trước</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - Sửa thanh công cụ tác vụ</value>
+    <value>CapX - Sửa thanh công cụ tác vụ</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>Thêm...</value>
@@ -1997,7 +1997,7 @@
     <value>Đóng</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>ShareX - Thanh công cụ tác vụ</value>
+    <value>CapX - Thanh công cụ tác vụ</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>Thả để tải lên</value>
@@ -2015,13 +2015,13 @@
     <value>Luôn ở trên</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>Mở khi ShareX khởi động</value>
+    <value>Mở khi CapX khởi động</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>Sửa...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Sau khi chụp</value>
+    <value>CapX - Sau khi chụp</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>Sau khi chụp</value>
@@ -2057,7 +2057,7 @@
     <value>Tùy chỉnh [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - Sau khi tải lên</value>
+    <value>CapX - Sau khi tải lên</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>Tải lên hoàn tất</value>
@@ -2102,7 +2102,7 @@
     <value>Liên kết</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Chụp tự động</value>
+    <value>CapX - Chụp tự động</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>Vùng tùy chỉnh</value>
@@ -2156,7 +2156,7 @@
     <value>Xóa</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - Trình sửa menu tác vụ nhanh</value>
+    <value>CapX - Trình sửa menu tác vụ nhanh</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>Thêm...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  Sau khi tải lên: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>ShareX - Giới thiệu</value>
+    <value>CapX - Giới thiệu</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Bản quyền © 2007–2026 Nhóm ShareX</value>
+    <value>Bản quyền © 2007–2026 Nhóm CapX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Bản dựng Steam</value>
@@ -2243,10 +2243,10 @@
     <value>Kiểm tra bản cập nhật thất bại.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>Có phiên bản ShareX mới hơn</value>
+    <value>Có phiên bản CapX mới hơn</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>ShareX đã được cập nhật.</value>
+    <value>CapX đã được cập nhật.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>Liên kết</value>
@@ -2270,7 +2270,7 @@
     <value>Nhóm</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>ShareX - Cài đặt trình tải lên tùy chỉnh</value>
+    <value>CapX - Cài đặt trình tải lên tùy chỉnh</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>Thư viện trình tải lên</value>
@@ -2381,10 +2381,10 @@
     <value>Đóng</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>ShareX - Xác nhận</value>
+    <value>CapX - Xác nhận</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>Trình tải lên tùy chỉnh ShareX</value>
+    <value>Trình tải lên tùy chỉnh CapX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>URL xóa</value>
@@ -2516,7 +2516,7 @@
     <value>Đầu vào văn bản hoặc URL</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>Kiểm tra tải văn bản ShareX</value>
+    <value>Kiểm tra tải văn bản CapX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>URL hình thu nhỏ</value>
@@ -2562,7 +2562,7 @@
     <value>Bạn có muốn đặt &quot;{0}&quot; làm trình tải lên tùy chỉnh đang hoạt động cho {1} không?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>ShareX - Xác nhận trình tải lên tùy chỉnh</value>
+    <value>CapX - Xác nhận trình tải lên tùy chỉnh</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>Lỗi khi xuất bản sao lưu:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>ShareX - Lỗi</value>
+    <value>CapX - Lỗi</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>Lỗi {0}</value>
@@ -2588,7 +2588,7 @@
     <value>TênHìnhẢnh</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>ShareX được thu nhỏ vào khay hệ thống.</value>
+    <value>CapX được thu nhỏ vào khay hệ thống.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>Các biến được hỗ trợ: {0} và các biến khác như {1}, v.v</value>
@@ -2609,7 +2609,7 @@
     <value>Sửa menu này...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>ShareX đã được cập nhật!</value>
+    <value>CapX đã được cập nhật!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>Dữ liệu debug có thể chứa thông tin nhạy cảm. Bạn có chắc muốn tiếp tục không?</value>
@@ -2621,7 +2621,7 @@
     <value>Dịch vụ rút gọn URL: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Chạy ShareX cùng Windows</value>
+    <value>Chạy CapX cùng Windows</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>Bạn có thật sự muốn xóa tệp này không?</value>
@@ -2630,7 +2630,7 @@
     <value>Không thể tạo thư mục mới:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>FFmpeg đi kèm với ShareX chỉ hỗ trợ hệ điều hành 64-bit.</value>
+    <value>FFmpeg đi kèm với CapX chỉ hỗ trợ hệ điều hành 64-bit.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>Đang tải lên</value>
@@ -2639,7 +2639,7 @@
     <value>Chia sẻ URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>Để thiết lập có tác dụng ShareX cần được mở lại từ Steam.</value>
+    <value>Để thiết lập có tác dụng CapX cần được mở lại từ Steam.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>Tự khởi động đã bị vô hiệu bởi tổ chức của bạn</value>
@@ -2677,7 +2677,7 @@
 Sau đó, bạn có thể tắt nó từ menu "Sau khi chụp tác vụ".</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>Chỉnh sửa với ShareX</value>
+    <value>Chỉnh sửa với CapX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>Clipboard không chứa hình ảnh.</value>
@@ -2686,7 +2686,7 @@ Sau đó, bạn có thể tắt nó từ menu "Sau khi chụp tác vụ".</value
     <value>Lỗi</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Phần mềm chống vi-rút của bạn hoặc tính năng truy cập thư mục được kiểm soát trong Windows có thể đang chặn ShareX.</value>
+    <value>Phần mềm chống vi-rút của bạn hoặc tính năng truy cập thư mục được kiểm soát trong Windows có thể đang chặn CapX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>Tác vụ đã hoàn thành</value>
@@ -2734,19 +2734,19 @@ Sau đó, bạn có thể tắt nó từ menu "Sau khi chụp tác vụ".</value
     <value>Nguồn âm thanh và video FFmpeg không được là "Không".</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>Không thể đóng ShareX khi đang quay màn hình.
+    <value>Không thể đóng CapX khi đang quay màn hình.
 
 Bạn có muốn hủy phiên quay màn hình đang hoạt động không?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>Tải lên với ShareX</value>
+    <value>Tải lên với CapX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>Phím tắt đã được kích hoạt.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>Không thể truy cập tới tệp "{0}"
-Vui lòng chạy ShareX dưới quyền administrator để thay đổi thư mục riêng.</value>
+Vui lòng chạy CapX dưới quyền administrator để thay đổi thư mục riêng.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>Tự khởi động đã bị vô hiệu trong Task Manager</value>
@@ -2758,7 +2758,7 @@ Vui lòng chạy ShareX dưới quyền administrator để thay đổi thư m�
     <value>Không thể tìm thấy một cửa sổ có tiêu đề cửa sổ được chỉ định.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>Bạn có muốn đặt lại các cài đặt cho ShareX không?</value>
+    <value>Bạn có muốn đặt lại các cài đặt cho CapX không?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Không lưu được cài đặt</value>
@@ -2795,7 +2795,7 @@ Vui lòng chạy ShareX dưới quyền administrator để thay đổi thư m�
 
 {1}
 
-Vui lòng chọn phím tắt khác hoặc thoát ứng dụng đang gây lỗi và mở lại ShareX.</value>
+Vui lòng chọn phím tắt khác hoặc thoát ứng dụng đang gây lỗi và mở lại CapX.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>Thời gian trễ chụp ảnh màn hình: {0} giây</value>

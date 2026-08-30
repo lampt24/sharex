@@ -206,7 +206,7 @@ public partial class ScreenRecordWindow : Window, IDisposable
         _trayIcon = new WinForms.NotifyIcon
         {
             ContextMenuStrip = _trayMenu,
-            Text = "ShareX",
+            Text = "CapX",
             Visible = false
         };
         _trayIcon.MouseClick += OnTrayIconMouseClick;
@@ -347,7 +347,7 @@ public partial class ScreenRecordWindow : Window, IDisposable
             switch (state)
             {
                 case ScreenRecordState.Waiting:
-                    SetTrayText("ShareX - " + Strings.ScreenRecordForm_StartRecording_Waiting___);
+                    SetTrayText("CapX - " + Strings.ScreenRecordForm_StartRecording_Waiting___);
                     SetTrayIcon(LucideTrayIcon.CreateIcon(LucideIcons.video_off, DrawingColor.Gold));
                     _trayMenu.Enabled = false;
                     _trayIcon.Visible = true;
@@ -373,7 +373,7 @@ public partial class ScreenRecordWindow : Window, IDisposable
                 case ScreenRecordState.Encoding:
                     Hide();
                     _trayMenu.Enabled = false;
-                    SetTrayText("ShareX - " + Strings.ScreenRecordForm_StartRecording_Encoding___);
+                    SetTrayText("CapX - " + Strings.ScreenRecordForm_StartRecording_Encoding___);
                     SetTrayIcon(LucideTrayIcon.CreateIcon(LucideIcons.file_video_camera));
                     break;
             }
@@ -384,7 +384,7 @@ public partial class ScreenRecordWindow : Window, IDisposable
     {
         InvokeSafe(() =>
         {
-            SetTrayText($"ShareX - {Strings.ScreenRecordForm_StartRecording_Encoding___} {progress}%");
+            SetTrayText($"CapX - {Strings.ScreenRecordForm_StartRecording_Encoding___} {progress}%");
 
             if (!_trayIcon.Visible || _lastIconStatus == progress)
             {
@@ -487,7 +487,7 @@ public partial class ScreenRecordWindow : Window, IDisposable
         switch (Status)
         {
             case ScreenRecordingStatus.Working:
-                SetTrayText("ShareX - " + Strings.ScreenRecordForm_StartRecording_Click_tray_icon_to_stop_recording_);
+                SetTrayText("CapX - " + Strings.ScreenRecordForm_StartRecording_Click_tray_icon_to_stop_recording_);
                 SetTrayIcon(LucideTrayIcon.CreateIcon(LucideIcons.video, DrawingColor.Red));
                 StartText.Text = Strings.ScreenRecordForm_Stop;
                 StartIcon.Text = LucideIcons.square;
@@ -502,7 +502,7 @@ public partial class ScreenRecordWindow : Window, IDisposable
             case ScreenRecordingStatus.Waiting:
             case ScreenRecordingStatus.Paused:
                 bool paused = Status == ScreenRecordingStatus.Paused;
-                SetTrayText("ShareX - " + (paused
+                SetTrayText("CapX - " + (paused
                     ? Strings.ScreenRecordForm_StartRecording_Click_tray_icon_to_stop_recording_
                     : Strings.ScreenRecordForm_StartRecording_Click_tray_icon_to_start_recording_));
                 SetTrayIcon(LucideTrayIcon.CreateIcon(LucideIcons.video_off, DrawingColor.Gold));

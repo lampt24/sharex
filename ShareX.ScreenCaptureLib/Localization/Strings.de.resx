@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>ShareX - Bildschirmaufnahmeoptionen</value>
+    <value>CapX - Bildschirmaufnahmeoptionen</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Bildschirmaufnahme</value>
@@ -152,7 +152,7 @@
     <value>Konstanter Ratenfaktor (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Niedrigere Werte verbessern die Qualität und vergrößern die Datei. 0 ist verlustfrei; 28 ist der ShareX-Standard.</value>
+    <value>Niedrigere Werte verbessern die Qualität und vergrößern die Datei. 0 ist verlustfrei; 28 ist der CapX-Standard.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Zielbitrate (kbit/s)</value>
@@ -230,7 +230,7 @@
     <value>Keine DirectShow-Geräte gefunden. Die Desktopaufnahme ist bereit.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>ShareX - Bildschirmaufnahme</value>
+    <value>CapX - Bildschirmaufnahme</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Starten</value>
@@ -251,7 +251,7 @@
     <value>Abbrechen</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Scrollaufnahme</value>
+    <value>CapX - Scrollaufnahme</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Aufnehmen...</value>

@@ -10,7 +10,7 @@
         d:DesignHeight="390"
         x:Class="ShareX.FirstTimeConfigWindow"
         x:DataType="local:FirstTimeConfigViewModel"
-        Title="ShareX"
+        Title="CapX"
         Width="600"
         Height="390"
         Background="{DynamicResource ShareX.Brush.Background.Main}"

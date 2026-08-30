@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>ShareX - Opzioni di registrazione schermo</value>
+    <value>CapX - Opzioni di registrazione schermo</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Registrazione schermo</value>
@@ -152,7 +152,7 @@
     <value>Fattore di qualità costante (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Valori inferiori migliorano la qualità e aumentano la dimensione del file. 0 è senza perdita; 28 è il valore predefinito di ShareX.</value>
+    <value>Valori inferiori migliorano la qualità e aumentano la dimensione del file. 0 è senza perdita; 28 è il valore predefinito di CapX.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Bitrate di destinazione (kbps)</value>
@@ -230,7 +230,7 @@
     <value>Nessun dispositivo DirectShow trovato. L’acquisizione del desktop è pronta.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>ShareX - Registrazione schermo</value>
+    <value>CapX - Registrazione schermo</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Avvia</value>
@@ -251,7 +251,7 @@
     <value>Annulla</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - Acquisizione a scorrimento</value>
+    <value>CapX - Acquisizione a scorrimento</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Acquisisci...</value>

@@ -50,7 +50,7 @@ namespace ShareX.NativeMessagingHost
                     {
                         host.Write(input);
 
-                        string filePath = FileHelpers.GetAbsolutePath("ShareX.exe");
+                        string filePath = FileHelpers.GetAbsolutePath("CapX.exe");
                         string tempFilePath = FileHelpers.GetTempFilePath("json");
                         File.WriteAllText(tempFilePath, input, Encoding.UTF8);
                         string argument = $"-NativeMessagingInput \"{tempFilePath}\"";
@@ -64,8 +64,8 @@ namespace ShareX.NativeMessagingHost
             }
             else
             {
-                MessageBox.Show("This executable is used to receive data from browser addon and send it to ShareX.",
-                    "ShareX NativeMessagingHost", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("This executable is used to receive data from browser addon and send it to CapX.",
+                    "CapX NativeMessagingHost", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿{
   "name": "ShareX",
-  "description": "ShareX",
+  "description": "CapX",
   "path": "ShareX_NativeMessagingHost.exe",
   "type": "stdio",
   "allowed_extensions": [

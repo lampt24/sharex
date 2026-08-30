@@ -72,11 +72,12 @@
                     <Border x:Name="TitleHandle"
                             Classes="toolbar-title"
                             PointerPressed="OnTitlePointerPressed">
-                        <TextBlock Text="ShareX"
-                                   FontSize="13"
-                                   FontWeight="SemiBold"
-                                   IsHitTestVisible="False"
-                                   VerticalAlignment="Center"/>
+                        <Image x:Name="ToolbarLogo"
+                               Width="18"
+                               Height="18"
+                               Stretch="Uniform"
+                               IsHitTestVisible="False"
+                               VerticalAlignment="Center"/>
                     </Border>
                 </StackPanel>
 

@@ -42,7 +42,7 @@ public partial class ClipboardUploadWindow : Window
 
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
-        Title = $"ShareX - {Strings.ClipboardUploadWindow_ClipboardUpload}";
+        Title = $"{Program.AppName} - {Strings.ClipboardUploadWindow_ClipboardUpload}";
         HeaderTitle.Text = Strings.ClipboardUploadWindow_ClipboardUpload;
         DontShowAgainCheckBox.IsVisible = showDontShowAgain;
 

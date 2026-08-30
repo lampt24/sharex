@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>ShareX — Выбор цвета</value>
+    <value>CapX — Выбор цвета</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Цветовой режим</value>
@@ -161,7 +161,7 @@
     <value>Отмена</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>ShareX — Ошибка</value>
+    <value>CapX — Ошибка</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Произошла ошибка</value>
@@ -191,7 +191,7 @@
     <value>Произошла непредвиденная ошибка.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>ShareX — Просмотр изображений</value>
+    <value>CapX — Просмотр изображений</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Открыть изображение</value>
@@ -200,13 +200,13 @@
     <value>Ввод</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX — {0}</value>
+    <value>CapX — {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Вывод</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX — {0}</value>
+    <value>CapX — {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Копировать всё</value>
@@ -215,7 +215,7 @@
     <value>Закрыть</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>ShareX — Параметры печати</value>
+    <value>CapX — Параметры печати</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Параметры печати</value>
@@ -245,13 +245,13 @@
     <value>Предварительный просмотр...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>ShareX — Загрузчик файлов</value>
+    <value>CapX — Загрузчик файлов</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Загрузчик файлов</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>Загрузите обновления ShareX и другие необходимые файлы.</value>
+    <value>Загрузите обновления CapX и другие необходимые файлы.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Скачать</value>
@@ -260,7 +260,7 @@
     <value>Просмотреть журнал изменений</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>Доступно обновление ShareX</value>
+    <value>Доступно обновление CapX</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Красный цвет (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Загрузка перетаскиванием</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Выйти из ShareX</value>
+    <value>Выйти из CapX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Загрузка файла</value>

@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>ShareX - カラーピッカー</value>
+    <value>CapX - カラーピッカー</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>カラーモード</value>
@@ -161,7 +161,7 @@
     <value>キャンセル</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>ShareX - エラー</value>
+    <value>CapX - エラー</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>エラーが発生しました</value>
@@ -191,7 +191,7 @@
     <value>予期しないエラーが発生しました。</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>ShareX - 画像ビューアー</value>
+    <value>CapX - 画像ビューアー</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>画像を開く</value>
@@ -200,13 +200,13 @@
     <value>入力</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX - {0}</value>
+    <value>CapX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>出力</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX - {0}</value>
+    <value>CapX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>すべてコピー</value>
@@ -215,7 +215,7 @@
     <value>閉じる</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>ShareX - 印刷オプション</value>
+    <value>CapX - 印刷オプション</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>印刷オプション</value>
@@ -245,13 +245,13 @@
     <value>プレビュー...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>ShareX - ファイルダウンローダー</value>
+    <value>CapX - ファイルダウンローダー</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>ファイルダウンローダー</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>ShareX の更新とその他の必要なファイルをダウンロードします。</value>
+    <value>CapX の更新とその他の必要なファイルをダウンロードします。</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>ダウンロード</value>
@@ -260,7 +260,7 @@
     <value>変更履歴を表示</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>ShareX の更新があります</value>
+    <value>CapX の更新があります</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>赤色 (0-255)</value>
@@ -806,7 +806,7 @@
     <value>ドラッグ＆ドロップでアップロード</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>ShareXを終了</value>
+    <value>CapXを終了</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>ファイルをアップロード</value>
@@ -872,7 +872,7 @@
     <value>画像の履歴ウィンドウを開く</value>
   </data>
   <data name="HotkeyType_OpenMainWindow" xml:space="preserve">
-    <value>ShareX ウィンドウを表示</value>
+    <value>CapX ウィンドウを表示</value>
   </data>
   <data name="HotkeyType_OpenScreenshotsFolder" xml:space="preserve">
     <value>画像保存フォルダーを開く</value>

@@ -190,7 +190,7 @@ public sealed class ShareXClickerControl : IDisposable
                     Orientation = Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Spacing = 7,
-                    Children = { Icon(LucideIcons.landmark, 18), new TextBlock { Text = "ShareX Clicker", FontSize = 18, Foreground = _accentBrush } }
+                    Children = { Icon(LucideIcons.landmark, 18), new TextBlock { Text = $"{Program.AppName} Clicker", FontSize = 18, Foreground = _accentBrush } }
                 },
                 new TextBlock { Text = "Build a tiny screenshot empire.", FontSize = 12, Opacity = 0.7, TextAlignment = TextAlignment.Center }
             }

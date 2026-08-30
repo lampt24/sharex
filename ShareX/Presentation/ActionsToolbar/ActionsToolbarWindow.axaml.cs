@@ -10,6 +10,7 @@
 #nullable enable
 
 using Avalonia;
+using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -23,7 +24,10 @@ using ShareX.HelpersLib;
 using ShareX.Localization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using AvaloniaBitmap = Avalonia.Media.Imaging.Bitmap;
+using DrawingBitmap = System.Drawing.Bitmap;
 using DrawingPoint = System.Drawing.Point;
 using FormsDataFormats = System.Windows.Forms.DataFormats;
 using FormsDataObject = System.Windows.Forms.DataObject;
@@ -32,6 +36,7 @@ namespace ShareX;
 
 public partial class ActionsToolbarWindow : Window
 {
+    private readonly AvaloniaBitmap _toolbarLogoBitmap;
     private bool _positionReady;
     private bool _adjustingPosition;
     private bool _closing;
@@ -40,10 +45,18 @@ public partial class ActionsToolbarWindow : Window
     {
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
+        AutomationProperties.SetName(TitleHandle, Program.AppName);
+
+        using DrawingBitmap logo = ShareXResources.Logo;
+        using Stream logoStream = logo.GetStream();
+        logoStream.Position = 0;
+        _toolbarLogoBitmap = new AvaloniaBitmap(logoStream);
+        ToolbarLogo.Source = _toolbarLogoBitmap;
+
         Topmost = Program.Settings.ActionsToolbarStayTopMost;
         Program.Settings.ActionsToolbarList ??= [];
 
-        ToolTip.SetTip(TitleHandle, Strings.ActionsToolbarWindow_Tip);
+        ToolTip.SetTip(TitleHandle, $"{Program.AppName}\n{Strings.ActionsToolbarWindow_Tip}");
         ToolTip.SetPlacement(TitleHandle, PlacementMode.Top);
         ToolTip.SetVerticalOffset(TitleHandle, -4);
         ToolTip.SetShowDelay(TitleHandle, 400);
@@ -54,7 +67,11 @@ public partial class ActionsToolbarWindow : Window
 
         Opened += OnOpened;
         PositionChanged += OnPositionChanged;
-        Closed += (_, _) => _closing = true;
+        Closed += (_, _) =>
+        {
+            _closing = true;
+            _toolbarLogoBitmap.Dispose();
+        };
     }
 
     internal void RefreshToolbar()

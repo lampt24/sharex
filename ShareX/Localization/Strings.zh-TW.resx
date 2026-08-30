@@ -62,7 +62,7 @@
     <value>合併影像</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>拖放到此處的檔案將由 ShareX 上傳。</value>
+    <value>拖放到此處的檔案將由 CapX 上傳。</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>水平</value>
@@ -77,10 +77,10 @@
     <value>放開以上傳文字</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>ShareX 快速鍵</value>
+    <value>CapX 快速鍵</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>拖放到此處的文字將由 ShareX 上傳。</value>
+    <value>拖放到此處的文字將由 CapX 上傳。</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>垂直</value>
@@ -200,7 +200,7 @@
     <value>資料夾</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>追蹤 ShareX...</value>
+    <value>追蹤 CapX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>論壇影像</value>
@@ -386,7 +386,7 @@
     <value>顯示回應...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>顯示 ShareX</value>
+    <value>顯示 CapX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>停止上傳</value>
@@ -476,10 +476,10 @@
     <value>開啟</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - 應用程式設定</value>
+    <value>CapX - 應用程式設定</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>重新啟動 ShareX 以套用此變更。</value>
+    <value>重新啟動 CapX 以套用此變更。</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>立即重新啟動</value>
@@ -506,7 +506,7 @@
     <value>在工作列顯示進度</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>使用白色 ShareX 圖示</value>
+    <value>使用白色 CapX 圖示</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>記住主視窗位置</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>在檔案總管的右鍵選單中顯示「使用 ShareX 上傳」按鈕</value>
+    <value>在檔案總管的右鍵選單中顯示「使用 CapX 上傳」按鈕</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>在檔案總管的右鍵選單中顯示「使用 ShareX 編輯」按鈕</value>
+    <value>在檔案總管的右鍵選單中顯示「使用 CapX 編輯」按鈕</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>在「傳送到」選單中顯示 ShareX</value>
+    <value>在「傳送到」選單中顯示 CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Chrome 擴充功能</value>
@@ -584,7 +584,7 @@
     <value>啟用 Chrome 擴充功能支援</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>安裝 ShareX Chrome 擴充功能...</value>
+    <value>安裝 CapX Chrome 擴充功能...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Firefox 附加元件</value>
@@ -593,19 +593,19 @@
     <value>啟用 Firefox 附加元件支援</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>安裝 ShareX Firefox 附加元件...</value>
+    <value>安裝 CapX Firefox 附加元件...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>當 ShareX 開啟時，在 Steam 狀態顯示 ShareX</value>
+    <value>當 CapX 開啟時，在 Steam 狀態顯示 CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>路徑</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>ShareX 個人資料夾</value>
+    <value>CapX 個人資料夾</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>瀏覽...</value>
@@ -794,19 +794,19 @@
     <value>取消</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>選擇 ShareX 個人資料夾路徑</value>
+    <value>選擇 CapX 個人資料夾路徑</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>選擇螢幕擷取畫面資料夾路徑</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>匯出 ShareX 備份</value>
+    <value>匯出 CapX 備份</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>ShareX 備份</value>
+    <value>CapX 備份</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>匯入 ShareX 備份</value>
+    <value>匯入 CapX 備份</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>編輯剪貼簿格式</value>
@@ -980,7 +980,7 @@
     <value>右下</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - 快速鍵設定</value>
+    <value>CapX - 快速鍵設定</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>新增</value>
@@ -1028,7 +1028,7 @@
     <value>重設快速鍵？</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>所有快速鍵及其自訂工作設定都將取代為 ShareX 預設值。</value>
+    <value>所有快速鍵及其自訂工作設定都將取代為 CapX 預設值。</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>取消</value>
@@ -1133,10 +1133,10 @@
     <value>未設定按鈕。通知工具列將會隱藏。</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>ShareX - 工作設定</value>
+    <value>CapX - 工作設定</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>ShareX - {0} 的工作設定</value>
+    <value>CapX - {0} 的工作設定</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>編輯動作</value>
@@ -1763,7 +1763,7 @@
     <value>選擇音訊檔案</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - 拖放上傳</value>
+    <value>CapX - 拖放上傳</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>拖放到此處</value>
@@ -1793,13 +1793,13 @@
     <value>剪貼簿是空的或包含不支援的資料。</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>ShareX - 如何儲存檔案？</value>
+    <value>CapX - 如何儲存檔案？</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>已存在同名檔案</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>請選擇新的檔案名稱，或選擇 ShareX 的後續處理方式。</value>
+    <value>請選擇新的檔案名稱，或選擇 CapX 的後續處理方式。</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>新檔案名稱</value>
@@ -1817,7 +1817,7 @@
     <value>取消</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>ShareX - 上傳大型檔案</value>
+    <value>CapX - 上傳大型檔案</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>您正嘗試上傳大型檔案。</value>
@@ -1832,7 +1832,7 @@
     <value>取消</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>ShareX - 上傳檔案</value>
+    <value>CapX - 上傳檔案</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>確定要上傳 {0} 個檔案嗎？</value>
@@ -1847,7 +1847,7 @@
     <value>取消</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>ShareX - 偵錯記錄</value>
+    <value>CapX - 偵錯記錄</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>已載入的組件</value>
@@ -1874,19 +1874,19 @@
     <value>上傳</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>ShareX 初始設定</value>
+    <value>CapX 初始設定</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>選擇 ShareX 與 Windows 的整合方式。</value>
+    <value>選擇 CapX 與 Windows 的整合方式。</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>在 Windows 檔案總管內容功能表中顯示「使用 ShareX 上傳」</value>
+    <value>在 Windows 檔案總管內容功能表中顯示「使用 CapX 上傳」</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>在「傳送到」功能表中顯示 ShareX</value>
+    <value>在「傳送到」功能表中顯示 CapX</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>ShareX 執行時在 Steam 中顯示「應用程式內」</value>
+    <value>CapX 執行時在 Steam 中顯示「應用程式內」</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>稍後可在應用程式設定 → 整合中變更這些選項。</value>
@@ -1895,7 +1895,7 @@
     <value>確定</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Windows 啟動時執行 ShareX</value>
+    <value>Windows 啟動時執行 CapX</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>已在工作管理員中停用啟動</value>
@@ -1907,7 +1907,7 @@
     <value>您的組織已啟用啟動</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>ShareX - 縮短 URL</value>
+    <value>CapX - 縮短 URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>縮短 URL</value>
@@ -1925,7 +1925,7 @@
     <value>縮短</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - URL 上傳</value>
+    <value>CapX - URL 上傳</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>URL 上傳</value>
@@ -1946,7 +1946,7 @@
     <value>上傳</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - 上傳前</value>
+    <value>CapX - 上傳前</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>上傳前</value>
@@ -1976,7 +1976,7 @@
     <value>沒有可用的預覽</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - 編輯動作工具列</value>
+    <value>CapX - 編輯動作工具列</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>新增...</value>
@@ -1997,7 +1997,7 @@
     <value>關閉</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>ShareX - 動作工具列</value>
+    <value>CapX - 動作工具列</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>拖放以上傳</value>
@@ -2015,13 +2015,13 @@
     <value>保持最上層</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>ShareX 啟動時開啟</value>
+    <value>CapX 啟動時開啟</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>編輯...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - 擷取後</value>
+    <value>CapX - 擷取後</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>擷取後</value>
@@ -2057,7 +2057,7 @@
     <value>自訂 [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - 上傳後</value>
+    <value>CapX - 上傳後</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>上傳完成</value>
@@ -2102,7 +2102,7 @@
     <value>連結</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - 自動擷取</value>
+    <value>CapX - 自動擷取</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>自訂區域</value>
@@ -2156,7 +2156,7 @@
     <value>移除</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - 快速工作功能表編輯器</value>
+    <value>CapX - 快速工作功能表編輯器</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>新增...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  上傳後: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>ShareX - 關於</value>
+    <value>CapX - 關於</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>著作權 © 2007–2026 ShareX 團隊</value>
+    <value>著作權 © 2007–2026 CapX 團隊</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Steam 版本</value>
@@ -2243,10 +2243,10 @@
     <value>檢查更新失敗。</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>有較新版本的 ShareX 可用</value>
+    <value>有較新版本的 CapX 可用</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>ShareX 已是最新版本。</value>
+    <value>CapX 已是最新版本。</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>連結</value>
@@ -2270,7 +2270,7 @@
     <value>團隊</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>ShareX - 自訂上傳器設定</value>
+    <value>CapX - 自訂上傳器設定</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>上傳器庫</value>
@@ -2381,10 +2381,10 @@
     <value>關閉</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>ShareX - 確認</value>
+    <value>CapX - 確認</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>ShareX 自訂上傳器</value>
+    <value>CapX 自訂上傳器</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>刪除 URL</value>
@@ -2516,7 +2516,7 @@
     <value>文字或 URL 輸入</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>ShareX 文字上傳測試</value>
+    <value>CapX 文字上傳測試</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>縮圖 URL</value>
@@ -2562,7 +2562,7 @@
     <value>要將「{0}」設為 {1} 的使用中自訂上傳器嗎？</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>ShareX - 自訂上傳器確認</value>
+    <value>CapX - 自訂上傳器確認</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>匯出備份時發生錯誤：
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>ShareX - 錯誤</value>
+    <value>CapX - 錯誤</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>{0} 錯誤</value>
@@ -2588,7 +2588,7 @@
     <value>影像名稱</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>ShareX 已最小化到系統匣。</value>
+    <value>CapX 已最小化到系統匣。</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>支援的變數：{0} 和其他如 {1} 的變數等</value>
@@ -2609,7 +2609,7 @@
     <value>編輯此選單...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>ShareX 已為最新版！</value>
+    <value>CapX 已為最新版！</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>偵錯日誌可能包含敏感資訊。確定要繼續嗎？</value>
@@ -2621,7 +2621,7 @@
     <value>縮網址服務：{0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Windows 開機時執行 ShareX</value>
+    <value>Windows 開機時執行 CapX</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>確定要刪除此檔案嗎？</value>
@@ -2630,7 +2630,7 @@
     <value>無法建立資料夾：</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>ShareX 包含的 FFmpeg 僅支援 64 位元的作業系統。</value>
+    <value>CapX 包含的 FFmpeg 僅支援 64 位元的作業系統。</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>上傳中</value>
@@ -2639,7 +2639,7 @@
     <value>分享網址 ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>需從 Steam 重新開啟 ShareX，設定才會生效。</value>
+    <value>需從 Steam 重新開啟 CapX，設定才會生效。</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>開機啟動已被你的組織停用</value>
@@ -2677,7 +2677,7 @@
 之後可以從「擷取後任務」選單中停用。</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>使用 ShareX 編輯</value>
+    <value>使用 CapX 編輯</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>剪貼簿無圖片。</value>
@@ -2686,7 +2686,7 @@
     <value>錯誤</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>你的防毒軟體或 Windows 的受控資料夾存取權功能可能阻擋了 ShareX。</value>
+    <value>你的防毒軟體或 Windows 的受控資料夾存取權功能可能阻擋了 CapX。</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>任務完成</value>
@@ -2734,19 +2734,19 @@
     <value>FFmpeg 視訊和音訊源不能同時為「無」。</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>錄製螢幕時無法關閉 ShareX。
+    <value>錄製螢幕時無法關閉 CapX。
 
 是否要取消目前的螢幕錄製？</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>使用 ShareX 上傳</value>
+    <value>使用 CapX 上傳</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>快捷鍵已停用。</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>無法存取「{0}」檔案。
-請以管理員身分執行 ShareX 以更改個人資料夾路徑。</value>
+請以管理員身分執行 CapX 以更改個人資料夾路徑。</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>開機啟動已被任務管理器停用</value>
@@ -2758,7 +2758,7 @@
     <value>無法找到符合指定的視窗標題的視窗。</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>是否要重設 ShareX 設定？</value>
+    <value>是否要重設 CapX 設定？</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>儲存設定失敗</value>
@@ -2795,7 +2795,7 @@
 
 {1}
 
-請選擇其他快捷鍵，或退出衝突的應用程式並重啟 ShareX。</value>
+請選擇其他快捷鍵，或退出衝突的應用程式並重啟 CapX。</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>截圖倒數計時：{0} 秒</value>

@@ -1,4 +1,4 @@
-# UploadersLib localization status
+# CapX UploadersLib localization status
 
 UploadersLib uses the shared `Strings.resx` catalog in this directory for all translatable user-interface and runtime text. Resource keys are scoped by their owning window, uploader, enum, or component.
 

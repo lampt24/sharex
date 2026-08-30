@@ -35,12 +35,12 @@ namespace ShareX.Steam
     public static class Launcher
     {
         private static string ContentFolderPath = Helpers.GetAbsolutePath("ShareX");
-        private static string ContentExecutablePath = Path.Combine(ContentFolderPath, "ShareX.exe");
+        private static string ContentExecutablePath = Path.Combine(ContentFolderPath, "CapX.exe");
         private static string ContentSteamFilePath = Path.Combine(ContentFolderPath, "Steam");
         private static string UpdatingTempFilePath = Path.Combine(ContentFolderPath, "Updating");
 
         private static string UpdateFolderPath = Helpers.GetAbsolutePath("Updates");
-        private static string UpdateExecutablePath = Path.Combine(UpdateFolderPath, "ShareX.exe");
+        private static string UpdateExecutablePath = Path.Combine(UpdateFolderPath, "CapX.exe");
 
         private static bool IsFirstTimeRunning, IsStartupRun, ShowInApp, IsSteamInit;
         private static Stopwatch SteamInitStopwatch;
@@ -306,7 +306,7 @@ namespace ShareX.Steam
             {
                 while (IsShareXRunning())
                 {
-                    if (MessageBox.Show("ShareX is currently running.\r\n\r\nPlease close ShareX and press \"Retry\" button after it is closed.", "ShareX - Uninstaller",
+                    if (MessageBox.Show("CapX is currently running.\r\n\r\nPlease close CapX and press \"Retry\" button after it is closed.", "CapX - Uninstaller",
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                     {
                         return;

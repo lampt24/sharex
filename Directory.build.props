@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
-    <Company>ShareX Team</Company>
-    <Product>ShareX</Product>
-    <Copyright>Copyright (c) 2007-2026 ShareX Team</Copyright>
+    <Company>CapX Team</Company>
+    <Product>CapX</Product>
+    <Copyright>Copyright (c) 2007-2026 CapX Team</Copyright>
     <Version>21.0.0</Version>
     <EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

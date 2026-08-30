@@ -62,7 +62,7 @@
     <value>รวม รูปภาพ</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>ไฟล์ที่วางที่นี่จะถูกอัปโหลดโดย ShareX</value>
+    <value>ไฟล์ที่วางที่นี่จะถูกอัปโหลดโดย CapX</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>แนวนอน</value>
@@ -77,10 +77,10 @@
     <value>ปล่อยเพื่ออัปโหลดข้อความ</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>ปุ่มลัด ShareX</value>
+    <value>ปุ่มลัด CapX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>ข้อความที่วางที่นี่จะถูกอัปโหลดโดย ShareX</value>
+    <value>ข้อความที่วางที่นี่จะถูกอัปโหลดโดย CapX</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>แนวตั้ง</value>
@@ -200,7 +200,7 @@
     <value>โฟลเดอร์</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>ติดตาม ShareX...</value>
+    <value>ติดตาม CapX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Forum รูปภาพ</value>
@@ -386,7 +386,7 @@
     <value>แสดง การตอบกลับ...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>แสดง ShareX</value>
+    <value>แสดง CapX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>หยุด อัปโหลด</value>
@@ -476,10 +476,10 @@
     <value>เปิด</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - การตั้งค่าแอปพลิเคชัน</value>
+    <value>CapX - การตั้งค่าแอปพลิเคชัน</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>เริ่ม ShareX ใหม่เพื่อใช้การเปลี่ยนแปลงนี้</value>
+    <value>เริ่ม CapX ใหม่เพื่อใช้การเปลี่ยนแปลงนี้</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>เริ่มใหม่ ขณะนี้</value>
@@ -506,7 +506,7 @@
     <value>แสดงความคืบหน้าบนปุ่มแถบงาน</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>ใช้ไอคอน ShareX สีขาว</value>
+    <value>ใช้ไอคอน CapX สีขาว</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>จดจำ หน้าต่างหลัก ตำแหน่ง</value>
@@ -569,13 +569,13 @@
     <value>หน้าต่าง</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>แสดงปุ่ม "อัปโหลดด้วย ShareX" ในเมนูบริบทของ Windows Explorer</value>
+    <value>แสดงปุ่ม "อัปโหลดด้วย CapX" ในเมนูบริบทของ Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>แสดงปุ่ม "แก้ไขด้วย ShareX" ในเมนูบริบทของ Windows Explorer</value>
+    <value>แสดงปุ่ม "แก้ไขด้วย CapX" ในเมนูบริบทของ Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>แสดง ShareX ในเมนู "ส่งไปยัง"</value>
+    <value>แสดง CapX ในเมนู "ส่งไปยัง"</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Chrome นามสกุล</value>
@@ -584,7 +584,7 @@
     <value>เปิดใช้งาน Chrome นามสกุล การรองรับ</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>ติดตั้ง ShareX Chrome นามสกุล...</value>
+    <value>ติดตั้ง CapX Chrome นามสกุล...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Firefox ส่วนเสริม</value>
@@ -593,19 +593,19 @@
     <value>เปิดการรองรับส่วนเสริม Firefox</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>ติดตั้ง ShareX Firefox ส่วนเสริม...</value>
+    <value>ติดตั้ง CapX Firefox ส่วนเสริม...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>ขณะเปิด ShareX ให้แสดง "ในแอป" ใน Steam</value>
+    <value>ขณะเปิด CapX ให้แสดง "ในแอป" ใน Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>เส้นทาง</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>ShareX โฟลเดอร์ส่วนบุคคล</value>
+    <value>CapX โฟลเดอร์ส่วนบุคคล</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>เรียกดู...</value>
@@ -794,19 +794,19 @@
     <value>ยกเลิก</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>เลือก ShareX โฟลเดอร์ส่วนบุคคล เส้นทาง</value>
+    <value>เลือก CapX โฟลเดอร์ส่วนบุคคล เส้นทาง</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>เลือก ภาพหน้าจอ เส้นทางโฟลเดอร์</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>ส่งออก ShareX สำรองข้อมูล</value>
+    <value>ส่งออก CapX สำรองข้อมูล</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>ข้อมูลสำรอง ShareX</value>
+    <value>ข้อมูลสำรอง CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>นำเข้าข้อมูลสำรอง ShareX</value>
+    <value>นำเข้าข้อมูลสำรอง CapX</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>แก้ไข คลิปบอร์ด รูปแบบ</value>
@@ -980,7 +980,7 @@
     <value>ล่างขวา</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>ShareX - การตั้งค่าปุ่มลัด</value>
+    <value>CapX - การตั้งค่าปุ่มลัด</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>เพิ่ม</value>
@@ -1028,7 +1028,7 @@
     <value>รีเซ็ต ปุ่มลัด?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>ปุ่มลัดและการตั้งค่างานกำหนดเองทั้งหมดจะถูกแทนที่ด้วยค่าเริ่มต้นของ ShareX</value>
+    <value>ปุ่มลัดและการตั้งค่างานกำหนดเองทั้งหมดจะถูกแทนที่ด้วยค่าเริ่มต้นของ CapX</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
@@ -1133,10 +1133,10 @@
     <value>ยังไม่ได้กำหนดค่าปุ่ม แถบเครื่องมือการแจ้งเตือนจะถูกซ่อน</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>ShareX - การตั้งค่างาน</value>
+    <value>CapX - การตั้งค่างาน</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>ShareX - การตั้งค่างานสำหรับ {0}</value>
+    <value>CapX - การตั้งค่างานสำหรับ {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>แก้ไขการดำเนินการ</value>
@@ -1763,7 +1763,7 @@
     <value>เลือก ไฟล์เสียง</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - อัปโหลดด้วยการลากแล้ววาง</value>
+    <value>CapX - อัปโหลดด้วยการลากแล้ววาง</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>วาง ที่นี่</value>
@@ -1793,13 +1793,13 @@
     <value>คลิปบอร์ดว่างเปล่าหรือมีข้อมูลที่ไม่รองรับ</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>ShareX - ควรบันทึกไฟล์อย่างไร</value>
+    <value>CapX - ควรบันทึกไฟล์อย่างไร</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>มีไฟล์ชื่อนี้อยู่แล้ว</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>เลือกชื่อไฟล์ใหม่หรือเลือกวิธีที่ ShareX ควรดำเนินการต่อ</value>
+    <value>เลือกชื่อไฟล์ใหม่หรือเลือกวิธีที่ CapX ควรดำเนินการต่อ</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>ใหม่ ชื่อไฟล์</value>
@@ -1817,7 +1817,7 @@
     <value>ยกเลิก</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>ShareX - อัปโหลดไฟล์ขนาดใหญ่</value>
+    <value>CapX - อัปโหลดไฟล์ขนาดใหญ่</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>คุณกำลังพยายามอัปโหลดไฟล์ขนาดใหญ่</value>
@@ -1832,7 +1832,7 @@
     <value>ยกเลิก</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>ShareX - อัปโหลดไฟล์</value>
+    <value>CapX - อัปโหลดไฟล์</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>คุณแน่ใจหรือไม่ว่าต้องการ อัปโหลด {0} ไฟล์?</value>
@@ -1847,7 +1847,7 @@
     <value>ยกเลิก</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>ShareX - บันทึกการดีบัก</value>
+    <value>CapX - บันทึกการดีบัก</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>แอสเซมบลีที่โหลดแล้ว</value>
@@ -1874,19 +1874,19 @@
     <value>อัปโหลด</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>ShareX แรก-เวลา การกำหนดค่า</value>
+    <value>CapX แรก-เวลา การกำหนดค่า</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>เลือกวิธีผสาน ShareX เข้ากับ Windows</value>
+    <value>เลือกวิธีผสาน CapX เข้ากับ Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>แสดง "อัปโหลดด้วย ShareX" ในเมนูบริบทของ Windows Explorer</value>
+    <value>แสดง "อัปโหลดด้วย CapX" ในเมนูบริบทของ Windows Explorer</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>แสดง ShareX ในเมนู "ส่งไปยัง"</value>
+    <value>แสดง CapX ในเมนู "ส่งไปยัง"</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>ขณะเปิด ShareX ให้แสดง "ในแอป" ใน Steam</value>
+    <value>ขณะเปิด CapX ให้แสดง "ในแอป" ใน Steam</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>คุณสามารถเปลี่ยนตัวเลือกเหล่านี้ภายหลังได้ใน การตั้งค่าแอปพลิเคชัน → การผสานรวม</value>
@@ -1895,7 +1895,7 @@
     <value>ตกลง</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>เรียกใช้ ShareX เมื่อ Windows เริ่มทำงาน</value>
+    <value>เรียกใช้ CapX เมื่อ Windows เริ่มทำงาน</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>การเริ่มระบบถูกปิดใช้งานในตัวจัดการงาน</value>
@@ -1907,7 +1907,7 @@
     <value>การเริ่มระบบถูกเปิดใช้งานโดยองค์กรของคุณ</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>ShareX - ย่อ URL</value>
+    <value>CapX - ย่อ URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>ย่อ URL</value>
@@ -1925,7 +1925,7 @@
     <value>ย่อ</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - อัปโหลด URL</value>
+    <value>CapX - อัปโหลด URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>URL อัปโหลด</value>
@@ -1946,7 +1946,7 @@
     <value>อัปโหลด</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - ก่อนอัปโหลด</value>
+    <value>CapX - ก่อนอัปโหลด</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>ก่อนอัปโหลด</value>
@@ -1976,7 +1976,7 @@
     <value>ไม่มี ตัวอย่าง พร้อมใช้งาน</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - แก้ไขแถบการดำเนินการ</value>
+    <value>CapX - แก้ไขแถบการดำเนินการ</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>เพิ่ม...</value>
@@ -1997,7 +1997,7 @@
     <value>ปิด</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>ShareX - แถบการดำเนินการ</value>
+    <value>CapX - แถบการดำเนินการ</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>วาง เพื่อ อัปโหลด</value>
@@ -2015,13 +2015,13 @@
     <value>คงไว้ บน ด้านบน</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>เปิดเมื่อ ShareX เริ่มทำงาน</value>
+    <value>เปิดเมื่อ CapX เริ่มทำงาน</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>แก้ไข...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - หลังจับภาพ</value>
+    <value>CapX - หลังจับภาพ</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>หลังจับภาพ</value>
@@ -2057,7 +2057,7 @@
     <value>กำหนดเอง [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>ShareX - หลังอัปโหลด</value>
+    <value>CapX - หลังอัปโหลด</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>อัปโหลด เสร็จสมบูรณ์</value>
@@ -2102,7 +2102,7 @@
     <value>ลิงก์</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>ShareX - จับภาพอัตโนมัติ</value>
+    <value>CapX - จับภาพอัตโนมัติ</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>พื้นที่กำหนดเอง</value>
@@ -2156,7 +2156,7 @@
     <value>เอาออก</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>ShareX - ตัวแก้ไขเมนูงานด่วน</value>
+    <value>CapX - ตัวแก้ไขเมนูงานด่วน</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>เพิ่ม...</value>
@@ -2225,10 +2225,10 @@
     <value>{0} • หลังอัปโหลด: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>ShareX - เกี่ยวกับ</value>
+    <value>CapX - เกี่ยวกับ</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>ลิขสิทธิ์ © 2007–2026 ทีม ShareX</value>
+    <value>ลิขสิทธิ์ © 2007–2026 ทีม CapX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Steam รุ่น</value>
@@ -2243,10 +2243,10 @@
     <value>อัปเดต ตรวจสอบ ล้มเหลว.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>มี ShareX เวอร์ชันใหม่กว่า</value>
+    <value>มี CapX เวอร์ชันใหม่กว่า</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>ShareX เป็นเวอร์ชันล่าสุดแล้ว</value>
+    <value>CapX เป็นเวอร์ชันล่าสุดแล้ว</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>ลิงก์</value>
@@ -2270,7 +2270,7 @@
     <value>ทีม</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>ShareX - ตัวอัปโหลดกำหนดเอง การตั้งค่า</value>
+    <value>CapX - ตัวอัปโหลดกำหนดเอง การตั้งค่า</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>ตัวอัปโหลด ไลบรารี</value>
@@ -2381,10 +2381,10 @@
     <value>ปิด</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>ShareX - การยืนยัน</value>
+    <value>CapX - การยืนยัน</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>ShareX ตัวอัปโหลดกำหนดเอง</value>
+    <value>CapX ตัวอัปโหลดกำหนดเอง</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>URL สำหรับลบ</value>
@@ -2516,7 +2516,7 @@
     <value>อินพุตข้อความหรือ URL</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>ShareX การอัปโหลดข้อความ ทดสอบ</value>
+    <value>CapX การอัปโหลดข้อความ ทดสอบ</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>URL ภาพขนาดย่อ</value>
@@ -2562,7 +2562,7 @@
     <value>ต้องการตั้ง "{0}" เป็นตัวอัปโหลดกำหนดเองที่ใช้งานสำหรับ {1} หรือไม่</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>ShareX - ตัวอัปโหลดกำหนดเอง การยืนยัน</value>
+    <value>CapX - ตัวอัปโหลดกำหนดเอง การยืนยัน</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>ข้อผิดพลาด ขณะที่ กำลังส่งออก สำรองข้อมูล:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>ShareX - ข้อผิดพลาด</value>
+    <value>CapX - ข้อผิดพลาด</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>{0} ข้อผิดพลาด</value>
@@ -2588,7 +2588,7 @@
     <value>ชื่อรูปภาพ</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>ShareX ย่อเล็กสุดแล้ว เพื่อ ถาดระบบ.</value>
+    <value>CapX ย่อเล็กสุดแล้ว เพื่อ ถาดระบบ.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>ตัวแปรที่รองรับ: {0} และตัวแปรอื่น เช่น {1} เป็นต้น</value>
@@ -2609,7 +2609,7 @@
     <value>แก้ไข นี้ เมนู...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>ShareX เป็นเวอร์ชันล่าสุดแล้ว</value>
+    <value>CapX เป็นเวอร์ชันล่าสุดแล้ว</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>บันทึกการดีบักอาจมีข้อมูลที่ละเอียดอ่อน คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ</value>
@@ -2621,7 +2621,7 @@
     <value>ตัวย่อ URL: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>เรียกใช้ ShareX เมื่อ Windows เริ่มทำงาน</value>
+    <value>เรียกใช้ CapX เมื่อ Windows เริ่มทำงาน</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>คุณต้องการลบไฟล์นี้จริงหรือไม่</value>
@@ -2630,7 +2630,7 @@
     <value>ไม่สามารถ สร้าง โฟลเดอร์:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>FFmpeg ที่มาพร้อม ShareX รองรับเฉพาะระบบปฏิบัติการ 64 บิต</value>
+    <value>FFmpeg ที่มาพร้อม CapX รองรับเฉพาะระบบปฏิบัติการ 64 บิต</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>กำลังอัปโหลด</value>
@@ -2639,7 +2639,7 @@
     <value>แชร์ URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>ต้องเปิด ShareX ใหม่จาก Steam เพื่อให้การตั้งค่ามีผล</value>
+    <value>ต้องเปิด CapX ใหม่จาก Steam เพื่อให้การตั้งค่ามีผล</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>การเริ่มระบบถูกปิดใช้งานโดยองค์กรของคุณ</value>
@@ -2677,7 +2677,7 @@
 คุณสามารถปิดได้ภายหลังจากเมนู "งานหลังจับภาพ"</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>แก้ไข ด้วย ShareX</value>
+    <value>แก้ไข ด้วย CapX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>คลิปบอร์ด ไม่ มี รูปภาพ.</value>
@@ -2686,7 +2686,7 @@
     <value>ข้อผิดพลาด</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>ซอฟต์แวร์ป้องกันไวรัสหรือคุณลักษณะการควบคุมการเข้าถึงโฟลเดอร์ใน Windows อาจกำลังบล็อก ShareX</value>
+    <value>ซอฟต์แวร์ป้องกันไวรัสหรือคุณลักษณะการควบคุมการเข้าถึงโฟลเดอร์ใน Windows อาจกำลังบล็อก CapX</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>งานเสร็จสมบูรณ์</value>
@@ -2734,19 +2734,19 @@
     <value>แหล่งวิดีโอและเสียง FFmpeg ไม่สามารถเป็น "ไม่มี" พร้อมกันได้</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>ไม่สามารถปิด ShareX ขณะกำลังบันทึกหน้าจอ
+    <value>ไม่สามารถปิด CapX ขณะกำลังบันทึกหน้าจอ
 
 ต้องการยกเลิกการบันทึกหน้าจอที่กำลังทำงานหรือไม่</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>อัปโหลด ด้วย ShareX</value>
+    <value>อัปโหลด ด้วย CapX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>ปุ่มลัด ปิดใช้งานแล้ว.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>ไม่สามารถเข้าถึงไฟล์ "{0}" ได้
-โปรดเรียกใช้ ShareX ในฐานะผู้ดูแลระบบเพื่อเปลี่ยนเส้นทางโฟลเดอร์ส่วนบุคคล</value>
+โปรดเรียกใช้ CapX ในฐานะผู้ดูแลระบบเพื่อเปลี่ยนเส้นทางโฟลเดอร์ส่วนบุคคล</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>การเริ่มระบบถูกปิดใช้งานในตัวจัดการงาน</value>
@@ -2758,7 +2758,7 @@
     <value>ไม่พบหน้าต่างที่มีชื่อหน้าต่างตามที่ระบุ</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>คุณต้องการ รีเซ็ต ShareX การตั้งค่า?</value>
+    <value>คุณต้องการ รีเซ็ต CapX การตั้งค่า?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>ไม่สามารถ บันทึก การตั้งค่า</value>
@@ -2795,7 +2795,7 @@
 
 {1}
 
-โปรดเลือกปุ่มลัดอื่น หรือออกจากแอปพลิเคชันที่ขัดแย้งแล้วเปิด ShareX ใหม่</value>
+โปรดเลือกปุ่มลัดอื่น หรือออกจากแอปพลิเคชันที่ขัดแย้งแล้วเปิด CapX ใหม่</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>ภาพหน้าจอ หน่วงเวลา: {0}s</value>

@@ -888,7 +888,7 @@ namespace ShareX
                     if (taskSettings.GeneralSettings.ShowToastNotificationAfterTaskCompleted)
                     {
                         ShowNotificationTip(string.Format(Strings.TaskHelpers_OpenQuickScreenColorPicker_Copied_to_clipboard___0_, text),
-                            "ShareX - " + Strings.ScreenColorPicker);
+                            Program.AppName + " - " + Strings.ScreenColorPicker);
                     }
                 }
             }
@@ -1248,7 +1248,7 @@ namespace ShareX
             }
             else
             {
-                MessageBox.Show(string.Format(Strings.TaskHelpers_FileDoesNotExist, filePath), "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format(Strings.TaskHelpers_FileDoesNotExist, filePath), Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2006,7 +2006,7 @@ namespace ShareX
             }
             else
             {
-                MessageBox.Show(Strings.ClipboardDoesNotContainAnImage, "ShareX - " + Strings.PinToScreen, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.ClipboardDoesNotContainAnImage, Program.AppName + " - " + Strings.PinToScreen, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2090,7 +2090,7 @@ namespace ShareX
             if (!Environment.Is64BitOperatingSystem && !taskSettings.CaptureSettings.FFmpegOptions.OverrideCLIPath)
             {
                 MessageBox.Show(Strings.FFmpegOnlySupports64BitOperatingSystems,
-                    "ShareX - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Program.AppName + " - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return false;
             }
@@ -2100,7 +2100,7 @@ namespace ShareX
             if (!File.Exists(ffmpegPath))
             {
                 MessageBox.Show(Strings.FFmpegDoesNotExistAtTheFollowingPath + "\r\n" + ffmpegPath,
-                    "ShareX - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Program.AppName + " - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return false;
             }
@@ -2408,7 +2408,7 @@ namespace ShareX
 
                 if (!Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.AddImageEffects) &&
                     MessageBox.Show(Strings.WouldYouLikeToEnableImageEffects,
-                    "ShareX", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == MessageBoxResult.Yes)
+                    Program.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == MessageBoxResult.Yes)
                 {
                     Program.DefaultTaskSettings.AfterCaptureJob = Program.DefaultTaskSettings.AfterCaptureJob.Add(AfterCaptureTasks.AddImageEffects);
                     MainWindowIntegration.RefreshMenus();
@@ -2530,7 +2530,7 @@ namespace ShareX
             }
             else if (updateChecker.Status == UpdateStatus.UpToDate)
             {
-                MessageBox.Show(Strings.ShareXIsUpToDate, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.ShareXIsUpToDate, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2619,7 +2619,7 @@ namespace ShareX
             return !string.IsNullOrEmpty(content) && Encoding.UTF8.GetByteCount(content) <= 2952;
         }
 
-        public static void ShowNotificationTip(string text, string title = "ShareX", int duration = -1)
+        public static void ShowNotificationTip(string text, string title = Program.AppName, int duration = -1)
         {
             if (duration < 0)
             {
@@ -2653,14 +2653,14 @@ namespace ShareX
         {
             if (SystemOptions.DisableUpload)
             {
-                MessageBox.Show(Strings.YourSystemAdminDisabledTheUploadFeature, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.YourSystemAdminDisabledTheUploadFeature, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return false;
             }
 
             if (Program.Settings.DisableUpload)
             {
-                MessageBox.Show(Strings.ThisFeatureWillNotWorkWhenDisableUploadOptionIsEnabled, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.ThisFeatureWillNotWorkWhenDisableUploadOptionIsEnabled, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return false;
             }

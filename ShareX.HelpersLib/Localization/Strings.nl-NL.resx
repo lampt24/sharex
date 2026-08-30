@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>ShareX - Kleurkiezer</value>
+    <value>CapX - Kleurkiezer</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Kleurmodus</value>
@@ -161,7 +161,7 @@
     <value>Annuleren</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>ShareX - Fout</value>
+    <value>CapX - Fout</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Er is een fout opgetreden</value>
@@ -191,7 +191,7 @@
     <value>Er is een onverwachte fout opgetreden.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>ShareX - Afbeeldingsviewer</value>
+    <value>CapX - Afbeeldingsviewer</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Afbeelding openen</value>
@@ -200,13 +200,13 @@
     <value>Invoer</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX - {0}</value>
+    <value>CapX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Uitvoer</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>ShareX - {0}</value>
+    <value>CapX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Alles kopiëren</value>
@@ -215,7 +215,7 @@
     <value>Sluiten</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>ShareX - Afdrukopties</value>
+    <value>CapX - Afdrukopties</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Afdrukopties</value>
@@ -245,13 +245,13 @@
     <value>Voorbeeld...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>ShareX - Bestandsdownloader</value>
+    <value>CapX - Bestandsdownloader</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Bestandsdownloader</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>Download ShareX-updates en andere vereiste bestanden.</value>
+    <value>Download CapX-updates en andere vereiste bestanden.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Downloaden</value>
@@ -260,7 +260,7 @@
     <value>Wijzigingslogboek weergeven</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>ShareX-update is beschikbaar</value>
+    <value>CapX-update is beschikbaar</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Rode kleur (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Uploaden via slepen</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>ShareX afsluiten</value>
+    <value>CapX afsluiten</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Upload bestand</value>
