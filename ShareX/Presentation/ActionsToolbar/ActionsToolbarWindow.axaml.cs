@@ -23,7 +23,10 @@ using ShareX.HelpersLib;
 using ShareX.Localization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using AvaloniaBitmap = Avalonia.Media.Imaging.Bitmap;
+using DrawingBitmap = System.Drawing.Bitmap;
 using DrawingPoint = System.Drawing.Point;
 using FormsDataFormats = System.Windows.Forms.DataFormats;
 using FormsDataObject = System.Windows.Forms.DataObject;
@@ -32,6 +35,7 @@ namespace ShareX;
 
 public partial class ActionsToolbarWindow : Window
 {
+    private readonly AvaloniaBitmap _toolbarLogoBitmap;
     private bool _positionReady;
     private bool _adjustingPosition;
     private bool _closing;
@@ -40,6 +44,13 @@ public partial class ActionsToolbarWindow : Window
     {
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
+
+        using DrawingBitmap logo = ShareXResources.Logo;
+        using Stream logoStream = logo.GetStream();
+        logoStream.Position = 0;
+        _toolbarLogoBitmap = new AvaloniaBitmap(logoStream);
+        ToolbarLogo.Source = _toolbarLogoBitmap;
+
         Topmost = Program.Settings.ActionsToolbarStayTopMost;
         Program.Settings.ActionsToolbarList ??= [];
 
@@ -54,7 +65,11 @@ public partial class ActionsToolbarWindow : Window
 
         Opened += OnOpened;
         PositionChanged += OnPositionChanged;
-        Closed += (_, _) => _closing = true;
+        Closed += (_, _) =>
+        {
+            _closing = true;
+            _toolbarLogoBitmap.Dispose();
+        };
     }
 
     internal void RefreshToolbar()

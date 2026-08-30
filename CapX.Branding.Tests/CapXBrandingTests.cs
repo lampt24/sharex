@@ -42,6 +42,7 @@ internal static class CapXBrandingTests
 
         AssertTask5Packaging(root);
         AssertTask6CompatibilityDocumentation(root);
+        AssertTask8ActionsToolbarLogo(root);
     }
 
     private static void AssertTask5Packaging(string root)
@@ -181,6 +182,14 @@ internal static class CapXBrandingTests
         {
             AssertContains(compatibilityDocumentPath, category);
         }
+    }
+
+    private static void AssertTask8ActionsToolbarLogo(string root)
+    {
+        string toolbarPath = Path.Combine(root, "ShareX", "Presentation", "ActionsToolbar", "ActionsToolbarWindow.axaml");
+
+        AssertContains(toolbarPath, "<Image x:Name=\"ToolbarLogo\"");
+        AssertDoesNotContain(toolbarPath, "<TextBlock Text=\"CapX\"");
     }
 
     private static void AssertStoreManifest(string path)
