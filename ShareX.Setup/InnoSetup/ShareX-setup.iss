@@ -59,9 +59,11 @@ Type: files; Name: "{app}\ShareX.exe"
 Type: files; Name: "{userdesktop}\ShareX.lnk"
 Type: files; Name: "{usersendto}\ShareX.lnk"
 Type: files; Name: "{userstartup}\ShareX.lnk"
-Type: files; Name: "{userprograms}\ShareX\*ShareX*.lnk"
+Type: files; Name: "{userprograms}\ShareX\ShareX.lnk"
+Type: files; Name: "{userprograms}\ShareX\Uninstall ShareX.lnk"
 Type: dirifempty; Name: "{userprograms}\ShareX"
-Type: files; Name: "{commonprograms}\ShareX\*ShareX*.lnk"; Check: IsAdmin
+Type: files; Name: "{commonprograms}\ShareX\ShareX.lnk"; Check: IsAdmin
+Type: files; Name: "{commonprograms}\ShareX\Uninstall ShareX.lnk"; Check: IsAdmin
 Type: dirifempty; Name: "{commonprograms}\ShareX"; Check: IsAdmin
 
 [Files]

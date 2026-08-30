@@ -69,10 +69,13 @@ internal static class CapXBrandingTests
         AssertContains(innoSetupPath, "Type: files; Name: \"{userdesktop}\\ShareX.lnk\"");
         AssertContains(innoSetupPath, "Type: files; Name: \"{usersendto}\\ShareX.lnk\"");
         AssertContains(innoSetupPath, "Type: files; Name: \"{userstartup}\\ShareX.lnk\"");
-        AssertContains(innoSetupPath, "Type: files; Name: \"{userprograms}\\ShareX\\*ShareX*.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{userprograms}\\ShareX\\ShareX.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{userprograms}\\ShareX\\Uninstall ShareX.lnk\"");
         AssertContains(innoSetupPath, "Type: dirifempty; Name: \"{userprograms}\\ShareX\"");
-        AssertContains(innoSetupPath, "Type: files; Name: \"{commonprograms}\\ShareX\\*ShareX*.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{commonprograms}\\ShareX\\ShareX.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{commonprograms}\\ShareX\\Uninstall ShareX.lnk\"");
         AssertContains(innoSetupPath, "Type: dirifempty; Name: \"{commonprograms}\\ShareX\"");
+        AssertDoesNotContain(innoSetupPath, "*ShareX*.lnk");
         AssertContains(innoSetupPath,
             "Subkey: \"Software\\Classes\\*\\shell\\ShareX\"; Flags: deletekey dontcreatekey");
         AssertContains(innoSetupPath,
@@ -93,6 +96,11 @@ internal static class CapXBrandingTests
         AssertDoesNotContain(innoSetupPath, "ShareXImageEditor\"; Flags: deletekey");
 
         AssertContains(setupProgramPath, "Path.Combine(BinDir, \"CapX.exe\")");
+        AssertContains(setupProgramPath, "Path.Combine(OutputDir, \"CapX-portable\")");
+        AssertContains(setupProgramPath, "Path.Combine(OutputDir, \"CapX-debug\")");
+        AssertContains(setupProgramPath, "Path.Combine(OutputDir, \"CapX-Steam\")");
+        AssertContains(setupProgramPath, "Path.Combine(OutputDir, \"CapX-MicrosoftStore\")");
+        AssertContains(setupProgramPath, "Path.Combine(OutputDir, \"CapX-MicrosoftStore-debug\")");
         AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-setup-{Platform}.exe\"");
         AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-portable-{Platform}.zip\"");
         AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-debug-{Platform}.zip\"");
