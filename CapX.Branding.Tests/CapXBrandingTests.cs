@@ -40,8 +40,27 @@ internal static class CapXBrandingTests
         AssertContains(steamLauncherPath, "\"CapX - Uninstaller\"");
 
         // Deferred Task 5 packaging contracts intentionally remain after Task 4 UI contracts.
-        AssertContains(Path.Combine(root, "ShareX.Setup", "InnoSetup", "ShareX-setup.iss"), "#define MyAppName \"CapX\"");
-        AssertContains(Path.Combine(root, "ShareX.Setup", "MicrosoftStore", "AppxManifest.xml"), "Executable=\"CapX.exe\"");
+        string setupProgramPath = Path.Combine(root, "ShareX.Setup", "Program.cs");
+        string innoSetupPath = Path.Combine(root, "ShareX.Setup", "InnoSetup", "ShareX-setup.iss");
+        string storeManifestPath = Path.Combine(root, "ShareX.Setup", "MicrosoftStore", "AppxManifest.xml");
+        string chromeHostManifestPath = Path.Combine(root, "ShareX", "host-manifest-chrome.json");
+        string firefoxHostManifestPath = Path.Combine(root, "ShareX", "host-manifest-firefox.json");
+
+        AssertContains(innoSetupPath, "#define MyAppName \"CapX\"");
+        AssertContains(storeManifestPath, "Executable=\"CapX.exe\"");
+        AssertContains(storeManifestPath, "<DisplayName>CapX</DisplayName>");
+        AssertContains(storeManifestPath, "Identity Name=\"19568ShareX.ShareX\"");
+
+        AssertContains(setupProgramPath, "Path.Combine(BinDir, \"CapX.exe\")");
+        AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-setup-{Platform}.exe\"");
+        AssertContains(setupProgramPath, "https://github.com/ShareX/FFmpeg/releases/");
+
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\.sxcu\"");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\.sxie\"");
+        AssertContains(chromeHostManifestPath, "\"name\": \"com.getsharex.sharex\"");
+        AssertContains(firefoxHostManifestPath, "\"name\": \"ShareX\"");
+        AssertContains(chromeHostManifestPath, "\"description\": \"CapX\"");
+        AssertContains(firefoxHostManifestPath, "\"description\": \"CapX\"");
     }
 
     public static string FindRepositoryRoot()
