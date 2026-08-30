@@ -64,10 +64,6 @@ internal sealed class MainMenuBuilder
             new(Strings.MainMenuBuilder_History, LucideIcons.history, () => Run(MainFormCommand.History)),
             new(Strings.MainMenuBuilder_ImageHistory, LucideIcons.images, () => Run(MainFormCommand.ImageHistory)),
             new(Strings.MainMenuBuilder_Debug, LucideIcons.bug, BuildDebugMenu),
-            new(Strings.MainMenuBuilder_Donate, LucideIcons.heart, () => Run(MainFormCommand.Donate)),
-            new(Strings.MainMenuBuilder_FollowShareX, LucideIcons.external_link, () => Run(MainFormCommand.X)),
-            new(Strings.MainMenuBuilder_Discord, LucideIcons.message_circle, () => Run(MainFormCommand.Discord)),
-            new(Strings.MainMenuBuilder_About, LucideIcons.info, () => Run(MainFormCommand.About))
         };
     }
 
@@ -123,7 +119,7 @@ internal sealed class MainMenuBuilder
                 () => TaskHelpers.StartScreenRecording(ScreenRecordOutput.FFmpeg, ScreenRecordStartMethod.Region)),
             Item(Strings.MainMenuBuilder_ScreenRecordingGif, LucideIcons.film,
                 () => TaskHelpers.StartScreenRecording(ScreenRecordOutput.GIF, ScreenRecordStartMethod.Region)),
-            Item(Strings.MainMenuBuilder_ScrollingCapture, LucideIcons.scroll_text, async () => await TaskHelpers.OpenScrollingCapture()),
+            Item(Strings.MainMenuBuilder_ScrollingCapture, LucideIcons.arrow_up_down, async () => await TaskHelpers.OpenScrollingCapture()),
             Item(Strings.MainMenuBuilder_AutoCapture, LucideIcons.clock, () => TaskHelpers.OpenAutoCapture()),
             MainMenuEntry.Separator(),
             new MainMenuEntry(Strings.MainMenuBuilder_ShowCursor, LucideIcons.mouse_pointer_2,
