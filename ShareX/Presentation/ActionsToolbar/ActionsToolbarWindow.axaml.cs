@@ -10,6 +10,7 @@
 #nullable enable
 
 using Avalonia;
+using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -44,6 +45,7 @@ public partial class ActionsToolbarWindow : Window
     {
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
+        AutomationProperties.SetName(TitleHandle, Program.AppName);
 
         using DrawingBitmap logo = ShareXResources.Logo;
         using Stream logoStream = logo.GetStream();

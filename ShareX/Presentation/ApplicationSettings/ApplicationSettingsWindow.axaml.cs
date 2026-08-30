@@ -120,7 +120,7 @@ public partial class ApplicationSettingsWindow : Window
         IStorageFile? file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = Strings.ApplicationSettingsWindow_ExportShareXBackup,
-            SuggestedFileName = $"ShareX-{Helpers.GetApplicationVersion()}-{machineName}-backup.sxb",
+            SuggestedFileName = $"CapX-{Helpers.GetApplicationVersion()}-{machineName}-backup.sxb",
             DefaultExtension = "sxb",
             FileTypeChoices =
             [

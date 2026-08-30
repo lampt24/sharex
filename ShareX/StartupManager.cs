@@ -60,10 +60,21 @@ namespace ShareX
 #if MicrosoftStore
                 return (StartupState)packageTask.State;
 #else
-                if (ShortcutHelpers.CheckShortcut(Environment.SpecialFolder.Startup, "ShareX", StartupTargetPath))
+                string startupApprovedName = null;
+
+                if (ShortcutHelpers.CheckShortcut(Environment.SpecialFolder.Startup, "CapX", StartupTargetPath))
+                {
+                    startupApprovedName = "CapX.lnk";
+                }
+                else if (ShortcutHelpers.CheckShortcut(Environment.SpecialFolder.Startup, "ShareX", StartupTargetPath))
+                {
+                    startupApprovedName = "ShareX.lnk";
+                }
+
+                if (startupApprovedName is not null)
                 {
                     if (Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\StartupFolder",
-                        "ShareX.lnk", null) is byte[] status && status.Length > 0 && status[0] == 3)
+                        startupApprovedName, null) is byte[] status && status.Length > 0 && status[0] == 3)
                     {
                         return StartupState.DisabledByUser;
                     }
@@ -96,7 +107,8 @@ namespace ShareX
 #else
                 if (value == StartupState.Enabled || value == StartupState.Disabled)
                 {
-                    ShortcutHelpers.SetShortcut(value == StartupState.Enabled, Environment.SpecialFolder.Startup, "ShareX", StartupTargetPath, "-silent");
+                    ShortcutHelpers.SetShortcut(false, Environment.SpecialFolder.Startup, "ShareX", StartupTargetPath, "-silent");
+                    ShortcutHelpers.SetShortcut(value == StartupState.Enabled, Environment.SpecialFolder.Startup, "CapX", StartupTargetPath, "-silent");
                 }
                 else
                 {

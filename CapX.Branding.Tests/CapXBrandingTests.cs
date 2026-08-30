@@ -43,6 +43,7 @@ internal static class CapXBrandingTests
         AssertTask5Packaging(root);
         AssertTask6CompatibilityDocumentation(root);
         AssertTask8ActionsToolbarLogo(root);
+        AssertTask9RuntimeIntegrations(root);
     }
 
     private static void AssertTask5Packaging(string root)
@@ -214,6 +215,34 @@ internal static class CapXBrandingTests
         AssertMatches(toolbarCodePath,
             @"Closed \+= \(_, _\) =>\s*\{\s*_closing = true;\s*_toolbarLogoBitmap\.Dispose\(\);\s*\};",
             "Actions Toolbar logo disposal");
+    }
+
+    private static void AssertTask9RuntimeIntegrations(string root)
+    {
+        string integrationHelpersPath = Path.Combine(root, "ShareX", "IntegrationHelpers.cs");
+        string startupManagerPath = Path.Combine(root, "ShareX", "StartupManager.cs");
+        string nativeMessagingHostPath = Path.Combine(root, "ShareX.NativeMessagingHost", "Program.cs");
+        string applicationSettingsPath = Path.Combine(root, "ShareX", "Presentation", "ApplicationSettings", "ApplicationSettingsWindow.axaml.cs");
+        string toolbarCodePath = Path.Combine(root, "ShareX", "Presentation", "ActionsToolbar", "ActionsToolbarWindow.axaml.cs");
+
+        AssertContains(integrationHelpersPath, "ShellExtMenuName = \"CapX\"");
+        AssertContains(integrationHelpersPath, "SetShortcut(create, Environment.SpecialFolder.SendTo, \"CapX\"");
+        AssertContains(startupManagerPath, "Environment.SpecialFolder.Startup, \"CapX\"");
+        AssertContains(nativeMessagingHostPath, "send it to CapX");
+        AssertContains(applicationSettingsPath, "SuggestedFileName = $\"CapX-");
+        AssertContains(toolbarCodePath, "AutomationProperties");
+
+        AssertContains(integrationHelpersPath, "LegacyShellExtMenuName = \"ShareX\"");
+        AssertContains(integrationHelpersPath, "CheckStringValue(LegacyShellExtMenuFilesCmd");
+        AssertContains(integrationHelpersPath, "RemoveRegistry(LegacyShellExtMenuFiles)");
+        AssertContains(integrationHelpersPath, "RemoveRegistry(LegacyShellExtMenuDirectory)");
+        AssertContains(integrationHelpersPath, "CheckShortcut(Environment.SpecialFolder.SendTo, \"ShareX\"");
+        AssertContains(integrationHelpersPath, "SetShortcut(false, Environment.SpecialFolder.SendTo, \"ShareX\"");
+        AssertContains(startupManagerPath, "CheckShortcut(Environment.SpecialFolder.Startup, \"ShareX\"");
+        AssertContains(startupManagerPath, "startupApprovedName = \"ShareX.lnk\"");
+        AssertContains(startupManagerPath, "SetShortcut(false, Environment.SpecialFolder.Startup, \"ShareX\"");
+        AssertDoesNotContain(integrationHelpersPath, "*ShareX*.lnk");
+        AssertDoesNotContain(startupManagerPath, "*ShareX*.lnk");
     }
 
     private static void AssertStoreManifest(string path)
