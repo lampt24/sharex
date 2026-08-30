@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Text.Json;
 using System.Xml.Linq;
 
 internal static class CapXBrandingTests
@@ -39,28 +40,204 @@ internal static class CapXBrandingTests
             "\"CapX is currently running.\\r\\n\\r\\nPlease close CapX and press \\\"Retry\\\" button after it is closed.\"");
         AssertContains(steamLauncherPath, "\"CapX - Uninstaller\"");
 
-        // Deferred Task 5 packaging contracts intentionally remain after Task 4 UI contracts.
+        AssertTask5Packaging(root);
+    }
+
+    private static void AssertTask5Packaging(string root)
+    {
         string setupProgramPath = Path.Combine(root, "ShareX.Setup", "Program.cs");
         string innoSetupPath = Path.Combine(root, "ShareX.Setup", "InnoSetup", "ShareX-setup.iss");
         string storeManifestPath = Path.Combine(root, "ShareX.Setup", "MicrosoftStore", "AppxManifest.xml");
         string chromeHostManifestPath = Path.Combine(root, "ShareX", "host-manifest-chrome.json");
         string firefoxHostManifestPath = Path.Combine(root, "ShareX", "host-manifest-firefox.json");
+        string steamProjectPath = Path.Combine(root, "ShareX.Steam", "ShareX.Steam.csproj");
+        string steamInstallScriptPath = Path.Combine(root, "ShareX.Steam", "installscript.vdf");
+        string steamHelpersPath = Path.Combine(root, "ShareX.Steam", "Helpers.cs");
+        string steamLauncherPath = Path.Combine(root, "ShareX.Steam", "Launcher.cs");
 
         AssertContains(innoSetupPath, "#define MyAppName \"CapX\"");
-        AssertContains(storeManifestPath, "Executable=\"CapX.exe\"");
-        AssertContains(storeManifestPath, "<DisplayName>CapX</DisplayName>");
-        AssertContains(storeManifestPath, "Identity Name=\"19568ShareX.ShareX\"");
+        AssertContains(innoSetupPath, "#define MyAppFileName \"CapX.exe\"");
+        AssertContains(innoSetupPath, "#define MyAppPublisher \"CapX Team\"");
+        AssertContains(innoSetupPath, "AppCopyright=Copyright (c) 2007-2026 CapX Team");
+        AssertContains(innoSetupPath, "OutputBaseFilename={#MyAppName}-{#MyAppVersion}-setup-{#Platform}");
+        AssertContains(innoSetupPath, "Description: \"Show \"\"Upload with CapX\"\" button in Windows Explorer context menu\"");
+        AssertContains(innoSetupPath, "Description: \"Run CapX when Windows starts\"");
+        AssertContains(innoSetupPath, "DefaultGroupName={#MyAppName}");
+        AssertContains(innoSetupPath, "UsePreviousGroup=no");
+
+        AssertContains(innoSetupPath, "Type: files; Name: \"{app}\\ShareX.exe\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{userdesktop}\\ShareX.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{usersendto}\\ShareX.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{userstartup}\\ShareX.lnk\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{userprograms}\\ShareX\\*ShareX*.lnk\"");
+        AssertContains(innoSetupPath, "Type: dirifempty; Name: \"{userprograms}\\ShareX\"");
+        AssertContains(innoSetupPath, "Type: files; Name: \"{commonprograms}\\ShareX\\*ShareX*.lnk\"");
+        AssertContains(innoSetupPath, "Type: dirifempty; Name: \"{commonprograms}\\ShareX\"");
+        AssertContains(innoSetupPath,
+            "Subkey: \"Software\\Classes\\*\\shell\\ShareX\"; Flags: deletekey dontcreatekey");
+        AssertContains(innoSetupPath,
+            "Subkey: \"Software\\Classes\\Directory\\shell\\ShareX\"; Flags: deletekey dontcreatekey");
+
+        AssertContains(innoSetupPath, "#define MyAppId \"82E6AC09-0FEF-4390-AD9F-0DD3F5561EFC\"");
+        AssertContains(innoSetupPath, "AppId={#MyAppId}");
+        AssertContains(innoSetupPath, "AppMutex={#MyAppId}");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\.sxcu\"");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\ShareX.sxcu\"");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\.sxie\"");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\ShareX.sxie\"");
+        AssertContains(innoSetupPath, "SystemFileAssociations\\image\\shell\\ShareXImageEditor");
+        AssertContains(innoSetupPath, "NativeMessagingHosts\\com.getsharex.sharex");
+        AssertContains(innoSetupPath, "NativeMessagingHosts\\ShareX");
+        AssertDoesNotContain(innoSetupPath, "Subkey: \"Software\\Classes\\ShareX.sxcu\"; Flags: deletekey");
+        AssertDoesNotContain(innoSetupPath, "Subkey: \"Software\\Classes\\ShareX.sxie\"; Flags: deletekey");
+        AssertDoesNotContain(innoSetupPath, "ShareXImageEditor\"; Flags: deletekey");
 
         AssertContains(setupProgramPath, "Path.Combine(BinDir, \"CapX.exe\")");
         AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-setup-{Platform}.exe\"");
+        AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-portable-{Platform}.zip\"");
+        AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-debug-{Platform}.zip\"");
+        AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-Steam-{Platform}.zip\"");
+        AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-MicrosoftStore-{Platform}.appx\"");
+        AssertContains(setupProgramPath, "$\"CapX-{AppVersion}-MicrosoftStore-debug-{Platform}.appx\"");
+        AssertContains(setupProgramPath, "Console.WriteLine(\"CapX setup started.\")");
+        AssertContains(setupProgramPath, "Console.WriteLine(\"CapX setup successfully completed.\")");
         AssertContains(setupProgramPath, "https://github.com/ShareX/FFmpeg/releases/");
+        AssertContains(setupProgramPath, "Path.Combine(ParentDir, \"ShareX.sln\")");
+        AssertContains(setupProgramPath, "Path.Combine(ParentDir, \"ShareX\", \"bin\"");
+        AssertContains(setupProgramPath, "\"ShareX_Launcher.exe\"");
 
-        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\.sxcu\"");
-        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\.sxie\"");
-        AssertContains(chromeHostManifestPath, "\"name\": \"com.getsharex.sharex\"");
-        AssertContains(firefoxHostManifestPath, "\"name\": \"ShareX\"");
-        AssertContains(chromeHostManifestPath, "\"description\": \"CapX\"");
-        AssertContains(firefoxHostManifestPath, "\"description\": \"CapX\"");
+        AssertStoreManifest(storeManifestPath);
+        AssertNativeHostManifest(
+            chromeHostManifestPath,
+            "com.getsharex.sharex",
+            "allowed_origins",
+            "chrome-extension://nlkoigbdolhchiicbonbihbphgamnaoc/");
+        AssertNativeHostManifest(
+            firefoxHostManifestPath,
+            "ShareX",
+            "allowed_extensions",
+            "firefox@getsharex.com");
+
+        AssertContains(steamHelpersPath, "\"CapX - Error\"");
+        AssertContains(steamLauncherPath, "Path.Combine(ContentFolderPath, \"CapX.exe\")");
+        AssertContains(steamLauncherPath, "Path.Combine(UpdateFolderPath, \"CapX.exe\")");
+        AssertContains(steamLauncherPath, "CapX is currently running.");
+        AssertContains(steamLauncherPath, "\"CapX - Uninstaller\"");
+        AssertDoesNotContain(steamLauncherPath, "Path.Combine(ContentFolderPath, \"ShareX.exe\")");
+        AssertDoesNotContain(steamLauncherPath, "Path.Combine(UpdateFolderPath, \"ShareX.exe\")");
+        AssertContains(steamProjectPath, "<AssemblyName>ShareX_Launcher</AssemblyName>");
+        AssertContains(steamInstallScriptPath, "%INSTALLDIR%\\\\ShareX_Launcher.exe");
+    }
+
+    private static void AssertStoreManifest(string path)
+    {
+        XDocument document = XDocument.Load(path, LoadOptions.PreserveWhitespace);
+        XElement package = document.Root ?? throw new InvalidOperationException($"Store manifest '{path}' has no root element.");
+        XNamespace foundation = package.Name.Namespace;
+        XNamespace uap = "http://schemas.microsoft.com/appx/manifest/uap/windows10";
+        XNamespace uap3 = "http://schemas.microsoft.com/appx/manifest/uap/windows10/3";
+        XNamespace desktop = "http://schemas.microsoft.com/appx/manifest/desktop/windows10";
+
+        XElement identity = RequireSingle(package.Elements(foundation + "Identity"), "Store identity");
+        AssertEqual("19568ShareX.ShareX", identity.Attribute("Name")?.Value, "Store identity name");
+        AssertEqual("CN=366A5DE5-2EC7-43FD-B559-05986578C4CC", identity.Attribute("Publisher")?.Value,
+            "Store publisher certificate");
+
+        XElement properties = RequireSingle(package.Elements(foundation + "Properties"), "Store properties");
+        AssertEqual("CapX", properties.Element(foundation + "DisplayName")?.Value, "Store display name");
+        AssertEqual("CapX Team", properties.Element(foundation + "PublisherDisplayName")?.Value,
+            "Store publisher display name");
+
+        XElement application = RequireSingle(package.Descendants(foundation + "Application"), "Store application");
+        AssertEqual("ShareX", application.Attribute("Id")?.Value, "Store application ID");
+
+        string[] executableReferences = package.Descendants()
+            .Attributes("Executable")
+            .Select(attribute => attribute.Value)
+            .ToArray();
+        if (executableReferences.Length != 2 || executableReferences.Any(value => value != "CapX.exe"))
+        {
+            throw new InvalidOperationException(
+                $"Branding contract failed for Store executable references: expected two 'CapX.exe' values, got [{string.Join(", ", executableReferences)}].");
+        }
+
+        XElement visualElements = RequireSingle(application.Elements(uap + "VisualElements"), "Store visual elements");
+        AssertEqual("CapX", visualElements.Attribute("DisplayName")?.Value, "Store visual display name");
+        AssertEqual("CapX", visualElements.Attribute("Description")?.Value, "Store visual description");
+
+        XElement startupTask = RequireSingle(application.Descendants(desktop + "StartupTask"), "Store startup task");
+        AssertEqual("ShareX", startupTask.Attribute("TaskId")?.Value, "Store startup TaskId");
+        AssertEqual("CapX", startupTask.Attribute("DisplayName")?.Value, "Store startup display name");
+
+        Dictionary<string, XElement> associations = application.Descendants(uap3 + "FileTypeAssociation")
+            .ToDictionary(element => element.Attribute("Name")?.Value ?? string.Empty, StringComparer.Ordinal);
+        AssertFileTypeAssociation(associations, "sharex-custom-uploader", "CapX custom uploader", ".sxcu", uap);
+        AssertFileTypeAssociation(associations, "sharex-image-effect", "CapX image effect", ".sxie", uap);
+    }
+
+    private static void AssertFileTypeAssociation(
+        IReadOnlyDictionary<string, XElement> associations,
+        string associationId,
+        string displayName,
+        string extension,
+        XNamespace uap)
+    {
+        if (!associations.TryGetValue(associationId, out XElement? association))
+        {
+            throw new InvalidOperationException($"Branding contract failed: Store association '{associationId}' is missing.");
+        }
+
+        AssertEqual(displayName, association.Element(uap + "DisplayName")?.Value,
+            $"Store association '{associationId}' display name");
+        AssertEqual(extension, RequireSingle(association.Descendants(uap + "FileType"),
+            $"Store association '{associationId}' file type").Value,
+            $"Store association '{associationId}' extension");
+    }
+
+    private static void AssertNativeHostManifest(
+        string path,
+        string hostId,
+        string originProperty,
+        string origin)
+    {
+        using JsonDocument document = JsonDocument.Parse(File.ReadAllText(path));
+        JsonElement manifest = document.RootElement;
+
+        AssertEqual(hostId, manifest.GetProperty("name").GetString(), $"Native host ID in '{path}'");
+        AssertEqual("CapX", manifest.GetProperty("description").GetString(), $"Native host description in '{path}'");
+        AssertEqual("ShareX_NativeMessagingHost.exe", manifest.GetProperty("path").GetString(),
+            $"Native host executable in '{path}'");
+
+        string[] origins = manifest.GetProperty(originProperty)
+            .EnumerateArray()
+            .Select(element => element.GetString() ?? string.Empty)
+            .ToArray();
+        if (origins.Length != 1 || origins[0] != origin)
+        {
+            throw new InvalidOperationException(
+                $"Branding contract failed for native host origins in '{path}': expected '{origin}', got [{string.Join(", ", origins)}].");
+        }
+    }
+
+    private static XElement RequireSingle(IEnumerable<XElement> elements, string contract)
+    {
+        XElement[] matches = elements.ToArray();
+        if (matches.Length != 1)
+        {
+            throw new InvalidOperationException(
+                $"Branding contract failed for {contract}: expected one element, got {matches.Length}.");
+        }
+
+        return matches[0];
+    }
+
+    private static void AssertEqual(string expected, string? actual, string contract)
+    {
+        if (!string.Equals(expected, actual, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException(
+                $"Branding contract failed for {contract}: expected '{expected}', got '{actual ?? "<null>"}'.");
+        }
     }
 
     public static string FindRepositoryRoot()

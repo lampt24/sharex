@@ -41,6 +41,7 @@ PrivilegesRequired=none
 SolidCompression=yes
 UninstallDisplayIcon={app}\{#MyAppFileName}
 UninstallDisplayName={#MyAppName}
+UsePreviousGroup=no
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoTextVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
@@ -52,6 +53,16 @@ Name: "CreateSendToIcon"; Description: "Create a send to shortcut"; GroupDescrip
 Name: "CreateStartupIcon"; Description: "Run CapX when Windows starts"; GroupDescription: "Other tasks:"; Check: not IsUpdating
 Name: "EnableBrowserExtensionSupport"; Description: "Enable browser extension support"; GroupDescription: "Other tasks:"; Check: not IsUpdating
 Name: "DisablePrintScreenKeyForSnippingTool"; Description: "Disable Print Screen key for Snipping Tool"; GroupDescription: "Other tasks:"; Check: not IsUpdating
+
+[InstallDelete]
+Type: files; Name: "{app}\ShareX.exe"
+Type: files; Name: "{userdesktop}\ShareX.lnk"
+Type: files; Name: "{usersendto}\ShareX.lnk"
+Type: files; Name: "{userstartup}\ShareX.lnk"
+Type: files; Name: "{userprograms}\ShareX\*ShareX*.lnk"
+Type: dirifempty; Name: "{userprograms}\ShareX"
+Type: files; Name: "{commonprograms}\ShareX\*ShareX*.lnk"; Check: IsAdmin
+Type: dirifempty; Name: "{commonprograms}\ShareX"; Check: IsAdmin
 
 [Files]
 Source: "{#MyAppReleaseDirectory}\*.exe"; DestDir: {app}; Flags: ignoreversion
@@ -96,6 +107,8 @@ Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppFileName}"; WorkingD
 Filename: "{app}\{#MyAppFileName}"; Description: "{cm:LaunchProgram,{#MyAppName}}"; Flags: nowait postinstall; Check: not IsNoRun
 
 [Registry]
+Root: "HKCU"; Subkey: "Software\Classes\*\shell\ShareX"; Flags: deletekey dontcreatekey
+Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\ShareX"; Flags: deletekey dontcreatekey
 Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#MyAppName}"; ValueType: string; ValueData: "Upload with {#MyAppName}"; Tasks: CreateContextMenuButton
 Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#MyAppName}"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\{#MyAppFileName}"",0"; Tasks: CreateContextMenuButton
 Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#MyAppName}\command"; ValueType: string; ValueData: """{app}\{#MyAppFileName}"" ""%1"""; Tasks: CreateContextMenuButton
