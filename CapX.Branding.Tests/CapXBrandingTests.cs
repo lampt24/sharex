@@ -41,6 +41,7 @@ internal static class CapXBrandingTests
         AssertContains(steamLauncherPath, "\"CapX - Uninstaller\"");
 
         AssertTask5Packaging(root);
+        AssertTask6CompatibilityDocumentation(root);
     }
 
     private static void AssertTask5Packaging(string root)
@@ -135,6 +136,51 @@ internal static class CapXBrandingTests
         AssertDoesNotContain(steamLauncherPath, "Path.Combine(UpdateFolderPath, \"ShareX.exe\")");
         AssertContains(steamProjectPath, "<AssemblyName>ShareX_Launcher</AssemblyName>");
         AssertContains(steamInstallScriptPath, "%INSTALLDIR%\\\\ShareX_Launcher.exe");
+    }
+
+    private static void AssertTask6CompatibilityDocumentation(string root)
+    {
+        string programPath = Path.Combine(root, "ShareX", "Program.cs");
+        string innoSetupPath = Path.Combine(root, "ShareX.Setup", "InnoSetup", "ShareX-setup.iss");
+        string setupProgramPath = Path.Combine(root, "ShareX.Setup", "Program.cs");
+        string chromeHostManifestPath = Path.Combine(root, "ShareX", "host-manifest-chrome.json");
+        string firefoxHostManifestPath = Path.Combine(root, "ShareX", "host-manifest-firefox.json");
+        string storeManifestPath = Path.Combine(root, "ShareX.Setup", "MicrosoftStore", "AppxManifest.xml");
+        string compatibilityDocumentPath = Path.Combine(root, "docs", "CapX-branding-compatibility.md");
+
+        AssertContains(programPath, "private const string CompatibilityAppName = \"ShareX\"");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\ShareX.sxcu\"");
+        AssertContains(innoSetupPath, "Subkey: \"Software\\Classes\\ShareX.sxie\"");
+        AssertContains(innoSetupPath, "SystemFileAssociations\\image\\shell\\ShareXImageEditor");
+        AssertContains(setupProgramPath, "https://github.com/ShareX/FFmpeg/releases/");
+        AssertContains(storeManifestPath, "Name=\"19568ShareX.ShareX\"");
+        AssertContains(chromeHostManifestPath, "\"name\": \"com.getsharex.sharex\"");
+        AssertContains(chromeHostManifestPath, "\"chrome-extension://nlkoigbdolhchiicbonbihbphgamnaoc/\"");
+        AssertContains(firefoxHostManifestPath, "\"name\": \"ShareX\"");
+        AssertContains(firefoxHostManifestPath, "\"firefox@getsharex.com\"");
+
+        AssertFileExists(compatibilityDocumentPath);
+        AssertContains(compatibilityDocumentPath, "User-facing product copy is CapX");
+        string[] protectedCategories =
+        {
+            "Namespaces, project, and source names",
+            "Settings and data directories",
+            "Registry and file-association keys",
+            "File extensions",
+            "Store identity",
+            "Native messaging IDs and origins",
+            "Updater and FFmpeg URLs",
+            "Serialized names",
+            "Steam launcher executable",
+            "Resource keys",
+            "Theme keys",
+            "Provenance and license headers"
+        };
+
+        foreach (string category in protectedCategories)
+        {
+            AssertContains(compatibilityDocumentPath, category);
+        }
     }
 
     private static void AssertStoreManifest(string path)
@@ -270,6 +316,14 @@ internal static class CapXBrandingTests
         if (!File.ReadAllText(path).Contains(expectedText, StringComparison.Ordinal))
         {
             throw new InvalidOperationException($"Branding contract failed for '{path}': expected text '{expectedText}'.");
+        }
+    }
+
+    private static void AssertFileExists(string path)
+    {
+        if (!File.Exists(path))
+        {
+            throw new InvalidOperationException($"Branding contract failed: required file is missing: '{path}'.");
         }
     }
 

@@ -1,6 +1,6 @@
-# ShareX localization status
+# CapX localization status
 
-All translatable strings in the ShareX project use the shared `Strings.resx` resource set in this directory. New resource keys are scoped by the source component name, for example `TaskSettingsWindow_Save`; migrated runtime keys retain their existing names.
+All translatable strings in the CapX application use the shared `Strings.resx` resource set in this directory. New resource keys are scoped by the source component name, for example `TaskSettingsWindow_Save`; migrated runtime keys retain their existing names.
 
 ## Localized areas
 
@@ -54,4 +54,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ValidateTranslations.ps1
 1. Add directly scoped keys to `Strings.resx`, such as `AboutWindow_Title`.
 2. Add translated values to every `Strings.<culture>.resx` file.
 3. Use direct `Strings.<key>` references in AXAML and C#.
-4. Run `ValidateTranslations.ps1` and build ShareX.
+4. Run `ValidateTranslations.ps1` and build the CapX application.

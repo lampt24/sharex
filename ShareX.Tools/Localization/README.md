@@ -1,6 +1,6 @@
-# ShareX.Tools localization
+# CapX Tools localization
 
-`Strings.resx` is the default English catalog for the `ShareX.Tools` project. Each supported application culture has a complete satellite catalog named `Strings.<culture>.resx`.
+`Strings.resx` is the default English catalog for the CapX Tools project (`ShareX.Tools` is retained as its technical project identity). Each supported application culture has a complete satellite catalog named `Strings.<culture>.resx`.
 
 The catalog contains 553 scoped keys covering all Avalonia views and user-visible runtime messages in the Tools project, including image analysis, background removal, borderless windows, clipboard viewing, directory indexing, hash checking, icon conversion, image combining/comparison/splitting/thumbnailing, window inspection, metadata, monitor testing, OCR, pinning, QR codes, the ruler, video conversion, and video thumbnailing.
 
