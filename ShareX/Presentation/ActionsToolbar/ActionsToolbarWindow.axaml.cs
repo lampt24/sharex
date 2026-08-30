@@ -54,7 +54,7 @@ public partial class ActionsToolbarWindow : Window
         Topmost = Program.Settings.ActionsToolbarStayTopMost;
         Program.Settings.ActionsToolbarList ??= [];
 
-        ToolTip.SetTip(TitleHandle, Strings.ActionsToolbarWindow_Tip);
+        ToolTip.SetTip(TitleHandle, $"{Program.AppName}\n{Strings.ActionsToolbarWindow_Tip}");
         ToolTip.SetPlacement(TitleHandle, PlacementMode.Top);
         ToolTip.SetVerticalOffset(TitleHandle, -4);
         ToolTip.SetShowDelay(TitleHandle, 400);

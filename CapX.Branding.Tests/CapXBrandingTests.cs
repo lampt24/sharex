@@ -187,9 +187,33 @@ internal static class CapXBrandingTests
     private static void AssertTask8ActionsToolbarLogo(string root)
     {
         string toolbarPath = Path.Combine(root, "ShareX", "Presentation", "ActionsToolbar", "ActionsToolbarWindow.axaml");
+        string toolbarCodePath = Path.Combine(root, "ShareX", "Presentation", "ActionsToolbar", "ActionsToolbarWindow.axaml.cs");
+        XDocument toolbarDocument = XDocument.Load(toolbarPath, LoadOptions.PreserveWhitespace);
+        XNamespace x = "http://schemas.microsoft.com/winfx/2006/xaml";
+        XElement titleHandle = RequireSingle(toolbarDocument.Descendants().Where(element =>
+            element.Name.LocalName == "Border" && element.Attribute(x + "Name")?.Value == "TitleHandle"),
+            "Actions Toolbar title handle");
+        XElement toolbarLogo = RequireSingle(titleHandle.Descendants().Where(element =>
+            element.Name.LocalName == "Image" && element.Attribute(x + "Name")?.Value == "ToolbarLogo"),
+            "Actions Toolbar logo image");
 
-        AssertContains(toolbarPath, "<Image x:Name=\"ToolbarLogo\"");
-        AssertDoesNotContain(toolbarPath, "<TextBlock Text=\"CapX\"");
+        AssertEqual("Uniform", toolbarLogo.Attribute("Stretch")?.Value, "Actions Toolbar logo stretch");
+        AssertEqual("False", toolbarLogo.Attribute("IsHitTestVisible")?.Value, "Actions Toolbar logo hit testing");
+        if (titleHandle.Descendants().Any(element =>
+            element.Name.LocalName == "TextBlock" && element.Attribute("Text")?.Value == "CapX"))
+        {
+            throw new InvalidOperationException("Branding contract failed: Actions Toolbar title handle still renders the CapX wordmark.");
+        }
+
+        AssertMatches(toolbarCodePath,
+            @"using DrawingBitmap logo = ShareXResources\.Logo;\s+using Stream logoStream = logo\.GetStream\(\);\s+logoStream\.Position = 0;\s+_toolbarLogoBitmap = new AvaloniaBitmap\(logoStream\);\s+ToolbarLogo\.Source = _toolbarLogoBitmap;",
+            "Actions Toolbar logo resource assignment");
+        AssertMatches(toolbarCodePath,
+            @"ToolTip\.SetTip\(TitleHandle,\s*\$\""\{Program\.AppName\}\\n\{Strings\.ActionsToolbarWindow_Tip\}\""\);",
+            "Actions Toolbar title tooltip composition");
+        AssertMatches(toolbarCodePath,
+            @"Closed \+= \(_, _\) =>\s*\{\s*_closing = true;\s*_toolbarLogoBitmap\.Dispose\(\);\s*\};",
+            "Actions Toolbar logo disposal");
     }
 
     private static void AssertStoreManifest(string path)
@@ -341,6 +365,14 @@ internal static class CapXBrandingTests
         if (File.ReadAllText(path).Contains(unexpectedText, StringComparison.Ordinal))
         {
             throw new InvalidOperationException($"Branding contract failed for '{path}': unexpected text '{unexpectedText}'.");
+        }
+    }
+
+    private static void AssertMatches(string path, string pattern, string contract)
+    {
+        if (!Regex.IsMatch(File.ReadAllText(path), pattern, RegexOptions.CultureInvariant))
+        {
+            throw new InvalidOperationException($"Branding contract failed for {contract}: expected pattern '{pattern}'.");
         }
     }
 
