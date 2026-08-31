@@ -134,15 +134,18 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         try
         {
             IReadOnlyList<string> models = await _service.LoadModelsAsync(CreateOptions());
+            string selectedModel = OpenAIModel;
+            IReadOnlyList<string> displayedModels = GetModelsIncludingSelected(models, selectedModel);
+
             OpenAIModels.Clear();
-            foreach (string model in models)
+            foreach (string model in displayedModels)
             {
                 OpenAIModels.Add(model);
             }
 
-            if (models.Count > 0)
+            if (displayedModels.Count > 0)
             {
-                OpenAIModel = models.Contains(OpenAIModel) ? OpenAIModel : models[0];
+                OpenAIModel = !string.IsNullOrWhiteSpace(selectedModel) ? selectedModel : displayedModels[0];
                 StatusSuccess = true;
                 StatusText = string.Format(Localization.Strings.AnalyzeImageOptionsViewModel_Models_loaded, models.Count);
             }
@@ -217,5 +220,12 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         {
             models.Add(model);
         }
+    }
+
+    private static IReadOnlyList<string> GetModelsIncludingSelected(IReadOnlyList<string> models, string? selectedModel)
+    {
+        return !string.IsNullOrWhiteSpace(selectedModel) && !models.Contains(selectedModel)
+            ? [.. models, selectedModel]
+            : models;
     }
 }

@@ -1,4 +1,5 @@
 using ShareX.Tools;
+using System.Reflection;
 
 internal static class CaptureTextOptionsTests
 {
@@ -14,6 +15,7 @@ internal static class CaptureTextOptionsTests
         LeavesCustomGatewayEmptyByDefault();
         UsesTranscriptionPromptByDefault();
         SelectsTranscriptionPresetAndMigratesOldDefault();
+        KeepsSelectedModelWhenGatewayDoesNotReturnIt();
 
         AIOptions source = new()
         {
@@ -152,6 +154,19 @@ internal static class CaptureTextOptionsTests
             "Transcription prompt must be selected in the Analyze Image UI");
         AssertEqual(AIOptions.DefaultPrompt, options.Input,
             "Migrated prompt must be saved to the shared AI options");
+    }
+
+    private static void KeepsSelectedModelWhenGatewayDoesNotReturnIt()
+    {
+        MethodInfo? method = typeof(AnalyzeImageOptionsViewModel).GetMethod("GetModelsIncludingSelected",
+            BindingFlags.NonPublic | BindingFlags.Static);
+        AssertTrue(method != null, "Model reload must preserve the selected model");
+
+        IReadOnlyList<string> models = (IReadOnlyList<string>)method!.Invoke(null,
+            [new[] { "gateway-model-a", "gateway-model-b" }, "previously-selected-model"])!;
+
+        AssertTrue(models.Contains("previously-selected-model"),
+            "Selected model must remain available after model reload");
     }
 
     private static void AssertEqual(string expected, string? actual, string description)
