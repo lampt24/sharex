@@ -1,4 +1,6 @@
 using ShareX.Tools;
+using ShareX.HelpersLib;
+using System.Drawing;
 using System.Reflection;
 
 internal static class CaptureTextOptionsTests
@@ -18,6 +20,7 @@ internal static class CaptureTextOptionsTests
         SelectsTranscriptionPresetAndMigratesOldDefault();
         KeepsSelectedModelWhenGatewayDoesNotReturnIt();
         RoutesClaudeModelsThroughAnthropicProtocol();
+        DoesNotDisposeSharedHttpClientAfterAnthropicFailure();
 
         AIOptions source = new()
         {
@@ -188,6 +191,37 @@ internal static class CaptureTextOptionsTests
             "Claude Sonnet must use the Anthropic protocol");
         AssertTrue(!(bool)method.Invoke(null, ["gpt-5-mini"])!,
             "OpenAI models must keep the OpenAI protocol");
+    }
+
+    private static void DoesNotDisposeSharedHttpClientAfterAnthropicFailure()
+    {
+        HttpClientFactory.Reset();
+
+        try
+        {
+            using Bitmap image = new(1, 1);
+            AnthropicProvider provider = new("test-key", "claude-test", "http://127.0.0.1:1/v1");
+
+            try
+            {
+                provider.AnalyzeImage(image, "test", string.Empty, string.Empty).GetAwaiter().GetResult();
+            }
+            catch (HttpRequestException)
+            {
+            }
+
+            try
+            {
+                HttpClientFactory.Create().GetAsync("http://127.0.0.1:1").GetAwaiter().GetResult();
+            }
+            catch (HttpRequestException)
+            {
+            }
+        }
+        finally
+        {
+            HttpClientFactory.Reset();
+        }
     }
 
     private static void AssertEqual(string expected, string? actual, string description)

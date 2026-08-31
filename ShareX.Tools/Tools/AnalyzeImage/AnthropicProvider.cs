@@ -70,7 +70,7 @@ public sealed class AnthropicProvider : IAIProvider
             }
         };
 
-        using HttpClient httpClient = HttpClientFactory.Create();
+        HttpClient httpClient = HttpClientFactory.Create();
         httpClient.DefaultRequestHeaders.Add("x-api-key", _apiKey);
         httpClient.DefaultRequestHeaders.Add("anthropic-version", AnthropicVersion);
         httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
