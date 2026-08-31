@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:ShareX.Tools"
         xmlns:theming="using:ShareX.AvaloniaUI.Theming"
-        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="590"
+        mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="590"
         x:Class="ShareX.Tools.AnalyzeImageOptionsWindow"
         x:DataType="vm:AnalyzeImageOptionsViewModel"
         Title="{x:Static localization:Strings.AnalyzeImageOptionsWindow_ShareX_Analyze_image_options}"
-        Width="650"
+        Width="760"
         Height="590"
-        MinWidth="580"
+        MinWidth="680"
         MinHeight="540"
         WindowStartupLocation="CenterOwner">
 
@@ -43,6 +43,7 @@
                                               ItemsSource="{Binding OpenAIModels}"
                                               Text="{Binding OpenAIModel, Mode=TwoWay}"
                                               SelectedItem="{Binding OpenAIModel, Mode=TwoWay}"
+                                              MinWidth="360"
                                               IsEditable="True"/>
                                     <Button Grid.Column="2" Command="{Binding LoadModelsCommand}" IsEnabled="{Binding !IsBusy}">
                                         <StackPanel Orientation="Horizontal" Spacing="8">

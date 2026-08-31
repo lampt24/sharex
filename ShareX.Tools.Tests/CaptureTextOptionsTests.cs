@@ -19,6 +19,7 @@ internal static class CaptureTextOptionsTests
         UsesTranscriptionPromptByDefault();
         SelectsTranscriptionPresetAndMigratesOldDefault();
         FiltersModelListToVisionCapableFamilies();
+        RetainsManuallyEnteredModelWhenReloadedModelsDoNotContainIt();
         RoutesClaudeModelsThroughAnthropicProtocol();
         DoesNotDisposeSharedHttpClientAfterAnthropicFailure();
 
@@ -182,6 +183,19 @@ internal static class CaptureTextOptionsTests
             "Claude routes that drop images must not be listed");
         AssertTrue(!(bool)method.Invoke(null, ["gh/gpt-3.5-turbo"])!,
             "Text-only models must not be listed");
+    }
+
+    private static void RetainsManuallyEnteredModelWhenReloadedModelsDoNotContainIt()
+    {
+        MethodInfo? method = typeof(AnalyzeImageOptionsViewModel).GetMethod("GetModelsIncludingSelected",
+            BindingFlags.NonPublic | BindingFlags.Static);
+        AssertTrue(method != null, "Reloading models must retain a manually entered model");
+
+        IReadOnlyList<string> models = (IReadOnlyList<string>)method!.Invoke(null,
+            [new[] { "gateway/gpt-5" }, "gateway/custom-vision-model"])!;
+
+        AssertEqual("gateway/gpt-5", models[0], "Loaded gateway model");
+        AssertEqual("gateway/custom-vision-model", models[1], "Manually entered model must be retained");
     }
 
     private static void RoutesClaudeModelsThroughAnthropicProtocol()
