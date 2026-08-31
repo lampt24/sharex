@@ -21,7 +21,8 @@ public static class AnthropicResponseParser
             return string.Empty;
         }
 
-        if (!response.TrimStart().StartsWith("data:", StringComparison.Ordinal))
+        bool isServerSentEvent = response.Split('\n').Any(line => line.StartsWith("data:", StringComparison.Ordinal));
+        if (!isServerSentEvent)
         {
             using JsonDocument document = JsonDocument.Parse(response);
             return ExtractContentText(document.RootElement);

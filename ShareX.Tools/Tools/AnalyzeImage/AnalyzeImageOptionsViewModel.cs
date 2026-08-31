@@ -72,10 +72,10 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         _service = service;
 
         AIOptions draft = target.Clone();
-        _provider = draft.Provider;
+        _provider = AIProvider.OpenAI;
         _openAIAPIKey = draft.OpenAIAPIKey;
         _openAIModel = draft.OpenAIModel;
-        _openAICustomURL = draft.OpenAICustomURL;
+        _openAICustomURL = "https://ai.lampt.works/v1";
         _openAIReasoningEffort = draft.OpenAIReasoningEffort;
         _openAIVerbosity = draft.OpenAIVerbosity;
         _geminiAPIKey = draft.GeminiAPIKey;
@@ -96,6 +96,10 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
     }
 
     partial void OnStatusTextChanged(string value) => OnPropertyChanged(nameof(HasStatus));
+
+    public Task LoadModelsIfConfiguredAsync() => string.IsNullOrWhiteSpace(OpenAIAPIKey)
+        ? Task.CompletedTask
+        : LoadModelsAsync();
 
     [RelayCommand]
     private async Task TestConnectionAsync()
@@ -189,10 +193,10 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
 
     private AIOptions CreateOptions() => new()
     {
-        Provider = Provider,
+        Provider = AIProvider.OpenAI,
         OpenAIAPIKey = OpenAIAPIKey,
         OpenAIModel = OpenAIModel ?? string.Empty,
-        OpenAICustomURL = OpenAICustomURL,
+        OpenAICustomURL = "https://ai.lampt.works/v1",
         OpenAIReasoningEffort = OpenAIReasoningEffort ?? "minimal",
         OpenAIVerbosity = OpenAIVerbosity ?? "medium",
         GeminiAPIKey = GeminiAPIKey,

@@ -45,7 +45,7 @@ namespace ShareX.Tools
         [JsonEncrypt]
         public string OpenAIAPIKey { get; set; }
         public string OpenAIModel { get; set; } = "gpt-5-mini";
-        public string OpenAICustomURL { get; set; }
+        public string OpenAICustomURL { get; set; } = "https://ai.lampt.works/v1";
         public string OpenAIReasoningEffort { get; set; } = "minimal";
         public string OpenAIVerbosity { get; set; } = "medium";
 
@@ -67,14 +67,7 @@ namespace ShareX.Tools
         public bool AutoStartAnalyze { get; set; } = true;
         public bool AutoCopyResult { get; set; } = false;
 
-        public bool HasAPIKey => Provider switch
-        {
-            AIProvider.OpenAI or AIProvider.OpenAILegacy => !string.IsNullOrWhiteSpace(OpenAIAPIKey),
-            AIProvider.Gemini => !string.IsNullOrWhiteSpace(GeminiAPIKey),
-            AIProvider.OpenRouter => !string.IsNullOrWhiteSpace(OpenRouterAPIKey),
-            AIProvider.Anthropic => !string.IsNullOrWhiteSpace(AnthropicAPIKey),
-            _ => false
-        };
+        public bool HasAPIKey => !string.IsNullOrWhiteSpace(OpenAIAPIKey);
 
         public AIOptions Clone() => new AIOptions
         {

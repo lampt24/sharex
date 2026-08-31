@@ -45,8 +45,8 @@ public static class OpenAIResponseParser
             return string.Empty;
         }
 
-        string trimmedResponse = response.TrimStart();
-        if (!trimmedResponse.StartsWith("data:", StringComparison.Ordinal))
+        bool isServerSentEvent = response.Split('\n').Any(line => line.StartsWith("data:", StringComparison.Ordinal));
+        if (!isServerSentEvent)
         {
             using JsonDocument document = JsonDocument.Parse(response);
             string finalText = extractFinalText(document.RootElement);

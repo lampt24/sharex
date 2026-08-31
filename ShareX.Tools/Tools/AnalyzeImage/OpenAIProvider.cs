@@ -130,11 +130,20 @@ namespace ShareX.Tools
                 return await AnalyzeImageInternal(imageDataUri, input, reasoningEffort, textVerbosity);
             }
             catch (Exception e) when (!string.IsNullOrWhiteSpace(CustomURL) &&
-                (e is JsonException or ChatCompletionResponseException))
+                (e is JsonException or ChatCompletionResponseException or HttpRequestException))
             {
-                // Most OpenAI-compatible gateways implement Chat Completions but not Responses.
-                return await new OpenAILegacyProvider(APIKey, Model, CustomURL)
-                    .AnalyzeImage(image, input, reasoningEffort, textVerbosity);
+                try
+                {
+                    // Most OpenAI-compatible gateways implement Chat Completions but not Responses.
+                    return await new OpenAILegacyProvider(APIKey, Model, CustomURL)
+                        .AnalyzeImage(image, input, reasoningEffort, textVerbosity);
+                }
+                catch (Exception legacyException) when (legacyException is JsonException or HttpRequestException)
+                {
+                    // 9router may expose a model only through its Anthropic-compatible endpoint.
+                    return await new AnthropicProvider(APIKey, Model, CustomURL)
+                        .AnalyzeImage(image, input, reasoningEffort, textVerbosity);
+                }
             }
         }
 

@@ -34,6 +34,7 @@ public partial class AnalyzeImageOptionsWindow : Window
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
         _viewModel.CloseRequested = saved => Close(saved);
+        Loaded += async (_, _) => await _viewModel.LoadModelsIfConfiguredAsync();
     }
 
     private void InitializeComponent()

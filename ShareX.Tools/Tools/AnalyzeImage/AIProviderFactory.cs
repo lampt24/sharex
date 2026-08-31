@@ -31,21 +31,7 @@ namespace ShareX.Tools
     {
         public static IAIProvider GetProvider(AIOptions options)
         {
-            switch (options.Provider)
-            {
-                case AIProvider.OpenAI:
-                    return new OpenAIProvider(options.OpenAIAPIKey, options.OpenAIModel, options.OpenAICustomURL);
-                case AIProvider.OpenAILegacy:
-                    return new OpenAILegacyProvider(options.OpenAIAPIKey, options.OpenAIModel, options.OpenAICustomURL);
-                case AIProvider.Gemini:
-                    return new GeminiProvider(options.GeminiAPIKey, options.GeminiModel);
-                case AIProvider.OpenRouter:
-                    return new OpenRouterProvider(options.OpenRouterAPIKey, options.OpenRouterModel);
-                case AIProvider.Anthropic:
-                    return new AnthropicProvider(options.AnthropicAPIKey, options.AnthropicModel, options.AnthropicCustomURL);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            return new OpenAIProvider(options.OpenAIAPIKey, options.OpenAIModel, options.OpenAICustomURL);
         }
     }
 }

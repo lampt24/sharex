@@ -5,11 +5,13 @@ internal static class CaptureTextOptionsTests
     public static void Run()
     {
         ParsesStreamingVisionResponse();
+        ParsesEventPrefixedStreamingVisionResponse();
         ParsesChatCompletionResponseFromResponsesEndpoint();
         RequestsNonStreamingVisionResponses();
         SavesCaptureTextApiSettings();
         BuildsEndpointsFromV1BaseUrl();
         ParsesAnthropicMessageResponse();
+        UsesCustomGatewayByDefault();
 
         AIOptions source = new()
         {
@@ -44,6 +46,18 @@ internal static class CaptureTextOptionsTests
 
         AssertEqual("Hello world", OpenAIResponseParser.ParseResponseText(response),
             "Streaming OpenAI response text");
+    }
+
+    private static void ParsesEventPrefixedStreamingVisionResponse()
+    {
+        const string response = "event: response.created\n" +
+            "data: {\"type\":\"response.created\",\"response\":{\"output\":[]}}\n\n" +
+            "event: response.output_text.delta\n" +
+            "data: {\"type\":\"response.output_text.delta\",\"delta\":\"Gateway text\"}\n\n" +
+            "data: [DONE]";
+
+        AssertEqual("Gateway text", OpenAIResponseParser.ParseResponseText(response),
+            "Event-prefixed streaming OpenAI response text");
     }
 
     private static void RequestsNonStreamingVisionResponses()
@@ -105,6 +119,13 @@ internal static class CaptureTextOptionsTests
 
         AssertEqual("Complete transcription", AnthropicResponseParser.ParseMessageText(response),
             "Anthropic Messages response text");
+    }
+
+    private static void UsesCustomGatewayByDefault()
+    {
+        AIOptions options = new();
+        AssertEqual("https://ai.lampt.works/v1", options.OpenAICustomURL,
+            "Custom gateway default URL");
     }
 
     private static void AssertEqual(string expected, string? actual, string description)
