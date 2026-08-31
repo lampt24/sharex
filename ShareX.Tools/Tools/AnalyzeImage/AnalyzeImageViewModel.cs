@@ -28,6 +28,7 @@ public sealed partial class AnalyzeImageViewModel : ViewModelBase, IDisposable
 
     public IReadOnlyList<string> PresetPrompts { get; } =
     [
+        AIOptions.DefaultPrompt,
         Localization.Strings.AnalyzeImageViewModel_What_is_in_this_image,
         Localization.Strings.AnalyzeImageViewModel_Thoroughly_describe_this_image,
         Localization.Strings.AnalyzeImageViewModel_Transcribe_image_text,
@@ -86,12 +87,22 @@ public sealed partial class AnalyzeImageViewModel : ViewModelBase, IDisposable
     public AnalyzeImageViewModel(string? imagePath, AIOptions options)
     {
         _options = options;
-        _prompt = options.Input;
+        _prompt = MigrateLegacyDefaultPrompt(options.Input);
+        _selectedPreset = PresetPrompts.Contains(_prompt) ? _prompt : null;
+        _options.Input = _prompt;
 
         if (!string.IsNullOrWhiteSpace(imagePath))
         {
             LoadImage(imagePath);
         }
+    }
+
+    private static string MigrateLegacyDefaultPrompt(string? prompt)
+    {
+        return string.IsNullOrWhiteSpace(prompt) ||
+               string.Equals(prompt, Localization.Strings.AnalyzeImageViewModel_What_is_in_this_image, StringComparison.Ordinal)
+            ? AIOptions.DefaultPrompt
+            : prompt;
     }
 
     public async Task InitializeAsync()

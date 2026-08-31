@@ -13,6 +13,7 @@ internal static class CaptureTextOptionsTests
         ParsesAnthropicMessageResponse();
         LeavesCustomGatewayEmptyByDefault();
         UsesTranscriptionPromptByDefault();
+        SelectsTranscriptionPresetAndMigratesOldDefault();
 
         AIOptions source = new()
         {
@@ -134,6 +135,23 @@ internal static class CaptureTextOptionsTests
         AIOptions options = new();
         AssertEqual("Transcribe the image's text. Do not write anything else.", options.Input,
             "Default AI Analyze prompt");
+    }
+
+    private static void SelectsTranscriptionPresetAndMigratesOldDefault()
+    {
+        AIOptions options = new()
+        {
+            Input = "What is in this image?"
+        };
+
+        using AnalyzeImageViewModel viewModel = new(null, options);
+
+        AssertEqual(AIOptions.DefaultPrompt, viewModel.Prompt,
+            "Saved legacy default prompt must migrate to the transcription prompt");
+        AssertEqual(AIOptions.DefaultPrompt, viewModel.SelectedPreset,
+            "Transcription prompt must be selected in the Analyze Image UI");
+        AssertEqual(AIOptions.DefaultPrompt, options.Input,
+            "Migrated prompt must be saved to the shared AI options");
     }
 
     private static void AssertEqual(string expected, string? actual, string description)
