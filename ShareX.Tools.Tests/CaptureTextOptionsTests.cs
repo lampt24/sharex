@@ -16,6 +16,7 @@ internal static class CaptureTextOptionsTests
         UsesTranscriptionPromptByDefault();
         SelectsTranscriptionPresetAndMigratesOldDefault();
         KeepsSelectedModelWhenGatewayDoesNotReturnIt();
+        RoutesClaudeModelsThroughAnthropicProtocol();
 
         AIOptions source = new()
         {
@@ -167,6 +168,18 @@ internal static class CaptureTextOptionsTests
 
         AssertTrue(models.Contains("previously-selected-model"),
             "Selected model must remain available after model reload");
+    }
+
+    private static void RoutesClaudeModelsThroughAnthropicProtocol()
+    {
+        MethodInfo? method = typeof(OpenAIProvider).GetMethod("UsesAnthropicProtocol",
+            BindingFlags.NonPublic | BindingFlags.Static);
+        AssertTrue(method != null, "Claude models must be routed through the Anthropic protocol");
+
+        AssertTrue((bool)method!.Invoke(null, ["claude-sonnet-4-6"])!,
+            "Claude Sonnet must use the Anthropic protocol");
+        AssertTrue(!(bool)method.Invoke(null, ["gpt-5-mini"])!,
+            "OpenAI models must keep the OpenAI protocol");
     }
 
     private static void AssertEqual(string expected, string? actual, string description)

@@ -125,6 +125,20 @@ namespace ShareX.Tools
                 imageDataUri = $"data:image/jpeg;base64,{base64Image}";
             }
 
+            if (!string.IsNullOrWhiteSpace(CustomURL) && UsesAnthropicProtocol(Model))
+            {
+                try
+                {
+                    // Gateways may accept OpenAI requests for Claude but drop image_url during translation.
+                    return await new AnthropicProvider(APIKey, Model, CustomURL)
+                        .AnalyzeImage(image, input, reasoningEffort, textVerbosity);
+                }
+                catch (Exception anthropicException) when (anthropicException is JsonException or HttpRequestException)
+                {
+                    // Keep the OpenAI-compatible path as a fallback for gateways without /messages.
+                }
+            }
+
             try
             {
                 return await AnalyzeImageInternal(imageDataUri, input, reasoningEffort, textVerbosity);
@@ -146,6 +160,9 @@ namespace ShareX.Tools
                 }
             }
         }
+
+        private static bool UsesAnthropicProtocol(string model) =>
+            !string.IsNullOrWhiteSpace(model) && model.Contains("claude", StringComparison.OrdinalIgnoreCase);
 
         private async Task<string> AnalyzeImageInternal(string imageDataUri, string input = null, string reasoningEffort = null, string textVerbosity = null)
         {
