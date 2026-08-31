@@ -62,7 +62,7 @@
     <value>Combină imaginile</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>Fișierele plasate aici vor fi încărcate de CapX.</value>
+    <value>Fișierele plasate aici vor fi încărcate de ShareX.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>Orizontal</value>
@@ -77,10 +77,10 @@
     <value>Eliberează pentru a încărca text</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>Taste rapide CapX</value>
+    <value>Taste rapide ShareX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>Textul plasat aici va fi încărcat de CapX.</value>
+    <value>Textul plasat aici va fi încărcat de ShareX.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>Vertical</value>
@@ -200,7 +200,7 @@
     <value>Dosar</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>Urmărește CapX...</value>
+    <value>Urmărește ShareX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Imagine forum</value>
@@ -386,7 +386,7 @@
     <value>Afișează răspunsul...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>Afișează CapX</value>
+    <value>Afișează ShareX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>Oprește încărcarea</value>
@@ -476,10 +476,10 @@
     <value>Deschide</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - Setări ale aplicației</value>
+    <value>ShareX - Setări ale aplicației</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>Repornește CapX pentru a aplica această modificare.</value>
+    <value>Repornește ShareX pentru a aplica această modificare.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>Repornește acum</value>
@@ -506,7 +506,7 @@
     <value>Afișați progresul în butonul din bara de activități</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>Utilizați pictograma albă CapX</value>
+    <value>Utilizați pictograma albă ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>Rețineți poziția ferestrei principale</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Afișați butonul &quot;Încărcare cu CapX&quot; în meniul contextual din Windows Explorer</value>
+    <value>Afișați butonul &quot;Încărcare cu ShareX&quot; în meniul contextual din Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Afișați butonul &quot;Editați cu CapX&quot; în meniul contextual al Windows Explorer</value>
+    <value>Afișați butonul &quot;Editați cu ShareX&quot; în meniul contextual al Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Afișați CapX în meniul &quot;Trimitere la&quot;</value>
+    <value>Afișați ShareX în meniul &quot;Trimitere la&quot;</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Extensie Chrome</value>
@@ -584,7 +584,7 @@
     <value>Activați suportul pentru extensia Chrome</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>Instalați extensia CapX Chrome...</value>
+    <value>Instalați extensia ShareX Chrome...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Supliment Firefox</value>
@@ -593,19 +593,19 @@
     <value>Activați suportul pentru suplimentul Firefox</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>Instalați suplimentul CapX Firefox...</value>
+    <value>Instalați suplimentul ShareX Firefox...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>În timp ce CapX este deschis, arată &quot;În aplicație&quot; pe Steam</value>
+    <value>În timp ce ShareX este deschis, arată &quot;În aplicație&quot; pe Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>Căi</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>Folder personal CapX</value>
+    <value>Folder personal ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>Răsfoiți...</value>
@@ -794,19 +794,19 @@
     <value>Anulare</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>Alege calea folderului personal CapX</value>
+    <value>Alege calea folderului personal ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>Alege calea folderului pentru capturi de ecran</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>Exportă copia de rezervă CapX</value>
+    <value>Exportă copia de rezervă ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>Copie de rezervă CapX</value>
+    <value>Copie de rezervă ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>Importă copia de rezervă CapX</value>
+    <value>Importă copia de rezervă ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>Editează formatul pentru clipboard</value>
@@ -980,7 +980,7 @@
     <value>Dreapta jos</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - Setări taste rapide</value>
+    <value>ShareX - Setări taste rapide</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>Adaugă</value>
@@ -1028,7 +1028,7 @@
     <value>Resetezi tastele rapide?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>Toate tastele rapide și setările lor personalizate de sarcină vor fi înlocuite cu valorile implicite CapX.</value>
+    <value>Toate tastele rapide și setările lor personalizate de sarcină vor fi înlocuite cu valorile implicite ShareX.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>Anulează</value>
@@ -1133,10 +1133,10 @@
     <value>Nu este configurat niciun buton. Bara de notificări va fi ascunsă.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX - Setări sarcini</value>
+    <value>ShareX - Setări sarcini</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX - Setări pentru sarcina {0}</value>
+    <value>ShareX - Setări pentru sarcina {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>Editează acțiunea</value>
@@ -1763,7 +1763,7 @@
     <value>Alege fișier audio</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Încărcare prin glisare și fixare</value>
+    <value>ShareX - Încărcare prin glisare și fixare</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>Plasați aici</value>
@@ -1793,13 +1793,13 @@
     <value>Clipboardul este gol sau conține date neacceptate.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX - Cum trebuie salvat fișierul?</value>
+    <value>ShareX - Cum trebuie salvat fișierul?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>Există deja un fișier cu acest nume</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>Alegeți un nume nou de fișier sau selectați cum trebuie să continue CapX.</value>
+    <value>Alegeți un nume nou de fișier sau selectați cum trebuie să continue ShareX.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>Nume nou de fișier</value>
@@ -1817,7 +1817,7 @@
     <value>Anulare</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX - Încărcare fișier mare</value>
+    <value>ShareX - Încărcare fișier mare</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>Încercați să încărcați un fișier mare.</value>
@@ -1832,7 +1832,7 @@
     <value>Anulare</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX - Încărcare fișiere</value>
+    <value>ShareX - Încărcare fișiere</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>Sigur doriți să încărcați {0} fișiere?</value>
@@ -1847,7 +1847,7 @@
     <value>Anulare</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX - Jurnal de depanare</value>
+    <value>ShareX - Jurnal de depanare</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>Ansambluri încărcate</value>
@@ -1874,19 +1874,19 @@
     <value>Încarcă</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>Configurarea inițială CapX</value>
+    <value>Configurarea inițială ShareX</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>Alegeți cum se integrează CapX cu Windows.</value>
+    <value>Alegeți cum se integrează ShareX cu Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Afișează „Încarcă prin CapX” în meniul contextual din Explorer</value>
+    <value>Afișează „Încarcă prin ShareX” în meniul contextual din Explorer</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>Afișează CapX în meniul „Trimitere către”</value>
+    <value>Afișează ShareX în meniul „Trimitere către”</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>Cât timp CapX este deschis, afișează „În aplicație” în Steam</value>
+    <value>Cât timp ShareX este deschis, afișează „În aplicație” în Steam</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>Puteți modifica aceste opțiuni ulterior în Setările aplicației → Integrare.</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Rulează CapX la pornirea Windows</value>
+    <value>Rulează ShareX la pornirea Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>Pornirea a fost dezactivată în Managerul de activități</value>
@@ -1907,7 +1907,7 @@
     <value>Pornirea a fost activată de organizația dvs.</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX - Scurtare URL</value>
+    <value>ShareX - Scurtare URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>Scurtare URL</value>
@@ -1925,7 +1925,7 @@
     <value>Scurtează</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Încărcare URL</value>
+    <value>ShareX - Încărcare URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>Încărcare URL</value>
@@ -1946,7 +1946,7 @@
     <value>Încarcă</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Înainte de încărcare</value>
+    <value>ShareX - Înainte de încărcare</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>Înainte de încărcare</value>
@@ -1976,7 +1976,7 @@
     <value>Nicio previzualizare disponibilă</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX - Editare bară de acțiuni</value>
+    <value>ShareX - Editare bară de acțiuni</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>Adaugă...</value>
@@ -1997,7 +1997,7 @@
     <value>Închide</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX - Bară de acțiuni</value>
+    <value>ShareX - Bară de acțiuni</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>Plasați pentru încărcare</value>
@@ -2015,13 +2015,13 @@
     <value>Menține deasupra</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>Deschide la pornirea CapX</value>
+    <value>Deschide la pornirea ShareX</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>Editează...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - După captură</value>
+    <value>ShareX - După captură</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>După captură</value>
@@ -2057,7 +2057,7 @@
     <value>Personalizat [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX - După încărcare</value>
+    <value>ShareX - După încărcare</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>Încărcare finalizată</value>
@@ -2102,7 +2102,7 @@
     <value>Legături</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Captură automată</value>
+    <value>ShareX - Captură automată</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>Regiune personalizată</value>
@@ -2156,7 +2156,7 @@
     <value>Elimină</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX - Editor meniu activități rapide</value>
+    <value>ShareX - Editor meniu activități rapide</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>Adaugă...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  După încărcare: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX - Despre</value>
+    <value>ShareX - Despre</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Drepturi de autor © 2007–2026 Echipa CapX</value>
+    <value>Drepturi de autor © 2007–2026 Echipa ShareX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Versiune Steam</value>
@@ -2243,10 +2243,10 @@
     <value>Verificarea actualizărilor a eșuat.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>Este disponibilă o versiune mai nouă de CapX</value>
+    <value>Este disponibilă o versiune mai nouă de ShareX</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX este actualizat.</value>
+    <value>ShareX este actualizat.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>Legături</value>
@@ -2270,7 +2270,7 @@
     <value>Echipă</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX - Setări încărcător personalizat</value>
+    <value>ShareX - Setări încărcător personalizat</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>Bibliotecă de încărcătoare</value>
@@ -2381,10 +2381,10 @@
     <value>Închidere</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX - Confirmare</value>
+    <value>ShareX - Confirmare</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>Serviciu de încărcare personalizat CapX</value>
+    <value>Serviciu de încărcare personalizat ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>URL de ștergere</value>
@@ -2516,7 +2516,7 @@
     <value>Introducere text sau URL</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>Test de încărcare text CapX</value>
+    <value>Test de încărcare text ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>URL miniatură</value>
@@ -2562,7 +2562,7 @@
     <value>Doriți să setați „{0}” ca serviciu activ pentru {1}?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX - Confirmare serviciu de încărcare</value>
+    <value>ShareX - Confirmare serviciu de încărcare</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>Eroare la exportarea copiei de rezervă:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX - Eroare</value>
+    <value>ShareX - Eroare</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>Eroare {0}</value>
@@ -2588,7 +2588,7 @@
     <value>NumeImagine</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>CapX este minimizat în bara de sistem.</value>
+    <value>ShareX este minimizat în bara de sistem.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>Variabile acceptate: {0} și alte variabile, cum ar fi {1} etc.</value>
@@ -2609,7 +2609,7 @@
     <value>Editați acest meniu...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>CapX este actualizat!</value>
+    <value>ShareX este actualizat!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>Jurnalul de depanării poate conține informații cu caracter personal. Sunteți sigur că doriți să continuați?</value>
@@ -2621,7 +2621,7 @@
     <value>Scurtător URL: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Rulați CapX la pornirea Windows-ului</value>
+    <value>Rulați ShareX la pornirea Windows-ului</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>Sigur ștergeți acest fișier?</value>
@@ -2630,7 +2630,7 @@
     <value>Nu s-a putut crea folderul:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>FFmpeg inclus cu CapX acceptă doar sisteme de operare pe 64 de biți.</value>
+    <value>FFmpeg inclus cu ShareX acceptă doar sisteme de operare pe 64 de biți.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>Se încarcă</value>
@@ -2639,7 +2639,7 @@
     <value>URL de distribuire ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>Pentru ca setările să aibă efect, CapX trebuie redeschis din Steam.</value>
+    <value>Pentru ca setările să aibă efect, ShareX trebuie redeschis din Steam.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>Pornirea a fost dezactivată de către organizația dvs.</value>
@@ -2677,7 +2677,7 @@
 Puteți să le dezactivați ulterior din meniul "Sarcini după captură".</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>Editați cu CapX</value>
+    <value>Editați cu ShareX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>Clipboardul nu conține o imagine.</value>
@@ -2686,7 +2686,7 @@ Puteți să le dezactivați ulterior din meniul "Sarcini după captură".</value
     <value>Eroare</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Este posibil ca software-ul antivirus sau funcția de acces controlat la foldere din Windows să blocheze CapX.</value>
+    <value>Este posibil ca software-ul antivirus sau funcția de acces controlat la foldere din Windows să blocheze ShareX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>Sarcină finalizată</value>
@@ -2734,19 +2734,19 @@ Puteți să le dezactivați ulterior din meniul "Sarcini după captură".</value
     <value>FFmpeg video și sursa audio nu pot fi ambele "Niciuna".</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>CapX nu poate fi închis cât timp înregistrarea ecranului este activă.
+    <value>ShareX nu poate fi închis cât timp înregistrarea ecranului este activă.
 
 Vrei să anulezi înregistrarea activă a ecranului?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>Încărcați cu CapX</value>
+    <value>Încărcați cu ShareX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>Taste rapide dezactivate.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>Nu se poate accesa fișierul "{0}".
-Vă rugăm să rulați CapX ca administrator pentru a schimba calea folderului personal.</value>
+Vă rugăm să rulați ShareX ca administrator pentru a schimba calea folderului personal.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>Pornirea a fost dezactivată din Managerul de activități</value>
@@ -2758,7 +2758,7 @@ Vă rugăm să rulați CapX ca administrator pentru a schimba calea folderului p
     <value>Nu se poate găsi o fereastră cu titlul specificat.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>Doriți să resetați setările CapX?</value>
+    <value>Doriți să resetați setările ShareX?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Nu s-a reușit salvarea setărilor</value>
@@ -2795,7 +2795,7 @@ Vă rugăm să rulați CapX ca administrator pentru a schimba calea folderului p
 
 {1}
 
-Vă rugăm să selectați o altă tastatură rapidă sau să ieșiți din aplicația în conflict și să redeschideți CapX.</value>
+Vă rugăm să selectați o altă tastatură rapidă sau să ieșiți din aplicația în conflict și să redeschideți ShareX.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>Întârzierea capturii: {0}s</value>

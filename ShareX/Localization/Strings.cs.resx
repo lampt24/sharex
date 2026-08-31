@@ -62,7 +62,7 @@
     <value>Spojit obrázky</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>Soubory přetažené sem budou nahrány pomocí CapX.</value>
+    <value>Soubory přetažené sem budou nahrány pomocí ShareX.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>Vodorovně</value>
@@ -77,10 +77,10 @@
     <value>Uvolněním nahrajete text</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>Klávesové zkratky CapX</value>
+    <value>Klávesové zkratky ShareX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>Text přetažený sem bude nahrán pomocí CapX.</value>
+    <value>Text přetažený sem bude nahrán pomocí ShareX.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>Svisle</value>
@@ -200,7 +200,7 @@
     <value>Složka</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>Sledovat CapX...</value>
+    <value>Sledovat ShareX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Obrázek pro fórum</value>
@@ -386,7 +386,7 @@
     <value>Zobrazit odpověď...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>Zobrazit CapX</value>
+    <value>Zobrazit ShareX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>Zastavit nahrávání</value>
@@ -476,10 +476,10 @@
     <value>Otevřít</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX – Nastavení aplikace</value>
+    <value>ShareX – Nastavení aplikace</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>Tuto změnu použijete restartováním CapX.</value>
+    <value>Tuto změnu použijete restartováním ShareX.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>Restartovat nyní</value>
@@ -506,7 +506,7 @@
     <value>Zobrazit průběh na tlačítku hlavního panelu</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>Použít bílou ikonu CapX</value>
+    <value>Použít bílou ikonu ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>Pamatovat polohu hlavního okna</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Zobrazit tlačítko „Nahrát pomocí CapX“ v místní nabídce Průzkumníka Windows</value>
+    <value>Zobrazit tlačítko „Nahrát pomocí ShareX“ v místní nabídce Průzkumníka Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Zobrazit tlačítko „Upravit pomocí CapX“ v místní nabídce Průzkumníka Windows</value>
+    <value>Zobrazit tlačítko „Upravit pomocí ShareX“ v místní nabídce Průzkumníka Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Zobrazit CapX v nabídce „Odeslat“</value>
+    <value>Zobrazit ShareX v nabídce „Odeslat“</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Rozšíření pro Chrome</value>
@@ -584,7 +584,7 @@
     <value>Povolit podporu rozšíření pro Chrome</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>Nainstalovat rozšíření CapX pro Chrome...</value>
+    <value>Nainstalovat rozšíření ShareX pro Chrome...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Doplněk pro Firefox</value>
@@ -593,19 +593,19 @@
     <value>Povolit podporu doplňku pro Firefox</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>Nainstalovat doplněk CapX pro Firefox...</value>
+    <value>Nainstalovat doplněk ShareX pro Firefox...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>Když je CapX otevřený, zobrazovat ve službě Steam stav „Ve hře“</value>
+    <value>Když je ShareX otevřený, zobrazovat ve službě Steam stav „Ve hře“</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>Cesty</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>Osobní složka CapX</value>
+    <value>Osobní složka ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>Procházet...</value>
@@ -794,19 +794,19 @@
     <value>Zrušit</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>Vybrat cestu k osobní složce CapX</value>
+    <value>Vybrat cestu k osobní složce ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>Vybrat cestu ke složce snímků obrazovky</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>Exportovat zálohu CapX</value>
+    <value>Exportovat zálohu ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>Záloha CapX</value>
+    <value>Záloha ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>Importovat zálohu CapX</value>
+    <value>Importovat zálohu ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>Upravit formát schránky</value>
@@ -980,7 +980,7 @@
     <value>Vpravo dole</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX – Nastavení klávesových zkratek</value>
+    <value>ShareX – Nastavení klávesových zkratek</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>Přidat</value>
@@ -1028,7 +1028,7 @@
     <value>Obnovit klávesové zkratky?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>Všechny klávesové zkratky a jejich vlastní nastavení úloh budou nahrazeny výchozími hodnotami CapX.</value>
+    <value>Všechny klávesové zkratky a jejich vlastní nastavení úloh budou nahrazeny výchozími hodnotami ShareX.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>Zrušit</value>
@@ -1133,10 +1133,10 @@
     <value>Nejsou nastavena žádná tlačítka. Panel nástrojů oznámení bude skrytý.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX – Nastavení úloh</value>
+    <value>ShareX – Nastavení úloh</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX – Nastavení úlohy {0}</value>
+    <value>ShareX – Nastavení úlohy {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>Upravit akci</value>
@@ -1763,7 +1763,7 @@
     <value>Vybrat zvukový soubor</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX – Nahrání přetažením</value>
+    <value>ShareX – Nahrání přetažením</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>Přetáhněte sem</value>
@@ -1793,13 +1793,13 @@
     <value>Schránka je prázdná nebo obsahuje nepodporovaná data.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX – Jak se má soubor uložit?</value>
+    <value>ShareX – Jak se má soubor uložit?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>Soubor s tímto názvem již existuje</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>Vyberte nový název souboru nebo určete, jak má CapX pokračovat.</value>
+    <value>Vyberte nový název souboru nebo určete, jak má ShareX pokračovat.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>Nový název souboru</value>
@@ -1817,7 +1817,7 @@
     <value>Zrušit</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX – Nahrání velkého souboru</value>
+    <value>ShareX – Nahrání velkého souboru</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>Pokoušíte se nahrát velký soubor.</value>
@@ -1832,7 +1832,7 @@
     <value>Zrušit</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX – Nahrát soubory</value>
+    <value>ShareX – Nahrát soubory</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>Opravdu chcete nahrát {0} souborů?</value>
@@ -1847,7 +1847,7 @@
     <value>Zrušit</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX – Protokol ladění</value>
+    <value>ShareX – Protokol ladění</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>Načtená sestavení</value>
@@ -1874,19 +1874,19 @@
     <value>Nahrát</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>První nastavení CapX</value>
+    <value>První nastavení ShareX</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>Zvolte, jak se má CapX integrovat se systémem Windows.</value>
+    <value>Zvolte, jak se má ShareX integrovat se systémem Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Zobrazit „Nahrát pomocí CapX“ v místní nabídce Průzkumníka Windows</value>
+    <value>Zobrazit „Nahrát pomocí ShareX“ v místní nabídce Průzkumníka Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>Zobrazit CapX v nabídce „Odeslat“</value>
+    <value>Zobrazit ShareX v nabídce „Odeslat“</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>Když je CapX otevřený, zobrazovat ve službě Steam stav „Ve hře“</value>
+    <value>Když je ShareX otevřený, zobrazovat ve službě Steam stav „Ve hře“</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>Tyto možnosti můžete později změnit v nabídce Nastavení aplikace &gt; Integrace.</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Spouštět CapX při spuštění Windows</value>
+    <value>Spouštět ShareX při spuštění Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>Spouštění bylo zakázáno ve Správci úloh</value>
@@ -1907,7 +1907,7 @@
     <value>Spouštění bylo povoleno vaší organizací</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX – Zkrátit adresu URL</value>
+    <value>ShareX – Zkrátit adresu URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>Zkrátit adresu URL</value>
@@ -1925,7 +1925,7 @@
     <value>Zkrátit</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX – Nahrání adresy URL</value>
+    <value>ShareX – Nahrání adresy URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>Nahrání adresy URL</value>
@@ -1946,7 +1946,7 @@
     <value>Nahrát</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX – Před nahráním</value>
+    <value>ShareX – Před nahráním</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>Před nahráním</value>
@@ -1976,7 +1976,7 @@
     <value>Náhled není dostupný</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX – Upravit panel nástrojů akcí</value>
+    <value>ShareX – Upravit panel nástrojů akcí</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>Přidat...</value>
@@ -1997,7 +1997,7 @@
     <value>Zavřít</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX – Panel nástrojů akcí</value>
+    <value>ShareX – Panel nástrojů akcí</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>Přetažením nahrajete</value>
@@ -2015,13 +2015,13 @@
     <value>Vždy navrchu</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>Otevřít při spuštění CapX</value>
+    <value>Otevřít při spuštění ShareX</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>Upravit...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX – Po zachycení</value>
+    <value>ShareX – Po zachycení</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>Po zachycení</value>
@@ -2057,7 +2057,7 @@
     <value>Vlastní [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX – Po nahrání</value>
+    <value>ShareX – Po nahrání</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>Nahrávání dokončeno</value>
@@ -2102,7 +2102,7 @@
     <value>Odkazy</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX – Automatické zachytávání</value>
+    <value>ShareX – Automatické zachytávání</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>Vlastní oblast</value>
@@ -2156,7 +2156,7 @@
     <value>Odebrat</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX – Editor nabídky rychlých úloh</value>
+    <value>ShareX – Editor nabídky rychlých úloh</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>Přidat...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  Po nahrání: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX – O aplikaci</value>
+    <value>ShareX – O aplikaci</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Copyright © 2007–2026 Tým CapX</value>
+    <value>Copyright © 2007–2026 Tým ShareX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Sestavení Steam</value>
@@ -2243,10 +2243,10 @@
     <value>Kontrola aktualizací se nezdařila.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>Je dostupná novější verze CapX</value>
+    <value>Je dostupná novější verze ShareX</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX je aktuální.</value>
+    <value>ShareX je aktuální.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>Odkazy</value>
@@ -2270,7 +2270,7 @@
     <value>Tým</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX – Nastavení vlastního nahrávání</value>
+    <value>ShareX – Nastavení vlastního nahrávání</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>Knihovna nahrávání</value>
@@ -2381,10 +2381,10 @@
     <value>Zavřít</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX – Potvrzení</value>
+    <value>ShareX – Potvrzení</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>Vlastní nahrávání CapX</value>
+    <value>Vlastní nahrávání ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>Adresa URL pro odstranění</value>
@@ -2516,7 +2516,7 @@
     <value>Vstup textu nebo adresy URL</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>Test nahrávání textu CapX</value>
+    <value>Test nahrávání textu ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>Adresa URL miniatury</value>
@@ -2562,7 +2562,7 @@
     <value>Chcete nastavit „{0}“ jako aktivní vlastní nahrávání pro {1}?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX – Potvrzení vlastního nahrávání</value>
+    <value>ShareX – Potvrzení vlastního nahrávání</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>Chyba při exportu zálohy:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX – Chyba</value>
+    <value>ShareX – Chyba</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>Chyba: {0}</value>
@@ -2588,7 +2588,7 @@
     <value>NazevObrazku</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>CapX je minimalizován do oznamovací oblasti.</value>
+    <value>ShareX je minimalizován do oznamovací oblasti.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>Podporované proměnné: {0} a další proměnné, například {1} atd.</value>
@@ -2609,7 +2609,7 @@
     <value>Upravit tuto nabídku...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>CapX je aktuální!</value>
+    <value>ShareX je aktuální!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>Protokol ladění může obsahovat citlivé údaje. Opravdu chcete pokračovat?</value>
@@ -2621,7 +2621,7 @@
     <value>Zkracovač URL: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Spouštět CapX při spuštění Windows</value>
+    <value>Spouštět ShareX při spuštění Windows</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>Opravdu chcete tento soubor odstranit?</value>
@@ -2630,7 +2630,7 @@
     <value>Složku nelze vytvořit:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>FFmpeg dodávaný se CapX podporuje pouze 64bitové operační systémy.</value>
+    <value>FFmpeg dodávaný se ShareX podporuje pouze 64bitové operační systémy.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>Nahrává se</value>
@@ -2639,7 +2639,7 @@
     <value>Sdílet adresu URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>Aby se nastavení projevilo, je nutné CapX znovu otevřít ze služby Steam.</value>
+    <value>Aby se nastavení projevilo, je nutné ShareX znovu otevřít ze služby Steam.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>Spouštění bylo zakázáno vaší organizací</value>
@@ -2677,7 +2677,7 @@
 Později je můžete zakázat v nabídce „Úlohy po zachycení“.</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>Upravit pomocí CapX</value>
+    <value>Upravit pomocí ShareX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>Schránka neobsahuje obrázek.</value>
@@ -2686,7 +2686,7 @@ Později je můžete zakázat v nabídce „Úlohy po zachycení“.</value>
     <value>Chyba</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Antivirový software nebo funkce Řízený přístup ke složkám ve Windows mohou blokovat CapX.</value>
+    <value>Antivirový software nebo funkce Řízený přístup ke složkám ve Windows mohou blokovat ShareX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>Úloha dokončena</value>
@@ -2734,19 +2734,19 @@ Později je můžete zakázat v nabídce „Úlohy po zachycení“.</value>
     <value>Zdroj videa a zdroj zvuku FFmpeg nemohou být oba nastaveny na „Žádný“.</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>CapX nelze zavřít, když probíhá nahrávání obrazovky.
+    <value>ShareX nelze zavřít, když probíhá nahrávání obrazovky.
 
 Chcete aktivní nahrávání obrazovky přerušit?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>Nahrát pomocí CapX</value>
+    <value>Nahrát pomocí ShareX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>Klávesové zkratky byly zakázány.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>K souboru „{0}“ nelze přistupovat.
-Chcete-li změnit cestu k osobní složce, spusťte CapX jako správce.</value>
+Chcete-li změnit cestu k osobní složce, spusťte ShareX jako správce.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>Spouštění bylo zakázáno ve Správci úloh</value>
@@ -2758,7 +2758,7 @@ Chcete-li změnit cestu k osobní složce, spusťte CapX jako správce.</value>
     <value>Okno se zadaným názvem nelze najít.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>Chcete obnovit nastavení CapX?</value>
+    <value>Chcete obnovit nastavení ShareX?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Nastavení se nepodařilo uložit</value>
@@ -2795,7 +2795,7 @@ Chcete-li změnit cestu k osobní složce, spusťte CapX jako správce.</value>
 
 {1}
 
-Vyberte jinou klávesovou zkratku nebo ukončete konfliktní aplikaci a znovu otevřete CapX.</value>
+Vyberte jinou klávesovou zkratku nebo ukončete konfliktní aplikaci a znovu otevřete ShareX.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>Prodleva snímku obrazovky: {0} s</value>

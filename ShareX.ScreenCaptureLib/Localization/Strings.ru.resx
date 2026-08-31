@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX — Параметры записи экрана</value>
+    <value>ShareX — Параметры записи экрана</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Запись экрана</value>
@@ -152,7 +152,7 @@
     <value>Постоянный коэффициент качества (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Меньшие значения повышают качество и размер файла. 0 — без потерь; значение CapX по умолчанию — 28.</value>
+    <value>Меньшие значения повышают качество и размер файла. 0 — без потерь; значение ShareX по умолчанию — 28.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Целевой битрейт (кбит/с)</value>
@@ -230,7 +230,7 @@
     <value>Устройства DirectShow не найдены. Захват рабочего стола готов.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX — Запись экрана</value>
+    <value>ShareX — Запись экрана</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Начать</value>
@@ -251,7 +251,7 @@
     <value>Отмена</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX — Захват с прокруткой</value>
+    <value>ShareX — Захват с прокруткой</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Захватить...</value>

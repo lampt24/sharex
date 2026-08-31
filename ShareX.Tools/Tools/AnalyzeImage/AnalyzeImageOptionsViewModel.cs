@@ -28,6 +28,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
     public ObservableCollection<string> OpenAIModels { get; } = ["gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano"];
     public ObservableCollection<string> GeminiModels { get; } = ["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-1.5-flash", "gemini-1.5-pro"];
     public ObservableCollection<string> OpenRouterModels { get; } = ["openai/gpt-4o", "anthropic/claude-3.5-sonnet", "google/gemini-pro-1.5"];
+    public ObservableCollection<string> AnthropicModels { get; } = ["claude-sonnet-4-5", "claude-opus-4-6", "claude-haiku-4-5"];
     public IReadOnlyList<string> ReasoningEfforts { get; } = ["minimal", "low", "medium", "high"];
     public IReadOnlyList<string> VerbosityLevels { get; } = ["low", "medium", "high"];
 
@@ -35,6 +36,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(IsOpenAI))]
     [NotifyPropertyChangedFor(nameof(IsGemini))]
     [NotifyPropertyChangedFor(nameof(IsOpenRouter))]
+    [NotifyPropertyChangedFor(nameof(IsAnthropic))]
     private AIProvider _provider;
 
     [ObservableProperty] private string? _openAIAPIKey;
@@ -46,6 +48,9 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
     [ObservableProperty] private string _geminiModel;
     [ObservableProperty] private string? _openRouterAPIKey;
     [ObservableProperty] private string _openRouterModel;
+    [ObservableProperty] private string? _anthropicAPIKey;
+    [ObservableProperty] private string _anthropicModel;
+    [ObservableProperty] private string? _anthropicCustomURL;
     [ObservableProperty] private bool _autoStartRegion;
     [ObservableProperty] private bool _autoStartAnalyze;
     [ObservableProperty] private bool _autoCopyResult;
@@ -58,6 +63,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
     public bool IsOpenAI => Provider is AIProvider.OpenAI or AIProvider.OpenAILegacy;
     public bool IsGemini => Provider == AIProvider.Gemini;
     public bool IsOpenRouter => Provider == AIProvider.OpenRouter;
+    public bool IsAnthropic => Provider == AIProvider.Anthropic;
     public bool HasStatus => !string.IsNullOrWhiteSpace(StatusText);
 
     public AnalyzeImageOptionsViewModel(AIOptions target, AnalyzeImageService service)
@@ -76,6 +82,9 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         _geminiModel = draft.GeminiModel;
         _openRouterAPIKey = draft.OpenRouterAPIKey;
         _openRouterModel = draft.OpenRouterModel;
+        _anthropicAPIKey = draft.AnthropicAPIKey;
+        _anthropicModel = draft.AnthropicModel;
+        _anthropicCustomURL = draft.AnthropicCustomURL;
         _autoStartRegion = draft.AutoStartRegion;
         _autoStartAnalyze = draft.AutoStartAnalyze;
         _autoCopyResult = draft.AutoCopyResult;
@@ -83,6 +92,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         AddCurrentModel(OpenAIModels, OpenAIModel);
         AddCurrentModel(GeminiModels, GeminiModel);
         AddCurrentModel(OpenRouterModels, OpenRouterModel);
+        AddCurrentModel(AnthropicModels, AnthropicModel);
     }
 
     partial void OnStatusTextChanged(string value) => OnPropertyChanged(nameof(HasStatus));
@@ -155,6 +165,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
             AIProvider.OpenAI or AIProvider.OpenAILegacy => "https://platform.openai.com/api-keys",
             AIProvider.Gemini => "https://aistudio.google.com/app/apikey",
             AIProvider.OpenRouter => "https://openrouter.ai/keys",
+            AIProvider.Anthropic => "https://console.anthropic.com/settings/keys",
             _ => string.Empty
         };
 
@@ -188,6 +199,9 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         GeminiModel = GeminiModel ?? string.Empty,
         OpenRouterAPIKey = OpenRouterAPIKey,
         OpenRouterModel = OpenRouterModel ?? string.Empty,
+        AnthropicAPIKey = AnthropicAPIKey,
+        AnthropicModel = AnthropicModel ?? string.Empty,
+        AnthropicCustomURL = AnthropicCustomURL,
         AutoStartRegion = AutoStartRegion,
         AutoStartAnalyze = AutoStartAnalyze,
         AutoCopyResult = AutoCopyResult

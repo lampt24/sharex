@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - Selector de culori</value>
+    <value>ShareX - Selector de culori</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Mod culoare</value>
@@ -161,7 +161,7 @@
     <value>Anulare</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - Eroare</value>
+    <value>ShareX - Eroare</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>A apărut o eroare</value>
@@ -191,7 +191,7 @@
     <value>A apărut o eroare neașteptată.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - Vizualizator de imagini</value>
+    <value>ShareX - Vizualizator de imagini</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Deschideți imaginea</value>
@@ -200,13 +200,13 @@
     <value>Intrare</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Ieșire</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Copiați tot</value>
@@ -215,7 +215,7 @@
     <value>Închidere</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - Opțiuni de imprimare</value>
+    <value>ShareX - Opțiuni de imprimare</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Opțiuni de imprimare</value>
@@ -245,13 +245,13 @@
     <value>Previzualizare...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - Descărcare fișiere</value>
+    <value>ShareX - Descărcare fișiere</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Descărcare fișiere</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>Descărcați actualizări CapX și alte fișiere necesare.</value>
+    <value>Descărcați actualizări ShareX și alte fișiere necesare.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Descărcare</value>
@@ -260,7 +260,7 @@
     <value>Vizualizați jurnalul modificărilor</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>Actualizare CapX disponibilă</value>
+    <value>Actualizare ShareX disponibilă</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Culoare roșie (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Încărcare prin tragere și fixare</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Închideți CapX</value>
+    <value>Închideți ShareX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Încărcați fișierul</value>

@@ -62,7 +62,7 @@
     <value>Gabungkan gambar</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>File yang dijatuhkan di sini akan diunggah oleh CapX.</value>
+    <value>File yang dijatuhkan di sini akan diunggah oleh ShareX.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>Horisontal</value>
@@ -77,10 +77,10 @@
     <value>Lepaskan untuk mengunggah teks</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>Tombol pintas CapX</value>
+    <value>Tombol pintas ShareX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>Teks yang dijatuhkan di sini akan diunggah oleh CapX.</value>
+    <value>Teks yang dijatuhkan di sini akan diunggah oleh ShareX.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>Vertikal</value>
@@ -200,7 +200,7 @@
     <value>Folder</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>Ikuti CapX...</value>
+    <value>Ikuti ShareX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Gambar forum</value>
@@ -386,7 +386,7 @@
     <value>Tampilkan respons...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>Tampilkan CapX</value>
+    <value>Tampilkan ShareX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>Hentikan unggahan</value>
@@ -476,10 +476,10 @@
     <value>Buka</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - Pengaturan aplikasi</value>
+    <value>ShareX - Pengaturan aplikasi</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>Mulai ulang CapX untuk menerapkan perubahan ini.</value>
+    <value>Mulai ulang ShareX untuk menerapkan perubahan ini.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>Mulai ulang sekarang</value>
@@ -506,7 +506,7 @@
     <value>Tampilkan kemajuan di ikon taskbar</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>Gunakan ikon CapX putih</value>
+    <value>Gunakan ikon ShareX putih</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>Ingat posisi jendela utama</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Tampilkan &quot;Unggah dengan CapX&quot; di menu konteks Windows Explorer</value>
+    <value>Tampilkan &quot;Unggah dengan ShareX&quot; di menu konteks Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Tampilkan &quot;Edit dengan CapX&quot; di menu konteks Windows Explorer</value>
+    <value>Tampilkan &quot;Edit dengan ShareX&quot; di menu konteks Windows Explorer</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Tampilkan CapX di menu &quot;Kirim ke&quot;</value>
+    <value>Tampilkan ShareX di menu &quot;Kirim ke&quot;</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Ekstensi Chrome</value>
@@ -584,7 +584,7 @@
     <value>Aktifkan dukungan ekstensi Chrome</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>Instal ekstensi Chrome CapX...</value>
+    <value>Instal ekstensi Chrome ShareX...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Pengaya Firefox</value>
@@ -593,19 +593,19 @@
     <value>Aktifkan dukungan pengaya Firefox</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>Instal pengaya Firefox CapX...</value>
+    <value>Instal pengaya Firefox ShareX...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>Saat CapX terbuka, tampilkan &quot;In-App&quot; di Steam</value>
+    <value>Saat ShareX terbuka, tampilkan &quot;In-App&quot; di Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>Jalur</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>Folder pribadi CapX</value>
+    <value>Folder pribadi ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>Jelajahi...</value>
@@ -794,19 +794,19 @@
     <value>Batal</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>Pilih jalur folder pribadi CapX</value>
+    <value>Pilih jalur folder pribadi ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>Pilih jalur folder tangkapan layar</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>Ekspor cadangan CapX</value>
+    <value>Ekspor cadangan ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>Cadangan CapX</value>
+    <value>Cadangan ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>Impor cadangan CapX</value>
+    <value>Impor cadangan ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>Edit format papan klip</value>
@@ -980,7 +980,7 @@
     <value>Kanan bawah</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - Pengaturan tombol pintas</value>
+    <value>ShareX - Pengaturan tombol pintas</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>Tambah</value>
@@ -1028,7 +1028,7 @@
     <value>Atur ulang tombol pintas?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>Semua tombol pintas dan pengaturan tugas khususnya akan diganti dengan nilai bawaan CapX.</value>
+    <value>Semua tombol pintas dan pengaturan tugas khususnya akan diganti dengan nilai bawaan ShareX.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>Batal</value>
@@ -1133,10 +1133,10 @@
     <value>Tidak ada tombol yang dikonfigurasi. Bilah notifikasi akan disembunyikan.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX - Pengaturan tugas</value>
+    <value>ShareX - Pengaturan tugas</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX - Pengaturan tugas untuk {0}</value>
+    <value>ShareX - Pengaturan tugas untuk {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>Edit tindakan</value>
@@ -1763,7 +1763,7 @@
     <value>Pilih berkas audio</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Unggah dengan seret dan lepas</value>
+    <value>ShareX - Unggah dengan seret dan lepas</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>Letakkan di sini</value>
@@ -1793,13 +1793,13 @@
     <value>Papan klip kosong atau berisi data yang tidak didukung.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX - Bagaimana file harus disimpan?</value>
+    <value>ShareX - Bagaimana file harus disimpan?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>File dengan nama ini sudah ada</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>Pilih nama file baru atau tentukan cara CapX melanjutkan.</value>
+    <value>Pilih nama file baru atau tentukan cara ShareX melanjutkan.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>Nama file baru</value>
@@ -1817,7 +1817,7 @@
     <value>Batal</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX - Unggah file besar</value>
+    <value>ShareX - Unggah file besar</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>Anda mencoba mengunggah file berukuran besar.</value>
@@ -1832,7 +1832,7 @@
     <value>Batal</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX - Unggah file</value>
+    <value>ShareX - Unggah file</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>Yakin ingin mengunggah {0} file?</value>
@@ -1847,7 +1847,7 @@
     <value>Batal</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX - Log debug</value>
+    <value>ShareX - Log debug</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>Rakitan yang dimuat</value>
@@ -1874,19 +1874,19 @@
     <value>Unggah</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>Konfigurasi awal CapX</value>
+    <value>Konfigurasi awal ShareX</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>Pilih cara CapX terintegrasi dengan Windows.</value>
+    <value>Pilih cara ShareX terintegrasi dengan Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Tampilkan &quot;Unggah dengan CapX&quot; di menu konteks Windows Explorer</value>
+    <value>Tampilkan &quot;Unggah dengan ShareX&quot; di menu konteks Windows Explorer</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>Tampilkan CapX di menu &quot;Kirim ke&quot;</value>
+    <value>Tampilkan ShareX di menu &quot;Kirim ke&quot;</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>Saat CapX terbuka, tampilkan &quot;Dalam aplikasi&quot; di Steam</value>
+    <value>Saat ShareX terbuka, tampilkan &quot;Dalam aplikasi&quot; di Steam</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>Anda dapat mengubah opsi ini nanti di Pengaturan aplikasi → Integrasi.</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Jalankan CapX saat Windows dimulai</value>
+    <value>Jalankan ShareX saat Windows dimulai</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>Startup telah dinonaktifkan di Task Manager</value>
@@ -1907,7 +1907,7 @@
     <value>Startup telah diaktifkan oleh organisasi Anda</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX - Perpendek URL</value>
+    <value>ShareX - Perpendek URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>Perpendek URL</value>
@@ -1925,7 +1925,7 @@
     <value>Perpendek</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Unggah URL</value>
+    <value>ShareX - Unggah URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>Unggah URL</value>
@@ -1946,7 +1946,7 @@
     <value>Unggah</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Sebelum mengunggah</value>
+    <value>ShareX - Sebelum mengunggah</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>Sebelum mengunggah</value>
@@ -1976,7 +1976,7 @@
     <value>Pratinjau tidak tersedia</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX - Edit bilah alat tindakan</value>
+    <value>ShareX - Edit bilah alat tindakan</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>Tambah...</value>
@@ -1997,7 +1997,7 @@
     <value>Tutup</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX - Bilah alat tindakan</value>
+    <value>ShareX - Bilah alat tindakan</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>Letakkan untuk mengunggah</value>
@@ -2015,13 +2015,13 @@
     <value>Selalu di atas</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>Buka saat CapX dimulai</value>
+    <value>Buka saat ShareX dimulai</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>Edit...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Setelah menangkap</value>
+    <value>ShareX - Setelah menangkap</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>Setelah menangkap</value>
@@ -2057,7 +2057,7 @@
     <value>Kustom [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Setelah mengunggah</value>
+    <value>ShareX - Setelah mengunggah</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>Unggahan selesai</value>
@@ -2102,7 +2102,7 @@
     <value>Tautan</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Tangkap otomatis</value>
+    <value>ShareX - Tangkap otomatis</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>Area khusus</value>
@@ -2156,7 +2156,7 @@
     <value>Hapus</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX - Editor menu tugas cepat</value>
+    <value>ShareX - Editor menu tugas cepat</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>Tambah...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  Setelah mengunggah: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX - Tentang</value>
+    <value>ShareX - Tentang</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Hak Cipta © 2007–2026 Tim CapX</value>
+    <value>Hak Cipta © 2007–2026 Tim ShareX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Versi Steam</value>
@@ -2243,10 +2243,10 @@
     <value>Pemeriksaan pembaruan gagal.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>Versi CapX yang lebih baru tersedia</value>
+    <value>Versi ShareX yang lebih baru tersedia</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX sudah terbaru.</value>
+    <value>ShareX sudah terbaru.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>Tautan</value>
@@ -2270,7 +2270,7 @@
     <value>Tim</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX - Pengaturan pengunggah khusus</value>
+    <value>ShareX - Pengaturan pengunggah khusus</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>Pustaka pengunggah</value>
@@ -2381,10 +2381,10 @@
     <value>Tutup</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX - Konfirmasi</value>
+    <value>ShareX - Konfirmasi</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>Pengunggah khusus CapX</value>
+    <value>Pengunggah khusus ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>URL penghapusan</value>
@@ -2516,7 +2516,7 @@
     <value>Masukan teks atau URL</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>Pengujian unggah teks CapX</value>
+    <value>Pengujian unggah teks ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>URL gambar mini</value>
@@ -2562,7 +2562,7 @@
     <value>Tetapkan &quot;{0}&quot; sebagai pengunggah khusus aktif untuk {1}?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX - Konfirmasi pengunggah khusus</value>
+    <value>ShareX - Konfirmasi pengunggah khusus</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>Kesalahan saat mengekspor cadangan:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX - Kesalahan</value>
+    <value>ShareX - Kesalahan</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>Kesalahan {0}</value>
@@ -2588,7 +2588,7 @@
     <value>NamaGambar</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>CapX diminimalkan ke baki sistem.</value>
+    <value>ShareX diminimalkan ke baki sistem.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>Variabel yang didukung: {0} dan variabel lain seperti {1} dll.</value>
@@ -2609,7 +2609,7 @@
     <value>Edit menu ini...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>CapX sudah terbaru!</value>
+    <value>ShareX sudah terbaru!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>Log debug dapat berisi informasi sensitif. Yakin ingin melanjutkan?</value>
@@ -2621,7 +2621,7 @@
     <value>Penyingkat URL: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Jalankan CapX saat memulai Windows</value>
+    <value>Jalankan ShareX saat memulai Windows</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>Anda yakin ingin menghapus file ini?</value>
@@ -2630,7 +2630,7 @@
     <value>Gagal membuat folder:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>FFmpeg yang disertakan dengan CapX hanya mendukung sistem operasi 64-bit.</value>
+    <value>FFmpeg yang disertakan dengan ShareX hanya mendukung sistem operasi 64-bit.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>Mengunggah</value>
@@ -2639,7 +2639,7 @@
     <value>Bagikan URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>Agar pengaturan diterapkan, CapX perlu dibuka kembali dari Steam.</value>
+    <value>Agar pengaturan diterapkan, ShareX perlu dibuka kembali dari Steam.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>Startup telah dinonaktifkan oleh organisasi Anda</value>
@@ -2677,7 +2677,7 @@
 Anda dapat menonaktifkannya nanti dari menu "Tugas setelah tangkapan".</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>Edit dengan CapX</value>
+    <value>Edit dengan ShareX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>Clipboard tidak berisi gambar.</value>
@@ -2686,7 +2686,7 @@ Anda dapat menonaktifkannya nanti dari menu "Tugas setelah tangkapan".</value>
     <value>Eror</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Perangkat lunak antivirus Anda atau fitur akses folder terkontrol di Windows mungkin memblokir CapX.</value>
+    <value>Perangkat lunak antivirus Anda atau fitur akses folder terkontrol di Windows mungkin memblokir ShareX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>Tugas selesai</value>
@@ -2734,19 +2734,19 @@ Anda dapat menonaktifkannya nanti dari menu "Tugas setelah tangkapan".</value>
     <value>Sumber video dan audio FFmpeg tidak boleh sama-sama "Tidak ada".</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>CapX tidak dapat ditutup saat perekaman layar aktif.
+    <value>ShareX tidak dapat ditutup saat perekaman layar aktif.
 
 Apakah Anda ingin membatalkan perekaman layar aktif?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>Unggah dengan CapX</value>
+    <value>Unggah dengan ShareX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>Tombol cepat dinonaktifkan.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>Tidak bisa mengakses file "{0}".
-Jalankan CapX sebagai administrator untuk mengubah jalur folder pribadi.</value>
+Jalankan ShareX sebagai administrator untuk mengubah jalur folder pribadi.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>Pengaktifan telah dinonaktifkan di Pengelola Tugas</value>
@@ -2758,7 +2758,7 @@ Jalankan CapX sebagai administrator untuk mengubah jalur folder pribadi.</value>
     <value>Tidak dapat menemukan jendela dengan judul yang ditentukan.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>Apakah Anda ingin mengatur ulang pengaturan CapX?</value>
+    <value>Apakah Anda ingin mengatur ulang pengaturan ShareX?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Gagal menyimpan pengaturan</value>
@@ -2795,7 +2795,7 @@ Jalankan CapX sebagai administrator untuk mengubah jalur folder pribadi.</value>
 
 {1}
 
-Silakan pilih tombol cepat yang berbeda atau keluar dari aplikasi yang bertentangan dan buka kembali CapX.</value>
+Silakan pilih tombol cepat yang berbeda atau keluar dari aplikasi yang bertentangan dan buka kembali ShareX.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>Jeda tangkapan layar: {0}d</value>

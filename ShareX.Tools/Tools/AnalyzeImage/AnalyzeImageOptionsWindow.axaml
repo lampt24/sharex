@@ -124,6 +124,28 @@
                             </Grid>
                         </Border>
 
+                        <Border Classes="tool-panel" IsVisible="{Binding IsAnthropic}">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10">
+                                <TextBlock Classes="section-heading" Text="Anthropic"/>
+                                <Grid Grid.Row="1" ColumnDefinitions="120,*" ColumnSpacing="10">
+                                    <TextBlock Classes="row-label" Text="{x:Static localization:Strings.AnalyzeImageOptionsWindow_API_key}"/>
+                                    <TextBox Grid.Column="1" Text="{Binding AnthropicAPIKey}" PasswordChar="●"/>
+                                </Grid>
+                                <Grid Grid.Row="2" ColumnDefinitions="120,*" ColumnSpacing="10">
+                                    <TextBlock Classes="row-label" Text="{x:Static localization:Strings.AnalyzeImageOptionsWindow_Model}"/>
+                                    <ComboBox Grid.Column="1"
+                                              ItemsSource="{Binding AnthropicModels}"
+                                              Text="{Binding AnthropicModel, Mode=TwoWay}"
+                                              SelectedItem="{Binding AnthropicModel, Mode=TwoWay}"
+                                              IsEditable="True"/>
+                                </Grid>
+                                <Grid Grid.Row="3" ColumnDefinitions="120,*" ColumnSpacing="10">
+                                    <TextBlock Classes="row-label" Text="{x:Static localization:Strings.AnalyzeImageOptionsWindow_Custom_base_URL}"/>
+                                    <TextBox Grid.Column="1" Text="{Binding AnthropicCustomURL}" PlaceholderText="https://api.anthropic.com/v1"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
                         <Border Classes="tool-panel">
                             <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="8">
                                 <TextBlock Classes="section-heading" Text="{x:Static localization:Strings.AnalyzeImageOptionsWindow_Behavior}"/>

@@ -86,7 +86,7 @@ namespace ShareX.HelpersLib
 
         public async Task DownloadUpdateAsync()
         {
-            DebugHelper.WriteLine("Updating CapX from version {0} to {1}", CurrentVersion, LatestVersion);
+            DebugHelper.WriteLine("Updating ShareX from version {0} to {1}", CurrentVersion, LatestVersion);
 
             if (IsPortable)
             {

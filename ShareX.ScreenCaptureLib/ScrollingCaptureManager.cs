@@ -40,6 +40,7 @@ namespace ShareX.ScreenCaptureLib
         public Bitmap Result { get; private set; }
         public bool IsCapturing { get; private set; }
 
+        private readonly ScrollingCaptureDirection direction;
         private Bitmap lastScreenshot;
         private Bitmap previousScreenshot;
         private bool stopRequested;
@@ -48,9 +49,10 @@ namespace ShareX.ScreenCaptureLib
         private WindowInfo selectedWindow;
         private Rectangle selectedRectangle;
 
-        public ScrollingCaptureManager(ScrollingCaptureOptions options)
+        public ScrollingCaptureManager(ScrollingCaptureOptions options, ScrollingCaptureDirection direction = ScrollingCaptureDirection.Vertical)
         {
             Options = options;
+            this.direction = direction;
         }
 
         public void Dispose()
@@ -85,6 +87,7 @@ namespace ShareX.ScreenCaptureLib
             {
                 IsCapturing = true;
                 stopRequested = false;
+                NativeMethods.GetAsyncKeyState((int)VirtualKeyCode.ESCAPE);
                 status = ScrollingCaptureStatus.Failed;
                 bestMatchCount = 0;
                 bestMatchIndex = 0;
@@ -107,8 +110,15 @@ namespace ShareX.ScreenCaptureLib
 
                     if (Options.AutoScrollTop)
                     {
-                        InputHelpers.SendKeyPress(VirtualKeyCode.HOME);
-                        NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_TOP, 0);
+                        if (direction == ScrollingCaptureDirection.Horizontal)
+                        {
+                            NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.HSCROLL, (int)ScrollBarCommands.SB_LEFT, 0);
+                        }
+                        else
+                        {
+                            InputHelpers.SendKeyPress(VirtualKeyCode.HOME);
+                            NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_TOP, 0);
+                        }
 
                         await Task.Delay(Options.ScrollDelay);
                     }
@@ -118,7 +128,7 @@ namespace ShareX.ScreenCaptureLib
                         CaptureCursor = false
                     };
 
-                    while (!stopRequested)
+                    while (!IsStopRequested())
                     {
                         lastScreenshot = screenshot.CaptureRectangle(selectedRectangle);
 
@@ -127,26 +137,13 @@ namespace ShareX.ScreenCaptureLib
                             break;
                         }
 
-                        switch (Options.ScrollMethod)
+                        if (direction == ScrollingCaptureDirection.Horizontal)
                         {
-                            case ScrollMethod.MouseWheel:
-                                InputHelpers.SendMouseWheel(-120 * Options.ScrollAmount);
-                                break;
-                            case ScrollMethod.DownArrow:
-                                for (int i = 0; i < Options.ScrollAmount; i++)
-                                {
-                                    InputHelpers.SendKeyPress(VirtualKeyCode.DOWN);
-                                }
-                                break;
-                            case ScrollMethod.PageDown:
-                                InputHelpers.SendKeyPress(VirtualKeyCode.NEXT);
-                                break;
-                            case ScrollMethod.ScrollMessage:
-                                for (int i = 0; i < Options.ScrollAmount; i++)
-                                {
-                                    NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_LINEDOWN, 0);
-                                }
-                                break;
+                            ScrollHorizontally();
+                        }
+                        else
+                        {
+                            ScrollVertically();
                         }
 
                         Stopwatch timer = Stopwatch.StartNew();
@@ -166,7 +163,7 @@ namespace ShareX.ScreenCaptureLib
                             }
                         }
 
-                        if (stopRequested)
+                        if (IsStopRequested())
                         {
                             break;
                         }
@@ -182,7 +179,8 @@ namespace ShareX.ScreenCaptureLib
                             lastScreenshot = null;
                         }
 
-                        int delay = Options.ScrollDelay - (int)timer.ElapsedMilliseconds;
+                        int delay = ScrollingCaptureDelay.GetPostScrollDelay(
+                            Options.ScrollDelay, (int)timer.ElapsedMilliseconds, direction);
 
                         if (delay > 0)
                         {
@@ -249,7 +247,64 @@ namespace ShareX.ScreenCaptureLib
 
         private async Task<Bitmap> CombineImagesAsync(Bitmap result, Bitmap currentImage)
         {
+            if (direction == ScrollingCaptureDirection.Horizontal && result != null)
+            {
+                return await Task.Run(() => ScrollingCaptureImageCombiner.Combine(result, currentImage, direction));
+            }
+
             return await Task.Run(() => CombineImages(result, currentImage));
+        }
+
+        private bool IsStopRequested()
+        {
+            if (!stopRequested && (NativeMethods.GetAsyncKeyState((int)VirtualKeyCode.ESCAPE) & 1) != 0)
+            {
+                stopRequested = true;
+            }
+
+            return stopRequested;
+        }
+
+        private void ScrollVertically()
+        {
+            switch (Options.ScrollMethod)
+            {
+                case ScrollMethod.MouseWheel:
+                    InputHelpers.SendMouseWheel(-120 * Options.ScrollAmount);
+                    break;
+                case ScrollMethod.DownArrow:
+                    for (int i = 0; i < Options.ScrollAmount; i++)
+                    {
+                        InputHelpers.SendKeyPress(VirtualKeyCode.DOWN);
+                    }
+                    break;
+                case ScrollMethod.PageDown:
+                    InputHelpers.SendKeyPress(VirtualKeyCode.NEXT);
+                    break;
+                case ScrollMethod.ScrollMessage:
+                    for (int i = 0; i < Options.ScrollAmount; i++)
+                    {
+                        NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_LINEDOWN, 0);
+                    }
+                    break;
+            }
+        }
+
+        private void ScrollHorizontally()
+        {
+            HorizontalScrollStrategy strategy = HorizontalScrollStrategySelector.Select(selectedWindow.ProcessName);
+
+            if (strategy == HorizontalScrollStrategy.ExcelScrollBarButton)
+            {
+                ExcelHorizontalScroller.ScrollColumnRight(selectedWindow.Handle);
+                return;
+            }
+
+            for (int i = 0; i < Options.ScrollAmount; i++)
+            {
+                NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.HSCROLL,
+                    (int)ScrollBarCommands.SB_LINERIGHT, 0);
+            }
         }
 
         private Bitmap CombineImages(Bitmap result, Bitmap currentImage)

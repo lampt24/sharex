@@ -37,6 +37,8 @@ namespace ShareX.Tools
     public class ChatGPTRequest
     {
         public string model { get; set; }
+        public int max_output_tokens { get; set; }
+        public bool stream { get; set; }
         public ChatGPTReasoning reasoning { get; set; }
         public ChatGPTInput[] input { get; set; }
         public ChatGPTText text { get; set; }
@@ -89,6 +91,10 @@ namespace ShareX.Tools
 
     public class OpenAIProvider : IAIProvider
     {
+        private sealed class ChatCompletionResponseException : Exception
+        {
+        }
+
         public string APIKey { get; set; }
         public string Model { get; set; }
         public string CustomURL { get; set; }
@@ -119,7 +125,17 @@ namespace ShareX.Tools
                 imageDataUri = $"data:image/jpeg;base64,{base64Image}";
             }
 
-            return await AnalyzeImageInternal(imageDataUri, input, reasoningEffort, textVerbosity);
+            try
+            {
+                return await AnalyzeImageInternal(imageDataUri, input, reasoningEffort, textVerbosity);
+            }
+            catch (Exception e) when (!string.IsNullOrWhiteSpace(CustomURL) &&
+                (e is JsonException or ChatCompletionResponseException))
+            {
+                // Most OpenAI-compatible gateways implement Chat Completions but not Responses.
+                return await new OpenAILegacyProvider(APIKey, Model, CustomURL)
+                    .AnalyzeImage(image, input, reasoningEffort, textVerbosity);
+            }
         }
 
         private async Task<string> AnalyzeImageInternal(string imageDataUri, string input = null, string reasoningEffort = null, string textVerbosity = null)
@@ -155,6 +171,8 @@ namespace ShareX.Tools
             ChatGPTRequest request = new ChatGPTRequest()
             {
                 model = Model,
+                max_output_tokens = 8192,
+                stream = false,
                 reasoning = new ChatGPTReasoning()
                 {
                     effort = reasoningEffort
@@ -189,47 +207,19 @@ namespace ShareX.Tools
             string json = JsonSerializer.Serialize(request);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            string url;
-
-            if (!string.IsNullOrEmpty(CustomURL))
-            {
-                url = CustomURL;
-            }
-            else
-            {
-                url = "https://api.openai.com";
-            }
-
-            string path = "/v1/responses";
-
-            if (!url.EndsWith(path))
-            {
-                url = URLHelpers.CombineURL(url, path);
-            }
+            string url = AIEndpointBuilder.GetOpenAIResponsesUrl(CustomURL);
 
             HttpResponseMessage response = await httpClient.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
             string responseString = await response.Content.ReadAsStringAsync();
+            DebugHelper.WriteLine($"[{nameof(OpenAIProvider)}] Vision response ({(int)response.StatusCode}): {responseString}");
 
-            ChatGPTResponse result = JsonSerializer.Deserialize<ChatGPTResponse>(responseString);
-
-            if (result.output != null && result.output.Length > 0)
+            if (OpenAIResponseParser.IsChatCompletionResponse(responseString))
             {
-                for (int i = 0; i < result.output.Length; i++)
-                {
-                    if (result.output[i].content != null && result.output[i].content.Length > 0)
-                    {
-                        string text = result.output[i].content[0].text;
-
-                        if (!string.IsNullOrEmpty(text))
-                        {
-                            return text;
-                        }
-                    }
-                }
+                throw new ChatCompletionResponseException();
             }
 
-            return "";
+            return OpenAIResponseParser.ParseResponseText(responseString);
         }
     }
 }

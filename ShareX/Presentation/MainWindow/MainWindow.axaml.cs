@@ -1122,6 +1122,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 !SystemOptions.DisableUpload && hasSelection && !isWorking && selected!.IsURLExist),
             Item(Strings.MainWindow_AnalyzeImage, LucideIcons.bot, _uploadInfoManager.AnalyzeImage,
                 hasSelection && !isWorking && selected!.IsImageFile),
+            Item(Strings.MainWindow_CaptureText, LucideIcons.brain_circuit, () => TaskHelpers.CaptureText(selected!.Info.FilePath),
+                hasSelection && !isWorking && selected!.IsImageFile),
             Item(Strings.MainWindow_SearchWithGoogleLens, LucideIcons.search, _uploadInfoManager.SearchImageUsingGoogleLens,
                 hasSelection && !isWorking && selected!.IsURLExist),
             Item(Strings.MainWindow_SearchWithBingVisualSearch, LucideIcons.scan_search, _uploadInfoManager.SearchImageUsingBing,
@@ -1247,7 +1249,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void DeleteSelectedFiles()
     {
         if (MessageBox.Show(Strings.MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_,
-            Program.AppName + " - " + Strings.MainForm_tsmiDeleteSelectedFile_Click_File_delete_confirmation,
+            "ShareX - " + Strings.MainForm_tsmiDeleteSelectedFile_Click_File_delete_confirmation,
             MessageBoxButtons.YesNo) == MessageBoxResult.Yes)
         {
             _uploadInfoManager.DeleteFiles();
@@ -1582,7 +1584,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
             if (Program.Settings.FirstTimeMinimizeToTray)
             {
-                TaskHelpers.ShowNotificationTip(Strings.ShareXIsMinimizedToTheSystemTray, Program.AppName, 8000);
+                TaskHelpers.ShowNotificationTip(Strings.ShareXIsMinimizedToTheSystemTray, "ShareX", 8000);
                 Program.Settings.FirstTimeMinimizeToTray = false;
             }
 

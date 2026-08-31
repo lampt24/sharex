@@ -62,7 +62,7 @@
     <value>छवियाँ जोड़ें</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>यहाँ छोड़ी गई फ़ाइलें CapX द्वारा अपलोड की जाएँगी।</value>
+    <value>यहाँ छोड़ी गई फ़ाइलें ShareX द्वारा अपलोड की जाएँगी।</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>क्षैतिज</value>
@@ -77,10 +77,10 @@
     <value>पाठ अपलोड करने के लिए छोड़ें</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>CapX हॉटकी</value>
+    <value>ShareX हॉटकी</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>यहाँ छोड़ा गया पाठ CapX द्वारा अपलोड किया जाएगा।</value>
+    <value>यहाँ छोड़ा गया पाठ ShareX द्वारा अपलोड किया जाएगा।</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>लंबवत</value>
@@ -200,7 +200,7 @@
     <value>फ़ोल्डर</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>CapX को फ़ॉलो करें...</value>
+    <value>ShareX को फ़ॉलो करें...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>फ़ोरम छवि</value>
@@ -386,7 +386,7 @@
     <value>प्रतिक्रिया दिखाएँ...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>CapX दिखाएँ</value>
+    <value>ShareX दिखाएँ</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>अपलोड रोकें</value>
@@ -476,10 +476,10 @@
     <value>खोलें</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - अनुप्रयोग सेटिंग</value>
+    <value>ShareX - अनुप्रयोग सेटिंग</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>यह परिवर्तन लागू करने के लिए CapX पुनः आरंभ करें।</value>
+    <value>यह परिवर्तन लागू करने के लिए ShareX पुनः आरंभ करें।</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>अभी पुनः आरंभ करें</value>
@@ -506,7 +506,7 @@
     <value>टास्कबार बटन में प्रगति दिखाएँ</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>सफ़ेद CapX आइकन उपयोग करें</value>
+    <value>सफ़ेद ShareX आइकन उपयोग करें</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>मुख्य विंडो की स्थिति याद रखें</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Windows Explorer संदर्भ मेनू में "CapX से अपलोड करें" बटन दिखाएँ</value>
+    <value>Windows Explorer संदर्भ मेनू में "ShareX से अपलोड करें" बटन दिखाएँ</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Windows Explorer संदर्भ मेनू में "CapX से संपादित करें" बटन दिखाएँ</value>
+    <value>Windows Explorer संदर्भ मेनू में "ShareX से संपादित करें" बटन दिखाएँ</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>"यहाँ भेजें" मेनू में CapX दिखाएँ</value>
+    <value>"यहाँ भेजें" मेनू में ShareX दिखाएँ</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Chrome एक्सटेंशन</value>
@@ -584,7 +584,7 @@
     <value>Chrome एक्सटेंशन समर्थन सक्षम करें</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>CapX Chrome एक्सटेंशन स्थापित करें...</value>
+    <value>ShareX Chrome एक्सटेंशन स्थापित करें...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Firefox ऐड-ऑन</value>
@@ -593,19 +593,19 @@
     <value>Firefox ऐड-ऑन समर्थन सक्षम करें</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>CapX Firefox ऐड-ऑन स्थापित करें...</value>
+    <value>ShareX Firefox ऐड-ऑन स्थापित करें...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>CapX खुला होने पर Steam में "In-App" दिखाएँ</value>
+    <value>ShareX खुला होने पर Steam में "In-App" दिखाएँ</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>पथ</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>CapX व्यक्तिगत फ़ोल्डर</value>
+    <value>ShareX व्यक्तिगत फ़ोल्डर</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>ब्राउज़ करें...</value>
@@ -794,19 +794,19 @@
     <value>रद्द करें</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>CapX व्यक्तिगत फ़ोल्डर पथ चुनें</value>
+    <value>ShareX व्यक्तिगत फ़ोल्डर पथ चुनें</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>स्क्रीनशॉट फ़ोल्डर पथ चुनें</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>CapX बैकअप निर्यात करें</value>
+    <value>ShareX बैकअप निर्यात करें</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>CapX बैकअप</value>
+    <value>ShareX बैकअप</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>CapX बैकअप आयात करें</value>
+    <value>ShareX बैकअप आयात करें</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>क्लिपबोर्ड प्रारूप संपादित करें</value>
@@ -980,7 +980,7 @@
     <value>नीचे दायाँ</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - हॉटकी सेटिंग</value>
+    <value>ShareX - हॉटकी सेटिंग</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>जोड़ें</value>
@@ -1028,7 +1028,7 @@
     <value>हॉटकी रीसेट करें?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>सभी हॉटकी और उनकी अनुकूलित कार्य सेटिंग CapX डिफ़ॉल्ट से बदल दी जाएँगी।</value>
+    <value>सभी हॉटकी और उनकी अनुकूलित कार्य सेटिंग ShareX डिफ़ॉल्ट से बदल दी जाएँगी।</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>रद्द करें</value>
@@ -1133,10 +1133,10 @@
     <value>कोई बटन कॉन्फ़िगर नहीं है। सूचना टूलबार छिपा रहेगा।</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX - कार्य सेटिंग</value>
+    <value>ShareX - कार्य सेटिंग</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX - {0} के लिए कार्य सेटिंग</value>
+    <value>ShareX - {0} के लिए कार्य सेटिंग</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>क्रिया संपादित करें</value>
@@ -1763,7 +1763,7 @@
     <value>ऑडियो फ़ाइल चुनें</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX - खींचकर छोड़ने वाला अपलोड</value>
+    <value>ShareX - खींचकर छोड़ने वाला अपलोड</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>यहाँ छोड़ें</value>
@@ -1793,13 +1793,13 @@
     <value>क्लिपबोर्ड खाली है या उसमें असमर्थित डेटा है।</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX - फ़ाइल कैसे सहेजी जाए?</value>
+    <value>ShareX - फ़ाइल कैसे सहेजी जाए?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>इस नाम की फ़ाइल पहले से मौजूद है</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>नया फ़ाइल नाम चुनें या चुनें कि CapX कैसे जारी रखे।</value>
+    <value>नया फ़ाइल नाम चुनें या चुनें कि ShareX कैसे जारी रखे।</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>नया फ़ाइल नाम</value>
@@ -1817,7 +1817,7 @@
     <value>रद्द करें</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX - बड़ी फ़ाइल अपलोड</value>
+    <value>ShareX - बड़ी फ़ाइल अपलोड</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>आप एक बड़ी फ़ाइल अपलोड करने वाले हैं।</value>
@@ -1832,7 +1832,7 @@
     <value>रद्द करें</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX - फ़ाइलें अपलोड करें</value>
+    <value>ShareX - फ़ाइलें अपलोड करें</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>क्या आप वास्तव में {0} फ़ाइलें अपलोड करना चाहते हैं?</value>
@@ -1847,7 +1847,7 @@
     <value>रद्द करें</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX - डीबग लॉग</value>
+    <value>ShareX - डीबग लॉग</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>लोड की गई असेंबली</value>
@@ -1874,19 +1874,19 @@
     <value>अपलोड करें</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>CapX प्रथम-बार कॉन्फ़िगरेशन</value>
+    <value>ShareX प्रथम-बार कॉन्फ़िगरेशन</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>चुनें कि CapX Windows से कैसे एकीकृत हो।</value>
+    <value>चुनें कि ShareX Windows से कैसे एकीकृत हो।</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Windows Explorer संदर्भ मेनू में "CapX से अपलोड करें" दिखाएँ</value>
+    <value>Windows Explorer संदर्भ मेनू में "ShareX से अपलोड करें" दिखाएँ</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>"यहाँ भेजें" मेनू में CapX दिखाएँ</value>
+    <value>"यहाँ भेजें" मेनू में ShareX दिखाएँ</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>CapX खुला होने पर Steam में "In-app" दिखाएँ</value>
+    <value>ShareX खुला होने पर Steam में "In-app" दिखाएँ</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>आप ये विकल्प बाद में अनुप्रयोग सेटिंग &gt; एकीकरण में बदल सकते हैं।</value>
@@ -1895,7 +1895,7 @@
     <value>ठीक है</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Windows आरंभ होने पर CapX चलाएँ</value>
+    <value>Windows आरंभ होने पर ShareX चलाएँ</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>टास्क मैनेजर में स्टार्टअप अक्षम किया गया है</value>
@@ -1907,7 +1907,7 @@
     <value>आपके संगठन ने स्टार्टअप सक्षम किया है</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX - URL संक्षिप्त करें</value>
+    <value>ShareX - URL संक्षिप्त करें</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>URL संक्षिप्त करें</value>
@@ -1925,7 +1925,7 @@
     <value>संक्षिप्त करें</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX - URL अपलोड</value>
+    <value>ShareX - URL अपलोड</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>URL अपलोड</value>
@@ -1946,7 +1946,7 @@
     <value>अपलोड करें</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX - अपलोड से पहले</value>
+    <value>ShareX - अपलोड से पहले</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>अपलोड से पहले</value>
@@ -1976,7 +1976,7 @@
     <value>कोई पूर्वावलोकन उपलब्ध नहीं</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX - क्रिया टूलबार संपादित करें</value>
+    <value>ShareX - क्रिया टूलबार संपादित करें</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>जोड़ें...</value>
@@ -1997,7 +1997,7 @@
     <value>बंद करें</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX - क्रिया टूलबार</value>
+    <value>ShareX - क्रिया टूलबार</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>अपलोड करने के लिए छोड़ें</value>
@@ -2015,13 +2015,13 @@
     <value>हमेशा ऊपर रखें</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>CapX आरंभ में खोलें</value>
+    <value>ShareX आरंभ में खोलें</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>संपादित करें...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - चित्र लेने के बाद</value>
+    <value>ShareX - चित्र लेने के बाद</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>चित्र लेने के बाद</value>
@@ -2057,7 +2057,7 @@
     <value>अनुकूलित [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX - अपलोड के बाद</value>
+    <value>ShareX - अपलोड के बाद</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>अपलोड पूरा हुआ</value>
@@ -2102,7 +2102,7 @@
     <value>लिंक</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - स्वचालित कैप्चर</value>
+    <value>ShareX - स्वचालित कैप्चर</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>अनुकूलित क्षेत्र</value>
@@ -2156,7 +2156,7 @@
     <value>हटाएँ</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX - त्वरित कार्य मेनू संपादक</value>
+    <value>ShareX - त्वरित कार्य मेनू संपादक</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>जोड़ें...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  -  अपलोड के बाद: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX - परिचय</value>
+    <value>ShareX - परिचय</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>कॉपीराइट © 2007-2026 CapX टीम</value>
+    <value>कॉपीराइट © 2007-2026 ShareX टीम</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Steam बिल्ड</value>
@@ -2243,10 +2243,10 @@
     <value>अपडेट जाँच विफल।</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>CapX का नया संस्करण उपलब्ध है</value>
+    <value>ShareX का नया संस्करण उपलब्ध है</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX अद्यतन है।</value>
+    <value>ShareX अद्यतन है।</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>लिंक</value>
@@ -2270,7 +2270,7 @@
     <value>टीम</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX - अनुकूलित अपलोडर सेटिंग</value>
+    <value>ShareX - अनुकूलित अपलोडर सेटिंग</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>अपलोडर लाइब्रेरी</value>
@@ -2381,10 +2381,10 @@
     <value>बंद करें</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX - पुष्टि</value>
+    <value>ShareX - पुष्टि</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>CapX अनुकूलित अपलोडर</value>
+    <value>ShareX अनुकूलित अपलोडर</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>हटाने का URL</value>
@@ -2516,7 +2516,7 @@
     <value>पाठ या URL इनपुट</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>CapX पाठ अपलोड परीक्षण</value>
+    <value>ShareX पाठ अपलोड परीक्षण</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>थंबनेल URL</value>
@@ -2562,7 +2562,7 @@
     <value>क्या आप "{0}" को {1} के लिए सक्रिय अनुकूलित अपलोडर बनाना चाहते हैं?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX - अनुकूलित अपलोडर पुष्टि</value>
+    <value>ShareX - अनुकूलित अपलोडर पुष्टि</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>बैकअप निर्यात करते समय त्रुटि:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX - त्रुटि</value>
+    <value>ShareX - त्रुटि</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>{0} त्रुटि</value>
@@ -2588,7 +2588,7 @@
     <value>छविनाम</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>CapX सिस्टम ट्रे में छोटा किया गया है।</value>
+    <value>ShareX सिस्टम ट्रे में छोटा किया गया है।</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>समर्थित चर: {0} और {1} जैसे अन्य चर।</value>
@@ -2609,7 +2609,7 @@
     <value>यह मेनू संपादित करें...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>CapX अद्यतन है!</value>
+    <value>ShareX अद्यतन है!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>डीबग लॉग में संवेदनशील जानकारी हो सकती है। क्या आप वास्तव में जारी रखना चाहते हैं?</value>
@@ -2621,7 +2621,7 @@
     <value>URL संक्षिप्तकर्ता: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Windows आरंभ होने पर CapX चलाएँ</value>
+    <value>Windows आरंभ होने पर ShareX चलाएँ</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>क्या आप वास्तव में यह फ़ाइल हटाना चाहते हैं?</value>
@@ -2630,7 +2630,7 @@
     <value>फ़ोल्डर नहीं बनाया जा सका:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>CapX के साथ आने वाला FFmpeg केवल 64-बिट ऑपरेटिंग सिस्टम का समर्थन करता है।</value>
+    <value>ShareX के साथ आने वाला FFmpeg केवल 64-बिट ऑपरेटिंग सिस्टम का समर्थन करता है।</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>अपलोड हो रहा है</value>
@@ -2639,7 +2639,7 @@
     <value>URL साझा करें ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>सेटिंग प्रभावी करने के लिए CapX को Steam से फिर खोलना होगा।</value>
+    <value>सेटिंग प्रभावी करने के लिए ShareX को Steam से फिर खोलना होगा।</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>आपके संगठन ने स्टार्टअप अक्षम किया है</value>
@@ -2677,7 +2677,7 @@
 आप बाद में "चित्र लेने के बाद के कार्य" मेनू से इन्हें अक्षम कर सकते हैं।</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>CapX से संपादित करें</value>
+    <value>ShareX से संपादित करें</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>क्लिपबोर्ड में कोई छवि नहीं है।</value>
@@ -2686,7 +2686,7 @@
     <value>त्रुटि</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>आपका एंटीवायरस सॉफ़्टवेयर या Windows की नियंत्रित फ़ोल्डर पहुँच सुविधा CapX को रोक सकती है।</value>
+    <value>आपका एंटीवायरस सॉफ़्टवेयर या Windows की नियंत्रित फ़ोल्डर पहुँच सुविधा ShareX को रोक सकती है।</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>कार्य पूरा हुआ</value>
@@ -2734,19 +2734,19 @@
     <value>FFmpeg वीडियो और ऑडियो स्रोत दोनों "कोई नहीं" नहीं हो सकते।</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>स्क्रीन रिकॉर्डिंग सक्रिय होने पर CapX बंद नहीं किया जा सकता।
+    <value>स्क्रीन रिकॉर्डिंग सक्रिय होने पर ShareX बंद नहीं किया जा सकता।
 
 क्या आप सक्रिय स्क्रीन रिकॉर्डिंग निरस्त करना चाहते हैं?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>CapX से अपलोड करें</value>
+    <value>ShareX से अपलोड करें</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>हॉटकी अक्षम हैं।</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>फ़ाइल "{0}" तक पहुँच नहीं है।
-व्यक्तिगत फ़ोल्डर पथ बदलने के लिए CapX को व्यवस्थापक के रूप में चलाएँ।</value>
+व्यक्तिगत फ़ोल्डर पथ बदलने के लिए ShareX को व्यवस्थापक के रूप में चलाएँ।</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>टास्क मैनेजर में स्टार्टअप अक्षम किया गया है</value>
@@ -2758,7 +2758,7 @@
     <value>निर्दिष्ट विंडो शीर्षक वाली विंडो नहीं मिली।</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>क्या आप CapX सेटिंग रीसेट करना चाहते हैं?</value>
+    <value>क्या आप ShareX सेटिंग रीसेट करना चाहते हैं?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>सेटिंग सहेजने में विफल</value>
@@ -2795,7 +2795,7 @@
 
 {1}
 
-कृपया कोई अन्य हॉटकी चुनें या टकराव वाले अनुप्रयोग को बंद करके CapX फिर खोलें।</value>
+कृपया कोई अन्य हॉटकी चुनें या टकराव वाले अनुप्रयोग को बंद करके ShareX फिर खोलें।</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>स्क्रीनशॉट विलंब: {0} सेकंड</value>

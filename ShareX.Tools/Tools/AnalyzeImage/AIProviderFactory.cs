@@ -41,6 +41,8 @@ namespace ShareX.Tools
                     return new GeminiProvider(options.GeminiAPIKey, options.GeminiModel);
                 case AIProvider.OpenRouter:
                     return new OpenRouterProvider(options.OpenRouterAPIKey, options.OpenRouterModel);
+                case AIProvider.Anthropic:
+                    return new AnthropicProvider(options.AnthropicAPIKey, options.AnthropicModel, options.AnthropicCustomURL);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

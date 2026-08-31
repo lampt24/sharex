@@ -49,7 +49,7 @@
                                    VerticalAlignment="Top"
                                    Stretch="Uniform"/>
                             <TextBlock x:Name="BrandText"
-                                       Text="CapX"
+                                       Text="ShareX"
                                        Margin="0,225,0,0"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Top"

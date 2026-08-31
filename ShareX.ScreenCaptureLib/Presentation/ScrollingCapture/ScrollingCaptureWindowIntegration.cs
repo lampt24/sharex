@@ -23,6 +23,7 @@ public static class ScrollingCaptureWindowIntegration
 
     public static Task StartStopAsync(
         ScrollingCaptureOptions options,
+        ScrollingCaptureDirection direction = ScrollingCaptureDirection.Vertical,
         Action<Bitmap>? uploadRequested = null,
         Action? playNotificationSound = null)
     {
@@ -33,9 +34,15 @@ public static class ScrollingCaptureWindowIntegration
         {
             try
             {
+                if (_window != null && _window.Direction != direction)
+                {
+                    _window.Close();
+                    _window = null;
+                }
+
                 if (_window == null)
                 {
-                    _window = new ScrollingCaptureWindow(options, uploadRequested, playNotificationSound);
+                    _window = new ScrollingCaptureWindow(options, direction, uploadRequested, playNotificationSound);
                     _window.Closed += (_, _) => _window = null;
                     _window.Show();
                 }

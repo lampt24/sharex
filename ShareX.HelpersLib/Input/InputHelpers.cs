@@ -116,5 +116,6 @@ namespace ShareX.HelpersLib
             inputManager.AddMouseWheel(delta);
             return inputManager.SendInputs();
         }
+
     }
 }

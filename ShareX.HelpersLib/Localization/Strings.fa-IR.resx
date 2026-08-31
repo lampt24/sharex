@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - انتخابگر رنگ</value>
+    <value>ShareX - انتخابگر رنگ</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>حالت رنگ</value>
@@ -161,7 +161,7 @@
     <value>لغو</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - خطا</value>
+    <value>ShareX - خطا</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>خطایی رخ داد</value>
@@ -191,7 +191,7 @@
     <value>خطای غیرمنتظره‌ای رخ داد.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - نمایشگر تصویر</value>
+    <value>ShareX - نمایشگر تصویر</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>باز کردن تصویر</value>
@@ -200,13 +200,13 @@
     <value>ورودی</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>خروجی</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>کپی همه</value>
@@ -215,7 +215,7 @@
     <value>بستن</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - گزینه‌های چاپ</value>
+    <value>ShareX - گزینه‌های چاپ</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>گزینه‌های چاپ</value>
@@ -245,13 +245,13 @@
     <value>پیش‌نمایش...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - بارگیری فایل</value>
+    <value>ShareX - بارگیری فایل</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>بارگیری فایل</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>به‌روزرسانی‌های CapX و سایر فایل‌های لازم را بارگیری کنید.</value>
+    <value>به‌روزرسانی‌های ShareX و سایر فایل‌های لازم را بارگیری کنید.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>بارگیری</value>
@@ -260,7 +260,7 @@
     <value>مشاهده فهرست تغییرات</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>یک به‌روزرسانی CapX در دسترس است</value>
+    <value>یک به‌روزرسانی ShareX در دسترس است</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>رنگ قرمز (0-255)</value>

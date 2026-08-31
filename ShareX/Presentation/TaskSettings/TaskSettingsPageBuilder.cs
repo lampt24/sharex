@@ -509,7 +509,7 @@ internal sealed class TaskSettingsPageBuilder
 
             capturePreview.Text = parser.Parse(upload.NameFormatPattern);
             parser.WindowText = _window.Title;
-            parser.ProcessName = Program.AppName;
+            parser.ProcessName = "ShareX";
             windowPreview.Text = parser.Parse(upload.NameFormatPatternActiveWindow);
         }
 

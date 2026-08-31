@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - रंग चयनकर्ता</value>
+    <value>ShareX - रंग चयनकर्ता</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>रंग मोड</value>
@@ -161,7 +161,7 @@
     <value>रद्द करें</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - त्रुटि</value>
+    <value>ShareX - त्रुटि</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>एक त्रुटि हुई</value>
@@ -191,7 +191,7 @@
     <value>एक अनपेक्षित त्रुटि हुई।</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - छवि दर्शक</value>
+    <value>ShareX - छवि दर्शक</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>छवि खोलें</value>
@@ -200,13 +200,13 @@
     <value>इनपुट</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>आउटपुट</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>सभी कॉपी करें</value>
@@ -215,7 +215,7 @@
     <value>बंद करें</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - मुद्रण विकल्प</value>
+    <value>ShareX - मुद्रण विकल्प</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>मुद्रण विकल्प</value>
@@ -245,13 +245,13 @@
     <value>पूर्वावलोकन...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - फ़ाइल डाउनलोडर</value>
+    <value>ShareX - फ़ाइल डाउनलोडर</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>फ़ाइल डाउनलोडर</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>CapX अपडेट और अन्य आवश्यक फ़ाइलें डाउनलोड करें।</value>
+    <value>ShareX अपडेट और अन्य आवश्यक फ़ाइलें डाउनलोड करें।</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>डाउनलोड करें</value>
@@ -260,7 +260,7 @@
     <value>परिवर्तन सूची देखें</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>CapX अपडेट उपलब्ध है</value>
+    <value>ShareX अपडेट उपलब्ध है</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>लाल रंग (0-255)</value>
@@ -806,7 +806,7 @@
     <value>खींचकर छोड़ने वाला अपलोड</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>CapX से बाहर निकलें</value>
+    <value>ShareX से बाहर निकलें</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>फ़ाइल अपलोड करें</value>

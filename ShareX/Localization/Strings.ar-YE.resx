@@ -62,7 +62,7 @@
     <value>دمج الصور</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>سيتم رفع الملفات التي تُفلت هنا بواسطة CapX.</value>
+    <value>سيتم رفع الملفات التي تُفلت هنا بواسطة ShareX.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>أفقي</value>
@@ -77,10 +77,10 @@
     <value>أفلت لرفع النص</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>اختصارات CapX</value>
+    <value>اختصارات ShareX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>سيتم رفع النص الذي يُفلت هنا بواسطة CapX.</value>
+    <value>سيتم رفع النص الذي يُفلت هنا بواسطة ShareX.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>عمودي</value>
@@ -200,7 +200,7 @@
     <value>المجلد</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>متابعة CapX...</value>
+    <value>متابعة ShareX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>صورة المنتدى</value>
@@ -386,7 +386,7 @@
     <value>إظهار الاستجابة...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>إظهار CapX</value>
+    <value>إظهار ShareX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>إيقاف الرفع</value>
@@ -476,10 +476,10 @@
     <value>فتح</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - الإعدادات</value>
+    <value>ShareX - الإعدادات</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>أعد تشغيل CapX لتطبيق هذا التغيير.</value>
+    <value>أعد تشغيل ShareX لتطبيق هذا التغيير.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>إعادة التشغيل الآن</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>عرض الخيار &quot;رفع باستخدام CapX&quot; على قائمة خيارات الملفات</value>
+    <value>عرض الخيار &quot;رفع باستخدام ShareX&quot; على قائمة خيارات الملفات</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>عرض الخيار &quot;تعديل باستخدام CapX&quot; على قائمة خيارات الملفات</value>
+    <value>عرض الخيار &quot;تعديل باستخدام ShareX&quot; على قائمة خيارات الملفات</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>عرض CapX في قائمة &quot;إرسال إلى&quot;</value>
+    <value>عرض ShareX في قائمة &quot;إرسال إلى&quot;</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>إضافة متصفح Chrome</value>
@@ -599,13 +599,13 @@
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>عندما يكون CapX قيد التشغيل، قم بعرضه من خلال &quot;In-App&quot; في Steam</value>
+    <value>عندما يكون ShareX قيد التشغيل، قم بعرضه من خلال &quot;In-App&quot; في Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>المسارات</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>مجلد CapX الشخصي</value>
+    <value>مجلد ShareX الشخصي</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>استعراض...</value>
@@ -794,19 +794,19 @@
     <value>إلغاء</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>اختر مسار مجلد CapX الشخصي</value>
+    <value>اختر مسار مجلد ShareX الشخصي</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>اختر مسار مجلد لقطات الشاشة</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>تصدير نسخة CapX الاحتياطية</value>
+    <value>تصدير نسخة ShareX الاحتياطية</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>نسخة CapX الاحتياطية</value>
+    <value>نسخة ShareX الاحتياطية</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>استيراد نسخة CapX الاحتياطية</value>
+    <value>استيراد نسخة ShareX الاحتياطية</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>تحرير تنسيق الحافظة</value>
@@ -980,7 +980,7 @@
     <value>أسفل اليمين</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - إعدادات اختصارات لوحة المفاتيح</value>
+    <value>ShareX - إعدادات اختصارات لوحة المفاتيح</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>إضافة</value>
@@ -1028,7 +1028,7 @@
     <value>إعادة تعيين الاختصارات؟</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>سيتم استبدال جميع الاختصارات وإعدادات المهام المخصصة الخاصة بها بإعدادات CapX الافتراضية.</value>
+    <value>سيتم استبدال جميع الاختصارات وإعدادات المهام المخصصة الخاصة بها بإعدادات ShareX الافتراضية.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>إلغاء</value>
@@ -1133,10 +1133,10 @@
     <value>لم يتم إعداد أي أزرار. سيُخفى شريط أدوات الإشعارات.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX - إعدادات المهام</value>
+    <value>ShareX - إعدادات المهام</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX - إعدادات المهمة لـ {0}</value>
+    <value>ShareX - إعدادات المهمة لـ {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>تحرير الإجراء</value>
@@ -1763,7 +1763,7 @@
     <value>اختيار ملف صوتي</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX - الرفع بالسحب والإفلات</value>
+    <value>ShareX - الرفع بالسحب والإفلات</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>أفلت هنا</value>
@@ -1793,13 +1793,13 @@
     <value>الحافظة فارغة أو تحتوي على بيانات غير مدعومة.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX - كيف يجب حفظ الملف؟</value>
+    <value>ShareX - كيف يجب حفظ الملف؟</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>يوجد ملف بهذا الاسم بالفعل</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>اختر اسم ملف جديدًا أو حدد كيفية متابعة CapX.</value>
+    <value>اختر اسم ملف جديدًا أو حدد كيفية متابعة ShareX.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>اسم الملف الجديد</value>
@@ -1817,7 +1817,7 @@
     <value>إلغاء</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX - رفع ملف كبير</value>
+    <value>ShareX - رفع ملف كبير</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>أنت تحاول رفع ملف كبير.</value>
@@ -1832,7 +1832,7 @@
     <value>إلغاء</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX - رفع الملفات</value>
+    <value>ShareX - رفع الملفات</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>هل أنت متأكد من رغبتك في رفع {0} ملفات؟</value>
@@ -1847,7 +1847,7 @@
     <value>إلغاء</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX - سجل تصحيح الأخطاء</value>
+    <value>ShareX - سجل تصحيح الأخطاء</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>التجميعات المحملة</value>
@@ -1874,19 +1874,19 @@
     <value>رفع</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>إعداد CapX لأول مرة</value>
+    <value>إعداد ShareX لأول مرة</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>اختر كيفية تكامل CapX مع Windows.</value>
+    <value>اختر كيفية تكامل ShareX مع Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>إظهار «الرفع باستخدام CapX» في قائمة سياق مستكشف Windows</value>
+    <value>إظهار «الرفع باستخدام ShareX» في قائمة سياق مستكشف Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>إظهار CapX في قائمة «إرسال إلى»</value>
+    <value>إظهار ShareX في قائمة «إرسال إلى»</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>أثناء فتح CapX، إظهار «داخل التطبيق» في Steam</value>
+    <value>أثناء فتح ShareX، إظهار «داخل التطبيق» في Steam</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>يمكنك تغيير هذه الخيارات لاحقًا من إعدادات التطبيق ← التكامل.</value>
@@ -1895,7 +1895,7 @@
     <value>موافق</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>تشغيل CapX عند بدء Windows</value>
+    <value>تشغيل ShareX عند بدء Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>تم تعطيل بدء التشغيل في إدارة المهام</value>
@@ -1907,7 +1907,7 @@
     <value>تم تمكين بدء التشغيل بواسطة مؤسستك</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX - تقصير عنوان URL</value>
+    <value>ShareX - تقصير عنوان URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>تقصير عنوان URL</value>
@@ -1925,7 +1925,7 @@
     <value>تقصير</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX - رفع عنوان URL</value>
+    <value>ShareX - رفع عنوان URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>رفع عنوان URL</value>
@@ -1946,7 +1946,7 @@
     <value>رفع</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX - قبل الرفع</value>
+    <value>ShareX - قبل الرفع</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>قبل الرفع</value>
@@ -1976,7 +1976,7 @@
     <value>لا تتوفر معاينة</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX - تحرير شريط أدوات الإجراءات</value>
+    <value>ShareX - تحرير شريط أدوات الإجراءات</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>إضافة...</value>
@@ -1997,7 +1997,7 @@
     <value>إغلاق</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX - شريط أدوات الإجراءات</value>
+    <value>ShareX - شريط أدوات الإجراءات</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>أفلت للرفع</value>
@@ -2015,13 +2015,13 @@
     <value>البقاء في المقدمة</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>الفتح عند بدء CapX</value>
+    <value>الفتح عند بدء ShareX</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>تحرير...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - بعد الالتقاط</value>
+    <value>ShareX - بعد الالتقاط</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>بعد الالتقاط</value>
@@ -2057,7 +2057,7 @@
     <value>مخصص [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX - بعد الرفع</value>
+    <value>ShareX - بعد الرفع</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>اكتمل الرفع</value>
@@ -2102,7 +2102,7 @@
     <value>الروابط</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - الالتقاط التلقائي</value>
+    <value>ShareX - الالتقاط التلقائي</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>منطقة مخصصة</value>
@@ -2156,7 +2156,7 @@
     <value>إزالة</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX - محرر قائمة المهام السريعة</value>
+    <value>ShareX - محرر قائمة المهام السريعة</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>إضافة...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  بعد الرفع: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX - حول</value>
+    <value>ShareX - حول</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>حقوق النشر © 2007–2026 فريق CapX</value>
+    <value>حقوق النشر © 2007–2026 فريق ShareX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>إصدار Steam</value>
@@ -2243,10 +2243,10 @@
     <value>فشل التحقق من التحديثات.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>يتوفر إصدار أحدث من CapX</value>
+    <value>يتوفر إصدار أحدث من ShareX</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX محدّث.</value>
+    <value>ShareX محدّث.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>الروابط</value>
@@ -2270,7 +2270,7 @@
     <value>الفريق</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX - إعدادات الرافع المخصص</value>
+    <value>ShareX - إعدادات الرافع المخصص</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>مكتبة برامج الرفع</value>
@@ -2381,10 +2381,10 @@
     <value>إغلاق</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX - تأكيد</value>
+    <value>ShareX - تأكيد</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>أداة رفع CapX مخصصة</value>
+    <value>أداة رفع ShareX مخصصة</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>رابط الحذف</value>
@@ -2516,7 +2516,7 @@
     <value>إدخال نص أو رابط</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>اختبار رفع نص CapX</value>
+    <value>اختبار رفع نص ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>رابط الصورة المصغرة</value>
@@ -2562,7 +2562,7 @@
     <value>هل تريد تعيين «{0}» كأداة الرفع المخصصة النشطة لـ {1}؟</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX - تأكيد أداة الرفع المخصصة</value>
+    <value>ShareX - تأكيد أداة الرفع المخصصة</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>خطأ أثناء تصدير النسخة الاحتياطية:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX - خطأ</value>
+    <value>ShareX - خطأ</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>خطأ {0}</value>
@@ -2588,7 +2588,7 @@
     <value>اسم‌الصورة</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>تم تصغير  CapX إلى منطقة الإشعارات.</value>
+    <value>تم تصغير  ShareX إلى منطقة الإشعارات.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>المتغيرات المدعومة: {0} وبقية المتغيرات، مثل {1} إلخ.</value>
@@ -2609,7 +2609,7 @@
     <value>تعديل هذه القائمة...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>تطبيق  CapX محدث بالفعل!</value>
+    <value>تطبيق  ShareX محدث بالفعل!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>سجل التنقيحات قد يحتوي على معلومات حساسة، هل تريد المتابعة؟</value>
@@ -2621,7 +2621,7 @@
     <value>خدمة اختصار عناوين URL: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>تشغيل CapX عند بدء نظام Windows</value>
+    <value>تشغيل ShareX عند بدء نظام Windows</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>هل تريد حذف هذا الملف؟</value>
@@ -2639,7 +2639,7 @@
     <value>مشاركة الـ URL ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>لكي تظهر التغببرات يجب إعادة فتح CapX من خلال Steam.</value>
+    <value>لكي تظهر التغببرات يجب إعادة فتح ShareX من خلال Steam.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>تم تعطيل البدء التلقائي للتطبيق بواسطة مؤسستك</value>
@@ -2677,7 +2677,7 @@
 يمكنك إيقاف ذلك من خلال قائمة "مهام ما بعد الاتقاط".</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>تعديل باستخدام CapX</value>
+    <value>تعديل باستخدام ShareX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>الحافظة لا تحتوي على صورة.</value>
@@ -2739,7 +2739,7 @@
 هل تريد إلغاء تسجيل الشاشة الحاليّ؟</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>رفع باستخدام CapX</value>
+    <value>رفع باستخدام ShareX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>تم تعطيل اختصارات لوحة المفاتيح.</value>

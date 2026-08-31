@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - ตัวเลือกสี</value>
+    <value>ShareX - ตัวเลือกสี</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>สี โหมด</value>
@@ -161,7 +161,7 @@
     <value>ยกเลิก</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - ข้อผิดพลาด</value>
+    <value>ShareX - ข้อผิดพลาด</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>เกิดข้อผิดพลาด</value>
@@ -191,7 +191,7 @@
     <value>ไม่คาดคิด เกิดข้อผิดพลาด.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - ตัวแสดงรูปภาพ</value>
+    <value>ShareX - ตัวแสดงรูปภาพ</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>เปิดรูปภาพ</value>
@@ -200,13 +200,13 @@
     <value>อินพุต</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>ผลลัพธ์</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>คัดลอกทั้งหมด</value>
@@ -215,7 +215,7 @@
     <value>ปิด</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - ตัวเลือกการพิมพ์</value>
+    <value>ShareX - ตัวเลือกการพิมพ์</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>ตัวเลือกการพิมพ์</value>
@@ -245,13 +245,13 @@
     <value>ตัวอย่าง...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - ตัวดาวน์โหลดไฟล์</value>
+    <value>ShareX - ตัวดาวน์โหลดไฟล์</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>ไฟล์ ตัวดาวน์โหลด</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>ดาวน์โหลดการอัปเดต CapX และไฟล์ที่จำเป็นอื่นๆ</value>
+    <value>ดาวน์โหลดการอัปเดต ShareX และไฟล์ที่จำเป็นอื่นๆ</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>ดาวน์โหลด</value>
@@ -260,7 +260,7 @@
     <value>มุมมอง บันทึกการเปลี่ยนแปลง</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>มีอัปเดต CapX</value>
+    <value>มีอัปเดต ShareX</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>สีแดง (0-255)</value>
@@ -806,7 +806,7 @@
     <value>ลากแล้ววาง อัปโหลด</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>ออกจาก CapX</value>
+    <value>ออกจาก ShareX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>อัปโหลด ไฟล์</value>

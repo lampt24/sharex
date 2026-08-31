@@ -245,7 +245,7 @@ public sealed class MainForm : HotkeyForm
     {
         if (ScreenRecordManager.IsRecording)
         {
-            if (MessageBox.Show(Strings.ShareXCannotBeClosedWhileScreenRecordingIsActive, Program.AppName,
+            if (MessageBox.Show(Strings.ShareXCannotBeClosedWhileScreenRecordingIsActive, "ShareX",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == MessageBoxResult.Yes)
             {
                 ScreenRecordManager.AbortRecording();

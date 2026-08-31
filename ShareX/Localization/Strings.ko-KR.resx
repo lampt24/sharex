@@ -62,7 +62,7 @@
     <value>이미지 결합</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>여기에 놓은 파일은 CapX에서 업로드합니다.</value>
+    <value>여기에 놓은 파일은 ShareX에서 업로드합니다.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>가로</value>
@@ -77,10 +77,10 @@
     <value>놓아서 텍스트 업로드</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>CapX 단축키</value>
+    <value>ShareX 단축키</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>여기에 놓은 텍스트는 CapX에서 업로드합니다.</value>
+    <value>여기에 놓은 텍스트는 ShareX에서 업로드합니다.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>세로</value>
@@ -200,7 +200,7 @@
     <value>폴더</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>CapX 팔로우...</value>
+    <value>ShareX 팔로우...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>포럼 이미지</value>
@@ -386,7 +386,7 @@
     <value>응답 표시...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>CapX 표시</value>
+    <value>ShareX 표시</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>업로드 중지</value>
@@ -476,10 +476,10 @@
     <value>열기</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - 프로그램 설정</value>
+    <value>ShareX - 프로그램 설정</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>이 변경 사항을 적용하려면 CapX를 다시 시작하세요.</value>
+    <value>이 변경 사항을 적용하려면 ShareX를 다시 시작하세요.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>지금 다시 시작</value>
@@ -506,7 +506,7 @@
     <value>작업 표시줄 단추에 진행 상황 표시하기</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>하얀색 CapX 아이콘 사용</value>
+    <value>하얀색 ShareX 아이콘 사용</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>메인 창 위치 기억하기</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Windows 탐색기의 컨텍스트 메뉴에 &quot;CapX로 업로드하기&quot; 표시하기</value>
+    <value>Windows 탐색기의 컨텍스트 메뉴에 &quot;ShareX로 업로드하기&quot; 표시하기</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Windows 탐색기의 컨택스트 메뉴에 &quot;CapX로 편집&quot;버튼 표시</value>
+    <value>Windows 탐색기의 컨택스트 메뉴에 &quot;ShareX로 편집&quot;버튼 표시</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Windows 탐색기의 &quot;보내기&quot; 컨텍스트 메뉴에 CapX 표시하기</value>
+    <value>Windows 탐색기의 &quot;보내기&quot; 컨텍스트 메뉴에 ShareX 표시하기</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>크롬 확장 기능</value>
@@ -584,7 +584,7 @@
     <value>크롬 확장 기능 지원 활성화</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>CapX 크롬 확장 기능 설치하기...</value>
+    <value>ShareX 크롬 확장 기능 설치하기...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>파이어폭스 애드온</value>
@@ -593,19 +593,19 @@
     <value>파이어폭스 애드온 지원 활성화</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>CapX 파이어폭스 애드온 설치하기...</value>
+    <value>ShareX 파이어폭스 애드온 설치하기...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>CapX가 열려 있을 때 스팀에서 실행 중이라고 띄우기</value>
+    <value>ShareX가 열려 있을 때 스팀에서 실행 중이라고 띄우기</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>경로</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>CapX 개인 폴더</value>
+    <value>ShareX 개인 폴더</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>탐색...</value>
@@ -794,19 +794,19 @@
     <value>취소</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>CapX 개인 폴더 경로 선택</value>
+    <value>ShareX 개인 폴더 경로 선택</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>스크린샷 폴더 경로 선택</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>CapX 백업 내보내기</value>
+    <value>ShareX 백업 내보내기</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>CapX 백업</value>
+    <value>ShareX 백업</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>CapX 백업 가져오기</value>
+    <value>ShareX 백업 가져오기</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>클립보드 형식 편집</value>
@@ -980,7 +980,7 @@
     <value>오른쪽 아래</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - 단축키 설정</value>
+    <value>ShareX - 단축키 설정</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>추가</value>
@@ -1028,7 +1028,7 @@
     <value>단축키를 초기화할까요?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>모든 단축키와 사용자 지정 작업 설정이 CapX 기본값으로 대체됩니다.</value>
+    <value>모든 단축키와 사용자 지정 작업 설정이 ShareX 기본값으로 대체됩니다.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>취소</value>
@@ -1133,10 +1133,10 @@
     <value>설정된 버튼이 없습니다. 알림 도구 모음이 숨겨집니다.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX - 작업 설정</value>
+    <value>ShareX - 작업 설정</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX - {0} 작업 설정</value>
+    <value>ShareX - {0} 작업 설정</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>동작 편집</value>
@@ -1763,7 +1763,7 @@
     <value>오디오 파일 선택</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX - 끌어서 놓기로 업로드</value>
+    <value>ShareX - 끌어서 놓기로 업로드</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>여기에 놓기</value>
@@ -1793,13 +1793,13 @@
     <value>클립보드가 비어 있거나 지원되지 않는 데이터가 들어 있습니다.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX - 파일을 어떻게 저장할까요?</value>
+    <value>ShareX - 파일을 어떻게 저장할까요?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>이 이름의 파일이 이미 있습니다</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>새 파일 이름을 선택하거나 CapX가 계속할 방법을 선택하세요.</value>
+    <value>새 파일 이름을 선택하거나 ShareX가 계속할 방법을 선택하세요.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>새 파일 이름</value>
@@ -1817,7 +1817,7 @@
     <value>취소</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX - 대용량 파일 업로드</value>
+    <value>ShareX - 대용량 파일 업로드</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>대용량 파일을 업로드하려고 합니다.</value>
@@ -1832,7 +1832,7 @@
     <value>취소</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX - 파일 업로드</value>
+    <value>ShareX - 파일 업로드</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>파일 {0}개를 업로드할까요?</value>
@@ -1847,7 +1847,7 @@
     <value>취소</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX - 디버그 로그</value>
+    <value>ShareX - 디버그 로그</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>로드된 어셈블리</value>
@@ -1874,19 +1874,19 @@
     <value>업로드</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>CapX 최초 설정</value>
+    <value>ShareX 최초 설정</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>CapX를 Windows와 통합하는 방법을 선택하세요.</value>
+    <value>ShareX를 Windows와 통합하는 방법을 선택하세요.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Windows 탐색기 상황에 맞는 메뉴에 &quot;CapX로 업로드&quot; 표시</value>
+    <value>Windows 탐색기 상황에 맞는 메뉴에 &quot;ShareX로 업로드&quot; 표시</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>&quot;보내기&quot; 메뉴에 CapX 표시</value>
+    <value>&quot;보내기&quot; 메뉴에 ShareX 표시</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>CapX가 열려 있는 동안 Steam에 &quot;앱 내&quot;로 표시</value>
+    <value>ShareX가 열려 있는 동안 Steam에 &quot;앱 내&quot;로 표시</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>나중에 애플리케이션 설정 → 통합에서 이 옵션을 변경할 수 있습니다.</value>
@@ -1895,7 +1895,7 @@
     <value>확인</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Windows 시작 시 CapX 실행</value>
+    <value>Windows 시작 시 ShareX 실행</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>작업 관리자에서 시작 프로그램이 비활성화되었습니다</value>
@@ -1907,7 +1907,7 @@
     <value>조직에서 시작 프로그램을 활성화했습니다</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX - URL 단축</value>
+    <value>ShareX - URL 단축</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>URL 단축</value>
@@ -1925,7 +1925,7 @@
     <value>단축</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX - URL 업로드</value>
+    <value>ShareX - URL 업로드</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>URL 업로드</value>
@@ -1946,7 +1946,7 @@
     <value>업로드</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX - 업로드 전</value>
+    <value>ShareX - 업로드 전</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>업로드 전</value>
@@ -1976,7 +1976,7 @@
     <value>미리 보기를 사용할 수 없음</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX - 작업 도구 모음 편집</value>
+    <value>ShareX - 작업 도구 모음 편집</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>추가...</value>
@@ -1997,7 +1997,7 @@
     <value>닫기</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX - 작업 도구 모음</value>
+    <value>ShareX - 작업 도구 모음</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>놓아서 업로드</value>
@@ -2015,13 +2015,13 @@
     <value>항상 위</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>CapX 시작 시 열기</value>
+    <value>ShareX 시작 시 열기</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>편집...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - 캡처 후</value>
+    <value>ShareX - 캡처 후</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>캡처 후</value>
@@ -2057,7 +2057,7 @@
     <value>사용자 지정 [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX - 업로드 후</value>
+    <value>ShareX - 업로드 후</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>업로드 완료</value>
@@ -2102,7 +2102,7 @@
     <value>링크</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - 자동 캡처</value>
+    <value>ShareX - 자동 캡처</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>사용자 지정 영역</value>
@@ -2156,7 +2156,7 @@
     <value>제거</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX - 빠른 작업 메뉴 편집기</value>
+    <value>ShareX - 빠른 작업 메뉴 편집기</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>추가...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  업로드 후: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX - 정보</value>
+    <value>ShareX - 정보</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>저작권 © 2007–2026 CapX 팀</value>
+    <value>저작권 © 2007–2026 ShareX 팀</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Steam 빌드</value>
@@ -2243,10 +2243,10 @@
     <value>업데이트 확인에 실패했습니다.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>새 버전의 CapX를 사용할 수 있습니다</value>
+    <value>새 버전의 ShareX를 사용할 수 있습니다</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX가 최신 버전입니다.</value>
+    <value>ShareX가 최신 버전입니다.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>링크</value>
@@ -2270,7 +2270,7 @@
     <value>팀</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX - 사용자 지정 업로더 설정</value>
+    <value>ShareX - 사용자 지정 업로더 설정</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>업로더 라이브러리</value>
@@ -2381,10 +2381,10 @@
     <value>닫기</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX - 확인</value>
+    <value>ShareX - 확인</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>CapX 사용자 지정 업로더</value>
+    <value>ShareX 사용자 지정 업로더</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>삭제 URL</value>
@@ -2516,7 +2516,7 @@
     <value>텍스트 또는 URL 입력</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>CapX 텍스트 업로드 테스트</value>
+    <value>ShareX 텍스트 업로드 테스트</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>미리 보기 URL</value>
@@ -2562,7 +2562,7 @@
     <value>&quot;{0}&quot;을(를) {1}의 활성 사용자 지정 업로더로 설정하시겠습니까?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX - 사용자 지정 업로더 확인</value>
+    <value>ShareX - 사용자 지정 업로더 확인</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>백업을 내보내는 중 오류 발생:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX - 오류</value>
+    <value>ShareX - 오류</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>{0} 오류</value>
@@ -2588,7 +2588,7 @@
     <value>이미지이름</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>CapX가 시스템 트레이로 최소화되었습니다.</value>
+    <value>ShareX가 시스템 트레이로 최소화되었습니다.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>지원되는 변수: {0}과 {1} 등과 같은 다른 변수들.</value>
@@ -2609,7 +2609,7 @@
     <value>이 메뉴 편집하기...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>CapX가 최신 상태입니다!</value>
+    <value>ShareX가 최신 상태입니다!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>디버그 로그에 민감한 정보가 포함될 수 있습니다. 계속하시겠습니까?</value>
@@ -2621,7 +2621,7 @@
     <value>URL 단축기: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>컴퓨터를 켤 때 CapX도 실행하기</value>
+    <value>컴퓨터를 켤 때 ShareX도 실행하기</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>정말로 이 파일을 제거할까요?</value>
@@ -2630,7 +2630,7 @@
     <value>폴더를 생성할 수 없음:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>CapX에 포함된 FFmpeg는 64비트 운영 체제만 지원합니다.</value>
+    <value>ShareX에 포함된 FFmpeg는 64비트 운영 체제만 지원합니다.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>업로드 중</value>
@@ -2639,7 +2639,7 @@
     <value>URL 공유하기 ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>설정을 적용하려면 스팀에서 CapX를 다시 실행해야 합니다.</value>
+    <value>설정을 적용하려면 스팀에서 ShareX를 다시 실행해야 합니다.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>시작up has been disabled by your organization</value>
@@ -2677,7 +2677,7 @@
 You can later disable it from "After 캡처 tasks" 메뉴.</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>CapX로 편집하기</value>
+    <value>ShareX로 편집하기</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>클립보드 does not contain an 이미지.</value>
@@ -2686,7 +2686,7 @@ You can later disable it from "After 캡처 tasks" 메뉴.</value>
     <value>오류</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Your anti-virus software or the controlled 폴더 access feature in 창s could be blocking CapX.</value>
+    <value>Your anti-virus software or the controlled 폴더 access feature in 창s could be blocking ShareX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>작업 완료</value>
@@ -2734,22 +2734,22 @@ You can later disable it from "After 캡처 tasks" 메뉴.</value>
     <value>FFmpeg 비디오 및 오디오 소스가 둘 다 "없음"일 수 없습니다.</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>CapX cannot be closed while 화면 녹화 is active.
+    <value>ShareX cannot be closed while 화면 녹화 is active.
 
 Do you want to abort the active 화면 녹화?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>CapX로 업로드</value>
+    <value>ShareX로 업로드</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>단축키 활성화됨.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>"{0}" 파일에 접근할 수 없습니다.
-개인 폴더를 변경하려면 CapX를 관리자 권한으로 실행해 주세요.</value>
+개인 폴더를 변경하려면 ShareX를 관리자 권한으로 실행해 주세요.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
-    <value>작업 관리자에 의해 CapX를 시작 프로그램으로 지정할 수 없습니다</value>
+    <value>작업 관리자에 의해 ShareX를 시작 프로그램으로 지정할 수 없습니다</value>
   </data>
   <data name="WouldYouLikeToRetryClipboardUpload" xml:space="preserve">
     <value>Would you like to retry 클립보드 업로드?</value>
@@ -2758,7 +2758,7 @@ Do you want to abort the active 화면 녹화?</value>
     <value>Unable to find a 창 with specified 창 title.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>CapX 설정을 재설정하시겠습니까?</value>
+    <value>ShareX 설정을 재설정하시겠습니까?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Failed to 저장 설정</value>
@@ -2795,7 +2795,7 @@ Do you want to abort the active 화면 녹화?</value>
 
 {1}
 
-다른 단축키를 사용하거나 충돌하는 어플리케이션을 종료한 뒤 CapX를 다시 실행해 주세요.</value>
+다른 단축키를 사용하거나 충돌하는 어플리케이션을 종료한 뒤 ShareX를 다시 실행해 주세요.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>스크린샷 delay: {0}s</value>

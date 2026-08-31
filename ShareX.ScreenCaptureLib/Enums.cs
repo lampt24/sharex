@@ -248,6 +248,12 @@ namespace ShareX.ScreenCaptureLib
         Successful
     }
 
+    public enum ScrollingCaptureDirection
+    {
+        Vertical,
+        Horizontal
+    }
+
     public enum ScrollMethod // Localized
     {
         MouseWheel,

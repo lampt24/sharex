@@ -10,7 +10,6 @@
 #nullable enable
 
 using Avalonia;
-using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -24,10 +23,7 @@ using ShareX.HelpersLib;
 using ShareX.Localization;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using AvaloniaBitmap = Avalonia.Media.Imaging.Bitmap;
-using DrawingBitmap = System.Drawing.Bitmap;
 using DrawingPoint = System.Drawing.Point;
 using FormsDataFormats = System.Windows.Forms.DataFormats;
 using FormsDataObject = System.Windows.Forms.DataObject;
@@ -36,7 +32,8 @@ namespace ShareX;
 
 public partial class ActionsToolbarWindow : Window
 {
-    private readonly AvaloniaBitmap _toolbarLogoBitmap;
+    private Button? _showCursorButton;
+    private TextBlock? _delayText;
     private bool _positionReady;
     private bool _adjustingPosition;
     private bool _closing;
@@ -45,18 +42,11 @@ public partial class ActionsToolbarWindow : Window
     {
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
-        AutomationProperties.SetName(TitleHandle, Program.AppName);
-
-        using DrawingBitmap logo = ShareXResources.Logo;
-        using Stream logoStream = logo.GetStream();
-        logoStream.Position = 0;
-        _toolbarLogoBitmap = new AvaloniaBitmap(logoStream);
-        ToolbarLogo.Source = _toolbarLogoBitmap;
-
         Topmost = Program.Settings.ActionsToolbarStayTopMost;
         Program.Settings.ActionsToolbarList ??= [];
+        MigrateLegacyDefaultActions();
 
-        ToolTip.SetTip(TitleHandle, $"{Program.AppName}\n{Strings.ActionsToolbarWindow_Tip}");
+        ToolTip.SetTip(TitleHandle, Strings.ActionsToolbarWindow_Tip);
         ToolTip.SetPlacement(TitleHandle, PlacementMode.Top);
         ToolTip.SetVerticalOffset(TitleHandle, -4);
         ToolTip.SetShowDelay(TitleHandle, 400);
@@ -67,11 +57,45 @@ public partial class ActionsToolbarWindow : Window
 
         Opened += OnOpened;
         PositionChanged += OnPositionChanged;
-        Closed += (_, _) =>
+        Closed += (_, _) => _closing = true;
+        PropertyChanged += OnWindowPropertyChanged;
+    }
+
+    private static void MigrateLegacyDefaultActions()
+    {
+        HotkeyType[] legacyDefault =
+        [
+            HotkeyType.RectangleRegion,
+            HotkeyType.PrintScreen,
+            HotkeyType.ScreenRecorder,
+            HotkeyType.None,
+            HotkeyType.FileUpload,
+            HotkeyType.ClipboardUploadWithContentViewer
+        ];
+
+        if (Program.Settings.ActionsToolbarList.SequenceEqual(legacyDefault))
         {
-            _closing = true;
-            _toolbarLogoBitmap.Dispose();
-        };
+            Program.Settings.ActionsToolbarList =
+            [
+                HotkeyType.PrintScreen,
+                HotkeyType.ActiveWindow,
+                HotkeyType.ActiveMonitor,
+                HotkeyType.RectangleRegion,
+                HotkeyType.LastRegion,
+                HotkeyType.ScreenRecorder,
+                HotkeyType.ScreenRecorderGIF,
+                HotkeyType.ScrollingCapture,
+                HotkeyType.HorizontalScrollingCapture,
+                HotkeyType.AutoCapture
+            ];
+        }
+
+        int scrollingCaptureIndex = Program.Settings.ActionsToolbarList.IndexOf(HotkeyType.ScrollingCapture);
+        if (scrollingCaptureIndex >= 0 &&
+            !Program.Settings.ActionsToolbarList.Contains(HotkeyType.HorizontalScrollingCapture))
+        {
+            Program.Settings.ActionsToolbarList.Insert(scrollingCaptureIndex + 1, HotkeyType.HorizontalScrollingCapture);
+        }
     }
 
     internal void RefreshToolbar()
@@ -121,7 +145,107 @@ public partial class ActionsToolbarWindow : Window
             ToolbarItems.Children.Add(button);
         }
 
+        AddCaptureOptions();
+
         Dispatcher.UIThread.Post(ClampAndSavePosition, DispatcherPriority.Loaded);
+    }
+
+    private void AddCaptureOptions()
+    {
+        ToolbarItems.Children.Add(new Border
+        {
+            Width = 1,
+            Height = 22,
+            Margin = new Thickness(3, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+            Background = this.FindResource("ShareX.Brush.Border") as Avalonia.Media.IBrush
+        });
+
+        _showCursorButton = CreateCaptureOptionButton(LucideIcons.mouse_pointer_2, Strings.MainMenuBuilder_ShowCursor);
+        _showCursorButton.Click += (_, _) =>
+        {
+            Program.DefaultTaskSettings.CaptureSettings.ShowCursor =
+                !Program.DefaultTaskSettings.CaptureSettings.ShowCursor;
+            UpdateCaptureOptions();
+            SaveSettings();
+        };
+        ToolbarItems.Children.Add(_showCursorButton);
+
+        _delayText = new TextBlock
+        {
+            FontSize = 11,
+            FontWeight = Avalonia.Media.FontWeight.SemiBold,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            IsHitTestVisible = false
+        };
+        Button delayButton = new() { Content = _delayText, Width = 42, MinWidth = 42 };
+        delayButton.Classes.Add("toolbar-action");
+        ToolTip.SetTip(delayButton, string.Format(Strings.ScreenshotDelay0S,
+            Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay.ToString("0.#")));
+        delayButton.Click += (_, _) => ShowDelayMenu(delayButton);
+        ToolbarItems.Children.Add(delayButton);
+
+        UpdateCaptureOptions();
+    }
+
+    private Button CreateCaptureOptionButton(string iconText, string tooltip)
+    {
+        TextBlock icon = new()
+        {
+            Text = iconText,
+            FontSize = 17,
+            TextAlignment = Avalonia.Media.TextAlignment.Center,
+            Foreground = this.FindResource("ShareX.Brush.Accent") as Avalonia.Media.IBrush,
+            IsHitTestVisible = false
+        };
+        icon.Classes.Add("icon");
+
+        Button button = new() { Content = icon };
+        button.Classes.Add("toolbar-action");
+        ToolTip.SetTip(button, tooltip);
+        ToolTip.SetPlacement(button, PlacementMode.Top);
+        ToolTip.SetShowDelay(button, 400);
+        return button;
+    }
+
+    private void ShowDelayMenu(Control target)
+    {
+        ContextMenu menu = new();
+        decimal current = Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay;
+
+        for (int delay = 0; delay <= 5; delay++)
+        {
+            int selectedDelay = delay;
+            MenuItem item = new()
+            {
+                Header = string.Format(Strings.ScreenshotDelay0S, delay),
+                ToggleType = MenuItemToggleType.Radio,
+                IsChecked = Math.Abs(current - delay) < 0.01m
+            };
+            item.Click += (_, _) =>
+            {
+                Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay = selectedDelay;
+                UpdateCaptureOptions();
+                SaveSettings();
+            };
+            menu.Items.Add(item);
+        }
+
+        menu.Open(target);
+    }
+
+    private void UpdateCaptureOptions()
+    {
+        if (_showCursorButton != null)
+        {
+            _showCursorButton.Classes.Set("checked", Program.DefaultTaskSettings.CaptureSettings.ShowCursor);
+        }
+
+        if (_delayText != null)
+        {
+            _delayText.Text = $"{Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay:0.#}s";
+        }
     }
 
     private async void OnActionClick(object? sender, RoutedEventArgs e)
@@ -291,6 +415,14 @@ public partial class ActionsToolbarWindow : Window
         if (_positionReady)
         {
             ClampAndSavePosition();
+        }
+    }
+
+    private void OnWindowPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (_positionReady && e.Property == ClientSizeProperty)
+        {
+            Dispatcher.UIThread.Post(ClampAndSavePosition, DispatcherPriority.Loaded);
         }
     }
 

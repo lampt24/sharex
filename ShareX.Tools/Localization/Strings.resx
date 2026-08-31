@@ -77,7 +77,7 @@
     <value>Analyze automatically when opened</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key" xml:space="preserve">
-    <value>API key</value>
+    <value>Access token</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key_page" xml:space="preserve">
     <value>API key page...</value>
@@ -95,7 +95,7 @@
     <value>Copy result automatically</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Custom_base_URL" xml:space="preserve">
-    <value>Custom base URL</value>
+    <value>API URL</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Get_API_key" xml:space="preserve">
     <value>Get API key</value>

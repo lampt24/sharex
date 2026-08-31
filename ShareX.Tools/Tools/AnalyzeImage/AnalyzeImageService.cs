@@ -15,6 +15,7 @@
 using ShareX.HelpersLib;
 using System.Drawing;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 
 namespace ShareX.Tools;
@@ -107,10 +108,33 @@ public sealed class AnalyzeImageService
                     return null;
                 }
 
-                string baseURL = string.IsNullOrWhiteSpace(options.OpenAICustomURL) ? "https://api.openai.com" : options.OpenAICustomURL;
-                HttpRequestMessage openAIRequest = new(HttpMethod.Get, URLHelpers.CombineURL(baseURL, "v1/models"));
+                HttpRequestMessage openAIRequest = new(HttpMethod.Get, AIEndpointBuilder.GetOpenAIModelsUrl(options.OpenAICustomURL));
                 openAIRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", options.OpenAIAPIKey.Trim());
                 return openAIRequest;
+
+            case AIProvider.Anthropic:
+                if (string.IsNullOrWhiteSpace(options.AnthropicAPIKey))
+                {
+                    error = "Missing Anthropic access token.";
+                    return null;
+                }
+
+                if (string.IsNullOrWhiteSpace(options.AnthropicModel))
+                {
+                    error = "Missing Anthropic model.";
+                    return null;
+                }
+
+                HttpRequestMessage anthropicRequest = new(HttpMethod.Post, AIEndpointBuilder.GetAnthropicMessagesUrl(options.AnthropicCustomURL));
+                anthropicRequest.Headers.Add("x-api-key", options.AnthropicAPIKey.Trim());
+                anthropicRequest.Headers.Add("anthropic-version", "2023-06-01");
+                anthropicRequest.Content = JsonContent.Create(new
+                {
+                    model = options.AnthropicModel,
+                    max_tokens = 1,
+                    messages = new[] { new { role = "user", content = "Reply with OK." } }
+                });
+                return anthropicRequest;
 
             case AIProvider.Gemini:
                 if (string.IsNullOrWhiteSpace(options.GeminiAPIKey))

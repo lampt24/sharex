@@ -43,9 +43,10 @@ public static class ToolsIntegration
         string? imagePath,
         AIOptions options,
         AnalyzeImageRegionCaptureHandler captureRegion,
-        Action? playNotificationSound = null)
+        Action? playNotificationSound = null,
+        Action<AIOptions>? optionsChanged = null)
     {
-        Show(() => new AnalyzeImageWindow(imagePath, options, captureRegion, playNotificationSound));
+        Show(() => new AnalyzeImageWindow(imagePath, options, captureRegion, playNotificationSound, optionsChanged));
     }
 
     public static void ShowBackgroundRemoverWindow(string? modelsFolder, BackgroundRemoverOptions options)

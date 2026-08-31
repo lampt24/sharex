@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX - Opțiuni de înregistrare a ecranului</value>
+    <value>ShareX - Opțiuni de înregistrare a ecranului</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Înregistrare ecran</value>
@@ -152,7 +152,7 @@
     <value>Factor de rată constantă (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Valorile mai mici îmbunătățesc calitatea și măresc dimensiunea fișierului. 0 este fără pierderi; 28 este valoarea implicită CapX.</value>
+    <value>Valorile mai mici îmbunătățesc calitatea și măresc dimensiunea fișierului. 0 este fără pierderi; 28 este valoarea implicită ShareX.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Rată de biți țintă (kbps)</value>
@@ -230,7 +230,7 @@
     <value>Nu s-au găsit dispozitive DirectShow. Captura desktopului este pregătită.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX - Înregistrare ecran</value>
+    <value>ShareX - Înregistrare ecran</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Pornire</value>
@@ -251,7 +251,7 @@
     <value>Anulare</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Captură cu derulare</value>
+    <value>ShareX - Captură cu derulare</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Capturare...</value>

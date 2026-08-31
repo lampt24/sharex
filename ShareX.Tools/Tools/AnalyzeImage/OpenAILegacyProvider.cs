@@ -41,6 +41,8 @@ namespace ShareX.Tools
     public class ChatGPTLegacyRequest
     {
         public string model { get; set; }
+        public int max_tokens { get; set; }
+        public bool stream { get; set; }
         public ChatGPTLegacyMessage[] messages { get; set; }
     }
 
@@ -129,6 +131,8 @@ namespace ShareX.Tools
             ChatGPTLegacyRequest request = new ChatGPTLegacyRequest()
             {
                 model = Model,
+                max_tokens = 8192,
+                stream = false,
                 messages = new ChatGPTLegacyMessage[]
                 {
                     new ChatGPTLegacyMessage()
@@ -157,41 +161,14 @@ namespace ShareX.Tools
             string json = JsonSerializer.Serialize(request);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            string url;
-
-            if (!string.IsNullOrEmpty(CustomURL))
-            {
-                url = CustomURL;
-            }
-            else
-            {
-                url = "https://api.openai.com";
-            }
-
-            string path = "/v1/chat/completions";
-
-            if (!url.EndsWith(path))
-            {
-                url = URLHelpers.CombineURL(url, path);
-            }
+            string url = AIEndpointBuilder.GetOpenAIChatCompletionsUrl(CustomURL);
 
             HttpResponseMessage response = await httpClient.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
             string responseString = await response.Content.ReadAsStringAsync();
+            DebugHelper.WriteLine($"[{nameof(OpenAILegacyProvider)}] Vision response ({(int)response.StatusCode}): {responseString}");
 
-            ChatGPTLegacyResponse result = JsonSerializer.Deserialize<ChatGPTLegacyResponse>(responseString);
-
-            if (result.choices != null && result.choices.Length > 0)
-            {
-                ChatGPTLegacyResponseMessage message = result.choices[0].message;
-
-                if (message != null && message.content != null)
-                {
-                    return message.content;
-                }
-            }
-
-            return "";
+            return OpenAIResponseParser.ParseChatCompletionText(responseString);
         }
     }
 }

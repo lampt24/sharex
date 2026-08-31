@@ -13,6 +13,7 @@ public sealed class LocalizedDisplayConverter : IValueConverter
             AIProvider.Gemini => Localization.Strings.LocalizedDisplayConverter_Gemini,
             AIProvider.OpenRouter => Localization.Strings.LocalizedDisplayConverter_OpenRouter,
             AIProvider.OpenAILegacy => Localization.Strings.LocalizedDisplayConverter_OpenAI_legacy,
+            AIProvider.Anthropic => "Anthropic",
             BackgroundRemovalDevice.Auto => Localization.Strings.LocalizedDisplayConverter_Automatic,
             BackgroundRemovalDevice.GPU => Localization.Strings.LocalizedDisplayConverter_GPU,
             BackgroundRemovalDevice.CPU => Localization.Strings.LocalizedDisplayConverter_CPU,

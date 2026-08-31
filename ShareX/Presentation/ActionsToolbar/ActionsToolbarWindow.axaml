@@ -47,6 +47,11 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
+        <Style Selector="Button.toolbar-action.checked /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource ShareX.Brush.Control.Background.Hover}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ShareX.Brush.Accent}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
         <Style Selector="Border.toolbar-title">
             <Setter Property="Height" Value="34"/>
             <Setter Property="Padding" Value="8,0"/>
@@ -72,12 +77,11 @@
                     <Border x:Name="TitleHandle"
                             Classes="toolbar-title"
                             PointerPressed="OnTitlePointerPressed">
-                        <Image x:Name="ToolbarLogo"
-                               Width="18"
-                               Height="18"
-                               Stretch="Uniform"
-                               IsHitTestVisible="False"
-                               VerticalAlignment="Center"/>
+                        <TextBlock Text="ShareX"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"/>
                     </Border>
                 </StackPanel>
 

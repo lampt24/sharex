@@ -37,29 +37,39 @@ public partial class ScrollingCaptureWindow : Window
     private readonly Action<DrawingBitmap>? _uploadRequested;
     private readonly Action? _playNotificationSound;
     private AvaloniaBitmap? _previewBitmap;
+    private KeyboardHook? _captureKeyboardHook;
     private bool _captureOperation;
     private bool _closeRequested;
+    private bool _isClosed;
     private bool _isPanning;
     private Point _panStart;
     private Vector _panStartOffset;
 
     public ScrollingCaptureWindow()
-        : this(new ScrollingCaptureOptions(), null, null)
+        : this(new ScrollingCaptureOptions(), ScrollingCaptureDirection.Vertical, null, null)
     {
     }
 
     public ScrollingCaptureWindow(
         ScrollingCaptureOptions options,
+        ScrollingCaptureDirection direction,
         Action<DrawingBitmap>? uploadRequested,
         Action? playNotificationSound)
     {
-        _service = new ScrollingCaptureService(options);
+        Direction = direction;
+        _service = new ScrollingCaptureService(options, direction);
         _uploadRequested = uploadRequested;
         _playNotificationSound = playNotificationSound;
 
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
         ScrollMethodInput.ItemsSource = Helpers.GetLocalizedEnumDescriptions<ScrollMethod>();
+        if (direction == ScrollingCaptureDirection.Horizontal)
+        {
+            AutoScrollTopInput.Content = Localization.Strings.ResourceManager.GetString(
+                "ScrollingCaptureWindow_Automatically_scroll_to_left");
+            ScrollMethodInput.IsEnabled = false;
+        }
         WindowState = Avalonia.Controls.WindowState.Minimized;
 
         Opened += OnOpened;
@@ -67,6 +77,8 @@ public partial class ScrollingCaptureWindow : Window
         Closing += OnClosing;
         Closed += OnClosed;
     }
+
+    public ScrollingCaptureDirection Direction { get; }
 
     public async Task StartStopAsync()
     {
@@ -110,6 +122,8 @@ public partial class ScrollingCaptureWindow : Window
 
     private void OnClosed(object? sender, EventArgs e)
     {
+        _isClosed = true;
+        StopCaptureKeyboardHook();
         _previewBitmap?.Dispose();
         _service.Dispose();
     }
@@ -159,6 +173,7 @@ public partial class ScrollingCaptureWindow : Window
 
         try
         {
+            StartCaptureKeyboardHook();
             ScrollingCaptureStatus status = await _service.StartCaptureAsync();
             SetStatus(status);
             _playNotificationSound?.Invoke();
@@ -172,6 +187,7 @@ public partial class ScrollingCaptureWindow : Window
         }
         finally
         {
+            StopCaptureKeyboardHook();
             SetCaptureControlsEnabled(true);
             LoadImage(_service.Result);
             RestoreAndActivate();
@@ -185,6 +201,33 @@ public partial class ScrollingCaptureWindow : Window
         if (_closeRequested)
         {
             Close();
+        }
+    }
+
+    private void StartCaptureKeyboardHook()
+    {
+        StopCaptureKeyboardHook();
+        _captureKeyboardHook = new KeyboardHook();
+        _captureKeyboardHook.KeyDown += CaptureKeyboardHook_KeyDown;
+    }
+
+    private void CaptureKeyboardHook_KeyDown(object? sender, System.Windows.Forms.KeyEventArgs e)
+    {
+        if (ScrollingCaptureStopKey.ShouldStop(e.KeyCode, _service.IsCapturing))
+        {
+            _service.StopCapture();
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+        }
+    }
+
+    private void StopCaptureKeyboardHook()
+    {
+        if (_captureKeyboardHook != null)
+        {
+            _captureKeyboardHook.KeyDown -= CaptureKeyboardHook_KeyDown;
+            _captureKeyboardHook.Dispose();
+            _captureKeyboardHook = null;
         }
     }
 
@@ -252,6 +295,11 @@ public partial class ScrollingCaptureWindow : Window
 
     private void RestoreAndActivate()
     {
+        if (_isClosed)
+        {
+            return;
+        }
+
         WindowState = Avalonia.Controls.WindowState.Normal;
 
         if (!IsVisible)

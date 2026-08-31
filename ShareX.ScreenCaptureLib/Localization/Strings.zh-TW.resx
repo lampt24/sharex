@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX - 螢幕錄製選項</value>
+    <value>ShareX - 螢幕錄製選項</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>螢幕錄製</value>
@@ -152,7 +152,7 @@
     <value>固定速率因子 (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>較低的值會提高品質並增大檔案。0 為無損；CapX 預設值為 28。</value>
+    <value>較低的值會提高品質並增大檔案。0 為無損；ShareX 預設值為 28。</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>目標位元率 (kbps)</value>
@@ -230,7 +230,7 @@
     <value>找不到 DirectShow 裝置。桌面擷取已就緒。</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX - 螢幕錄製</value>
+    <value>ShareX - 螢幕錄製</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>開始</value>
@@ -251,7 +251,7 @@
     <value>取消</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - 捲動擷取</value>
+    <value>ShareX - 捲動擷取</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>擷取...</value>

@@ -731,6 +731,9 @@ namespace ShareX.HelpersLib.Localization {
         public static string HotkeyType_AnalyzeImage {
             get { return ResourceManager.GetString("HotkeyType_AnalyzeImage", resourceCulture); }
         }
+        public static string HotkeyType_CaptureText {
+            get { return ResourceManager.GetString("HotkeyType_CaptureText", resourceCulture); }
+        }
         public static string HotkeyType_AutoCapture {
             get { return ResourceManager.GetString("HotkeyType_AutoCapture", resourceCulture); }
         }

@@ -1,6 +1,6 @@
-# CapX Avalonia localization status
+# ShareX.Avalonia localization status
 
-The CapX Avalonia interface uses the shared `Strings.resx` catalog in this directory for its user-facing interface and runtime diagnostics. `ShareX.Avalonia` remains the technical project identity. Resource keys are scoped by their owning component.
+ShareX.Avalonia uses the shared `Strings.resx` catalog in this directory for its user-facing interface and runtime diagnostics. Resource keys are scoped by their owning component.
 
 | Area | Resource prefix | Keys | Status |
 | --- | --- | ---: | --- |

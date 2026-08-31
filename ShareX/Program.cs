@@ -51,10 +51,9 @@ namespace ShareX
 {
     internal static class Program
     {
-        public const string AppName = "CapX";
-        private const string CompatibilityAppName = "ShareX";
+        public const string AppName = "ShareX";
         public const string MutexName = "82E6AC09-0FEF-4390-AD9F-0DD3F5561EFC";
-        public static readonly string PipeName = $"{Environment.MachineName}-{Environment.UserName}-{CompatibilityAppName}";
+        public static readonly string PipeName = $"{Environment.MachineName}-{Environment.UserName}-{AppName}";
 
         public const ShareXBuild Build =
 #if RELEASE
@@ -146,8 +145,8 @@ namespace ShareX
 
         private const string PersonalPathConfigFileName = "PersonalPath.cfg";
 
-        public static readonly string DefaultPersonalFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), CompatibilityAppName);
-        public static readonly string PortablePersonalFolder = FileHelpers.GetAbsolutePath(CompatibilityAppName);
+        public static readonly string DefaultPersonalFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), AppName);
+        public static readonly string PortablePersonalFolder = FileHelpers.GetAbsolutePath(AppName);
 
         private static string PersonalPathConfigFilePath
         {
@@ -167,7 +166,7 @@ namespace ShareX
         private static readonly string CurrentPersonalPathConfigFilePath = Path.Combine(DefaultPersonalFolder, PersonalPathConfigFileName);
 
         private static readonly string PreviousPersonalPathConfigFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            CompatibilityAppName, PersonalPathConfigFileName);
+            AppName, PersonalPathConfigFileName);
 
         private static readonly string PortableCheckFilePath = FileHelpers.GetAbsolutePath("Portable");
         public static readonly string SteamInAppFilePath = FileHelpers.GetAbsolutePath("Steam");
@@ -304,7 +303,7 @@ namespace ShareX
 
                     if (restartRequested)
                     {
-                        DebugHelper.WriteLine($"{AppName} restarting.");
+                        DebugHelper.WriteLine("ShareX restarting.");
 
                         if (restartAsAdmin)
                         {
@@ -325,7 +324,7 @@ namespace ShareX
         {
             ApplicationConfiguration.Initialize();
 
-            DebugHelper.WriteLine($"{AppName} starting.");
+            DebugHelper.WriteLine("ShareX starting.");
             DebugHelper.WriteLine("Version: " + VersionText);
             DebugHelper.WriteLine("Build: " + Build);
             DebugHelper.WriteLine("Command line: " + Environment.CommandLine);
@@ -393,13 +392,13 @@ namespace ShareX
             {
                 closeSequenceStarted = true;
 
-                DebugHelper.WriteLine($"{AppName} closing.");
+                DebugHelper.WriteLine("ShareX closing.");
 
                 WatchFolderManager?.Dispose();
                 SettingManager.HistoryClose();
                 SettingManager.SaveAllSettings();
 
-                DebugHelper.WriteLine($"{AppName} closed.");
+                DebugHelper.WriteLine("ShareX closed.");
             }
         }
 
@@ -543,7 +542,7 @@ namespace ShareX
                         sb.AppendLine();
                         sb.Append(e);
 
-                        MessageBox.Show(sb.ToString(), AppName + " - " + Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(sb.ToString(), "ShareX - " + Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         CustomPersonalPath = "";
                     }
                 }
@@ -646,7 +645,7 @@ namespace ShareX
                     {
                         DebugHelper.WriteException(e);
                         MessageBox.Show(string.Format(Strings.Program_WritePersonalPathConfig_Cant_access_to_file, PersonalPathConfigFilePath),
-                            AppName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     catch (Exception e)
                     {

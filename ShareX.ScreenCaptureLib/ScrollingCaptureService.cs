@@ -26,10 +26,10 @@ public sealed class ScrollingCaptureService : IDisposable
     public Bitmap Result => _manager.Result;
     public bool IsCapturing => _manager.IsCapturing;
 
-    public ScrollingCaptureService(ScrollingCaptureOptions options)
+    public ScrollingCaptureService(ScrollingCaptureOptions options, ScrollingCaptureDirection direction = ScrollingCaptureDirection.Vertical)
     {
         Options = options;
-        _manager = new ScrollingCaptureManager(options);
+        _manager = new ScrollingCaptureManager(options, direction);
     }
 
     public Task<bool> SelectWindowAsync() => _manager.SelectWindowAsync();

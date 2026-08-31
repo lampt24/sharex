@@ -1,4 +1,4 @@
-#define MyAppName "CapX"
+#define MyAppName "ShareX"
 #ifndef Platform
   #define Platform "x64"
 #endif
@@ -11,16 +11,16 @@
 #endif
 #define MyAppRootDirectory "..\.."
 #define MyAppOutputDirectory MyAppRootDirectory + "\Output"
-#define MyAppReleaseDirectory MyAppRootDirectory + "\ShareX\bin\Release\" + RuntimeId
-#define MyAppFileName "CapX.exe"
+#define MyAppReleaseDirectory MyAppRootDirectory + "\" + MyAppName + "\bin\Release\" + RuntimeId
+#define MyAppFileName MyAppName + ".exe"
 #define MyAppFilePath MyAppReleaseDirectory + "\" + MyAppFileName
 #define MyAppVersion GetStringFileInfo(MyAppFilePath, "ProductVersion")
-#define MyAppPublisher "CapX Team"
+#define MyAppPublisher "ShareX Team"
 #define MyAppURL "https://getsharex.com"
 #define MyAppId "82E6AC09-0FEF-4390-AD9F-0DD3F5561EFC"
 
 [Setup]
-AppCopyright=Copyright (c) 2007-2026 CapX Team
+AppCopyright=Copyright (c) 2007-2026 ShareX Team
 AppId={#MyAppId}
 AppMutex={#MyAppId}
 AppName={#MyAppName}
@@ -41,30 +41,17 @@ PrivilegesRequired=none
 SolidCompression=yes
 UninstallDisplayIcon={app}\{#MyAppFileName}
 UninstallDisplayName={#MyAppName}
-UsePreviousGroup=no
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoTextVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
 
 [Tasks]
 Name: "CreateDesktopIcon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional shortcuts:"; Check: not IsUpdating and not DesktopIconExists
-Name: "CreateContextMenuButton"; Description: "Show ""Upload with CapX"" button in Windows Explorer context menu"; GroupDescription: "Additional shortcuts:"; Check: not IsUpdating
+Name: "CreateContextMenuButton"; Description: "Show ""Upload with ShareX"" button in Windows Explorer context menu"; GroupDescription: "Additional shortcuts:"; Check: not IsUpdating
 Name: "CreateSendToIcon"; Description: "Create a send to shortcut"; GroupDescription: "Additional shortcuts:"; Check: not IsUpdating
-Name: "CreateStartupIcon"; Description: "Run CapX when Windows starts"; GroupDescription: "Other tasks:"; Check: not IsUpdating
+Name: "CreateStartupIcon"; Description: "Run ShareX when Windows starts"; GroupDescription: "Other tasks:"; Check: not IsUpdating
 Name: "EnableBrowserExtensionSupport"; Description: "Enable browser extension support"; GroupDescription: "Other tasks:"; Check: not IsUpdating
 Name: "DisablePrintScreenKeyForSnippingTool"; Description: "Disable Print Screen key for Snipping Tool"; GroupDescription: "Other tasks:"; Check: not IsUpdating
-
-[InstallDelete]
-Type: files; Name: "{app}\ShareX.exe"
-Type: files; Name: "{userdesktop}\ShareX.lnk"
-Type: files; Name: "{usersendto}\ShareX.lnk"
-Type: files; Name: "{userstartup}\ShareX.lnk"
-Type: files; Name: "{userprograms}\ShareX\ShareX.lnk"
-Type: files; Name: "{userprograms}\ShareX\Uninstall ShareX.lnk"
-Type: dirifempty; Name: "{userprograms}\ShareX"
-Type: files; Name: "{commonprograms}\ShareX\ShareX.lnk"; Check: IsAdmin
-Type: files; Name: "{commonprograms}\ShareX\Uninstall ShareX.lnk"; Check: IsAdmin
-Type: dirifempty; Name: "{commonprograms}\ShareX"; Check: IsAdmin
 
 [Files]
 Source: "{#MyAppReleaseDirectory}\*.exe"; DestDir: {app}; Flags: ignoreversion
@@ -109,8 +96,6 @@ Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppFileName}"; WorkingD
 Filename: "{app}\{#MyAppFileName}"; Description: "{cm:LaunchProgram,{#MyAppName}}"; Flags: nowait postinstall; Check: not IsNoRun
 
 [Registry]
-Root: "HKCU"; Subkey: "Software\Classes\*\shell\ShareX"; Flags: deletekey dontcreatekey
-Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\ShareX"; Flags: deletekey dontcreatekey
 Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#MyAppName}"; ValueType: string; ValueData: "Upload with {#MyAppName}"; Tasks: CreateContextMenuButton
 Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#MyAppName}"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\{#MyAppFileName}"",0"; Tasks: CreateContextMenuButton
 Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#MyAppName}\command"; ValueType: string; ValueData: """{app}\{#MyAppFileName}"" ""%1"""; Tasks: CreateContextMenuButton

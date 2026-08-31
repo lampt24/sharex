@@ -144,6 +144,9 @@ namespace ShareX
                 case HotkeyType.ScrollingCapture:
                     await OpenScrollingCapture(safeTaskSettings);
                     break;
+                case HotkeyType.HorizontalScrollingCapture:
+                    await OpenHorizontalScrollingCapture(safeTaskSettings);
+                    break;
                 case HotkeyType.AutoCapture:
                     OpenAutoCapture(safeTaskSettings);
                     break;
@@ -299,6 +302,9 @@ namespace ShareX
                     break;
                 case HotkeyType.AnalyzeImage:
                     AnalyzeImage(safeTaskSettings);
+                    break;
+                case HotkeyType.CaptureText:
+                    CaptureText(safeTaskSettings);
                     break;
                 case HotkeyType.OCR:
                     if (!string.IsNullOrEmpty(filePath))
@@ -783,6 +789,17 @@ namespace ShareX
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
 
             await ScrollingCaptureWindowIntegration.StartStopAsync(taskSettings.CaptureSettingsReference.ScrollingCaptureOptions,
+                ScrollingCaptureDirection.Vertical,
+                img => UploadManager.RunImageTask(img, taskSettings),
+                () => PlayNotificationSoundAsync(NotificationSound.ActionCompleted, taskSettings));
+        }
+
+        public static async Task OpenHorizontalScrollingCapture(TaskSettings taskSettings = null)
+        {
+            if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
+
+            await ScrollingCaptureWindowIntegration.StartStopAsync(taskSettings.CaptureSettingsReference.ScrollingCaptureOptions,
+                ScrollingCaptureDirection.Horizontal,
                 img => UploadManager.RunImageTask(img, taskSettings),
                 () => PlayNotificationSoundAsync(NotificationSound.ActionCompleted, taskSettings));
         }
@@ -888,7 +905,7 @@ namespace ShareX
                     if (taskSettings.GeneralSettings.ShowToastNotificationAfterTaskCompleted)
                     {
                         ShowNotificationTip(string.Format(Strings.TaskHelpers_OpenQuickScreenColorPicker_Copied_to_clipboard___0_, text),
-                            Program.AppName + " - " + Strings.ScreenColorPicker);
+                            "ShareX - " + Strings.ScreenColorPicker);
                     }
                 }
             }
@@ -1248,7 +1265,7 @@ namespace ShareX
             }
             else
             {
-                MessageBox.Show(string.Format(Strings.TaskHelpers_FileDoesNotExist, filePath), Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format(Strings.TaskHelpers_FileDoesNotExist, filePath), "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1768,6 +1785,20 @@ namespace ShareX
             ShowAnalyzeImageWindow(filePath, taskSettings);
         }
 
+        public static void CaptureText(TaskSettings taskSettings = null)
+        {
+            if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
+
+            ShowCaptureTextWindow(null, taskSettings);
+        }
+
+        public static void CaptureText(string filePath, TaskSettings taskSettings = null)
+        {
+            if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
+
+            ShowCaptureTextWindow(filePath, taskSettings);
+        }
+
         private static void ShowAnalyzeImageWindow(string filePath, TaskSettings taskSettings)
         {
             AIOptions options = taskSettings.ToolsSettingsReference.AIOptions;
@@ -1788,6 +1819,33 @@ namespace ShareX
                     return stream.ToArray();
                 },
                 () => PlayNotificationSoundAsync(NotificationSound.ActionCompleted, taskSettings));
+        }
+
+        private static void ShowCaptureTextWindow(string filePath, TaskSettings taskSettings)
+        {
+            AIOptions options = CaptureTextOptions.Create(taskSettings.ToolsSettingsReference.AIOptions);
+
+            ToolsIntegration.ShowAnalyzeImageWindow(
+                filePath,
+                options,
+                async () =>
+                {
+                    using Bitmap region = await RegionCaptureTasks.GetRegionImageAsync(taskSettings.CaptureSettings.SurfaceOptions);
+                    if (region == null)
+                    {
+                        return null;
+                    }
+
+                    using MemoryStream stream = new MemoryStream();
+                    region.Save(stream, ImageFormat.Png);
+                    return stream.ToArray();
+                },
+                () => PlayNotificationSoundAsync(NotificationSound.ActionCompleted, taskSettings),
+                updatedOptions =>
+                {
+                    CaptureTextOptions.SaveConfiguration(taskSettings.ToolsSettingsReference.AIOptions, updatedOptions);
+                    SettingManager.SaveApplicationConfigAsync();
+                });
         }
 
         public static async Task OCRImage(TaskSettings taskSettings = null)
@@ -2006,7 +2064,7 @@ namespace ShareX
             }
             else
             {
-                MessageBox.Show(Strings.ClipboardDoesNotContainAnImage, Program.AppName + " - " + Strings.PinToScreen, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.ClipboardDoesNotContainAnImage, "ShareX - " + Strings.PinToScreen, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2090,7 +2148,7 @@ namespace ShareX
             if (!Environment.Is64BitOperatingSystem && !taskSettings.CaptureSettings.FFmpegOptions.OverrideCLIPath)
             {
                 MessageBox.Show(Strings.FFmpegOnlySupports64BitOperatingSystems,
-                    Program.AppName + " - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "ShareX - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return false;
             }
@@ -2100,7 +2158,7 @@ namespace ShareX
             if (!File.Exists(ffmpegPath))
             {
                 MessageBox.Show(Strings.FFmpegDoesNotExistAtTheFollowingPath + "\r\n" + ffmpegPath,
-                    Program.AppName + " - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "ShareX - " + Strings.FFmpegIsMissing, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return false;
             }
@@ -2206,7 +2264,8 @@ namespace ShareX
                 HotkeyType.RectangleRegion => LucideIcons.scan,
                 HotkeyType.CustomRegion => LucideIcons.scan_line,
                 HotkeyType.LastRegion => LucideIcons.layers,
-                HotkeyType.ScrollingCapture => LucideIcons.scroll_text,
+                HotkeyType.ScrollingCapture => LucideIcons.arrow_up_down,
+                HotkeyType.HorizontalScrollingCapture => LucideIcons.arrow_left_right,
                 HotkeyType.AutoCapture => LucideIcons.clock,
                 HotkeyType.StartAutoCapture => LucideIcons.circle_play,
                 HotkeyType.StopAutoCapture => LucideIcons.timer_off,
@@ -2246,6 +2305,7 @@ namespace ShareX
                 HotkeyType.VideoConverter => LucideIcons.file_video,
                 HotkeyType.VideoThumbnailer => LucideIcons.clapperboard,
                 HotkeyType.AnalyzeImage => LucideIcons.bot,
+                HotkeyType.CaptureText => LucideIcons.brain_circuit,
                 HotkeyType.OCR => LucideIcons.scan_text,
                 HotkeyType.QRCode => LucideIcons.qr_code,
                 HotkeyType.QRCodeDecodeFromScreen => LucideIcons.scan_eye,
@@ -2408,7 +2468,7 @@ namespace ShareX
 
                 if (!Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.AddImageEffects) &&
                     MessageBox.Show(Strings.WouldYouLikeToEnableImageEffects,
-                    Program.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == MessageBoxResult.Yes)
+                    "ShareX", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == MessageBoxResult.Yes)
                 {
                     Program.DefaultTaskSettings.AfterCaptureJob = Program.DefaultTaskSettings.AfterCaptureJob.Add(AfterCaptureTasks.AddImageEffects);
                     MainWindowIntegration.RefreshMenus();
@@ -2530,7 +2590,7 @@ namespace ShareX
             }
             else if (updateChecker.Status == UpdateStatus.UpToDate)
             {
-                MessageBox.Show(Strings.ShareXIsUpToDate, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.ShareXIsUpToDate, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2619,7 +2679,7 @@ namespace ShareX
             return !string.IsNullOrEmpty(content) && Encoding.UTF8.GetByteCount(content) <= 2952;
         }
 
-        public static void ShowNotificationTip(string text, string title = Program.AppName, int duration = -1)
+        public static void ShowNotificationTip(string text, string title = "ShareX", int duration = -1)
         {
             if (duration < 0)
             {
@@ -2653,14 +2713,14 @@ namespace ShareX
         {
             if (SystemOptions.DisableUpload)
             {
-                MessageBox.Show(Strings.YourSystemAdminDisabledTheUploadFeature, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.YourSystemAdminDisabledTheUploadFeature, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return false;
             }
 
             if (Program.Settings.DisableUpload)
             {
-                MessageBox.Show(Strings.ThisFeatureWillNotWorkWhenDisableUploadOptionIsEnabled, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Strings.ThisFeatureWillNotWorkWhenDisableUploadOptionIsEnabled, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return false;
             }

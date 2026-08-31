@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX - Opties voor schermopname</value>
+    <value>ShareX - Opties voor schermopname</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Schermopname</value>
@@ -152,7 +152,7 @@
     <value>Constante kwaliteitsfactor (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Lagere waarden verbeteren de kwaliteit en vergroten het bestand. 0 is verliesvrij; 28 is de CapX-standaard.</value>
+    <value>Lagere waarden verbeteren de kwaliteit en vergroten het bestand. 0 is verliesvrij; 28 is de ShareX-standaard.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Doelbitrate (kbps)</value>
@@ -230,7 +230,7 @@
     <value>Geen DirectShow-apparaten gevonden. Bureaubladopname is gereed.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX - Schermopname</value>
+    <value>ShareX - Schermopname</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Starten</value>
@@ -251,7 +251,7 @@
     <value>Annuleren</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Scrollende opname</value>
+    <value>ShareX - Scrollende opname</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Vastleggen...</value>

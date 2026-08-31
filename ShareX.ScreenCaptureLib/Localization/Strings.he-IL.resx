@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX - אפשרויות הקלטת מסך</value>
+    <value>ShareX - אפשרויות הקלטת מסך</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>הקלטת מסך</value>
@@ -152,7 +152,7 @@
     <value>מקדם קצב קבוע (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>ערכים נמוכים משפרים את האיכות ומגדילים את הקובץ. 0 הוא ללא אובדן; ברירת המחדל של CapX היא 28.</value>
+    <value>ערכים נמוכים משפרים את האיכות ומגדילים את הקובץ. 0 הוא ללא אובדן; ברירת המחדל של ShareX היא 28.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>קצב סיביות יעד (kbps)</value>
@@ -230,7 +230,7 @@
     <value>לא נמצאו התקני DirectShow. לכידת שולחן העבודה מוכנה.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX - הקלטת מסך</value>
+    <value>ShareX - הקלטת מסך</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>התחלה</value>
@@ -251,7 +251,7 @@
     <value>ביטול</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - לכידה בגלילה</value>
+    <value>ShareX - לכידה בגלילה</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>לכידה...</value>

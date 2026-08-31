@@ -28,6 +28,7 @@ public partial class AnalyzeImageWindow : Window
     private readonly AnalyzeImageRegionCaptureHandler _captureRegion;
     private readonly AnalyzeImageService _service = new();
     private readonly AIOptions _options;
+    private readonly Action<AIOptions>? _optionsChanged;
 
     public AnalyzeImageWindow()
         : this(null, new AIOptions(), () => Task.FromResult<byte[]?>(null))
@@ -36,9 +37,11 @@ public partial class AnalyzeImageWindow : Window
 
     public AnalyzeImageWindow(string? imagePath, AIOptions options,
         AnalyzeImageRegionCaptureHandler captureRegion,
-        Action? playNotificationSound = null)
+        Action? playNotificationSound = null,
+        Action<AIOptions>? optionsChanged = null)
     {
         _options = options;
+        _optionsChanged = optionsChanged;
         _captureRegion = captureRegion;
         _viewModel = new AnalyzeImageViewModel(imagePath, options)
         {
@@ -100,7 +103,11 @@ public partial class AnalyzeImageWindow : Window
     private async Task EditOptionsAsync()
     {
         AnalyzeImageOptionsWindow window = new(_options, _service);
-        await window.ShowDialog<bool>(this);
+        bool? saved = await window.ShowDialog<bool>(this);
+        if (saved == true)
+        {
+            _optionsChanged?.Invoke(_options);
+        }
     }
 
     private async Task CopyTextAsync(string text)

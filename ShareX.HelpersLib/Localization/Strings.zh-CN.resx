@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - 颜色选择器</value>
+    <value>ShareX - 颜色选择器</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>颜色模式</value>
@@ -161,7 +161,7 @@
     <value>取消</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - 错误</value>
+    <value>ShareX - 错误</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>发生错误</value>
@@ -191,7 +191,7 @@
     <value>发生意外错误。</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - 图像查看器</value>
+    <value>ShareX - 图像查看器</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>打开图像</value>
@@ -200,13 +200,13 @@
     <value>输入</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>输出</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>全部复制</value>
@@ -215,7 +215,7 @@
     <value>关闭</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - 打印选项</value>
+    <value>ShareX - 打印选项</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>打印选项</value>
@@ -245,13 +245,13 @@
     <value>预览...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - 文件下载器</value>
+    <value>ShareX - 文件下载器</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>文件下载器</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>下载 CapX 更新和其他所需文件。</value>
+    <value>下载 ShareX 更新和其他所需文件。</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>下载</value>
@@ -260,7 +260,7 @@
     <value>查看更新日志</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>CapX 更新可用</value>
+    <value>ShareX 更新可用</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>红色 (0-255)</value>
@@ -806,7 +806,7 @@
     <value>拖放上传</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>退出 CapX</value>
+    <value>退出 ShareX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>上传文件</value>

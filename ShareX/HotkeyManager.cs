@@ -205,7 +205,7 @@ namespace ShareX
                 string hotkeyText = failedHotkeysList.Count > 1 ? Strings.HotkeyManager_ShowFailedHotkeys_hotkeys : Strings.HotkeyManager_ShowFailedHotkeys_hotkey;
                 string text = string.Format(Strings.HotkeyManager_ShowFailedHotkeys_Unable_to_register_hotkey, hotkeyText, failedHotkeys);
 
-                MessageBox.Show(text, Program.AppName + " - " + Strings.HotkeyManager_ShowFailedHotkeys_Hotkey_registration_failed, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(text, "ShareX - " + Strings.HotkeyManager_ShowFailedHotkeys_Hotkey_registration_failed, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

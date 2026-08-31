@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - Selettore colore</value>
+    <value>ShareX - Selettore colore</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Modalità colore</value>
@@ -161,7 +161,7 @@
     <value>Annulla</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - Errore</value>
+    <value>ShareX - Errore</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Si è verificato un errore</value>
@@ -191,7 +191,7 @@
     <value>Si è verificato un errore imprevisto.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - Visualizzatore immagini</value>
+    <value>ShareX - Visualizzatore immagini</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Apri immagine</value>
@@ -200,13 +200,13 @@
     <value>Input</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Output</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Copia tutto</value>
@@ -215,7 +215,7 @@
     <value>Chiudi</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - Opzioni di stampa</value>
+    <value>ShareX - Opzioni di stampa</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Opzioni di stampa</value>
@@ -245,13 +245,13 @@
     <value>Anteprima...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - Download file</value>
+    <value>ShareX - Download file</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Download file</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>Scarica gli aggiornamenti di CapX e gli altri file necessari.</value>
+    <value>Scarica gli aggiornamenti di ShareX e gli altri file necessari.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Scarica</value>
@@ -260,7 +260,7 @@
     <value>Visualizza registro modifiche</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>Aggiornamento di CapX disponibile</value>
+    <value>Aggiornamento di ShareX disponibile</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Colore rosso (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Carica con Drag &amp; Drop</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Esci da CapX</value>
+    <value>Esci da ShareX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Carica File</value>

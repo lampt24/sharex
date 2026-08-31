@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - Pemilih warna</value>
+    <value>ShareX - Pemilih warna</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Mode warna</value>
@@ -161,7 +161,7 @@
     <value>Batal</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - Kesalahan</value>
+    <value>ShareX - Kesalahan</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Terjadi kesalahan</value>
@@ -191,7 +191,7 @@
     <value>Terjadi kesalahan yang tidak terduga.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - Penampil gambar</value>
+    <value>ShareX - Penampil gambar</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Buka gambar</value>
@@ -200,13 +200,13 @@
     <value>Masukan</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Keluaran</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Salin semua</value>
@@ -215,7 +215,7 @@
     <value>Tutup</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - Opsi cetak</value>
+    <value>ShareX - Opsi cetak</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Opsi cetak</value>
@@ -245,13 +245,13 @@
     <value>Pratinjau...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - Pengunduh berkas</value>
+    <value>ShareX - Pengunduh berkas</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Pengunduh berkas</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>Unduh pembaruan CapX dan berkas lain yang diperlukan.</value>
+    <value>Unduh pembaruan ShareX dan berkas lain yang diperlukan.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Unduh</value>
@@ -260,7 +260,7 @@
     <value>Lihat catatan perubahan</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>Pembaruan CapX tersedia</value>
+    <value>Pembaruan ShareX tersedia</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Warna merah (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Unggah seret dan jatuhkan</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Keluar CapX</value>
+    <value>Keluar ShareX</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Unggah file</value>

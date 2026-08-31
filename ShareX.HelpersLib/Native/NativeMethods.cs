@@ -136,6 +136,9 @@ namespace ShareX.HelpersLib
         public static extern IntPtr CreateIconIndirect([In] ref IconInfo piconinfo);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+        public static extern short GetAsyncKeyState(int keyCode);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
         public static extern short GetKeyState(int keyCode);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]

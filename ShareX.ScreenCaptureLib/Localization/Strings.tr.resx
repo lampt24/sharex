@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX - Ekran kaydı seçenekleri</value>
+    <value>ShareX - Ekran kaydı seçenekleri</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>Ekran kaydı</value>
@@ -152,7 +152,7 @@
     <value>Sabit Hız Faktörü (CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>Düşük değerler kaliteyi artırır ve dosya boyutunu büyütür. 0 kayıpsızdır; CapX varsayılanı 28'dir.</value>
+    <value>Düşük değerler kaliteyi artırır ve dosya boyutunu büyütür. 0 kayıpsızdır; ShareX varsayılanı 28'dir.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>Hedef bit hızı (kbps)</value>
@@ -230,7 +230,7 @@
     <value>DirectShow aygıtı bulunamadı. Masaüstü yakalama hazır.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX - Ekran kaydı</value>
+    <value>ShareX - Ekran kaydı</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>Başlat</value>
@@ -251,7 +251,7 @@
     <value>İptal</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Kaydırmalı yakalama</value>
+    <value>ShareX - Kaydırmalı yakalama</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>Yakala...</value>

@@ -163,6 +163,7 @@ public sealed partial class AnalyzeImageViewModel : ViewModelBase, IDisposable
             string result = await _service.AnalyzeAsync(_imagePath, _imageData, _options.Clone());
             timer.Stop();
             ResultText = result?.ReplaceLineEndings("\r\n") ?? string.Empty;
+            ToolsDiagnostics.ReportWarning(nameof(AnalyzeImageViewModel), $"Parsed Vision result: {ResultText}");
             ElapsedText = string.Format(Localization.Strings.AnalyzeImageViewModel_Time_ms, timer.ElapsedMilliseconds);
 
             if (_options.AutoCopyResult && HasResult && CopyTextRequested != null)

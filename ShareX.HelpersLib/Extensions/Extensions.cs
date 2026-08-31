@@ -463,7 +463,7 @@ namespace ShareX.HelpersLib
         public static void ShowError(this Exception e, bool fullError = true)
         {
             string error = fullError ? e.ToString() : e.Message;
-            MessageBox.Show(error, "CapX - " + Localization.Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(error, "ShareX - " + Localization.Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static Task ContinueInCurrentContext(this Task task, Action action)

@@ -204,5 +204,6 @@ namespace ShareX.HelpersLib
             input.Data.Mouse.mouseData = (uint)delta;
             InputList.Add(input);
         }
+
     }
 }

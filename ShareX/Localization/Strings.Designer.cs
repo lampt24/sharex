@@ -113,6 +113,14 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("MainMenuBuilder_AnalyzeImage", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Capture text (AI Vision).
+        /// </summary>
+        public static string MainMenuBuilder_CaptureText {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_CaptureText", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Application settings....
@@ -816,6 +824,14 @@ namespace ShareX.Localization {
         public static string MainWindow_AnalyzeImage {
             get {
                 return ResourceManager.GetString("MainWindow_AnalyzeImage", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to Capture text (AI Vision).
+        /// </summary>
+        public static string MainWindow_CaptureText {
+            get {
+                return ResourceManager.GetString("MainWindow_CaptureText", resourceCulture);
             }
         }
         

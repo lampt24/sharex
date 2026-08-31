@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - Színválasztó</value>
+    <value>ShareX - Színválasztó</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Színmód</value>
@@ -161,7 +161,7 @@
     <value>Mégse</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - Hiba</value>
+    <value>ShareX - Hiba</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Hiba történt</value>
@@ -191,7 +191,7 @@
     <value>Váratlan hiba történt.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - Képnézegető</value>
+    <value>ShareX - Képnézegető</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Kép megnyitása</value>
@@ -200,13 +200,13 @@
     <value>Bemenet</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Kimenet</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Összes másolása</value>
@@ -215,7 +215,7 @@
     <value>Bezárás</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - Nyomtatási beállítások</value>
+    <value>ShareX - Nyomtatási beállítások</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Nyomtatási beállítások</value>
@@ -245,13 +245,13 @@
     <value>Előnézet...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - Fájlletöltő</value>
+    <value>ShareX - Fájlletöltő</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Fájlletöltő</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>CapX-frissítések és más szükséges fájlok letöltése.</value>
+    <value>ShareX-frissítések és más szükséges fájlok letöltése.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>Letöltés</value>
@@ -260,7 +260,7 @@
     <value>Változásnapló megtekintése</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>CapX-frissítés érhető el</value>
+    <value>ShareX-frissítés érhető el</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Piros szín (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Húzd és vond feltöltés</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Kilépés a CapX-ből</value>
+    <value>Kilépés a ShareX-ből</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Fájl feltöltése</value>

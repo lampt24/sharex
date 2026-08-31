@@ -1069,7 +1069,7 @@ namespace ShareX
                 catch (Exception e)
                 {
                     DebugHelper.WriteException(e);
-                    MessageBox.Show(string.Format(Strings.UploadManager_DownloadAndUploadFile_Download_failed, e), Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(Strings.UploadManager_DownloadAndUploadFile_Download_failed, e), "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

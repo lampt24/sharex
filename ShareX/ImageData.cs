@@ -59,7 +59,7 @@ namespace ShareX
                     message += "\r\n\r\n" + Strings.YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX;
                 }
 
-                MessageBox.Show(message, Program.AppName + " - " + Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(message, "ShareX - " + Strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return false;

@@ -308,6 +308,8 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         AnalyzeImage,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        CaptureText,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
         OCR,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         QRCode,
@@ -351,7 +353,9 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_Other)]
         ToggleTrayMenu,
         [Category(EnumExtensions.HotkeyType_Category_Other)]
-        ExitShareX
+        ExitShareX,
+        [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
+        HorizontalScrollingCapture
     }
 
     public enum ToastClickAction // Localized

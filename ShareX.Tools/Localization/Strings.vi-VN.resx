@@ -77,7 +77,7 @@
     <value>Tự động phân tích khi mở</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key" xml:space="preserve">
-    <value>Khóa API</value>
+    <value>Access token</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key_page" xml:space="preserve">
     <value>Trang khóa API...</value>
@@ -95,7 +95,7 @@
     <value>Tự động sao chép kết quả</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Custom_base_URL" xml:space="preserve">
-    <value>URL cơ sở tùy chỉnh</value>
+    <value>API URL</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Get_API_key" xml:space="preserve">
     <value>Lấy khóa API</value>

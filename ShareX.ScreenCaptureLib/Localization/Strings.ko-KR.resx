@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FFmpegOptionsWindow_Title" xml:space="preserve">
-    <value>CapX - 화면 녹화 옵션</value>
+    <value>ShareX - 화면 녹화 옵션</value>
   </data>
   <data name="FFmpegOptionsWindow_Screen_recording" xml:space="preserve">
     <value>화면 녹화</value>
@@ -152,7 +152,7 @@
     <value>고정 비율 계수(CRF)</value>
   </data>
   <data name="FFmpegOptionsWindow_CRF_hint" xml:space="preserve">
-    <value>값이 낮을수록 품질과 파일 크기가 증가합니다. 0은 무손실이며 CapX 기본값은 28입니다.</value>
+    <value>값이 낮을수록 품질과 파일 크기가 증가합니다. 0은 무손실이며 ShareX 기본값은 28입니다.</value>
   </data>
   <data name="FFmpegOptionsWindow_Target_bitrate" xml:space="preserve">
     <value>목표 비트 전송률(kbps)</value>
@@ -230,7 +230,7 @@
     <value>DirectShow 장치를 찾지 못했습니다. 데스크톱 캡처가 준비되었습니다.</value>
   </data>
   <data name="ScreenRecordWindow_Title" xml:space="preserve">
-    <value>CapX - 화면 녹화</value>
+    <value>ShareX - 화면 녹화</value>
   </data>
   <data name="ScreenRecordWindow_Start" xml:space="preserve">
     <value>시작</value>
@@ -251,7 +251,7 @@
     <value>취소</value>
   </data>
   <data name="ScrollingCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - 스크롤 캡처</value>
+    <value>ShareX - 스크롤 캡처</value>
   </data>
   <data name="ScrollingCaptureWindow_Capture" xml:space="preserve">
     <value>캡처...</value>

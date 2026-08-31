@@ -619,7 +619,7 @@ public partial class NotificationWindow : Window
                     break;
                 case ToastClickAction.DeleteFile:
                     if (MessageBox.Show(Strings.MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_,
-                        Program.AppName + " - " + Strings.MainForm_tsmiDeleteSelectedFile_Click_File_delete_confirmation,
+                        "ShareX - " + Strings.MainForm_tsmiDeleteSelectedFile_Click_File_delete_confirmation,
                         MessageBoxButtons.YesNo) == MessageBoxResult.Yes)
                     {
                         FileHelpers.DeleteFile(config.FilePath, true);

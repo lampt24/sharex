@@ -62,7 +62,7 @@
     <value>Połącz obrazy</value>
   </data>
   <data name="MainWindow_FilesDroppedUploadDescription" xml:space="preserve">
-    <value>Upuszczone tutaj pliki zostaną przesłane przez CapX.</value>
+    <value>Upuszczone tutaj pliki zostaną przesłane przez ShareX.</value>
   </data>
   <data name="MainWindow_Horizontal" xml:space="preserve">
     <value>Poziomo</value>
@@ -77,10 +77,10 @@
     <value>Zwolnij, aby przesłać tekst</value>
   </data>
   <data name="MainWindow_ShareXHotkeys" xml:space="preserve">
-    <value>Skróty klawiszowe CapX</value>
+    <value>Skróty klawiszowe ShareX</value>
   </data>
   <data name="MainWindow_TextDroppedUploadDescription" xml:space="preserve">
-    <value>Upuszczony tutaj tekst zostanie przesłany przez CapX.</value>
+    <value>Upuszczony tutaj tekst zostanie przesłany przez ShareX.</value>
   </data>
   <data name="MainWindow_Vertical" xml:space="preserve">
     <value>Pionowo</value>
@@ -200,7 +200,7 @@
     <value>Folder</value>
   </data>
   <data name="MainMenuBuilder_FollowShareX" xml:space="preserve">
-    <value>Obserwuj CapX...</value>
+    <value>Obserwuj ShareX...</value>
   </data>
   <data name="MainWindow_ForumImage" xml:space="preserve">
     <value>Obraz forum</value>
@@ -386,7 +386,7 @@
     <value>Pokaż odpowiedź...</value>
   </data>
   <data name="MainMenuBuilder_ShowShareX" xml:space="preserve">
-    <value>Pokaż CapX</value>
+    <value>Pokaż ShareX</value>
   </data>
   <data name="MainWindow_StopUpload" xml:space="preserve">
     <value>Zatrzymaj przesyłanie</value>
@@ -476,10 +476,10 @@
     <value>Otwórz</value>
   </data>
   <data name="ApplicationSettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - Ustawienia aplikacji</value>
+    <value>ShareX - Ustawienia aplikacji</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartShareXToApplyThisChange" xml:space="preserve">
-    <value>Uruchom ponownie CapX, aby zastosować tę zmianę.</value>
+    <value>Uruchom ponownie ShareX, aby zastosować tę zmianę.</value>
   </data>
   <data name="ApplicationSettingsWindow_RestartNow" xml:space="preserve">
     <value>Uruchom ponownie teraz</value>
@@ -506,7 +506,7 @@
     <value>Pokaż postęp na przycisku paska zadań</value>
   </data>
   <data name="ApplicationSettingsWindow_UseWhiteShareXIcon" xml:space="preserve">
-    <value>Użyj białej ikony CapX</value>
+    <value>Użyj białej ikony ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_RememberMainWindowPosition" xml:space="preserve">
     <value>Zapamiętaj pozycję głównego okna</value>
@@ -569,13 +569,13 @@
     <value>Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowUploadWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Pokaż przycisk &quot;Prześlij za pomocą CapX&quot; w menu kontekstowym Eksploratora Windows</value>
+    <value>Pokaż przycisk &quot;Prześlij za pomocą ShareX&quot; w menu kontekstowym Eksploratora Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu" xml:space="preserve">
-    <value>Pokaż przycisk &quot;Edytuj za pomocą CapX&quot; w menu kontekstowym Eksploratora Windows</value>
+    <value>Pokaż przycisk &quot;Edytuj za pomocą ShareX&quot; w menu kontekstowym Eksploratora Windows</value>
   </data>
   <data name="ApplicationSettingsWindow_ShowShareXInSendToMenu" xml:space="preserve">
-    <value>Pokaż CapX w menu &quot;Wyślij do&quot;</value>
+    <value>Pokaż ShareX w menu &quot;Wyślij do&quot;</value>
   </data>
   <data name="ApplicationSettingsWindow_ChromeExtension" xml:space="preserve">
     <value>Rozszerzenie do Chrome</value>
@@ -584,7 +584,7 @@
     <value>Włącz obsługę rozszerzenia Chrome</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXChromeExtension" xml:space="preserve">
-    <value>Zainstaluj rozszerzenie CapX do Chrome...</value>
+    <value>Zainstaluj rozszerzenie ShareX do Chrome...</value>
   </data>
   <data name="ApplicationSettingsWindow_FirefoxAddon" xml:space="preserve">
     <value>Dodatek do Firefox</value>
@@ -593,19 +593,19 @@
     <value>Włącz obsługę dodatku do Firefoksa</value>
   </data>
   <data name="ApplicationSettingsWindow_InstallShareXFirefoxAddon" xml:space="preserve">
-    <value>Zainstaluj dodatek CapX do Firefox...</value>
+    <value>Zainstaluj dodatek ShareX do Firefox...</value>
   </data>
   <data name="ApplicationSettingsWindow_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
   <data name="ApplicationSettingsWindow_WhileShareXIsOpenShowInAppInSteam" xml:space="preserve">
-    <value>Gdy CapX jest otwarty, pokaż status &quot;W aplikacji&quot; na Steamie</value>
+    <value>Gdy ShareX jest otwarty, pokaż status &quot;W aplikacji&quot; na Steamie</value>
   </data>
   <data name="ApplicationSettingsWindow_Paths" xml:space="preserve">
     <value>Ścieżki</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXPersonalFolder" xml:space="preserve">
-    <value>Folder osobisty CapX</value>
+    <value>Folder osobisty ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_Browse" xml:space="preserve">
     <value>Przeglądaj...</value>
@@ -794,19 +794,19 @@
     <value>Anuluj</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseShareXPersonalFolderPath" xml:space="preserve">
-    <value>Wybierz ścieżkę folderu osobistego CapX</value>
+    <value>Wybierz ścieżkę folderu osobistego ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ChooseScreenshotsFolderPath" xml:space="preserve">
     <value>Wybierz ścieżkę folderu zrzutów ekranu</value>
   </data>
   <data name="ApplicationSettingsWindow_ExportShareXBackup" xml:space="preserve">
-    <value>Eksportuj kopię zapasową CapX</value>
+    <value>Eksportuj kopię zapasową ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ShareXBackup" xml:space="preserve">
-    <value>Kopia zapasowa CapX</value>
+    <value>Kopia zapasowa ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_ImportShareXBackup" xml:space="preserve">
-    <value>Importuj kopię zapasową CapX</value>
+    <value>Importuj kopię zapasową ShareX</value>
   </data>
   <data name="ApplicationSettingsWindow_EditClipboardFormat" xml:space="preserve">
     <value>Edytuj format schowka</value>
@@ -980,7 +980,7 @@
     <value>Prawy dolny</value>
   </data>
   <data name="HotkeySettingsWindow_WindowTitle" xml:space="preserve">
-    <value>CapX - Ustawienia skrótów klawiszowych</value>
+    <value>ShareX - Ustawienia skrótów klawiszowych</value>
   </data>
   <data name="HotkeySettingsWindow_Add" xml:space="preserve">
     <value>Dodaj</value>
@@ -1028,7 +1028,7 @@
     <value>Zresetować skróty klawiszowe?</value>
   </data>
   <data name="HotkeySettingsWindow_ResetHotkeysDescription" xml:space="preserve">
-    <value>Wszystkie skróty klawiszowe i ich niestandardowe ustawienia zadań zostaną zastąpione wartościami domyślnymi CapX.</value>
+    <value>Wszystkie skróty klawiszowe i ich niestandardowe ustawienia zadań zostaną zastąpione wartościami domyślnymi ShareX.</value>
   </data>
   <data name="HotkeySettingsWindow_Cancel" xml:space="preserve">
     <value>Anuluj</value>
@@ -1133,10 +1133,10 @@
     <value>Nie skonfigurowano przycisków. Pasek powiadomień zostanie ukryty.</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettings" xml:space="preserve">
-    <value>CapX - Ustawienia zadań</value>
+    <value>ShareX - Ustawienia zadań</value>
   </data>
   <data name="TaskSettingsWindow_ShareXTaskSettingsFor0" xml:space="preserve">
-    <value>CapX - Ustawienia zadania {0}</value>
+    <value>ShareX - Ustawienia zadania {0}</value>
   </data>
   <data name="TaskSettingsWindow_EditAction" xml:space="preserve">
     <value>Edytuj akcję</value>
@@ -1763,7 +1763,7 @@
     <value>Wybierz plik dźwiękowy</value>
   </data>
   <data name="DragDropUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Przesyłanie metodą przeciągnij i upuść</value>
+    <value>ShareX - Przesyłanie metodą przeciągnij i upuść</value>
   </data>
   <data name="DragDropUploadWindow_DropHere" xml:space="preserve">
     <value>Upuść tutaj</value>
@@ -1793,13 +1793,13 @@
     <value>Schowek jest pusty lub zawiera nieobsługiwane dane.</value>
   </data>
   <data name="FileExistWindow_Title" xml:space="preserve">
-    <value>CapX - Jak zapisać plik?</value>
+    <value>ShareX - Jak zapisać plik?</value>
   </data>
   <data name="FileExistWindow_FileAlreadyExists" xml:space="preserve">
     <value>Plik o tej nazwie już istnieje</value>
   </data>
   <data name="FileExistWindow_Instruction" xml:space="preserve">
-    <value>Wybierz nową nazwę pliku lub określ, jak CapX ma kontynuować.</value>
+    <value>Wybierz nową nazwę pliku lub określ, jak ShareX ma kontynuować.</value>
   </data>
   <data name="FileExistWindow_NewFileName" xml:space="preserve">
     <value>Nowa nazwa pliku</value>
@@ -1817,7 +1817,7 @@
     <value>Anuluj</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Title" xml:space="preserve">
-    <value>CapX - Przesyłanie dużego pliku</value>
+    <value>ShareX - Przesyłanie dużego pliku</value>
   </data>
   <data name="LargeFileUploadWarningWindow_Message" xml:space="preserve">
     <value>Próbujesz przesłać duży plik.</value>
@@ -1832,7 +1832,7 @@
     <value>Anuluj</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Title" xml:space="preserve">
-    <value>CapX - Przesyłanie plików</value>
+    <value>ShareX - Przesyłanie plików</value>
   </data>
   <data name="MultiUploadConfirmationWindow_Message" xml:space="preserve">
     <value>Czy na pewno przesłać {0} plików?</value>
@@ -1847,7 +1847,7 @@
     <value>Anuluj</value>
   </data>
   <data name="DebugLogWindow_Title" xml:space="preserve">
-    <value>CapX - Dziennik debugowania</value>
+    <value>ShareX - Dziennik debugowania</value>
   </data>
   <data name="DebugLogWindow_LoadedAssemblies" xml:space="preserve">
     <value>Załadowane zestawy</value>
@@ -1874,19 +1874,19 @@
     <value>Prześlij</value>
   </data>
   <data name="FirstTimeConfigWindow_Heading" xml:space="preserve">
-    <value>Pierwsza konfiguracja CapX</value>
+    <value>Pierwsza konfiguracja ShareX</value>
   </data>
   <data name="FirstTimeConfigWindow_Subtitle" xml:space="preserve">
-    <value>Wybierz sposób integracji CapX z systemem Windows.</value>
+    <value>Wybierz sposób integracji ShareX z systemem Windows.</value>
   </data>
   <data name="FirstTimeConfigWindow_ShellContextMenu" xml:space="preserve">
-    <value>Pokaż „Prześlij za pomocą CapX” w menu kontekstowym Eksploratora Windows</value>
+    <value>Pokaż „Prześlij za pomocą ShareX” w menu kontekstowym Eksploratora Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_SendToMenu" xml:space="preserve">
-    <value>Pokaż CapX w menu „Wyślij do”</value>
+    <value>Pokaż ShareX w menu „Wyślij do”</value>
   </data>
   <data name="FirstTimeConfigWindow_SteamInApp" xml:space="preserve">
-    <value>Gdy CapX jest otwarty, pokazuj „W aplikacji” w Steam</value>
+    <value>Gdy ShareX jest otwarty, pokazuj „W aplikacji” w Steam</value>
   </data>
   <data name="FirstTimeConfigWindow_OptionsLater" xml:space="preserve">
     <value>Te opcje można później zmienić w Ustawienia aplikacji → Integracja.</value>
@@ -1895,7 +1895,7 @@
     <value>OK</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindows" xml:space="preserve">
-    <value>Uruchamiaj CapX podczas startu systemu Windows</value>
+    <value>Uruchamiaj ShareX podczas startu systemu Windows</value>
   </data>
   <data name="FirstTimeConfigWindow_StartWithWindowsDisabledByUser" xml:space="preserve">
     <value>Uruchamianie zostało wyłączone w Menedżerze zadań</value>
@@ -1907,7 +1907,7 @@
     <value>Uruchamianie zostało włączone przez organizację</value>
   </data>
   <data name="ShortenURLWindow_Title" xml:space="preserve">
-    <value>CapX - Skracanie adresu URL</value>
+    <value>ShareX - Skracanie adresu URL</value>
   </data>
   <data name="ShortenURLWindow_Heading" xml:space="preserve">
     <value>Skróć adres URL</value>
@@ -1925,7 +1925,7 @@
     <value>Skróć</value>
   </data>
   <data name="URLUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Przesyłanie adresu URL</value>
+    <value>ShareX - Przesyłanie adresu URL</value>
   </data>
   <data name="URLUploadWindow_Heading" xml:space="preserve">
     <value>Prześlij adres URL</value>
@@ -1946,7 +1946,7 @@
     <value>Prześlij</value>
   </data>
   <data name="BeforeUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Przed przesłaniem</value>
+    <value>ShareX - Przed przesłaniem</value>
   </data>
   <data name="BeforeUploadWindow_Heading" xml:space="preserve">
     <value>Przed przesłaniem</value>
@@ -1976,7 +1976,7 @@
     <value>Podgląd niedostępny</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Title" xml:space="preserve">
-    <value>CapX - Edycja paska akcji</value>
+    <value>ShareX - Edycja paska akcji</value>
   </data>
   <data name="ActionsToolbarEditorWindow_Add" xml:space="preserve">
     <value>Dodaj...</value>
@@ -1997,7 +1997,7 @@
     <value>Zamknij</value>
   </data>
   <data name="ActionsToolbarWindow_Title" xml:space="preserve">
-    <value>CapX - Pasek akcji</value>
+    <value>ShareX - Pasek akcji</value>
   </data>
   <data name="ActionsToolbarWindow_DropToUpload" xml:space="preserve">
     <value>Upuść, aby przesłać</value>
@@ -2015,13 +2015,13 @@
     <value>Zawsze na wierzchu</value>
   </data>
   <data name="ActionsToolbarWindow_OpenAtStartup" xml:space="preserve">
-    <value>Otwórz przy uruchamianiu CapX</value>
+    <value>Otwórz przy uruchamianiu ShareX</value>
   </data>
   <data name="ActionsToolbarWindow_Edit" xml:space="preserve">
     <value>Edytuj...</value>
   </data>
   <data name="AfterCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Po przechwyceniu</value>
+    <value>ShareX - Po przechwyceniu</value>
   </data>
   <data name="AfterCaptureWindow_Heading" xml:space="preserve">
     <value>Po przechwyceniu</value>
@@ -2057,7 +2057,7 @@
     <value>Niestandardowe [{0}]</value>
   </data>
   <data name="AfterUploadWindow_Title" xml:space="preserve">
-    <value>CapX - Po przesłaniu</value>
+    <value>ShareX - Po przesłaniu</value>
   </data>
   <data name="AfterUploadWindow_UploadComplete" xml:space="preserve">
     <value>Przesyłanie zakończone</value>
@@ -2102,7 +2102,7 @@
     <value>Odnośniki</value>
   </data>
   <data name="AutoCaptureWindow_Title" xml:space="preserve">
-    <value>CapX - Automatyczne przechwytywanie</value>
+    <value>ShareX - Automatyczne przechwytywanie</value>
   </data>
   <data name="AutoCaptureWindow_CustomRegion" xml:space="preserve">
     <value>Obszar niestandardowy</value>
@@ -2156,7 +2156,7 @@
     <value>Usuń</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Title" xml:space="preserve">
-    <value>CapX - Edytor menu szybkich zadań</value>
+    <value>ShareX - Edytor menu szybkich zadań</value>
   </data>
   <data name="QuickTaskMenuEditorWindow_Add" xml:space="preserve">
     <value>Dodaj...</value>
@@ -2225,10 +2225,10 @@
     <value>{0}  •  Po przesłaniu: {1}</value>
   </data>
   <data name="AboutWindow_Title" xml:space="preserve">
-    <value>CapX - Informacje</value>
+    <value>ShareX - Informacje</value>
   </data>
   <data name="AboutWindow_Copyright" xml:space="preserve">
-    <value>Copyright © 2007–2026 Zespół CapX</value>
+    <value>Copyright © 2007–2026 Zespół ShareX</value>
   </data>
   <data name="AboutWindow_SteamBuild" xml:space="preserve">
     <value>Wersja Steam</value>
@@ -2243,10 +2243,10 @@
     <value>Sprawdzanie aktualizacji nie powiodło się.</value>
   </data>
   <data name="AboutWindow_NewVersionAvailable" xml:space="preserve">
-    <value>Dostępna jest nowsza wersja CapX</value>
+    <value>Dostępna jest nowsza wersja ShareX</value>
   </data>
   <data name="AboutWindow_UpToDate" xml:space="preserve">
-    <value>CapX jest aktualny.</value>
+    <value>ShareX jest aktualny.</value>
   </data>
   <data name="AboutWindow_Links" xml:space="preserve">
     <value>Odnośniki</value>
@@ -2270,7 +2270,7 @@
     <value>Zespół</value>
   </data>
   <data name="CustomUploaderSettingsWindow_Title" xml:space="preserve">
-    <value>CapX - Ustawienia niestandardowych usług przesyłania</value>
+    <value>ShareX - Ustawienia niestandardowych usług przesyłania</value>
   </data>
   <data name="CustomUploaderSettingsWindow_UploaderLibrary" xml:space="preserve">
     <value>Biblioteka usług przesyłania</value>
@@ -2381,10 +2381,10 @@
     <value>Zamknij</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ConfirmationTitle" xml:space="preserve">
-    <value>CapX — Potwierdzenie</value>
+    <value>ShareX — Potwierdzenie</value>
   </data>
   <data name="CustomUploaderSettingsWindow_CustomUploaderFileType" xml:space="preserve">
-    <value>Niestandardowy moduł wysyłania CapX</value>
+    <value>Niestandardowy moduł wysyłania ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_DeletionURL" xml:space="preserve">
     <value>Adres URL usuwania</value>
@@ -2516,7 +2516,7 @@
     <value>Tekst lub adres URL</value>
   </data>
   <data name="CustomUploaderSettingsWindow_TextUploadSample" xml:space="preserve">
-    <value>Test wysyłania tekstu CapX</value>
+    <value>Test wysyłania tekstu ShareX</value>
   </data>
   <data name="CustomUploaderSettingsWindow_ThumbnailURL" xml:space="preserve">
     <value>Adres URL miniatury</value>
@@ -2562,7 +2562,7 @@
     <value>Czy chcesz ustawić „{0}” jako aktywny moduł wysyłania dla {1}?</value>
   </data>
   <data name="TaskHelpers_CustomUploaderConfirmationTitle" xml:space="preserve">
-    <value>CapX — Potwierdzenie modułu wysyłania</value>
+    <value>ShareX — Potwierdzenie modułu wysyłania</value>
   </data>
   <data name="SettingManager_ExportBackupError" xml:space="preserve">
     <value>Błąd podczas eksportowania kopii zapasowej:
@@ -2573,7 +2573,7 @@
 {0}</value>
   </data>
   <data name="SettingManager_ErrorTitle" xml:space="preserve">
-    <value>CapX — Błąd</value>
+    <value>ShareX — Błąd</value>
   </data>
   <data name="WorkerTask_ErrorTitle" xml:space="preserve">
     <value>Błąd: {0}</value>
@@ -2588,7 +2588,7 @@
     <value>NazwaObrazu</value>
   </data>
   <data name="ShareXIsMinimizedToTheSystemTray" xml:space="preserve">
-    <value>CapX jest zminimalizowany do zasobnika systemowego.</value>
+    <value>ShareX jest zminimalizowany do zasobnika systemowego.</value>
   </data>
   <data name="ClipboardFormatForm_ClipboardFormatForm_Supported_variables___0__and_other_variables_such_as__1__etc_" xml:space="preserve">
     <value>Obsługiwane zmienne: {0} i inne zmienne, takie jak {1} itp.</value>
@@ -2609,7 +2609,7 @@
     <value>Edytuj to menu...</value>
   </data>
   <data name="ShareXIsUpToDate" xml:space="preserve">
-    <value>CapX jest aktualny!</value>
+    <value>ShareX jest aktualny!</value>
   </data>
   <data name="MainForm_UploadDebugLogWarning" xml:space="preserve">
     <value>Dziennik debugowania może zawierać poufne informacje. Czy na pewno chcesz kontynuować?</value>
@@ -2621,7 +2621,7 @@
     <value>Skracacz linków: {0}</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_Text" xml:space="preserve">
-    <value>Uruchom CapX przy starcie systemu Windows</value>
+    <value>Uruchom ShareX przy starcie systemu Windows</value>
   </data>
   <data name="MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_" xml:space="preserve">
     <value>Czy naprawdę chcesz usunąć ten plik?</value>
@@ -2630,7 +2630,7 @@
     <value>Nie można utworzyć folderu:</value>
   </data>
   <data name="FFmpegOnlySupports64BitOperatingSystems" xml:space="preserve">
-    <value>FFmpeg, który jest dostarczany z CapX, obsługuje tylko 64-bitowe systemy operacyjne.</value>
+    <value>FFmpeg, który jest dostarczany z ShareX, obsługuje tylko 64-bitowe systemy operacyjne.</value>
   </data>
   <data name="UploadTask_DoUploadJob_Uploading" xml:space="preserve">
     <value>Przesyłanie</value>
@@ -2639,7 +2639,7 @@
     <value>Udostępnij link ({0})</value>
   </data>
   <data name="ApplicationSettingsForm_cbSteamShowInApp_CheckedChanged_For_settings_to_take_effect_ShareX_needs_to_be_reopened_from_Steam_" xml:space="preserve">
-    <value>Aby ustawienia zaczęły obowiązywać, należy ponownie uruchomić CapX ze Steam.</value>
+    <value>Aby ustawienia zaczęły obowiązywać, należy ponownie uruchomić ShareX ze Steam.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByPolicy_Text" xml:space="preserve">
     <value>Uruchomienie zostało wyłączone przez Twoją organizację</value>
@@ -2677,7 +2677,7 @@
 Możesz je później wyłączyć w menu "Zadania po przechwyceniu".</value>
   </data>
   <data name="IntegrationHelpers_EditWithShareX" xml:space="preserve">
-    <value>Edytuj za pomocą CapX</value>
+    <value>Edytuj za pomocą ShareX</value>
   </data>
   <data name="ClipboardDoesNotContainAnImage" xml:space="preserve">
     <value>Schowek nie zawiera obrazu.</value>
@@ -2686,7 +2686,7 @@ Możesz je później wyłączyć w menu "Zadania po przechwyceniu".</value>
     <value>Błąd</value>
   </data>
   <data name="YourAntiVirusSoftwareOrTheControlledFolderAccessFeatureInWindowsCouldBeBlockingShareX" xml:space="preserve">
-    <value>Twoje oprogramowanie antywirusowe lub funkcja kontrolowanego dostępu do folderów w systemie Windows może blokować CapX.</value>
+    <value>Twoje oprogramowanie antywirusowe lub funkcja kontrolowanego dostępu do folderów w systemie Windows może blokować ShareX.</value>
   </data>
   <data name="TaskManager_task_UploadCompleted_ShareX___Task_completed" xml:space="preserve">
     <value>Zadanie ukończone</value>
@@ -2734,19 +2734,19 @@ Możesz je później wyłączyć w menu "Zadania po przechwyceniu".</value>
     <value>Źródło wideo i audio FFmpeg nie może być jednocześnie "Brak".</value>
   </data>
   <data name="ShareXCannotBeClosedWhileScreenRecordingIsActive" xml:space="preserve">
-    <value>CapX nie może zostać zamknięty, gdy aktywne jest nagrywanie ekranu.
+    <value>ShareX nie może zostać zamknięty, gdy aktywne jest nagrywanie ekranu.
 
 Czy chcesz przerwać aktywne nagrywanie ekranu?</value>
   </data>
   <data name="IntegrationHelpers_UploadWithShareX" xml:space="preserve">
-    <value>Prześlij za pomocą CapX</value>
+    <value>Prześlij za pomocą ShareX</value>
   </data>
   <data name="TaskHelpers_ToggleHotkeys_Hotkeys_disabled_" xml:space="preserve">
     <value>Skróty klawiszowe wyłączone.</value>
   </data>
   <data name="Program_WritePersonalPathConfig_Cant_access_to_file" xml:space="preserve">
     <value>Nie można uzyskać dostępu do pliku "{0}".
-Proszę uruchomić CapX jako administrator, aby zmienić ścieżkę folderu osobistego.</value>
+Proszę uruchomić ShareX jako administrator, aby zmienić ścieżkę folderu osobistego.</value>
   </data>
   <data name="ApplicationSettingsForm_cbStartWithWindows_DisabledByUser_Text" xml:space="preserve">
     <value>Uruchamianie zostało wyłączone w menedżerze zadań</value>
@@ -2758,7 +2758,7 @@ Proszę uruchomić CapX jako administrator, aby zmienić ścieżkę folderu osob
     <value>Nie można znaleźć okna o określonej nazwie.</value>
   </data>
   <data name="ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings" xml:space="preserve">
-    <value>Czy chcesz zresetować ustawienia CapX?</value>
+    <value>Czy chcesz zresetować ustawienia ShareX?</value>
   </data>
   <data name="FailedToSaveSettings" xml:space="preserve">
     <value>Nie udało się zapisać ustawień</value>
@@ -2795,7 +2795,7 @@ Proszę uruchomić CapX jako administrator, aby zmienić ścieżkę folderu osob
 
 {1}
 
-Proszę wybrać inny skrót klawiszowy lub zamknąć konfliktową aplikację i ponownie otworzyć CapX.</value>
+Proszę wybrać inny skrót klawiszowy lub zamknąć konfliktową aplikację i ponownie otworzyć ShareX.</value>
   </data>
   <data name="ScreenshotDelay0S" xml:space="preserve">
     <value>Opóźnienie zrzutu ekranu: {0}s</value>

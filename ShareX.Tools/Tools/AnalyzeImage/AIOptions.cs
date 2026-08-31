@@ -34,7 +34,8 @@ namespace ShareX.Tools
         OpenAI,
         Gemini,
         OpenRouter,
-        OpenAILegacy
+        OpenAILegacy,
+        Anthropic
     }
 
     public class AIOptions
@@ -47,6 +48,11 @@ namespace ShareX.Tools
         public string OpenAICustomURL { get; set; }
         public string OpenAIReasoningEffort { get; set; } = "minimal";
         public string OpenAIVerbosity { get; set; } = "medium";
+
+        [JsonEncrypt]
+        public string AnthropicAPIKey { get; set; }
+        public string AnthropicModel { get; set; } = "claude-sonnet-4-5";
+        public string AnthropicCustomURL { get; set; } = "https://api.anthropic.com/v1";
 
         [JsonEncrypt]
         public string GeminiAPIKey { get; set; }
@@ -66,6 +72,7 @@ namespace ShareX.Tools
             AIProvider.OpenAI or AIProvider.OpenAILegacy => !string.IsNullOrWhiteSpace(OpenAIAPIKey),
             AIProvider.Gemini => !string.IsNullOrWhiteSpace(GeminiAPIKey),
             AIProvider.OpenRouter => !string.IsNullOrWhiteSpace(OpenRouterAPIKey),
+            AIProvider.Anthropic => !string.IsNullOrWhiteSpace(AnthropicAPIKey),
             _ => false
         };
 
@@ -77,6 +84,9 @@ namespace ShareX.Tools
             OpenAICustomURL = OpenAICustomURL,
             OpenAIReasoningEffort = OpenAIReasoningEffort,
             OpenAIVerbosity = OpenAIVerbosity,
+            AnthropicAPIKey = AnthropicAPIKey,
+            AnthropicModel = AnthropicModel,
+            AnthropicCustomURL = AnthropicCustomURL,
             GeminiAPIKey = GeminiAPIKey,
             GeminiModel = GeminiModel,
             OpenRouterAPIKey = OpenRouterAPIKey,
@@ -95,6 +105,9 @@ namespace ShareX.Tools
             OpenAICustomURL = source.OpenAICustomURL;
             OpenAIReasoningEffort = source.OpenAIReasoningEffort;
             OpenAIVerbosity = source.OpenAIVerbosity;
+            AnthropicAPIKey = source.AnthropicAPIKey;
+            AnthropicModel = source.AnthropicModel;
+            AnthropicCustomURL = source.AnthropicCustomURL;
             GeminiAPIKey = source.GeminiAPIKey;
             GeminiModel = source.GeminiModel;
             OpenRouterAPIKey = source.OpenRouterAPIKey;

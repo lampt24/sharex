@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ColorPickerWindow_Title" xml:space="preserve">
-    <value>CapX - Renk seçici</value>
+    <value>ShareX - Renk seçici</value>
   </data>
   <data name="ColorPickerWindow_Color_mode" xml:space="preserve">
     <value>Renk modu</value>
@@ -161,7 +161,7 @@
     <value>İptal</value>
   </data>
   <data name="ErrorWindow_Title" xml:space="preserve">
-    <value>CapX - Hata</value>
+    <value>ShareX - Hata</value>
   </data>
   <data name="ErrorWindow_Heading" xml:space="preserve">
     <value>Bir hata oluştu</value>
@@ -191,7 +191,7 @@
     <value>Beklenmeyen bir hata oluştu.</value>
   </data>
   <data name="ImageViewerWindow_Title" xml:space="preserve">
-    <value>CapX - Görüntüleyici</value>
+    <value>ShareX - Görüntüleyici</value>
   </data>
   <data name="ImageViewerWindow_Open_image" xml:space="preserve">
     <value>Görüntü aç</value>
@@ -200,13 +200,13 @@
     <value>Girdi</value>
   </data>
   <data name="InputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Default_title" xml:space="preserve">
     <value>Çıktı</value>
   </data>
   <data name="OutputBoxWindow_Title" xml:space="preserve">
-    <value>CapX - {0}</value>
+    <value>ShareX - {0}</value>
   </data>
   <data name="OutputBoxWindow_Copy_all" xml:space="preserve">
     <value>Tümünü kopyala</value>
@@ -215,7 +215,7 @@
     <value>Kapat</value>
   </data>
   <data name="PrintWindow_Title" xml:space="preserve">
-    <value>CapX - Yazdırma seçenekleri</value>
+    <value>ShareX - Yazdırma seçenekleri</value>
   </data>
   <data name="PrintWindow_Heading" xml:space="preserve">
     <value>Yazdırma seçenekleri</value>
@@ -245,13 +245,13 @@
     <value>Önizleme...</value>
   </data>
   <data name="DownloaderWindow_Title" xml:space="preserve">
-    <value>CapX - Dosya indirici</value>
+    <value>ShareX - Dosya indirici</value>
   </data>
   <data name="DownloaderWindow_Heading" xml:space="preserve">
     <value>Dosya indirici</value>
   </data>
   <data name="DownloaderWindow_Description" xml:space="preserve">
-    <value>CapX güncellemelerini ve gereken diğer dosyaları indirin.</value>
+    <value>ShareX güncellemelerini ve gereken diğer dosyaları indirin.</value>
   </data>
   <data name="DownloaderWindow_Download" xml:space="preserve">
     <value>İndir</value>
@@ -260,7 +260,7 @@
     <value>Değişiklik günlüğünü görüntüle</value>
   </data>
   <data name="UpdateMessageWindow_Header" xml:space="preserve">
-    <value>CapX güncelleştirmesi mevcut</value>
+    <value>ShareX güncelleştirmesi mevcut</value>
   </data>
   <data name="CodeMenuEntryPixelInfo_Red_255" xml:space="preserve">
     <value>Kırmızı renk (0-255)</value>
@@ -806,7 +806,7 @@
     <value>Sürükle bırak ile yükle</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>CapX kapat</value>
+    <value>ShareX kapat</value>
   </data>
   <data name="HotkeyType_FileUpload" xml:space="preserve">
     <value>Dosya yükle</value>
