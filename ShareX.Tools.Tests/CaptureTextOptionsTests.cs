@@ -11,6 +11,7 @@ internal static class CaptureTextOptionsTests
         RequestsNonStreamingVisionResponses();
         SavesCaptureTextApiSettings();
         BuildsEndpointsFromV1BaseUrl();
+        BuildsVisionModelsEndpoint();
         ParsesAnthropicMessageResponse();
         LeavesCustomGatewayEmptyByDefault();
         UsesTranscriptionPromptByDefault();
@@ -124,6 +125,13 @@ internal static class CaptureTextOptionsTests
 
         AssertEqual("Complete transcription", AnthropicResponseParser.ParseMessageText(response),
             "Anthropic Messages response text");
+    }
+
+    private static void BuildsVisionModelsEndpoint()
+    {
+        AssertEqual("https://vision.example/v1/models/image-to-text",
+            AIEndpointBuilder.GetVisionModelsUrl("https://vision.example/v1"),
+            "Vision models endpoint built from a v1 base URL");
     }
 
     private static void LeavesCustomGatewayEmptyByDefault()

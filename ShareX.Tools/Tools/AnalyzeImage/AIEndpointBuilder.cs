@@ -17,6 +17,8 @@ public static class AIEndpointBuilder
 
     public static string GetOpenAIModelsUrl(string? baseUrl) => GetEndpoint(baseUrl, "models", "https://api.openai.com");
 
+    public static string GetVisionModelsUrl(string? baseUrl) => GetEndpoint(baseUrl, "models/image-to-text", "https://api.openai.com");
+
     public static string GetAnthropicMessagesUrl(string? baseUrl) => GetEndpoint(baseUrl, "messages", "https://api.anthropic.com");
 
     private static string GetEndpoint(string? baseUrl, string endpoint, string defaultBaseUrl)

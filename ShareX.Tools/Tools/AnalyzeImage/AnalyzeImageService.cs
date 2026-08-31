@@ -108,7 +108,7 @@ public sealed class AnalyzeImageService
                     return null;
                 }
 
-                HttpRequestMessage openAIRequest = new(HttpMethod.Get, AIEndpointBuilder.GetOpenAIModelsUrl(options.OpenAICustomURL));
+                HttpRequestMessage openAIRequest = new(HttpMethod.Get, AIEndpointBuilder.GetVisionModelsUrl(options.OpenAICustomURL));
                 openAIRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", options.OpenAIAPIKey.Trim());
                 return openAIRequest;
 
