@@ -42,7 +42,7 @@ public sealed class RegionSelectionOverlay : Control
     private bool _showHandles;
     private bool _showCenterCrosshair;
     private byte _dimAlpha = 51;
-    private IBrush _dimBrush = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
+    private IBrush _dimBrush = new SolidColorBrush(Color.FromArgb(51, 128, 128, 128));
 
     static RegionSelectionOverlay()
     {
@@ -115,7 +115,7 @@ public sealed class RegionSelectionOverlay : Control
             if (_dimAlpha != value)
             {
                 _dimAlpha = value;
-                _dimBrush = new SolidColorBrush(Color.FromArgb(value, 0, 0, 0));
+                _dimBrush = new SolidColorBrush(Color.FromArgb(value, 128, 128, 128));
                 InvalidateVisual();
             }
         }

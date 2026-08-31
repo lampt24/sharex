@@ -1,7 +1,9 @@
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using ShareX.ScreenCaptureLib;
+using ShareX.ScreenCaptureLib.Presentation.RegionCapture;
 
 using Bitmap source = CreateStripedBitmap(Color.Red, Color.Green, Color.Blue, Color.Yellow);
 using Bitmap firstFrame = source.Clone(new Rectangle(0, 0, 3, 2), source.PixelFormat);
@@ -54,6 +56,18 @@ Assert(!ScrollingCaptureStopKey.ShouldStop(Keys.Escape, false),
     "Escape should not be intercepted when capture is inactive.");
 
 Console.WriteLine("Scrolling capture stop-key tests passed.");
+
+RegionSelectionOverlay regionOverlay = new();
+regionOverlay.DimAlpha = 89;
+Avalonia.Media.SolidColorBrush dimBrush = (Avalonia.Media.SolidColorBrush)typeof(RegionSelectionOverlay)
+    .GetField("_dimBrush", BindingFlags.Instance | BindingFlags.NonPublic)!
+    .GetValue(regionOverlay)!;
+Assert(dimBrush.Color == Avalonia.Media.Color.FromArgb(89, 128, 128, 128),
+    $"Expected a 35% gray dim overlay, got {dimBrush.Color}.");
+Assert(new RegionCaptureOptions().BackgroundDimStrength == 35,
+    "Expected the default region capture dim strength to be 35%.");
+
+Console.WriteLine("Region capture overlay appearance tests passed.");
 
 static Bitmap CreateStripedBitmap(params Color[] colors)
 {

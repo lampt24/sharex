@@ -47,7 +47,7 @@ namespace ShareX.ScreenCaptureLib
         public bool DetectControls = true;
         // TEMP: For backward compatibility
         public bool UseDimming = true;
-        public int BackgroundDimStrength = 20;
+        public int BackgroundDimStrength = 35;
         public bool UseCustomInfoText = false;
         public string CustomInfoText = "X: $x, Y: $y$nR: $r, G: $g, B: $b$nHex: $hex"; // Formats: $x, $y, $r, $g, $b, $hex, $HEX, $n
         public bool ShowInfo = true;
