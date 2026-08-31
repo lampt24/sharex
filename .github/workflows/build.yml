@@ -196,7 +196,6 @@ jobs:
       contents: write
 
     env:
-      REPO_DEV_BUILDS: ${{ github.repository_owner }}/DevBuilds
       RELEASE_BODY_PATH: RELEASE_BODY.md
       APP_VERSION: ${{ needs.build.outputs.APP_VERSION }}
 
@@ -298,13 +297,11 @@ jobs:
           Set-Content -Path "${{ env.RELEASE_BODY_PATH }}" -Value "$output" -NoNewline
 
       - name: Release (Dev)
-        env:
-          CUSTOM_GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-        if: env.CUSTOM_GITHUB_TOKEN != '' && env.REPO_DEV_BUILDS != '' && github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/develop'
         uses: softprops/action-gh-release@v3
         with:
-          repository: ${{ env.REPO_DEV_BUILDS }}
-          token: ${{ env.CUSTOM_GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          token: ${{ github.token }}
           tag_name: v${{ env.APP_VERSION }}
           name: ShareX ${{ env.APP_VERSION }} Dev
           body_path: ${{ env.RELEASE_BODY_PATH }}
