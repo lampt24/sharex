@@ -18,7 +18,7 @@ internal static class CaptureTextOptionsTests
         LeavesCustomGatewayEmptyByDefault();
         UsesTranscriptionPromptByDefault();
         SelectsTranscriptionPresetAndMigratesOldDefault();
-        KeepsSelectedModelWhenGatewayDoesNotReturnIt();
+        FiltersModelListToVisionCapableFamilies();
         RoutesClaudeModelsThroughAnthropicProtocol();
         DoesNotDisposeSharedHttpClientAfterAnthropicFailure();
 
@@ -168,17 +168,20 @@ internal static class CaptureTextOptionsTests
             "Migrated prompt must be saved to the shared AI options");
     }
 
-    private static void KeepsSelectedModelWhenGatewayDoesNotReturnIt()
+    private static void FiltersModelListToVisionCapableFamilies()
     {
-        MethodInfo? method = typeof(AnalyzeImageOptionsViewModel).GetMethod("GetModelsIncludingSelected",
+        MethodInfo? method = typeof(AnalyzeImageService).GetMethod("IsVisionCompatibleModel",
             BindingFlags.NonPublic | BindingFlags.Static);
-        AssertTrue(method != null, "Model reload must preserve the selected model");
+        AssertTrue(method != null, "Model loader must identify vision-capable models");
 
-        IReadOnlyList<string> models = (IReadOnlyList<string>)method!.Invoke(null,
-            [new[] { "gateway-model-a", "gateway-model-b" }, "previously-selected-model"])!;
-
-        AssertTrue(models.Contains("previously-selected-model"),
-            "Selected model must remain available after model reload");
+        AssertTrue((bool)method!.Invoke(null, ["ag/gemini-3.7-flash-medium"])!,
+            "Gemini models must be available for image analysis");
+        AssertTrue((bool)method.Invoke(null, ["gh/gpt-4o"])!,
+            "GPT-4o models must be available for image analysis");
+        AssertTrue(!(bool)method.Invoke(null, ["ag/claude-sonnet-4-6"])!,
+            "Claude routes that drop images must not be listed");
+        AssertTrue(!(bool)method.Invoke(null, ["gh/gpt-3.5-turbo"])!,
+            "Text-only models must not be listed");
     }
 
     private static void RoutesClaudeModelsThroughAnthropicProtocol()

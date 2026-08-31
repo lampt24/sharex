@@ -42,7 +42,7 @@ public sealed class AnalyzeImageService
 
     public async Task<AnalyzeImageConnectionResult> TestConnectionAsync(AIOptions options)
     {
-        using HttpRequestMessage? request = CreateModelsRequest(options, out string? error);
+        using HttpRequestMessage? request = CreateModelsRequest(options, visionOnly: false, out string? error);
         if (request == null)
         {
             return new AnalyzeImageConnectionResult(false, error ?? Localization.Strings.AnalyzeImageService_Unable_to_create_request);
@@ -73,7 +73,33 @@ public sealed class AnalyzeImageService
             return [];
         }
 
-        using HttpRequestMessage? request = CreateModelsRequest(options, out string? error);
+        IReadOnlyList<string> visionModels = await LoadModelsAsync(options, visionOnly: true);
+        if (visionModels.Count > 0)
+        {
+            return visionModels;
+        }
+
+        return (await LoadModelsAsync(options, visionOnly: false))
+            .Where(IsVisionCompatibleModel)
+            .ToArray();
+    }
+
+    private static bool IsVisionCompatibleModel(string model)
+    {
+        return model.Contains("gemini", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("gpt-4o", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("gpt-4.1", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("gpt-5", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("vision", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("-vl", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("glm-4.6v", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("pixtral", StringComparison.OrdinalIgnoreCase) ||
+               model.Contains("llava", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static async Task<IReadOnlyList<string>> LoadModelsAsync(AIOptions options, bool visionOnly)
+    {
+        using HttpRequestMessage? request = CreateModelsRequest(options, visionOnly, out string? error);
         if (request == null)
         {
             throw new InvalidOperationException(error);
@@ -94,7 +120,7 @@ public sealed class AnalyzeImageService
             .ToArray();
     }
 
-    private static HttpRequestMessage? CreateModelsRequest(AIOptions options, out string? error)
+    private static HttpRequestMessage? CreateModelsRequest(AIOptions options, bool visionOnly, out string? error)
     {
         error = null;
 
@@ -108,7 +134,10 @@ public sealed class AnalyzeImageService
                     return null;
                 }
 
-                HttpRequestMessage openAIRequest = new(HttpMethod.Get, AIEndpointBuilder.GetVisionModelsUrl(options.OpenAICustomURL));
+                string modelsUrl = visionOnly
+                    ? AIEndpointBuilder.GetVisionModelsUrl(options.OpenAICustomURL)
+                    : AIEndpointBuilder.GetOpenAIModelsUrl(options.OpenAICustomURL);
+                HttpRequestMessage openAIRequest = new(HttpMethod.Get, modelsUrl);
                 openAIRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", options.OpenAIAPIKey.Trim());
                 return openAIRequest;
 
