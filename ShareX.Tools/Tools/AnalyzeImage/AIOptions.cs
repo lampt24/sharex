@@ -40,6 +40,8 @@ namespace ShareX.Tools
 
     public class AIOptions
     {
+        public const string DefaultPrompt = "Transcribe the image's text. Do not write anything else.";
+
         public AIProvider Provider { get; set; } = AIProvider.OpenAI;
 
         [JsonEncrypt]
@@ -62,7 +64,7 @@ namespace ShareX.Tools
         public string OpenRouterAPIKey { get; set; }
         public string OpenRouterModel { get; set; } = "google/gemini-flash-1.5";
 
-        public string Input { get; set; } = Localization.Strings.AIOptions_What_is_in_this_image;
+        public string Input { get; set; } = DefaultPrompt;
         public bool AutoStartRegion { get; set; } = true;
         public bool AutoStartAnalyze { get; set; } = true;
         public bool AutoCopyResult { get; set; } = false;

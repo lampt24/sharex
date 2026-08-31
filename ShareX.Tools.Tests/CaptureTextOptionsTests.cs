@@ -12,6 +12,7 @@ internal static class CaptureTextOptionsTests
         BuildsEndpointsFromV1BaseUrl();
         ParsesAnthropicMessageResponse();
         LeavesCustomGatewayEmptyByDefault();
+        UsesTranscriptionPromptByDefault();
 
         AIOptions source = new()
         {
@@ -126,6 +127,13 @@ internal static class CaptureTextOptionsTests
         AIOptions options = new();
         AssertTrue(string.IsNullOrEmpty(options.OpenAICustomURL),
             "Custom gateway default URL must be empty");
+    }
+
+    private static void UsesTranscriptionPromptByDefault()
+    {
+        AIOptions options = new();
+        AssertEqual("Transcribe the image's text. Do not write anything else.", options.Input,
+            "Default AI Analyze prompt");
     }
 
     private static void AssertEqual(string expected, string? actual, string description)

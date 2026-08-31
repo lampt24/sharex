@@ -125,7 +125,7 @@ namespace ShareX.Tools
 
             if (string.IsNullOrEmpty(input))
             {
-                input = Localization.Strings.AnalyzeImageViewModel_What_is_in_this_image;
+                input = AIOptions.DefaultPrompt;
             }
 
             ChatGPTLegacyRequest request = new ChatGPTLegacyRequest()

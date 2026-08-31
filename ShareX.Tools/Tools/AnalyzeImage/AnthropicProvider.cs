@@ -44,7 +44,7 @@ public sealed class AnthropicProvider : IAIProvider
 
         if (string.IsNullOrWhiteSpace(prompt))
         {
-            prompt = Localization.Strings.AnalyzeImageViewModel_What_is_in_this_image;
+            prompt = AIOptions.DefaultPrompt;
         }
 
         object request = new
