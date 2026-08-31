@@ -45,7 +45,7 @@ namespace ShareX.Tools
         [JsonEncrypt]
         public string OpenAIAPIKey { get; set; }
         public string OpenAIModel { get; set; } = "gpt-5-mini";
-        public string OpenAICustomURL { get; set; } = "https://ai.lampt.works/v1";
+        public string OpenAICustomURL { get; set; }
         public string OpenAIReasoningEffort { get; set; } = "minimal";
         public string OpenAIVerbosity { get; set; } = "medium";
 

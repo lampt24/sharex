@@ -11,7 +11,7 @@ internal static class CaptureTextOptionsTests
         SavesCaptureTextApiSettings();
         BuildsEndpointsFromV1BaseUrl();
         ParsesAnthropicMessageResponse();
-        UsesCustomGatewayByDefault();
+        LeavesCustomGatewayEmptyByDefault();
 
         AIOptions source = new()
         {
@@ -121,11 +121,11 @@ internal static class CaptureTextOptionsTests
             "Anthropic Messages response text");
     }
 
-    private static void UsesCustomGatewayByDefault()
+    private static void LeavesCustomGatewayEmptyByDefault()
     {
         AIOptions options = new();
-        AssertEqual("https://ai.lampt.works/v1", options.OpenAICustomURL,
-            "Custom gateway default URL");
+        AssertTrue(string.IsNullOrEmpty(options.OpenAICustomURL),
+            "Custom gateway default URL must be empty");
     }
 
     private static void AssertEqual(string expected, string? actual, string description)

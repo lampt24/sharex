@@ -75,7 +75,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         _provider = AIProvider.OpenAI;
         _openAIAPIKey = draft.OpenAIAPIKey;
         _openAIModel = draft.OpenAIModel;
-        _openAICustomURL = "https://ai.lampt.works/v1";
+        _openAICustomURL = draft.OpenAICustomURL;
         _openAIReasoningEffort = draft.OpenAIReasoningEffort;
         _openAIVerbosity = draft.OpenAIVerbosity;
         _geminiAPIKey = draft.GeminiAPIKey;
@@ -196,7 +196,7 @@ public sealed partial class AnalyzeImageOptionsViewModel : ViewModelBase
         Provider = AIProvider.OpenAI,
         OpenAIAPIKey = OpenAIAPIKey,
         OpenAIModel = OpenAIModel ?? string.Empty,
-        OpenAICustomURL = "https://ai.lampt.works/v1",
+        OpenAICustomURL = OpenAICustomURL,
         OpenAIReasoningEffort = OpenAIReasoningEffort ?? "minimal",
         OpenAIVerbosity = OpenAIVerbosity ?? "medium",
         GeminiAPIKey = GeminiAPIKey,

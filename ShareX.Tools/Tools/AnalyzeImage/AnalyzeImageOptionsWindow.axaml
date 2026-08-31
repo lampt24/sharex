@@ -24,7 +24,7 @@
                 <Border Grid.Row="0" Classes="tool-panel">
                     <Grid ColumnDefinitions="100,*,Auto" ColumnSpacing="10">
                         <TextBlock Classes="row-label" Text="Custom Gateway"/>
-                        <TextBlock Grid.Column="1" Text="https://ai.lampt.works/v1" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="Custom OpenAI/Anthropic-compatible endpoint" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
 
@@ -53,7 +53,7 @@
                                 </Grid>
                                 <Grid Grid.Row="3" ColumnDefinitions="120,*" ColumnSpacing="10">
                                     <TextBlock Classes="row-label" Text="{x:Static localization:Strings.AnalyzeImageOptionsWindow_Custom_base_URL}"/>
-                                    <TextBox Grid.Column="1" Text="{Binding OpenAICustomURL}" IsReadOnly="True"/>
+                                    <TextBox Grid.Column="1" Text="{Binding OpenAICustomURL}" PlaceholderText="https://gateway.example/v1"/>
                                 </Grid>
                                 <Grid Grid.Row="4" ColumnDefinitions="120,*,120,*" ColumnSpacing="10">
                                     <TextBlock Classes="row-label" Text="{x:Static localization:Strings.AnalyzeImageOptionsWindow_Reasoning}"/>
