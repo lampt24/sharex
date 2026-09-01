@@ -33,6 +33,8 @@ namespace ShareX;
 public partial class ActionsToolbarWindow : Window
 {
     private Button? _showCursorButton;
+    private Button? _clipboardToggleButton;
+    private TextBlock? _clipboardToggleIcon;
     private TextBlock? _delayText;
     private bool _positionReady;
     private bool _adjustingPosition;
@@ -171,6 +173,36 @@ public partial class ActionsToolbarWindow : Window
         };
         ToolbarItems.Children.Add(_showCursorButton);
 
+        _clipboardToggleIcon = new TextBlock
+        {
+            FontSize = 17,
+            TextAlignment = Avalonia.Media.TextAlignment.Center,
+            Foreground = this.FindResource("ShareX.Brush.Accent") as Avalonia.Media.IBrush,
+            IsHitTestVisible = false
+        };
+        _clipboardToggleIcon.Classes.Add("icon");
+        _clipboardToggleButton = new Button { Content = _clipboardToggleIcon };
+        _clipboardToggleButton.Classes.Add("toolbar-action");
+        ToolTip.SetPlacement(_clipboardToggleButton, PlacementMode.Top);
+        ToolTip.SetShowDelay(_clipboardToggleButton, 400);
+        _clipboardToggleButton.Click += (_, _) =>
+        {
+            // Toggle: CopyImage ↔ CopyFilePath
+            bool wasImage = Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
+            Program.DefaultTaskSettings.AfterCaptureJob &= ~(AfterCaptureTasks.CopyImageToClipboard | AfterCaptureTasks.CopyFilePathToClipboard);
+            if (wasImage)
+            {
+                Program.DefaultTaskSettings.AfterCaptureJob |= AfterCaptureTasks.CopyFilePathToClipboard;
+            }
+            else
+            {
+                Program.DefaultTaskSettings.AfterCaptureJob |= AfterCaptureTasks.CopyImageToClipboard;
+            }
+            UpdateCaptureOptions();
+            SaveSettings();
+        };
+        ToolbarItems.Children.Add(_clipboardToggleButton);
+
         _delayText = new TextBlock
         {
             FontSize = 11,
@@ -240,6 +272,15 @@ public partial class ActionsToolbarWindow : Window
         if (_showCursorButton != null)
         {
             _showCursorButton.Classes.Set("checked", Program.DefaultTaskSettings.CaptureSettings.ShowCursor);
+        }
+
+        if (_clipboardToggleButton != null && _clipboardToggleIcon != null)
+        {
+            bool isImage = Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
+            _clipboardToggleIcon.Text = isImage ? LucideIcons.clipboard_copy : LucideIcons.clipboard_list;
+            ToolTip.SetTip(_clipboardToggleButton, isImage
+                ? Strings.MainMenuBuilder_CopyImageToClipboard
+                : Strings.MainMenuBuilder_CopyFilePathToClipboard);
         }
 
         if (_delayText != null)

@@ -373,6 +373,12 @@
   <data name="MainWindow_ShortenedUrl" xml:space="preserve">
     <value>URL rút gọn</value>
   </data>
+  <data name="MainMenuBuilder_CopyImageToClipboard" xml:space="preserve">
+    <value>Sao chép hình ảnh vào clipboard</value>
+  </data>
+  <data name="MainMenuBuilder_CopyFilePathToClipboard" xml:space="preserve">
+    <value>Sao chép đường dẫn tệp vào clipboard</value>
+  </data>
   <data name="MainMenuBuilder_ShowCursor" xml:space="preserve">
     <value>Hiển thị con trỏ</value>
   </data>

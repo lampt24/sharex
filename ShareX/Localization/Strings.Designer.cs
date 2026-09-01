@@ -630,6 +630,24 @@ namespace ShareX.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy image to clipboard.
+        /// </summary>
+        public static string MainMenuBuilder_CopyImageToClipboard {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_CopyImageToClipboard", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy file path to clipboard.
+        /// </summary>
+        public static string MainMenuBuilder_CopyFilePathToClipboard {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_CopyFilePathToClipboard", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Show cursor.
         /// </summary>
         public static string MainMenuBuilder_ShowCursor {

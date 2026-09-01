@@ -373,6 +373,12 @@
   <data name="MainWindow_ShortenedUrl" xml:space="preserve">
     <value>Shortened URL</value>
   </data>
+  <data name="MainMenuBuilder_CopyImageToClipboard" xml:space="preserve">
+    <value>Copy image to clipboard</value>
+  </data>
+  <data name="MainMenuBuilder_CopyFilePathToClipboard" xml:space="preserve">
+    <value>Copy file path to clipboard</value>
+  </data>
   <data name="MainMenuBuilder_ShowCursor" xml:space="preserve">
     <value>Show cursor</value>
   </data>
