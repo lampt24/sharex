@@ -39,14 +39,31 @@ public static class ToolsIntegration
         Show(() => new DirectoryIndexerWindow(settings, uploadRequested));
     }
 
-    public static void ShowAnalyzeImageWindow(
+    public static Task ShowAnalyzeImageWindow(
         string? imagePath,
         AIOptions options,
         AnalyzeImageRegionCaptureHandler captureRegion,
         Action? playNotificationSound = null,
         Action<AIOptions>? optionsChanged = null)
     {
-        Show(() => new AnalyzeImageWindow(imagePath, options, captureRegion, playNotificationSound, optionsChanged));
+        AvaloniaBootstrapper.EnsureInitialized();
+        TaskCompletionSource completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            try
+            {
+                AnalyzeImageWindow window = new(imagePath, options, captureRegion, playNotificationSound, optionsChanged);
+                window.Closed += (_, _) => completion.TrySetResult();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                completion.TrySetException(ex);
+            }
+        });
+
+        return completion.Task;
     }
 
     public static void ShowBackgroundRemoverWindow(string? modelsFolder, BackgroundRemoverOptions options)

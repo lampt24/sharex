@@ -301,7 +301,7 @@ namespace ShareX
                     OpenVideoThumbnailer(safeTaskSettings);
                     break;
                 case HotkeyType.AnalyzeImage:
-                    AnalyzeImage(safeTaskSettings);
+                    await AnalyzeImage(safeTaskSettings);
                     break;
                 case HotkeyType.CaptureText:
                     CaptureText(safeTaskSettings);
@@ -1771,18 +1771,18 @@ namespace ShareX
             return new BingVisualSearchSharingService().CreateSharer(null, null).ShareURLAsync(url);
         }
 
-        public static void AnalyzeImage(TaskSettings taskSettings = null)
+        public static Task AnalyzeImage(TaskSettings taskSettings = null)
         {
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
 
-            ShowAnalyzeImageWindow(null, taskSettings);
+            return ShowAnalyzeImageWindow(null, taskSettings);
         }
 
-        public static void AnalyzeImage(string filePath, TaskSettings taskSettings = null)
+        public static Task AnalyzeImage(string filePath, TaskSettings taskSettings = null)
         {
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
 
-            ShowAnalyzeImageWindow(filePath, taskSettings);
+            return ShowAnalyzeImageWindow(filePath, taskSettings);
         }
 
         public static void CaptureText(TaskSettings taskSettings = null)
@@ -1799,11 +1799,11 @@ namespace ShareX
             ShowCaptureTextWindow(filePath, taskSettings);
         }
 
-        private static void ShowAnalyzeImageWindow(string filePath, TaskSettings taskSettings)
+        private static Task ShowAnalyzeImageWindow(string filePath, TaskSettings taskSettings)
         {
             AIOptions options = taskSettings.ToolsSettingsReference.AIOptions;
 
-            ToolsIntegration.ShowAnalyzeImageWindow(
+            return ToolsIntegration.ShowAnalyzeImageWindow(
                 filePath,
                 options,
                 async () =>

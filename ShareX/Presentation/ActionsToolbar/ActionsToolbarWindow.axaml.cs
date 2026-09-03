@@ -304,7 +304,16 @@ public partial class ActionsToolbarWindow : Window
 
         try
         {
-            await TaskHelpers.ExecuteJob(action);
+            await ActionsToolbarActionRunner.RunAsync(
+                Hide,
+                () =>
+                {
+                    if (!_closing)
+                    {
+                        Show();
+                    }
+                },
+                () => TaskHelpers.ExecuteJob(action));
         }
         finally
         {

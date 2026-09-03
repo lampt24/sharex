@@ -1,2 +1,3 @@
 CaptureTextOptionsTests.Run();
-Console.WriteLine("Capture Text options tests passed.");
+ActionsToolbarActionRunnerTests.Run();
+Console.WriteLine("ShareX tools tests passed.");

@@ -8,5 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShareX.Tools\ShareX.Tools.csproj" />
+    <ProjectReference Include="..\ShareX\ShareX.csproj" />
   </ItemGroup>
 </Project>
