@@ -189,13 +189,19 @@ public partial class ScrollingCaptureWindow : Window
         {
             StopCaptureKeyboardHook();
             SetCaptureControlsEnabled(true);
-            LoadImage(_service.Result);
-            RestoreAndActivate();
+
+            if (ScrollingCaptureResultHandling.ShouldShowPreview(_service.Options, _service.Result != null))
+            {
+                LoadImage(_service.Result);
+                RestoreAndActivate();
+            }
         }
 
-        if (_service.Options.AutoUpload)
+        if (_service.Options.AutoUpload && _service.Result != null)
         {
             UploadResult();
+            Close();
+            return;
         }
 
         if (_closeRequested)

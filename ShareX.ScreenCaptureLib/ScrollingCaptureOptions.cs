@@ -36,4 +36,12 @@ namespace ShareX.ScreenCaptureLib
         public bool AutoUpload { get; set; } = false;
         public bool ShowRegion { get; set; } = true;
     }
+
+    public static class ScrollingCaptureResultHandling
+    {
+        public static bool ShouldShowPreview(ScrollingCaptureOptions options, bool hasResult)
+        {
+            return !options.AutoUpload || !hasResult;
+        }
+    }
 }

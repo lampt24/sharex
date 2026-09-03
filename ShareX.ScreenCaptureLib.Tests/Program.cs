@@ -67,6 +67,13 @@ Assert(dimBrush.Color == Avalonia.Media.Color.FromArgb(89, 128, 128, 128),
 Assert(new RegionCaptureOptions().BackgroundDimStrength == 35,
     "Expected the default region capture dim strength to be 35%.");
 
+Assert(!ScrollingCaptureResultHandling.ShouldShowPreview(new ScrollingCaptureOptions { AutoUpload = true }, true),
+    "Auto-uploaded scrolling captures should skip the preview.");
+Assert(ScrollingCaptureResultHandling.ShouldShowPreview(new ScrollingCaptureOptions { AutoUpload = false }, true),
+    "Manual scrolling captures should show the preview.");
+Assert(ScrollingCaptureResultHandling.ShouldShowPreview(new ScrollingCaptureOptions { AutoUpload = true }, false),
+    "Failed auto-upload scrolling captures should remain visible for error feedback.");
+
 Console.WriteLine("Region capture overlay appearance tests passed.");
 
 static Bitmap CreateStripedBitmap(params Color[] colors)
