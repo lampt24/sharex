@@ -34,7 +34,7 @@ public partial class ActionsToolbarWindow : Window
 {
     private Button? _showCursorButton;
     private Button? _clipboardToggleButton;
-    private TextBlock? _clipboardToggleIcon;
+    private TextBlock? _clipboardToggleText;
     private TextBlock? _delayText;
     private bool _positionReady;
     private bool _adjustingPosition;
@@ -173,15 +173,17 @@ public partial class ActionsToolbarWindow : Window
         };
         ToolbarItems.Children.Add(_showCursorButton);
 
-        _clipboardToggleIcon = new TextBlock
+        _clipboardToggleText = new TextBlock
         {
-            FontSize = 17,
+            FontSize = 11,
+            FontWeight = Avalonia.Media.FontWeight.SemiBold,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
             TextAlignment = Avalonia.Media.TextAlignment.Center,
             Foreground = this.FindResource("ShareX.Brush.Accent") as Avalonia.Media.IBrush,
             IsHitTestVisible = false
         };
-        _clipboardToggleIcon.Classes.Add("icon");
-        _clipboardToggleButton = new Button { Content = _clipboardToggleIcon };
+        _clipboardToggleButton = new Button { Content = _clipboardToggleText, Width = 48, MinWidth = 48 };
         _clipboardToggleButton.Classes.Add("toolbar-action");
         ToolTip.SetPlacement(_clipboardToggleButton, PlacementMode.Top);
         ToolTip.SetShowDelay(_clipboardToggleButton, 400);
@@ -274,10 +276,10 @@ public partial class ActionsToolbarWindow : Window
             _showCursorButton.Classes.Set("checked", Program.DefaultTaskSettings.CaptureSettings.ShowCursor);
         }
 
-        if (_clipboardToggleButton != null && _clipboardToggleIcon != null)
+        if (_clipboardToggleButton != null && _clipboardToggleText != null)
         {
             bool isImage = Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
-            _clipboardToggleIcon.Text = isImage ? LucideIcons.clipboard_copy : LucideIcons.clipboard_list;
+            _clipboardToggleText.Text = isImage ? "IMAGE" : "PATH";
             ToolTip.SetTip(_clipboardToggleButton, isImage
                 ? Strings.MainMenuBuilder_CopyImageToClipboard
                 : Strings.MainMenuBuilder_CopyFilePathToClipboard);
