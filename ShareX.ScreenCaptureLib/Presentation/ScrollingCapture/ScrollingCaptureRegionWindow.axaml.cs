@@ -39,6 +39,7 @@ public partial class ScrollingCaptureRegionWindow : Window
     private const int BorderPixels = 1;
     private const int RegionDiff = 4;
 
+    private readonly DrawingRectangle _regionRectangle;
     private readonly int _frameWidth;
     private readonly int _frameHeight;
     private double _windowScaling = 1;
@@ -50,6 +51,7 @@ public partial class ScrollingCaptureRegionWindow : Window
 
     public ScrollingCaptureRegionWindow(DrawingRectangle regionRectangle)
     {
+        _regionRectangle = regionRectangle;
         _frameWidth = regionRectangle.Width + BorderPixels * 2;
         _frameHeight = regionRectangle.Height + BorderPixels * 2;
 
@@ -84,7 +86,13 @@ public partial class ScrollingCaptureRegionWindow : Window
 
     private double GetScreenScaling()
     {
-        return Screens.ScreenFromPoint(Position)?.Scaling ?? Screens.Primary?.Scaling ?? 1;
+        // Position is one pixel outside the region. When the region touches a
+        // monitor edge it belongs to the neighbouring monitor and its scaling
+        // would size the window incorrectly, clipping the right/bottom border.
+        PixelPoint center = new(
+            _regionRectangle.X + _regionRectangle.Width / 2,
+            _regionRectangle.Y + _regionRectangle.Height / 2);
+        return Screens.ScreenFromPoint(center)?.Scaling ?? Screens.Primary?.Scaling ?? 1;
     }
 
     private void ApplyClickThroughToolWindowStyle()

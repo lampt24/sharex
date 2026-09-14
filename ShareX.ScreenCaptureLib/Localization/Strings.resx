@@ -545,4 +545,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Video encoding</value>
   </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>The selected area did not move. Select a point inside the scrolling content, check whether it is already at the end, and try again.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Point at a scroll area and click to capture. Tab / Shift+Tab: parent / child. Esc / right click: cancel.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>The scrolling panel is covered by another window. Select the panel again.</value>
+  </data>
 </root>

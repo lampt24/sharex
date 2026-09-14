@@ -542,4 +542,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Kódování videa</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Ukažte na oblast posouvání a kliknutím ji zachyťte. Tab / Shift+Tab: nadřazená / vnořená oblast. Esc / pravé tlačítko: zrušit.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Vybraná oblast se nepohnula. Vyberte bod uvnitř obsahu, zkontrolujte, zda není na konci, a zkuste to znovu.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Panel překrývá jiné okno. Vyberte panel znovu.</value>
+  </data>
 </root>

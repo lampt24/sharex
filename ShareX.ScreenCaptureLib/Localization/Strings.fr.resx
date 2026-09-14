@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Encodage vidéo</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Pointez une zone de défilement et cliquez pour capturer. Tab / Maj+Tab : zone parente / interne. Échap / clic droit : annuler.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>La zone sélectionnée ne bouge pas. Choisissez un point dans le contenu, vérifiez si la fin est atteinte, puis réessayez.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Une autre fenêtre masque le panneau de défilement. Sélectionnez-le à nouveau.</value>
+  </data>
 </root>

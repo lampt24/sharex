@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>視訊編碼</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>指向捲動區域並點選開始擷取。Tab / Shift+Tab：父區域 / 子區域。Esc / 右鍵：取消。</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>所選區域未移動。請選擇內容內部的點，檢查是否已到結尾，然後重試。</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>捲動面板被其他視窗遮住。請重新選擇面板。</value>
+  </data>
 </root>

@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Кодирование видео</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Наведите указатель на область прокрутки и нажмите для захвата. Tab / Shift+Tab: внешняя / внутренняя область. Esc / правая кнопка: отмена.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Выбранная область не сдвинулась. Выберите точку внутри содержимого, проверьте, не достигнут ли конец, и повторите попытку.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Другое окно закрывает панель прокрутки. Выберите панель заново.</value>
+  </data>
 </root>

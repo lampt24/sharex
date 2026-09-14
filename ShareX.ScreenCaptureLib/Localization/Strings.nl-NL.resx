@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Videocodering</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Wijs een scrollgebied aan en klik om vast te leggen. Tab / Shift+Tab: bovenliggend / binnenliggend gebied. Esc / rechtsklik: annuleren.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Het geselecteerde gebied is niet verplaatst. Kies een punt in de inhoud, controleer of het einde is bereikt en probeer opnieuw.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Een ander venster bedekt het scrollpaneel. Selecteer het paneel opnieuw.</value>
+  </data>
 </root>

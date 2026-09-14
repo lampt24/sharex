@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Kodowanie wideo</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Wskaż obszar przewijania i kliknij, aby przechwycić. Tab / Shift+Tab: obszar nadrzędny / wewnętrzny. Esc / prawy przycisk: anuluj.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Wybrany obszar się nie przesunął. Wybierz punkt w treści, sprawdź, czy osiągnięto koniec, i spróbuj ponownie.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Inne okno zasłania panel przewijania. Wybierz panel ponownie.</value>
+  </data>
 </root>

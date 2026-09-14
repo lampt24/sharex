@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Video kodlaması</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Kaydırma alanını gösterip yakalamak için tıklayın. Tab / Shift+Tab: üst / iç alan. Esc / sağ tık: iptal.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Seçilen alan hareket etmedi. İçerikte bir nokta seçin, sona ulaşılıp ulaşılmadığını kontrol edin ve yeniden deneyin.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Başka bir pencere kaydırma panelini kapatıyor. Paneli yeniden seçin.</value>
+  </data>
 </root>

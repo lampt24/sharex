@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>کدگذاری ویدئو</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>به ناحیه پیمایش اشاره کنید و برای ثبت کلیک کنید. Tab / Shift+Tab: ناحیه والد / فرزند. Esc / کلیک راست: لغو.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>ناحیه انتخاب‌شده حرکت نکرد. نقطه‌ای داخل محتوا انتخاب کنید، رسیدن به انتها را بررسی کنید و دوباره تلاش کنید.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>پنجره دیگری بخش پیمایش را پوشانده است. بخش را دوباره انتخاب کنید.</value>
+  </data>
 </root>

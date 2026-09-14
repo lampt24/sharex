@@ -542,4 +542,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>वीडियो एन्कोडिंग</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>स्क्रॉल क्षेत्र पर पॉइंटर ले जाएँ और कैप्चर के लिए क्लिक करें। Tab / Shift+Tab: बाहरी / अंदरूनी क्षेत्र। Esc / दायाँ क्लिक: रद्द करें।</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>चुना गया क्षेत्र नहीं खिसका। सामग्री के अंदर बिंदु चुनें, जाँचें कि अंत तक पहुँचे हैं या नहीं, और फिर कोशिश करें।</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>स्क्रॉल पैनल दूसरी विंडो से ढका है। पैनल फिर से चुनें।</value>
+  </data>
 </root>

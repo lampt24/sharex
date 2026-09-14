@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>视频编码</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>指向滚动区域并点击开始截图。Tab / Shift+Tab：父区域 / 子区域。Esc / 右键：取消。</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>所选区域未移动。请选择内容内部的点，检查是否已到末尾，然后重试。</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>滚动面板被其他窗口遮挡。请重新选择面板。</value>
+  </data>
 </root>

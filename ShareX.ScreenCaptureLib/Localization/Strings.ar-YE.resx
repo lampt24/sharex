@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>ترميز الفيديو</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>أشر إلى منطقة التمرير وانقر لالتقاطها. Tab / Shift+Tab: المنطقة الأم / الفرعية. Esc / الزر الأيمن: إلغاء.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>لم تتحرك المنطقة المحددة. اختر نقطة داخل المحتوى وتحقق مما إذا كنت في النهاية ثم أعد المحاولة.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>تغطي نافذة أخرى لوحة التمرير. حدد اللوحة مجددًا.</value>
+  </data>
 </root>

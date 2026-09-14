@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Codare video</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Indicați o zonă de derulare și faceți clic pentru captură. Tab / Shift+Tab: zona părinte / interioară. Esc / clic dreapta: anulare.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Zona selectată nu s-a mișcat. Alegeți un punct în conținut, verificați dacă ați ajuns la sfârșit și încercați din nou.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>O altă fereastră acoperă panoul de derulare. Selectați din nou panoul.</value>
+  </data>
 </root>

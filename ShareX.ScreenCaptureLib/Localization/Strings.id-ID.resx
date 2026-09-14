@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Enkode video</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Arahkan ke area gulir dan klik untuk menangkap. Tab / Shift+Tab: area induk / anak. Esc / klik kanan: batal.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Area yang dipilih tidak bergerak. Pilih titik di dalam konten, periksa apakah sudah di akhir, lalu coba lagi.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Panel gulir tertutup jendela lain. Pilih panel lagi.</value>
+  </data>
 </root>

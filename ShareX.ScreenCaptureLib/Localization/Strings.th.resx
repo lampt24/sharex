@@ -542,4 +542,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>วิดีโอ การเข้ารหัส</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>ชี้ไปที่พื้นที่เลื่อนแล้วคลิกเพื่อจับภาพ Tab / Shift+Tab: พื้นที่ภายนอก / ภายใน Esc / คลิกขวา: ยกเลิก</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>พื้นที่ที่เลือกไม่ขยับ เลือกจุดภายในเนื้อหา ตรวจสอบว่าอยู่ท้ายเนื้อหาแล้วหรือไม่ แล้วลองอีกครั้ง</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>หน้าต่างอื่นบังแผงเลื่อนอยู่ โปรดเลือกแผงอีกครั้ง</value>
+  </data>
 </root>

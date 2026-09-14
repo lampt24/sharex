@@ -542,4 +542,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Videokodning</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Peka på ett rullningsområde och klicka för att fånga. Tab / Shift+Tab: yttre / inre område. Esc / högerklick: avbryt.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Det valda området flyttades inte. Välj en punkt i innehållet, kontrollera om slutet har nåtts och försök igen.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Ett annat fönster täcker rullningspanelen. Välj panelen igen.</value>
+  </data>
 </root>

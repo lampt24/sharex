@@ -9,18 +9,19 @@
 
 using ShareX.HelpersLib;
 using System;
+using System.Drawing;
 using System.Windows.Automation;
 
 namespace ShareX.ScreenCaptureLib;
 
 internal static class ExcelHorizontalScroller
 {
-    public static bool ScrollColumnRight(IntPtr windowHandle)
+    public static bool ScrollColumnRight(IntPtr windowHandle, Point scrollPoint)
     {
         try
         {
             IntPtr rootHandle = GetRootHandle(windowHandle);
-            IntPtr scrollBarHandle = FindHorizontalScrollBar(rootHandle);
+            IntPtr scrollBarHandle = FindHorizontalScrollBar(rootHandle, scrollPoint);
 
             if (scrollBarHandle == IntPtr.Zero)
             {
@@ -58,17 +59,30 @@ internal static class ExcelHorizontalScroller
         return handle;
     }
 
-    private static IntPtr FindHorizontalScrollBar(IntPtr rootHandle)
+    private static IntPtr FindHorizontalScrollBar(IntPtr rootHandle, Point scrollPoint)
     {
         IntPtr result = IntPtr.Zero;
+        int nearestDistance = int.MaxValue;
 
         NativeMethods.EnumChildWindows(rootHandle, (handle, _) =>
         {
             if (NativeMethods.GetClassName(handle).Equals("NUIScrollbar", StringComparison.OrdinalIgnoreCase) &&
                 NativeMethods.GetWindowText(handle).Equals("Horizontal", StringComparison.OrdinalIgnoreCase))
             {
-                result = handle;
-                return false;
+                WindowInfo info = new(handle);
+                Rectangle bounds = info.Rectangle;
+                // Split views can expose several horizontal scrollbars. Use the
+                // nearest one below the selected content, in the same column.
+                if (NativeMethods.IsWindowVisible(handle) && bounds.Left <= scrollPoint.X &&
+                    bounds.Right > scrollPoint.X && bounds.Top >= scrollPoint.Y)
+                {
+                    int distance = bounds.Top - scrollPoint.Y;
+                    if (distance < nearestDistance)
+                    {
+                        nearestDistance = distance;
+                        result = handle;
+                    }
+                }
             }
 
             return true;

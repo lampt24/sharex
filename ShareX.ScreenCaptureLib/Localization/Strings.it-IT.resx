@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Codifica video</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Punta un&apos;area scorrevole e fai clic per catturare. Tab / Maiusc+Tab: area esterna / interna. Esc / clic destro: annulla.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>L'area selezionata non si è spostata. Scegli un punto nel contenuto, verifica se è già alla fine e riprova.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Un'altra finestra copre il pannello di scorrimento. Selezionalo di nuovo.</value>
+  </data>
 </root>

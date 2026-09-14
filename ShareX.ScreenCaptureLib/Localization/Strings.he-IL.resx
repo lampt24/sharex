@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>קידוד וידאו</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>הצבע על אזור גלילה ולחץ לצילום. Tab / Shift+Tab: אזור אב / פנימי. Esc / לחיצה ימנית: ביטול.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>האזור שנבחר לא זז. בחר נקודה בתוך התוכן, בדוק אם הגעת לסוף ונסה שוב.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>חלון אחר מכסה את חלונית הגלילה. בחר אותה שוב.</value>
+  </data>
 </root>

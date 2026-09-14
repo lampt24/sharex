@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Codificación de video</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Apunta a un área desplazable y haz clic para capturar. Tab / Shift+Tab: área superior / interior. Esc / clic derecho: cancelar.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>El área seleccionada no se movió. Selecciona un punto dentro del contenido, comprueba si ya está al final e inténtalo de nuevo.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Otra ventana tapa el panel de desplazamiento. Selecciónalo de nuevo.</value>
+  </data>
 </root>

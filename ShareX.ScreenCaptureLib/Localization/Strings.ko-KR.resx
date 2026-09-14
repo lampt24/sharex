@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>비디오 인코딩</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>스크롤 영역을 가리킨 후 클릭하여 캡처하세요. Tab / Shift+Tab: 상위 / 하위 영역. Esc / 오른쪽 클릭: 취소.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>선택한 영역이 움직이지 않았습니다. 콘텐츠 안의 지점을 선택하고 끝에 도달했는지 확인한 후 다시 시도하세요.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>다른 창이 스크롤 패널을 가리고 있습니다. 패널을 다시 선택하세요.</value>
+  </data>
 </root>

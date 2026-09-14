@@ -541,4 +541,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Mã hóa video</value>
   </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Vùng đã chọn không dịch chuyển. Hãy chọn điểm trong nội dung cần cuộn, kiểm tra xem đã ở cuối chưa, rồi thử lại.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Trỏ vào vùng cuộn rồi bấm để chụp. Tab / Shift+Tab: vùng cha / con. Esc / chuột phải: hủy.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Vùng cuộn đang bị cửa sổ khác che. Hãy chọn lại vùng cuộn.</value>
+  </data>
 </root>

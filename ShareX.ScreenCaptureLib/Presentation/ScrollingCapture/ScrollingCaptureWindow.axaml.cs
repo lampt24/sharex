@@ -151,8 +151,8 @@ public partial class ScrollingCaptureWindow : Window
         catch (Exception ex)
         {
             DebugHelper.WriteException(ex);
-            StatusText.Text = ex.Message;
             SetStatus(ScrollingCaptureStatus.Failed);
+            StatusText.Text = ex.Message;
             RestoreAndActivate();
             ex.ShowError();
         }
@@ -181,8 +181,8 @@ public partial class ScrollingCaptureWindow : Window
         catch (Exception ex)
         {
             DebugHelper.WriteException(ex);
-            StatusText.Text = ex.Message;
             SetStatus(ScrollingCaptureStatus.Failed);
+            StatusText.Text = ex.Message;
             ex.ShowError();
         }
         finally

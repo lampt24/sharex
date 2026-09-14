@@ -542,4 +542,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Videokodning</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Peg på et rulleområde og klik for at optage. Tab / Shift+Tab: ydre / indre område. Esc / højreklik: annuller.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Det valgte område flyttede sig ikke. Vælg et punkt i indholdet, kontrollér om slutningen er nået, og prøv igen.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Et andet vindue dækker rullepanelet. Vælg panelet igen.</value>
+  </data>
 </root>

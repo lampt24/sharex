@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>動画エンコード</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>スクロール領域にポインターを合わせ、クリックしてキャプチャ。Tab / Shift+Tab：親／子領域。Esc／右クリック：キャンセル。</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>選択範囲が移動しませんでした。コンテンツ内の点を選び、末尾に達していないか確認して、もう一度お試しください。</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>スクロールパネルが別のウィンドウに隠れています。パネルを選び直してください。</value>
+  </data>
 </root>

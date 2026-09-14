@@ -48,6 +48,11 @@ namespace ShareX.ScreenCaptureLib
         private int bestMatchCount, bestMatchIndex, bestIgnoreBottomOffset;
         private WindowInfo selectedWindow;
         private Rectangle selectedRectangle;
+        private ScrollingCaptureTarget scrollTarget;
+        private bool observedMovement;
+        // Union of the frame areas that moved during a horizontal capture.
+        private Rectangle movingBounds;
+        private Bitmap firstScreenshot;
 
         public ScrollingCaptureManager(ScrollingCaptureOptions options, ScrollingCaptureDirection direction = ScrollingCaptureDirection.Vertical)
         {
@@ -74,6 +79,12 @@ namespace ShareX.ScreenCaptureLib
                 previousScreenshot = null;
             }
 
+            if (firstScreenshot != null)
+            {
+                firstScreenshot.Dispose();
+                firstScreenshot = null;
+            }
+
             if (!keepResult && Result != null)
             {
                 Result.Dispose();
@@ -93,6 +104,8 @@ namespace ShareX.ScreenCaptureLib
                 bestMatchIndex = 0;
                 bestIgnoreBottomOffset = 0;
                 Reset();
+                observedMovement = false;
+                movingBounds = Rectangle.Empty;
 
                 ScrollingCaptureRegionWindow regionWindow = null;
 
@@ -107,17 +120,21 @@ namespace ShareX.ScreenCaptureLib
                     selectedWindow.Activate();
 
                     await Task.Delay(Options.StartDelay);
+                    scrollTarget.PositionPointer();
 
                     if (Options.AutoScrollTop)
                     {
-                        if (direction == ScrollingCaptureDirection.Horizontal)
+                        if (scrollTarget.SupportsAutomation)
                         {
-                            NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.HSCROLL, (int)ScrollBarCommands.SB_LEFT, 0);
+                            await Task.Run(scrollTarget.ScrollToStart);
+                        }
+                        else if (direction == ScrollingCaptureDirection.Horizontal)
+                        {
+                            scrollTarget.SendMessage((int)WindowsMessages.HSCROLL, (int)ScrollBarCommands.SB_LEFT);
                         }
                         else
                         {
-                            InputHelpers.SendKeyPress(VirtualKeyCode.HOME);
-                            NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_TOP, 0);
+                            scrollTarget.SendMessage((int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_TOP);
                         }
 
                         await Task.Delay(Options.ScrollDelay);
@@ -132,24 +149,37 @@ namespace ShareX.ScreenCaptureLib
                     {
                         lastScreenshot = screenshot.CaptureRectangle(selectedRectangle);
 
-                        if (CompareLastTwoImages())
+                        if (await IsFrameUnchangedAsync())
                         {
-                            break;
+                            // A single unchanged frame mid-way can be a dropped scroll or a slow
+                            // repaint. Before the first movement, only wait; afterwards scroll again
+                            // and end only when that still moves nothing.
+                            if (observedMovement) await ScrollAsync();
+                            await Task.Delay(Math.Max(500, Options.ScrollDelay));
+                            if (IsStopRequested()) break;
+                            lastScreenshot?.Dispose();
+                            lastScreenshot = screenshot.CaptureRectangle(selectedRectangle);
+                            if (await IsFrameUnchangedAsync())
+                            {
+                                if (observedMovement) break;
+                                Reset();
+                                throw new InvalidOperationException(ScrollingCapturePointWindow.Text("ScrollingCaptureWindow_No_scroll_movement"));
+                            }
                         }
+                        if (previousScreenshot != null) observedMovement = true;
 
-                        if (direction == ScrollingCaptureDirection.Horizontal)
-                        {
-                            ScrollHorizontally();
-                        }
-                        else
-                        {
-                            ScrollVertically();
-                        }
+                        await ScrollAsync();
 
                         Stopwatch timer = Stopwatch.StartNew();
 
                         if (lastScreenshot != null)
                         {
+                            if (Result == null && direction == ScrollingCaptureDirection.Horizontal)
+                            {
+                                firstScreenshot?.Dispose();
+                                firstScreenshot = (Bitmap)lastScreenshot.Clone();
+                            }
+
                             Bitmap newResult = await CombineImagesAsync(Result, lastScreenshot);
 
                             if (newResult != null)
@@ -159,6 +189,12 @@ namespace ShareX.ScreenCaptureLib
                             }
                             else
                             {
+                                // Frames no longer line up; keep what was stitched but do not report it as complete.
+                                if (direction == ScrollingCaptureDirection.Horizontal && Result != null)
+                                {
+                                    status = ScrollingCaptureStatus.PartiallySuccessful;
+                                }
+
                                 break;
                             }
                         }
@@ -187,6 +223,14 @@ namespace ShareX.ScreenCaptureLib
                             await Task.Delay(delay);
                         }
                     }
+
+                    await ExtendStaticRowsAsync();
+                }
+                catch
+                {
+                    status = ScrollingCaptureStatus.Failed;
+                    Reset();
+                    throw;
                 }
                 finally
                 {
@@ -210,15 +254,18 @@ namespace ShareX.ScreenCaptureLib
 
         public async Task<bool> SelectWindowAsync()
         {
-            var selection = await RegionCaptureTasks.GetRectangleRegionAsync(new RegionCaptureOptions());
-            if (selection == null)
-            {
-                return false;
-            }
+            ScrollingCaptureTarget target = await ScrollingCapturePointWindow.SelectAsync(direction);
+            if (target == null) return false;
+            await Task.Delay(100);
+            SetTarget(target);
+            return scrollTarget.Handle != IntPtr.Zero;
+        }
 
-            selectedRectangle = selection.Value.Rectangle;
-            selectedWindow = selection.Value.WindowInfo;
-            return selectedWindow != null;
+        internal void SetTarget(ScrollingCaptureTarget target)
+        {
+            scrollTarget = target;
+            selectedRectangle = scrollTarget.Bounds;
+            selectedWindow = new WindowInfo(scrollTarget.RootHandle);
         }
 
         private bool IsScrollReachedBottom(IntPtr handle)
@@ -235,6 +282,55 @@ namespace ShareX.ScreenCaptureLib
             return CompareLastTwoImages();
         }
 
+        // Apps without UI Automation panels (e.g. JetBrains IDEs) are captured as a whole window.
+        // Only the scrolled rows are stitched; the rest is rebuilt as a wider window so its
+        // title bar, toolbars and status bar are not repeated.
+        private async Task ExtendStaticRowsAsync()
+        {
+            if (direction != ScrollingCaptureDirection.Horizontal || Result == null || firstScreenshot == null || movingBounds.IsEmpty)
+            {
+                return;
+            }
+
+            Bitmap result = Result, first = firstScreenshot;
+            Rectangle band = movingBounds;
+            Bitmap extended = await Task.Run(() => ScrollingCaptureImageCombiner.ExtendStaticRows(result, first, band.Top, band.Bottom));
+
+            if (extended != null)
+            {
+                Result.Dispose();
+                Result = extended;
+            }
+        }
+
+        private async Task ScrollAsync()
+        {
+            scrollTarget.PositionPointer();
+
+            if (scrollTarget.SupportsAutomation)
+            {
+                await Task.Run(() => scrollTarget.Scroll(Options.ScrollAmount));
+            }
+            else if (direction == ScrollingCaptureDirection.Horizontal)
+            {
+                ScrollHorizontally();
+            }
+            else
+            {
+                ScrollVertically();
+            }
+        }
+
+        private async Task<bool> IsFrameUnchangedAsync()
+        {
+            if (CompareLastTwoImages()) return true;
+            if (direction != ScrollingCaptureDirection.Horizontal || lastScreenshot == null || previousScreenshot == null) return false;
+
+            // Hover effects or re-rastered text make frames differ slightly without any scrolling.
+            Bitmap previous = previousScreenshot, last = lastScreenshot;
+            return await Task.Run(() => ScrollingCaptureImageCombiner.FindHorizontalShift(previous, last)) == 0;
+        }
+
         private bool CompareLastTwoImages()
         {
             if (lastScreenshot != null && previousScreenshot != null)
@@ -249,7 +345,19 @@ namespace ShareX.ScreenCaptureLib
         {
             if (direction == ScrollingCaptureDirection.Horizontal && result != null)
             {
-                return await Task.Run(() => ScrollingCaptureImageCombiner.Combine(result, currentImage, direction));
+                Bitmap previous = previousScreenshot;
+                (Bitmap combined, Rectangle moving) = await Task.Run(() =>
+                {
+                    Bitmap bitmap = ScrollingCaptureImageCombiner.CombineHorizontal(result, previous, currentImage, out Rectangle bounds);
+                    return (bitmap, bounds);
+                });
+
+                if (combined != null)
+                {
+                    movingBounds = movingBounds.IsEmpty ? moving : Rectangle.Union(movingBounds, moving);
+                }
+
+                return combined;
             }
 
             return await Task.Run(() => CombineImages(result, currentImage));
@@ -270,21 +378,21 @@ namespace ShareX.ScreenCaptureLib
             switch (Options.ScrollMethod)
             {
                 case ScrollMethod.MouseWheel:
-                    InputHelpers.SendMouseWheel(-120 * Options.ScrollAmount);
+                    scrollTarget.ScrollVerticalWheel(Options.ScrollAmount);
                     break;
                 case ScrollMethod.DownArrow:
                     for (int i = 0; i < Options.ScrollAmount; i++)
                     {
-                        InputHelpers.SendKeyPress(VirtualKeyCode.DOWN);
+                        scrollTarget.SendKey(VirtualKeyCode.DOWN);
                     }
                     break;
                 case ScrollMethod.PageDown:
-                    InputHelpers.SendKeyPress(VirtualKeyCode.NEXT);
+                    scrollTarget.SendKey(VirtualKeyCode.NEXT);
                     break;
                 case ScrollMethod.ScrollMessage:
                     for (int i = 0; i < Options.ScrollAmount; i++)
                     {
-                        NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_LINEDOWN, 0);
+                        scrollTarget.SendMessage((int)WindowsMessages.VSCROLL, (int)ScrollBarCommands.SB_LINEDOWN);
                     }
                     break;
             }
@@ -296,14 +404,12 @@ namespace ShareX.ScreenCaptureLib
 
             if (strategy == HorizontalScrollStrategy.ExcelScrollBarButton)
             {
-                ExcelHorizontalScroller.ScrollColumnRight(selectedWindow.Handle);
-                return;
+                if (ExcelHorizontalScroller.ScrollColumnRight(selectedWindow.Handle, scrollTarget.Point)) return;
             }
 
             for (int i = 0; i < Options.ScrollAmount; i++)
             {
-                NativeMethods.SendMessage(selectedWindow.Handle, (int)WindowsMessages.HSCROLL,
-                    (int)ScrollBarCommands.SB_LINERIGHT, 0);
+                scrollTarget.ScrollHorizontalWheel();
             }
         }
 

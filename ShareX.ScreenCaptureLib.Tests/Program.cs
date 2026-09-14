@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using ShareX.ScreenCaptureLib;
 using ShareX.ScreenCaptureLib.Presentation.RegionCapture;
 
+if (Array.IndexOf(args, "--scroll-target") >= 0) ScrollingCaptureTargetTests.Run();
+
 using Bitmap source = CreateStripedBitmap(Color.Red, Color.Green, Color.Blue, Color.Yellow);
 using Bitmap firstFrame = source.Clone(new Rectangle(0, 0, 3, 2), source.PixelFormat);
 using Bitmap secondFrame = source.Clone(new Rectangle(1, 0, 3, 2), source.PixelFormat);
@@ -36,6 +38,60 @@ for (int x = 0; x < excelContent.Length; x++)
     Assert(excelCombined.GetPixel(50 + x, 6).ToArgb() == excelContent[x].ToArgb(),
         $"Unexpected Excel content pixel at x={x}.");
 }
+
+// Real scrolled frames differ slightly (re-rastered text, a hover highlight following the
+// pointer). Stitching must tolerate that instead of ending the capture early.
+using Bitmap noisyFirstFrame = CreateContentFrame(0, false, false, false);
+using Bitmap noisySecondFrame = CreateContentFrame(90, true, true, false);
+using Bitmap? noisyCombined = ScrollingCaptureImageCombiner.Combine(
+    noisyFirstFrame, noisySecondFrame, ScrollingCaptureDirection.Horizontal);
+
+Assert(noisyCombined != null, "Slightly different scrolled frames should still combine.");
+Assert(noisyCombined!.Width == 690, $"Expected 690px noisy output, got {noisyCombined.Width}px.");
+
+using Bitmap unmovedNoisyFrame = CreateContentFrame(0, true, false, false);
+int unmovedShift = ScrollingCaptureImageCombiner.FindHorizontalShift(noisyFirstFrame, unmovedNoisyFrame);
+Assert(unmovedShift == 0, $"A noisy frame that did not scroll should report no movement, got {unmovedShift}.");
+
+// Selecting a whole window captures static sidebars and toolbars around the scrolled grid.
+// Mostly static frames must still count as moved and stitch at the grid's shift.
+using Bitmap chromeFirstFrame = CreateContentFrame(0, false, false, true);
+using Bitmap chromeSecondFrame = CreateContentFrame(40, true, false, true);
+int chromeShift = ScrollingCaptureImageCombiner.FindHorizontalShift(chromeFirstFrame, chromeSecondFrame);
+Assert(chromeShift == 40, $"A scrolled grid inside static chrome should shift 40px, got {chromeShift}.");
+using Bitmap? chromeCombined = ScrollingCaptureImageCombiner.CombineHorizontal(
+    chromeFirstFrame, chromeFirstFrame, chromeSecondFrame, out Rectangle chromeMoving);
+Assert(chromeCombined != null && chromeCombined.Width == 640, "Grid inside static chrome should stitch to 640px.");
+Assert(chromeMoving.X >= 350 && chromeMoving.X < 362 && chromeMoving.Y >= 60 && chromeMoving.Y < 72 &&
+    chromeMoving.Right == 600 && chromeMoving.Bottom > 180 && chromeMoving.Bottom <= 192,
+    $"Moving bounds should exclude the static sidebar, toolbar and scrollbar, got {chromeMoving}.");
+
+// A whole-window capture is rebuilt as a wider window: static rows keep left-anchored items,
+// move right-anchored items (like the close button) to the new edge and widen the blank gap.
+Color windowBackground = Color.FromArgb(30, 30, 30);
+Color leftIcon = Color.FromArgb(200, 60, 60);
+Color closeButton = Color.FromArgb(60, 200, 60);
+Color stitchedGrid = Color.FromArgb(220, 220, 220);
+using Bitmap windowFirstFrame = new(600, 100);
+using (Graphics graphics = Graphics.FromImage(windowFirstFrame))
+{
+    graphics.Clear(windowBackground);
+    graphics.FillRectangle(new SolidBrush(leftIcon), 10, 0, 20, 10);
+    graphics.FillRectangle(new SolidBrush(closeButton), 550, 0, 30, 10);
+}
+using Bitmap windowStitched = new(700, 100);
+using (Graphics graphics = Graphics.FromImage(windowStitched))
+{
+    graphics.Clear(Color.Magenta);
+    graphics.FillRectangle(new SolidBrush(stitchedGrid), 0, 40, 700, 20);
+}
+using Bitmap? windowExtended = ScrollingCaptureImageCombiner.ExtendStaticRows(windowStitched, windowFirstFrame, 40, 60);
+Assert(windowExtended != null, "Static rows of a whole-window capture should be rebuilt.");
+Assert(windowExtended!.GetPixel(20, 5).ToArgb() == leftIcon.ToArgb(), "Left-anchored items should stay in place.");
+Assert(windowExtended.GetPixel(660, 5).ToArgb() == closeButton.ToArgb(), "Right-anchored items should move to the new right edge.");
+Assert(windowExtended.GetPixel(560, 5).ToArgb() == windowBackground.ToArgb(), "Right-anchored items should not be repeated.");
+Assert(windowExtended.GetPixel(400, 80).ToArgb() == windowBackground.ToArgb(), "Blank space below the grid should be widened.");
+Assert(windowExtended.GetPixel(650, 50).ToArgb() == stitchedGrid.ToArgb(), "Scrolled rows should keep the stitched content.");
 
 Console.WriteLine("Horizontal scrolling capture image tests passed.");
 
@@ -106,6 +162,43 @@ static Bitmap CreateExcelFrame(Color[] content, int offset)
         for (int y = 0; y < bitmap.Height; y++)
         {
             bitmap.SetPixel(50 + x, y, content[offset + x]);
+        }
+    }
+
+    return bitmap;
+}
+
+static Bitmap CreateContentFrame(int offset, bool noisy, bool hoverBand, bool staticChrome)
+{
+    Bitmap bitmap = new(600, 200);
+
+    for (int x = 0; x < bitmap.Width; x++)
+    {
+        for (int y = 0; y < bitmap.Height; y++)
+        {
+            int cell = unchecked(((x + offset) / 6 * 73856093) ^ (y / 9 * 19349663));
+            // Sparse text on a light background, like a data grid.
+            int value = (cell & 0x7fffffff) % 11 == 0 ? 40 : 250;
+            if (staticChrome && (x < 350 || y < 60))
+            {
+                // A static sidebar and toolbar covering most of the frame.
+                value = (x * 7 + y * 3) % 5 == 0 ? 90 : 200;
+            }
+            else if (staticChrome && y >= 192)
+            {
+                // A horizontal scrollbar whose thumb moves right while the content moves left.
+                value = x >= 400 + offset && x < 460 + offset ? 160 : 30;
+            }
+            if (noisy)
+            {
+                // Slight re-rasterisation everywhere.
+                value = Math.Min(255, value + 5);
+            }
+            if (hoverBand && y >= 100 && y < 104)
+            {
+                value = 120;
+            }
+            bitmap.SetPixel(x, y, Color.FromArgb(value, value, value));
         }
     }
 

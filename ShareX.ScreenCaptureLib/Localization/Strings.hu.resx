@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Videokódolás</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Mutasson egy görgethető területre, majd kattintson a rögzítéshez. Tab / Shift+Tab: külső / belső terület. Esc / jobb kattintás: mégse.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>A kijelölt terület nem mozdult el. Válasszon pontot a tartalmon belül, ellenőrizze, hogy a végére ért-e, majd próbálja újra.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Egy másik ablak eltakarja a görgetési panelt. Válassza ki újra.</value>
+  </data>
 </root>

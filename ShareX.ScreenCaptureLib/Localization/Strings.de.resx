@@ -538,4 +538,13 @@
   <data name="FFmpegOptionsWindow_Codec_video_encoding" xml:space="preserve">
     <value>Videokodierung</value>
   </data>
+  <data name="ScrollingCaptureWindow_Select_scroll_point" xml:space="preserve">
+    <value>Auf einen Scrollbereich zeigen und zum Aufnehmen klicken. Tab / Shift+Tab: übergeordneter / innerer Bereich. Esc / Rechtsklick: Abbrechen.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_No_scroll_movement" xml:space="preserve">
+    <value>Der ausgewählte Bereich hat sich nicht bewegt. Wählen Sie einen Punkt im Inhalt, prüfen Sie, ob das Ende erreicht ist, und versuchen Sie es erneut.</value>
+  </data>
+  <data name="ScrollingCaptureWindow_Target_obscured" xml:space="preserve">
+    <value>Ein anderes Fenster verdeckt den Scrollbereich. Wählen Sie ihn erneut aus.</value>
+  </data>
 </root>
