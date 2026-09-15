@@ -68,6 +68,7 @@ namespace ShareX.Tools
         public bool AutoStartRegion { get; set; } = true;
         public bool AutoStartAnalyze { get; set; } = true;
         public bool AutoCopyResult { get; set; } = false;
+        public string CaptureTextTranslationLanguage { get; set; } = "English";
 
         public bool HasAPIKey => !string.IsNullOrWhiteSpace(OpenAIAPIKey);
 
@@ -89,7 +90,8 @@ namespace ShareX.Tools
             Input = Input,
             AutoStartRegion = AutoStartRegion,
             AutoStartAnalyze = AutoStartAnalyze,
-            AutoCopyResult = AutoCopyResult
+            AutoCopyResult = AutoCopyResult,
+            CaptureTextTranslationLanguage = CaptureTextTranslationLanguage
         };
 
         public void CopyFrom(AIOptions source)
@@ -111,6 +113,7 @@ namespace ShareX.Tools
             AutoStartRegion = source.AutoStartRegion;
             AutoStartAnalyze = source.AutoStartAnalyze;
             AutoCopyResult = source.AutoCopyResult;
+            CaptureTextTranslationLanguage = source.CaptureTextTranslationLanguage;
         }
     }
 }

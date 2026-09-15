@@ -1825,7 +1825,7 @@ namespace ShareX
         {
             AIOptions options = CaptureTextOptions.Create(taskSettings.ToolsSettingsReference.AIOptions);
 
-            ToolsIntegration.ShowAnalyzeImageWindow(
+            ToolsIntegration.ShowCaptureTextWindow(
                 filePath,
                 options,
                 async () =>
@@ -2305,7 +2305,7 @@ namespace ShareX
                 HotkeyType.VideoConverter => LucideIcons.file_video,
                 HotkeyType.VideoThumbnailer => LucideIcons.clapperboard,
                 HotkeyType.AnalyzeImage => LucideIcons.bot,
-                HotkeyType.CaptureText => LucideIcons.brain_circuit,
+                HotkeyType.CaptureText => LucideIcons.type,
                 HotkeyType.OCR => LucideIcons.scan_text,
                 HotkeyType.QRCode => LucideIcons.qr_code,
                 HotkeyType.QRCodeDecodeFromScreen => LucideIcons.scan_eye,

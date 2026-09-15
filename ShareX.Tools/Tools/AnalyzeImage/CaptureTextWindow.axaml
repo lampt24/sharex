@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ShareX.Tools"
+        xmlns:theming="using:ShareX.AvaloniaUI.Theming"
+        mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="560"
+        x:Class="ShareX.Tools.CaptureTextWindow"
+        x:DataType="vm:CaptureTextViewModel"
+        Title="ShareX - Capture text"
+        Width="640" Height="560" MinWidth="520" MinHeight="420"
+        Background="{DynamicResource ShareX.Brush.Background.Panel}"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="{DynamicResource ShareX.Brush.Background.Panel}" RowDefinitions="Auto,*,Auto" Margin="16" RowSpacing="12">
+        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+            <Button Grid.Column="1" Command="{Binding SelectRegionCommand}" IsEnabled="{Binding IsIdle}" ToolTip.Tip="Capture another region">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.crop}"/>
+                    <TextBlock Text="Capture again"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" Command="{Binding EditOptionsCommand}" IsEnabled="{Binding IsIdle}" ToolTip.Tip="AI settings">
+                <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.settings}"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" RowDefinitions="*,Auto,*" RowSpacing="12">
+            <Border Classes="tool-panel" Padding="0" ClipToBounds="True">
+                <Grid RowDefinitions="Auto,*">
+                    <Grid Margin="12,10,12,8" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Original" FontWeight="SemiBold"/>
+                        <Button Grid.Column="1" Command="{Binding CopyDetectedTextCommand}" IsEnabled="{Binding HasDetectedText}" ToolTip.Tip="Copy detected text">
+                            <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.copy}"/>
+                        </Button>
+                    </Grid>
+                    <TextBox Grid.Row="1" Margin="12,0,12,12" Text="{Binding DetectedText}" IsReadOnly="True"
+                             AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1" ColumnDefinitions="Auto,220,*" ColumnSpacing="10">
+                <TextBlock Text="Translate to" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" IsEnabled="{Binding IsIdle}"/>
+                <ProgressBar Grid.Column="2" Height="4" IsIndeterminate="True" IsVisible="{Binding IsBusy}" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Border Grid.Row="2" Classes="tool-panel" Padding="0" ClipToBounds="True">
+                <Grid RowDefinitions="Auto,*">
+                    <Grid Margin="12,10,12,8" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Translation" FontWeight="SemiBold"/>
+                        <Button Grid.Column="1" Command="{Binding CopyTranslationCommand}" IsEnabled="{Binding HasTranslation}" ToolTip.Tip="Copy translation">
+                            <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.copy}"/>
+                        </Button>
+                    </Grid>
+                    <TextBox Grid.Row="1" Margin="12,0,12,12" Text="{Binding TranslatedText}" IsReadOnly="True"
+                             AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+            <TextBlock Text="{Binding ErrorMessage}" IsVisible="{Binding HasError}" TextWrapping="Wrap"
+                       Foreground="{DynamicResource ShareX.Brush.TaskMode.Cancel.Border}" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="Close" Click="OnCloseClick"/>
+        </Grid>
+    </Grid>
+</Window>

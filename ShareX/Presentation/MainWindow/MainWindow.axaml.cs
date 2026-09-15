@@ -1122,7 +1122,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 !SystemOptions.DisableUpload && hasSelection && !isWorking && selected!.IsURLExist),
             Item(Strings.MainWindow_AnalyzeImage, LucideIcons.bot, _uploadInfoManager.AnalyzeImage,
                 hasSelection && !isWorking && selected!.IsImageFile),
-            Item(Strings.MainWindow_CaptureText, LucideIcons.brain_circuit, () => TaskHelpers.CaptureText(selected!.Info.FilePath),
+            Item(Strings.MainWindow_CaptureText, LucideIcons.type, () => TaskHelpers.CaptureText(selected!.Info.FilePath),
                 hasSelection && !isWorking && selected!.IsImageFile),
             Item(Strings.MainWindow_SearchWithGoogleLens, LucideIcons.search, _uploadInfoManager.SearchImageUsingGoogleLens,
                 hasSelection && !isWorking && selected!.IsURLExist),

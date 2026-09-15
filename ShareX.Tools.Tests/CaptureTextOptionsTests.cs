@@ -31,7 +31,8 @@ internal static class CaptureTextOptionsTests
             OpenAICustomURL = "https://vision.example/v1/chat/completions",
             Input = "Describe this image",
             AutoStartRegion = false,
-            AutoStartAnalyze = false
+            AutoStartAnalyze = false,
+            CaptureTextTranslationLanguage = "Vietnamese"
         };
 
         AIOptions captureText = CaptureTextOptions.Create(source);
@@ -45,6 +46,7 @@ internal static class CaptureTextOptionsTests
         AssertEqual("vision-model", captureText.OpenAIModel, "Model must be retained");
         AssertEqual("https://vision.example/v1/chat/completions", captureText.OpenAICustomURL, "API URL must be retained");
         AssertEqual("Describe this image", source.Input, "Source settings must not be changed");
+        AssertEqual("Vietnamese", captureText.CaptureTextTranslationLanguage, "Translation language must be retained");
     }
 
     private static void ParsesStreamingVisionResponse()
@@ -103,6 +105,7 @@ internal static class CaptureTextOptionsTests
         captureOptions.OpenAIAPIKey = "updated-token";
         captureOptions.OpenAIModel = "ag/gemini-3.7-flash-high";
         captureOptions.OpenAICustomURL = "https://ai.lampt.works/v1";
+        captureOptions.CaptureTextTranslationLanguage = "Japanese";
 
         CaptureTextOptions.SaveConfiguration(target, captureOptions);
 
@@ -110,6 +113,7 @@ internal static class CaptureTextOptionsTests
         AssertEqual("ag/gemini-3.7-flash-high", target.OpenAIModel, "Saved model");
         AssertEqual("https://ai.lampt.works/v1", target.OpenAICustomURL, "Saved API URL");
         AssertEqual("Describe this image", target.Input, "Analyze Image prompt must be retained");
+        AssertEqual("Japanese", target.CaptureTextTranslationLanguage, "Selected translation language must be saved");
         AssertTrue(!target.AutoStartRegion && !target.AutoStartAnalyze, "Analyze Image startup behavior must be retained");
     }
 

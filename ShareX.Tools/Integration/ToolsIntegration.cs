@@ -66,6 +66,33 @@ public static class ToolsIntegration
         return completion.Task;
     }
 
+    public static Task ShowCaptureTextWindow(
+        string? imagePath,
+        AIOptions options,
+        AnalyzeImageRegionCaptureHandler captureRegion,
+        Action? playNotificationSound = null,
+        Action<AIOptions>? optionsChanged = null)
+    {
+        AvaloniaBootstrapper.EnsureInitialized();
+        TaskCompletionSource completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            try
+            {
+                CaptureTextWindow window = new(imagePath, options, captureRegion, playNotificationSound, optionsChanged);
+                window.Closed += (_, _) => completion.TrySetResult();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                completion.TrySetException(ex);
+            }
+        });
+
+        return completion.Task;
+    }
+
     public static void ShowBackgroundRemoverWindow(string? modelsFolder, BackgroundRemoverOptions options)
     {
         Show(() => new BackgroundRemoverWindow(modelsFolder, options));
