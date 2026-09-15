@@ -138,7 +138,10 @@ public partial class ActionsToolbarWindow : Window
                 Tag = action
             };
             button.Classes.Add("toolbar-action");
-            ToolTip.SetTip(button, action.GetLocalizedDescription());
+            ToolTip.SetTip(button, ActionsToolbarTooltipBuilder.Build(
+                action,
+                action.GetLocalizedDescription(),
+                Program.HotkeysConfig?.Hotkeys));
             ToolTip.SetPlacement(button, PlacementMode.Top);
             ToolTip.SetVerticalOffset(button, -4);
             ToolTip.SetShowDelay(button, 400);
