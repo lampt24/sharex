@@ -28,7 +28,6 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -161,9 +160,11 @@ namespace ShareX.ScreenCaptureLib
                             lastScreenshot = screenshot.CaptureRectangle(selectedRectangle);
                             if (await IsFrameUnchangedAsync())
                             {
-                                if (observedMovement) break;
-                                Reset();
-                                throw new InvalidOperationException(ScrollingCapturePointWindow.Text("ScrollingCaptureWindow_No_scroll_movement"));
+                                // Never scrolling is a normal outcome, not a failure: the panel is
+                                // already at its end or does not scroll. Keep the frame and say so.
+                                if (!observedMovement) status = ScrollingCaptureStatus.NotScrolled;
+
+                                break;
                             }
                         }
                         if (previousScreenshot != null) observedMovement = true;
@@ -190,7 +191,7 @@ namespace ShareX.ScreenCaptureLib
                             else
                             {
                                 // Frames no longer line up; keep what was stitched but do not report it as complete.
-                                if (direction == ScrollingCaptureDirection.Horizontal && Result != null)
+                                if (Result != null)
                                 {
                                     status = ScrollingCaptureStatus.PartiallySuccessful;
                                 }
@@ -422,34 +423,35 @@ namespace ShareX.ScreenCaptureLib
                 return (Bitmap)currentImage.Clone();
             }
 
-            int matchCount = 0;
-            int matchIndex = 0;
-            int matchLimit = currentImage.Height / 2;
+            int width = currentImage.Width;
+            int height = currentImage.Height;
 
-            int ignoreSideOffset = Math.Max(50, currentImage.Width / 20);
-            ignoreSideOffset = Math.Min(ignoreSideOffset, currentImage.Width / 3);
+            if (result.Width != width || result.Height < height)
+            {
+                status = ScrollingCaptureStatus.Failed;
 
-            Rectangle rect = new Rectangle(ignoreSideOffset, result.Height - currentImage.Height, currentImage.Width - ignoreSideOffset * 2, currentImage.Height);
+                return null;
+            }
 
-            BitmapData bdResult = result.LockBits(new Rectangle(0, 0, result.Width, result.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            BitmapData bdCurrentImage = currentImage.LockBits(new Rectangle(0, 0, currentImage.Width, currentImage.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            int stride = bdResult.Stride;
-            int pixelSize = stride / result.Width;
-            IntPtr resultScan0 = bdResult.Scan0 + pixelSize * ignoreSideOffset;
-            IntPtr currentImageScan0 = bdCurrentImage.Scan0 + pixelSize * ignoreSideOffset;
-            int compareLength = pixelSize * rect.Width;
+            int matchLimit = height / 2;
 
-            int ignoreBottomOffsetMax = currentImage.Height / 3;
-            int ignoreBottomOffset = Math.Max(50, currentImage.Height / 10);
+            int ignoreSideOffset = Math.Max(50, width / 20);
+            ignoreSideOffset = Math.Min(ignoreSideOffset, width / 3);
+            int left = ignoreSideOffset;
+            int right = width - ignoreSideOffset;
+
+            // Only the bottom of the result can overlap the new frame, so the rest is never read.
+            int[] tail = ScrollingCaptureImageCombiner.ReadPixels(result, new Rectangle(0, result.Height - height, width, height));
+            int[] current = ScrollingCaptureImageCombiner.ReadPixels(currentImage);
+
+            int ignoreBottomOffsetMax = height / 3;
+            int ignoreBottomOffset = Math.Max(50, height / 10);
 
             if (Options.AutoIgnoreBottomEdge)
             {
-                IntPtr resultScan0Last = resultScan0 + (result.Height - 1) * stride;
-                IntPtr currentImageScan0Last = currentImageScan0 + (currentImage.Height - 1) * stride;
-
                 for (int i = 0; i <= ignoreBottomOffsetMax; i++)
                 {
-                    if (NativeMethods.memcmp(resultScan0Last - i * stride, currentImageScan0Last - i * stride, compareLength) != 0)
+                    if (!ScrollingCaptureImageCombiner.IsMatchingRow(tail, height - 1 - i, current, height - 1 - i, width, left, right))
                     {
                         ignoreBottomOffset += i;
                         break;
@@ -461,33 +463,8 @@ namespace ShareX.ScreenCaptureLib
 
             ignoreBottomOffset = Math.Min(ignoreBottomOffset, ignoreBottomOffsetMax);
 
-            int rectBottom = rect.Bottom - ignoreBottomOffset - 1;
-
-            for (int currentImageY = currentImage.Height - 1; currentImageY >= 0 && matchCount < matchLimit; currentImageY--)
-            {
-                int currentMatchCount = 0;
-
-                for (int y = 0; currentImageY - y >= 0 && currentMatchCount < matchLimit; y++)
-                {
-                    if (NativeMethods.memcmp(resultScan0 + ((rectBottom - y) * stride), currentImageScan0 + ((currentImageY - y) * stride), compareLength) == 0)
-                    {
-                        currentMatchCount++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                if (currentMatchCount > matchCount)
-                {
-                    matchCount = currentMatchCount;
-                    matchIndex = currentImageY;
-                }
-            }
-
-            result.UnlockBits(bdResult);
-            currentImage.UnlockBits(bdCurrentImage);
+            (int matchCount, int matchIndex) = ScrollingCaptureImageCombiner.FindVerticalOverlap(
+                tail, current, width, height, left, right, height - ignoreBottomOffset - 1, matchLimit);
 
             bool bestGuess = false;
 

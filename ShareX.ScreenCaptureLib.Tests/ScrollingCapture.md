@@ -40,7 +40,9 @@ Manual checks for the selection overlay and application-specific fallbacks:
    are used; these may be less precise than a supported scroll container.
 5. Repeat for horizontal capture, mixed monitor scaling, and a monitor left of the
    primary monitor. Check that the point and capture border match physical pixels.
-6. If already at the end, expect an explanatory no-movement message and no upload.
+6. If already at the end, expect the one captured screen, an explanatory no-movement
+   message and no upload. Never scrolling is not an error: no error dialog appears,
+   and the frame stays visible even with auto-upload on.
 7. Cover the target with another window during capture; expect an error and no
    upload. Escape should stop capture without sending a selection click.
 
@@ -48,3 +50,9 @@ Custom application controls may ignore wheel/window messages. In that case the
 capture reports no movement; it does not guess a different panel. UI Automation
 providers can also be slow or unavailable. Excel retains its button fallback,
 restricted to a visible horizontal scrollbar below the selected point.
+
+Editors scroll by a fractional line height, so rows holding the same text come
+back re-rastered rather than byte-identical. Both directions match frames with
+tolerance; comparing rows exactly ends a vertical capture after one frame (this
+is what Visual Studio's editor did). When frames stop lining up part-way, the
+capture keeps what it stitched and reports a partial result instead of failing.

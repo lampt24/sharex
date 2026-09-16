@@ -95,6 +95,47 @@ Assert(windowExtended.GetPixel(650, 50).ToArgb() == stitchedGrid.ToArgb(), "Scro
 
 Console.WriteLine("Horizontal scrolling capture image tests passed.");
 
+// Editors scroll by a fractional line height, so rows holding the same text come back
+// re-rastered rather than byte-identical. Vertical stitching has to match them anyway;
+// comparing rows exactly ends the capture after a single frame.
+const int verticalWidth = 400;
+const int verticalHeight = 300;
+const int verticalLeft = 50;
+const int verticalRight = 350;
+// Matches the manager: max(50, height / 10) plus the 20 static rows of the status bar.
+const int verticalAnchor = verticalHeight - 70 - 1;
+const int verticalShift = 60;
+
+using Bitmap verticalFirstFrame = CreateVerticalFrame(0, false);
+using Bitmap verticalSecondFrame = CreateVerticalFrame(verticalShift, true);
+int[] verticalTail = ScrollingCaptureImageCombiner.ReadPixels(verticalFirstFrame);
+int[] verticalCurrent = ScrollingCaptureImageCombiner.ReadPixels(verticalSecondFrame);
+int verticalExpectedIndex = verticalAnchor - verticalShift;
+
+Assert(!RowsAreIdentical(verticalTail, verticalAnchor, verticalCurrent, verticalExpectedIndex, verticalWidth, verticalLeft, verticalRight),
+    "The fixture must re-raster rows, otherwise it does not reproduce byte-exact matching.");
+Assert(ScrollingCaptureImageCombiner.IsMatchingRow(verticalTail, verticalAnchor, verticalCurrent, verticalExpectedIndex,
+    verticalWidth, verticalLeft, verticalRight), "Re-rastered rows holding the same text should match.");
+Assert(!ScrollingCaptureImageCombiner.IsMatchingRow(verticalTail, verticalAnchor, verticalCurrent, verticalExpectedIndex + 1,
+    verticalWidth, verticalLeft, verticalRight), "Rows holding different text should not match.");
+
+(int verticalMatchCount, int verticalMatchIndex) = ScrollingCaptureImageCombiner.FindVerticalOverlap(
+    verticalTail, verticalCurrent, verticalWidth, verticalHeight, verticalLeft, verticalRight,
+    verticalAnchor, verticalHeight / 2);
+
+Assert(verticalMatchIndex == verticalExpectedIndex,
+    $"Expected the anchor row to line up at row {verticalExpectedIndex}, got {verticalMatchIndex}.");
+Assert(verticalMatchCount > 100, $"Expected a long run of matching rows, got {verticalMatchCount}.");
+
+// Static chrome alone must never look like an overlap; an unscrolled frame has to stay put.
+using Bitmap verticalUnmovedFrame = CreateVerticalFrame(0, true);
+(_, int unmovedIndex) = ScrollingCaptureImageCombiner.FindVerticalOverlap(
+    verticalTail, ScrollingCaptureImageCombiner.ReadPixels(verticalUnmovedFrame),
+    verticalWidth, verticalHeight, verticalLeft, verticalRight, verticalAnchor, verticalHeight / 2);
+Assert(unmovedIndex == verticalAnchor, $"A frame that did not scroll should line up at the anchor, got {unmovedIndex}.");
+
+Console.WriteLine("Vertical scrolling capture image tests passed.");
+
 HorizontalScrollStrategy excelStrategy = HorizontalScrollStrategySelector.Select("EXCEL");
 Assert(excelStrategy == HorizontalScrollStrategy.ExcelScrollBarButton,
     $"Expected Excel scrollbar button scrolling, got {excelStrategy}.");
@@ -123,12 +164,23 @@ Assert(dimBrush.Color == Avalonia.Media.Color.FromArgb(89, 128, 128, 128),
 Assert(new RegionCaptureOptions().BackgroundDimStrength == 35,
     "Expected the default region capture dim strength to be 35%.");
 
-Assert(!ScrollingCaptureResultHandling.ShouldShowPreview(new ScrollingCaptureOptions { AutoUpload = true }, true),
+ScrollingCaptureOptions autoUpload = new() { AutoUpload = true };
+ScrollingCaptureOptions manualUpload = new() { AutoUpload = false };
+
+Assert(!ScrollingCaptureResultHandling.ShouldShowPreview(autoUpload, true, ScrollingCaptureStatus.Successful),
     "Auto-uploaded scrolling captures should skip the preview.");
-Assert(ScrollingCaptureResultHandling.ShouldShowPreview(new ScrollingCaptureOptions { AutoUpload = false }, true),
+Assert(ScrollingCaptureResultHandling.ShouldShowPreview(manualUpload, true, ScrollingCaptureStatus.Successful),
     "Manual scrolling captures should show the preview.");
-Assert(ScrollingCaptureResultHandling.ShouldShowPreview(new ScrollingCaptureOptions { AutoUpload = true }, false),
+Assert(ScrollingCaptureResultHandling.ShouldShowPreview(autoUpload, false, ScrollingCaptureStatus.Failed),
     "Failed auto-upload scrolling captures should remain visible for error feedback.");
+
+// A capture that never scrolled is one screen, not a page: show it instead of uploading it.
+Assert(!ScrollingCaptureResultHandling.ShouldAutoUpload(autoUpload, true, ScrollingCaptureStatus.NotScrolled),
+    "A capture that never scrolled should not be auto-uploaded.");
+Assert(ScrollingCaptureResultHandling.ShouldShowPreview(autoUpload, true, ScrollingCaptureStatus.NotScrolled),
+    "A capture that never scrolled should stay visible even with auto-upload on.");
+Assert(ScrollingCaptureResultHandling.ShouldAutoUpload(autoUpload, true, ScrollingCaptureStatus.PartiallySuccessful),
+    "A partial capture still has stitched content worth uploading.");
 
 Console.WriteLine("Region capture overlay appearance tests passed.");
 
@@ -203,6 +255,48 @@ static Bitmap CreateContentFrame(int offset, bool noisy, bool hoverBand, bool st
     }
 
     return bitmap;
+}
+
+// A navigation bar above the text and a status bar below it never scroll, like a document
+// pane in an IDE. Content rows show the document row that a scroll of `offset` brings up.
+static Bitmap CreateVerticalFrame(int offset, bool reRastered)
+{
+    Bitmap bitmap = new(400, 300);
+
+    for (int y = 0; y < bitmap.Height; y++)
+    {
+        bool staticRow = y < 20 || y >= 280;
+        int documentRow = staticRow ? y : y - 20 + offset;
+
+        for (int x = 0; x < bitmap.Width; x++)
+        {
+            int cell = unchecked(documentRow * 19349663 ^ x / 3 * 73856093);
+            int value = staticRow ? 70 + x % 5 : (cell & 0x7fffffff) % 7 == 0 ? 40 : 250;
+
+            // Anti-aliasing lands on a different pixel of the row after a fractional scroll.
+            if (reRastered && !staticRow && x % 137 == documentRow % 137)
+            {
+                value = 255 - value;
+            }
+
+            bitmap.SetPixel(x, y, Color.FromArgb(value, value, value));
+        }
+    }
+
+    return bitmap;
+}
+
+static bool RowsAreIdentical(int[] first, int firstRow, int[] second, int secondRow, int width, int left, int right)
+{
+    for (int x = left; x < right; x++)
+    {
+        if (first[firstRow * width + x] != second[secondRow * width + x])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 static void Assert(bool condition, string message)

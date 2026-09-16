@@ -171,10 +171,12 @@ public partial class ScrollingCaptureWindow : Window
         StatusIcon.Text = LucideIcons.loader_circle;
         StatusIcon.Foreground = Brushes.DodgerBlue;
 
+        ScrollingCaptureStatus status = ScrollingCaptureStatus.Failed;
+
         try
         {
             StartCaptureKeyboardHook();
-            ScrollingCaptureStatus status = await _service.StartCaptureAsync();
+            status = await _service.StartCaptureAsync();
             SetStatus(status);
             _playNotificationSound?.Invoke();
         }
@@ -190,14 +192,14 @@ public partial class ScrollingCaptureWindow : Window
             StopCaptureKeyboardHook();
             SetCaptureControlsEnabled(true);
 
-            if (ScrollingCaptureResultHandling.ShouldShowPreview(_service.Options, _service.Result != null))
+            if (ScrollingCaptureResultHandling.ShouldShowPreview(_service.Options, _service.Result != null, status))
             {
                 LoadImage(_service.Result);
                 RestoreAndActivate();
             }
         }
 
-        if (_service.Options.AutoUpload && _service.Result != null)
+        if (ScrollingCaptureResultHandling.ShouldAutoUpload(_service.Options, _service.Result != null, status))
         {
             UploadResult();
             Close();
@@ -263,6 +265,11 @@ public partial class ScrollingCaptureWindow : Window
                 StatusIcon.Text = LucideIcons.circle_check;
                 StatusIcon.Foreground = Brushes.MediumSeaGreen;
                 StatusText.Text = Localization.Strings.ScrollingCaptureWindow_Capture_successful;
+                break;
+            case ScrollingCaptureStatus.NotScrolled:
+                StatusIcon.Text = LucideIcons.triangle_alert;
+                StatusIcon.Foreground = Brushes.Goldenrod;
+                StatusText.Text = Localization.Strings.ScrollingCaptureWindow_No_scroll_movement;
                 break;
         }
     }

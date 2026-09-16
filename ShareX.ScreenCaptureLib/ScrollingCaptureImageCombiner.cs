@@ -28,6 +28,10 @@ public static class ScrollingCaptureImageCombiner
     // Slightly prefer smaller shifts so repeated content does not match at a distant offset.
     private const double ShiftPenalty = 0.02;
     private const int SampledRows = 48;
+    // Editors scroll by a fractional line height, so every scrolled row is re-rastered and a
+    // handful of its anti-aliased pixels land differently. Rows still count as the same row.
+    private const double MaxRowMismatchRatio = 0.01;
+    private const int MinRowMismatch = 4;
 
     /// <param name="previousFrame">The frame captured before <paramref name="currentImage"/>;
     /// when omitted, <paramref name="result"/> must be that frame.</param>
@@ -97,6 +101,63 @@ public static class ScrollingCaptureImageCombiner
         ArgumentNullException.ThrowIfNull(previousFrame);
         ArgumentNullException.ThrowIfNull(currentImage);
         return Match(previousFrame, currentImage).Shift;
+    }
+
+    /// <summary>
+    /// Finds where the bottom of a stitched result reappears in the next frame.
+    /// <paramref name="tail"/> holds the last <paramref name="height"/> rows of the result, so both
+    /// arrays share the same row indices. Returns the row of <paramref name="current"/> that lines up
+    /// with <paramref name="anchorRow"/> and how many rows above it matched, or a count of 0 when the
+    /// frames do not line up.
+    /// </summary>
+    internal static (int MatchCount, int MatchIndex) FindVerticalOverlap(int[] tail, int[] current,
+        int width, int height, int left, int right, int anchorRow, int matchLimit)
+    {
+        int matchCount = 0;
+        int matchIndex = 0;
+
+        // Searched from the bottom up, so equally long matches resolve to the shortest scroll.
+        for (int currentRow = height - 1; currentRow >= 0 && matchCount < matchLimit; currentRow--)
+        {
+            int rows = 0;
+
+            while (rows < matchLimit && currentRow - rows >= 0 && anchorRow - rows >= 0 &&
+                IsMatchingRow(tail, anchorRow - rows, current, currentRow - rows, width, left, right))
+            {
+                rows++;
+            }
+
+            if (rows > matchCount)
+            {
+                matchCount = rows;
+                matchIndex = currentRow;
+            }
+        }
+
+        return (matchCount, matchIndex);
+    }
+
+    /// <summary>
+    /// Whether two rows show the same content between <paramref name="left"/> and
+    /// <paramref name="right"/>. Comparing them byte for byte would reject most scrolled rows.
+    /// </summary>
+    internal static bool IsMatchingRow(int[] first, int firstRow, int[] second, int secondRow,
+        int width, int left, int right)
+    {
+        int allowed = Math.Max(MinRowMismatch, (int)((right - left) * MaxRowMismatchRatio));
+        int firstOffset = firstRow * width;
+        int secondOffset = secondRow * width;
+        int mismatches = 0;
+
+        for (int x = left; x < right; x++)
+        {
+            if (!IsSimilar(first[firstOffset + x], second[secondOffset + x]) && ++mismatches > allowed)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static (int Shift, Rectangle Moving) Match(Bitmap previousFrame, Bitmap currentImage)
@@ -432,18 +493,20 @@ public static class ScrollingCaptureImageCombiner
         return rows;
     }
 
-    private static int[] ReadPixels(Bitmap bitmap)
+    internal static int[] ReadPixels(Bitmap bitmap) =>
+        ReadPixels(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
+
+    internal static int[] ReadPixels(Bitmap bitmap, Rectangle area)
     {
-        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-            ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+        BitmapData data = bitmap.LockBits(area, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
         try
         {
-            int[] pixels = new int[bitmap.Width * bitmap.Height];
+            int[] pixels = new int[area.Width * area.Height];
 
-            for (int y = 0; y < bitmap.Height; y++)
+            for (int y = 0; y < area.Height; y++)
             {
-                Marshal.Copy(data.Scan0 + y * data.Stride, pixels, y * bitmap.Width, bitmap.Width);
+                Marshal.Copy(data.Scan0 + y * data.Stride, pixels, y * area.Width, area.Width);
             }
 
             return pixels;

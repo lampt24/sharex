@@ -39,9 +39,18 @@ namespace ShareX.ScreenCaptureLib
 
     public static class ScrollingCaptureResultHandling
     {
-        public static bool ShouldShowPreview(ScrollingCaptureOptions options, bool hasResult)
+        /// <summary>
+        /// A capture that never scrolled is a single screen rather than a page, so it is shown for
+        /// the user to judge instead of being uploaded behind their back.
+        /// </summary>
+        public static bool ShouldAutoUpload(ScrollingCaptureOptions options, bool hasResult, ScrollingCaptureStatus status)
         {
-            return !options.AutoUpload || !hasResult;
+            return options.AutoUpload && hasResult && status != ScrollingCaptureStatus.NotScrolled;
+        }
+
+        public static bool ShouldShowPreview(ScrollingCaptureOptions options, bool hasResult, ScrollingCaptureStatus status)
+        {
+            return !ShouldAutoUpload(options, hasResult, status);
         }
     }
 }

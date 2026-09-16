@@ -245,7 +245,10 @@ namespace ShareX.ScreenCaptureLib
     {
         Failed,
         PartiallySuccessful,
-        Successful
+        Successful,
+        // Nothing moved at all: the panel is already at its end, or it does not scroll.
+        // The one captured frame is kept, but it is not a page and is never auto-uploaded.
+        NotScrolled
     }
 
     public enum ScrollingCaptureDirection
