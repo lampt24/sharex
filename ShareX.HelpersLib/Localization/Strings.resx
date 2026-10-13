@@ -1357,6 +1357,9 @@
   <data name="HotkeyType_ToggleActionsToolbar" xml:space="preserve">
     <value>Toggle actions toolbar</value>
   </data>
+  <data name="HotkeyType_ToggleClipboardCopyMode" xml:space="preserve">
+    <value>Switch clipboard copy between image and file path</value>
+  </data>
   <data name="HotkeyType_ToggleTrayMenu" xml:space="preserve">
     <value>Toggle tray menu</value>
   </data>

@@ -355,7 +355,9 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_Other)]
         ExitShareX,
         [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
-        HorizontalScrollingCapture
+        HorizontalScrollingCapture,
+        [Category(EnumExtensions.HotkeyType_Category_Other)]
+        ToggleClipboardCopyMode
     }
 
     public enum ToastClickAction // Localized

@@ -192,19 +192,7 @@ public partial class ActionsToolbarWindow : Window
         ToolTip.SetShowDelay(_clipboardToggleButton, 400);
         _clipboardToggleButton.Click += (_, _) =>
         {
-            // Toggle: CopyImage ↔ CopyFilePath
-            bool wasImage = Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
-            Program.DefaultTaskSettings.AfterCaptureJob &= ~(AfterCaptureTasks.CopyImageToClipboard | AfterCaptureTasks.CopyFilePathToClipboard);
-            if (wasImage)
-            {
-                Program.DefaultTaskSettings.AfterCaptureJob |= AfterCaptureTasks.CopyFilePathToClipboard;
-            }
-            else
-            {
-                Program.DefaultTaskSettings.AfterCaptureJob |= AfterCaptureTasks.CopyImageToClipboard;
-            }
-            UpdateCaptureOptions();
-            SaveSettings();
+            TaskHelpers.ToggleClipboardCopyMode();
         };
         ToolbarItems.Children.Add(_clipboardToggleButton);
 
@@ -292,6 +280,11 @@ public partial class ActionsToolbarWindow : Window
         {
             _delayText.Text = $"{Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay:0.#}s";
         }
+    }
+
+    internal void RefreshClipboardCopyMode()
+    {
+        UpdateCaptureOptions();
     }
 
     private async void OnActionClick(object? sender, RoutedEventArgs e)

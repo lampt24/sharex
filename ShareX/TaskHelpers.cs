@@ -388,6 +388,9 @@ namespace ShareX
                 case HotkeyType.ToggleActionsToolbar:
                     ToggleActionsToolbar();
                     break;
+                case HotkeyType.ToggleClipboardCopyMode:
+                    ToggleClipboardCopyMode();
+                    break;
                 case HotkeyType.ToggleTrayMenu:
                     ToggleTrayMenu();
                     break;
@@ -2127,6 +2130,19 @@ namespace ShareX
             return disableHotkeys;
         }
 
+        public static void ToggleClipboardCopyMode()
+        {
+            bool wasImage = Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
+            Program.DefaultTaskSettings.AfterCaptureJob &= ~(AfterCaptureTasks.CopyImageToClipboard | AfterCaptureTasks.CopyFilePathToClipboard);
+            Program.DefaultTaskSettings.AfterCaptureJob |= wasImage
+                ? AfterCaptureTasks.CopyFilePathToClipboard
+                : AfterCaptureTasks.CopyImageToClipboard;
+
+            SettingManager.SaveApplicationConfigAsync();
+            MainWindowIntegration.RefreshMenus();
+            ActionsToolbarWindowIntegration.RefreshClipboardCopyMode();
+        }
+
         public static void ToggleHotkeys(bool disableHotkeys, TaskSettings taskSettings = null)
         {
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
@@ -2328,6 +2344,7 @@ namespace ShareX
                 HotkeyType.OpenHistory => LucideIcons.history,
                 HotkeyType.OpenImageHistory => LucideIcons.images,
                 HotkeyType.ToggleActionsToolbar => LucideIcons.panel_top,
+                HotkeyType.ToggleClipboardCopyMode => LucideIcons.clipboard_copy,
                 HotkeyType.ToggleTrayMenu => LucideIcons.menu,
                 HotkeyType.ExitShareX => LucideIcons.log_out,
                 _ => LucideIcons.circle

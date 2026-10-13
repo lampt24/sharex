@@ -57,4 +57,9 @@ public static class ActionsToolbarWindowIntegration
             }
         });
     }
+
+    public static void RefreshClipboardCopyMode()
+    {
+        Dispatcher.UIThread.Post(() => _window?.RefreshClipboardCopyMode());
+    }
 }
