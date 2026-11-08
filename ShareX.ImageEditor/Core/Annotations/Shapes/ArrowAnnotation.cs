@@ -48,6 +48,10 @@ public partial class ArrowAnnotation : Annotation, ICurvedSegmentAnnotation
     private ArrowStyle _style = ArrowStyle.Classic;
     public SKPoint CurvePoint { get; set; }
     public bool CurvePointActivated { get; set; }
+    /// <summary>
+    /// When false, the arrow is drawn with sharp (mitered) corners and flat line ends instead of rounded ones.
+    /// </summary>
+    public bool RoundedCorners { get; set; } = true;
     public ArrowStyle Style
     {
         get => _style;
@@ -325,5 +329,11 @@ public partial class ArrowAnnotation : Annotation, ICurvedSegmentAnnotation
     public override SKRect GetBounds()
     {
         return CurvedSegmentHelper.GetBounds(this);
+    }
+
+    internal override void MoveBy(float deltaX, float deltaY)
+    {
+        base.MoveBy(deltaX, deltaY);
+        CurvedSegmentHelper.OffsetCurvePoint(this, deltaX, deltaY);
     }
 }

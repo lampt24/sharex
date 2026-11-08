@@ -9,11 +9,11 @@
 
 #nullable enable
 
+using ShareX.HelpersLib;
+using SkiaSharp;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
+using Bitmap = SkiaSharp.SKBitmap;
 
 namespace ShareX.ScreenCaptureLib;
 
@@ -68,24 +68,19 @@ public static class ScrollingCaptureImageCombiner
         movingBounds = moving;
         int width = currentImage.Width;
         int rightEdge = width - moving.Right;
-        Bitmap combined = new(result.Width + shift, result.Height);
+        Bitmap combined = SkiaImageHelpers.CreateBitmap(result.Width + shift, result.Height);
 
-        using (Graphics graphics = Graphics.FromImage(combined))
+        using (SKCanvas canvas = new(combined))
+        using (SKPaint paint = CreateCopyPaint())
         {
-            graphics.DrawImage(result,
-                new Rectangle(0, 0, result.Width - rightEdge, result.Height),
-                new Rectangle(0, 0, result.Width - rightEdge, result.Height),
-                GraphicsUnit.Pixel);
-            graphics.DrawImage(currentImage,
-                new Rectangle(result.Width - rightEdge, 0, shift, currentImage.Height),
-                new Rectangle(width - rightEdge - shift, 0, shift, currentImage.Height),
-                GraphicsUnit.Pixel);
+            Draw(canvas, result, new Rectangle(0, 0, result.Width - rightEdge, result.Height),
+                new Rectangle(0, 0, result.Width - rightEdge, result.Height), paint);
+            Draw(canvas, currentImage, new Rectangle(width - rightEdge - shift, 0, shift, currentImage.Height),
+                new Rectangle(result.Width - rightEdge, 0, shift, currentImage.Height), paint);
             if (rightEdge > 0)
             {
-                graphics.DrawImage(currentImage,
-                    new Rectangle(result.Width - rightEdge + shift, 0, rightEdge, currentImage.Height),
-                    new Rectangle(width - rightEdge, 0, rightEdge, currentImage.Height),
-                    GraphicsUnit.Pixel);
+                Draw(canvas, currentImage, new Rectangle(width - rightEdge, 0, rightEdge, currentImage.Height),
+                    new Rectangle(result.Width - rightEdge + shift, 0, rightEdge, currentImage.Height), paint);
             }
         }
 
@@ -162,7 +157,7 @@ public static class ScrollingCaptureImageCombiner
 
     private static (int Shift, Rectangle Moving) Match(Bitmap previousFrame, Bitmap currentImage)
     {
-        if (previousFrame.Size != currentImage.Size || currentImage.Width < 2)
+        if (previousFrame.Width != currentImage.Width || previousFrame.Height != currentImage.Height || currentImage.Width < 2)
         {
             return (-1, Rectangle.Empty);
         }
@@ -355,15 +350,13 @@ public static class ScrollingCaptureImageCombiner
             return null;
         }
 
-        Bitmap output = new(result.Width, result.Height);
+        Bitmap output = SkiaImageHelpers.CreateBitmap(result.Width, result.Height);
 
-        using (Graphics graphics = Graphics.FromImage(output))
+        using (SKCanvas canvas = new(output))
+        using (SKPaint paint = CreateCopyPaint())
         {
-            graphics.CompositingMode = CompositingMode.SourceCopy;
-            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-            graphics.PixelOffsetMode = PixelOffsetMode.Half;
-            graphics.DrawImage(result, new Rectangle(0, 0, result.Width, result.Height),
-                new Rectangle(0, 0, result.Width, result.Height), GraphicsUnit.Pixel);
+            Draw(canvas, result, new Rectangle(0, 0, result.Width, result.Height),
+                new Rectangle(0, 0, result.Width, result.Height), paint);
 
             foreach ((int top, int bottom) in new[] { (0, bandTop), (bandBottom, result.Height) })
             {
@@ -374,12 +367,12 @@ public static class ScrollingCaptureImageCombiner
                     continue;
                 }
 
-                graphics.DrawImage(firstFrame, new Rectangle(0, top, split, height),
-                    new Rectangle(0, top, split, height), GraphicsUnit.Pixel);
-                graphics.DrawImage(firstFrame, new Rectangle(split, top, extra, height),
-                    new Rectangle(split - 1, top, 1, height), GraphicsUnit.Pixel);
-                graphics.DrawImage(firstFrame, new Rectangle(split + extra, top, frameWidth - split, height),
-                    new Rectangle(split, top, frameWidth - split, height), GraphicsUnit.Pixel);
+                Draw(canvas, firstFrame, new Rectangle(0, top, split, height),
+                    new Rectangle(0, top, split, height), paint);
+                Draw(canvas, firstFrame, new Rectangle(split - 1, top, 1, height),
+                    new Rectangle(split, top, extra, height), paint);
+                Draw(canvas, firstFrame, new Rectangle(split, top, frameWidth - split, height),
+                    new Rectangle(split + extra, top, frameWidth - split, height), paint);
             }
         }
 
@@ -496,24 +489,36 @@ public static class ScrollingCaptureImageCombiner
     internal static int[] ReadPixels(Bitmap bitmap) =>
         ReadPixels(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
 
-    internal static int[] ReadPixels(Bitmap bitmap, Rectangle area)
+    internal static unsafe int[] ReadPixels(Bitmap bitmap, Rectangle area)
     {
-        BitmapData data = bitmap.LockBits(area, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+        int[] pixels = new int[area.Width * area.Height];
 
-        try
+        if (pixels.Length == 0)
         {
-            int[] pixels = new int[area.Width * area.Height];
-
-            for (int y = 0; y < area.Height; y++)
-            {
-                Marshal.Copy(data.Scan0 + y * data.Stride, pixels, y * area.Width, area.Width);
-            }
-
             return pixels;
         }
-        finally
+
+        // Bgra8888 read as a little-endian int is 0xAARRGGBB, the layout the comparisons expect.
+        SKImageInfo info = new(area.Width, area.Height, SKColorType.Bgra8888, SKAlphaType.Unpremul);
+        using SKPixmap source = bitmap.PeekPixels();
+
+        fixed (int* destination = pixels)
         {
-            bitmap.UnlockBits(data);
+            if (source == null || !source.ReadPixels(info, (IntPtr)destination, area.Width * 4, area.X, area.Y))
+            {
+                throw new InvalidOperationException("Unable to read image pixels.");
+            }
         }
+
+        return pixels;
+    }
+
+    private static SKPaint CreateCopyPaint() => new() { BlendMode = SKBlendMode.Src };
+
+    // Takes the source area first, then the destination, as SKCanvas.DrawBitmap does.
+    private static void Draw(SKCanvas canvas, Bitmap bitmap, Rectangle source, Rectangle destination, SKPaint paint)
+    {
+        canvas.DrawBitmap(bitmap, SKRect.Create(source.X, source.Y, source.Width, source.Height),
+            SKRect.Create(destination.X, destination.Y, destination.Width, destination.Height), paint);
     }
 }

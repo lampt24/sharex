@@ -145,23 +145,24 @@ namespace ShareX
         BeautifyImage = 1 << 2,
         AddImageEffects = 1 << 3,
         AnnotateImage = 1 << 4,
-        CopyImageToClipboard = 1 << 5,
-        PinToScreen = 1 << 6,
-        SendImageToPrinter = 1 << 7,
-        SaveImageToFile = 1 << 8,
-        SaveImageToFileWithDialog = 1 << 9,
-        SaveThumbnailImageToFile = 1 << 10,
-        PerformActions = 1 << 11,
-        CopyFileToClipboard = 1 << 12,
-        CopyFilePathToClipboard = 1 << 13,
-        CopyFolderPathToClipboard = 1 << 14,
-        ShowInExplorer = 1 << 15,
-        AnalyzeImage = 1 << 16,
-        ScanQRCode = 1 << 17,
-        DoOCR = 1 << 18,
-        ShowBeforeUploadWindow = 1 << 19,
-        UploadImageToHost = 1 << 20,
-        DeleteFile = 1 << 21
+        OpenInPhotoEditor = 1 << 5,
+        CopyImageToClipboard = 1 << 6,
+        PinToScreen = 1 << 7,
+        SendImageToPrinter = 1 << 8,
+        SaveImageToFile = 1 << 9,
+        SaveImageToFileWithDialog = 1 << 10,
+        SaveThumbnailImageToFile = 1 << 11,
+        PerformActions = 1 << 12,
+        CopyFileToClipboard = 1 << 13,
+        CopyFilePathToClipboard = 1 << 14,
+        CopyFolderPathToClipboard = 1 << 15,
+        ShowInExplorer = 1 << 16,
+        AnalyzeImage = 1 << 17,
+        ScanQRCode = 1 << 18,
+        DoOCR = 1 << 19,
+        ShowBeforeUploadWindow = 1 << 20,
+        UploadImageToHost = 1 << 21,
+        DeleteFile = 1 << 22
     }
 
     [Flags]
@@ -230,6 +231,8 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
         RectangleRegion,
         [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
+        RectangleTransparent,
+        [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
         CustomRegion,
         [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
         LastRegion,
@@ -272,6 +275,10 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         Ruler,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        ClassicRuler,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        MouseHighlighter,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
         PinToScreen,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         PinToScreenFromScreen,
@@ -283,6 +290,8 @@ namespace ShareX
         PinToScreenCloseAll,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         ImageEditor,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        PhotoEditor,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         ImageBeautifier,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
@@ -300,9 +309,17 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         ImageSplitter,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        ImageResizer,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        ImageConverter,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        ImageWatermark,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
         ImageThumbnailer,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         VideoConverter,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        VideoTrimmer,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         VideoThumbnailer,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
@@ -336,6 +353,8 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
         InspectWindow,
         [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        NetworkMonitor,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
         MonitorTest,
         // Other
         [Category(EnumExtensions.HotkeyType_Category_Other)]
@@ -357,7 +376,9 @@ namespace ShareX
         [Category(EnumExtensions.HotkeyType_Category_ScreenCapture)]
         HorizontalScrollingCapture,
         [Category(EnumExtensions.HotkeyType_Category_Other)]
-        ToggleClipboardCopyMode
+        ToggleClipboardCopyMode,
+        [Category(EnumExtensions.HotkeyType_Category_Tools)]
+        AnimatedGifTrimmer
     }
 
     public enum ToastClickAction // Localized
@@ -398,6 +419,17 @@ namespace ShareX
     public enum ThumbnailTitleLocation // Localized
     {
         Top, Bottom
+    }
+
+    public enum ImagePreviewVisibility // Localized
+    {
+        Show, Hide, Automatic
+    }
+
+    public enum TaskViewMode // Localized
+    {
+        ListView,
+        ThumbnailView
     }
 
     public enum ScreenTearingTestMode

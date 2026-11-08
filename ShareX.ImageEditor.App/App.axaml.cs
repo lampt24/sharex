@@ -38,7 +38,7 @@ namespace ShareX.ImageEditor.App
 {
     public partial class App : Application
     {
-        private static readonly string[] ImageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff", ".tif", ".webp", ".ico"];
+        private static readonly string[] ImageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".ico"];
 
         public override void Initialize()
         {
@@ -63,9 +63,6 @@ namespace ShareX.ImageEditor.App
                 if (window.DataContext is MainViewModel vm)
                 {
                     vm.ShowFileMenu = true;
-#if !DEBUG
-                    vm.ShowOptionsButton = false;
-#endif
                     vm.ShowTaskButtons = false;
                     vm.UseContinueWorkflow = false;
                     vm.ShowBottomToolbar = true;

@@ -26,13 +26,13 @@
 using Avalonia.Threading;
 using ShareX.AvaloniaUI.Integration;
 using ShareX.AvaloniaUI.Windows;
-using ShareX.HelpersLib;
-using ShareX.Tools;
 
 namespace ShareX.Tools.Integration;
 
 public static class ToolsIntegration
 {
+    private static NetworkMonitorWindow? _networkMonitorWindow;
+
     public static void ShowDirectoryIndexerWindow(IndexerSettings settings,
         Func<string, IndexerOutput, Task>? uploadRequested = null)
     {
@@ -159,6 +159,33 @@ public static class ToolsIntegration
         Show(() => new MonitorTestWindow());
     }
 
+    public static void ShowNetworkMonitorWindow(NetworkMonitorServices services)
+    {
+        AvaloniaBootstrapper.EnsureInitialized();
+        Dispatcher.UIThread.Post(() =>
+        {
+            if (_networkMonitorWindow != null)
+            {
+                if (!_networkMonitorWindow.IsVisible)
+                {
+                    _networkMonitorWindow.Show();
+                }
+                _networkMonitorWindow.Activate();
+                return;
+            }
+
+            _networkMonitorWindow = new NetworkMonitorWindow(services);
+            _networkMonitorWindow.Closed += (_, _) => _networkMonitorWindow = null;
+            _networkMonitorWindow.Show();
+        });
+    }
+
+    public static void ShowRemoteStorageBrowserWindow(IEnumerable<IRemoteStorageProvider> providers,
+        RemoteStorageBrowserServices? services = null)
+    {
+        Show(() => new RemoteStorageBrowserWindow(providers, services));
+    }
+
     public static void ShowPinToScreenWindow(PinToScreenServices services, PinToScreenOptions options)
     {
         Show(() => new PinToScreenStartupWindow(services, options));
@@ -209,6 +236,32 @@ public static class ToolsIntegration
         Show(() => new ImageSplitterWindow());
     }
 
+    public static void ShowAnimatedGifMakerWindow(IEnumerable<string>? imageFiles = null)
+    {
+        Show(() => new AnimatedGifMakerWindow(imageFiles));
+    }
+
+    public static void ShowAnimatedGifTrimmerWindow(string? inputFilePath = null,
+        Action? playNotificationSound = null)
+    {
+        Show(() => new AnimatedGifTrimmerWindow(inputFilePath, playNotificationSound));
+    }
+
+    public static void ShowImageResizerWindow(IEnumerable<string>? imageFiles = null)
+    {
+        Show(() => new ImageResizerWindow(imageFiles));
+    }
+
+    public static void ShowImageConverterWindow()
+    {
+        Show(() => new ImageConverterWindow());
+    }
+
+    public static void ShowImageWatermarkWindow()
+    {
+        Show(() => new ImageWatermarkWindow());
+    }
+
     public static void ShowImageThumbnailerWindow()
     {
         Show(() => new ImageThumbnailerWindow());
@@ -229,10 +282,31 @@ public static class ToolsIntegration
         Show(() => new RulerWindow());
     }
 
+    public static void ShowClassicRulerWindow(ClassicRulerOptions options)
+    {
+        Show(() => new ClassicRulerWindow(options));
+    }
+
+    public static void ShowMouseHighlighterWindow(MouseHighlighterOptions options, Action? settingsChanged = null)
+    {
+        MouseHighlighterManager.ShowWindow(options, settingsChanged);
+    }
+
     public static void ShowVideoConverterWindow(VideoConverterOptions options, VideoConversionHandler handler,
         string? inputFilePath = null)
     {
         Show(() => new VideoConverterWindow(options, handler, inputFilePath));
+    }
+
+    public static void ShowVideoPlayerWindow(string? inputFilePath = null)
+    {
+        Show(() => new VideoPlayerWindow(inputFilePath));
+    }
+
+    public static void ShowVideoTrimmerWindow(string ffmpegPath, string? inputFilePath = null,
+        Action? playNotificationSound = null, Func<string?>? resolveFFmpegPath = null)
+    {
+        Show(() => new VideoTrimmerWindow(ffmpegPath, inputFilePath, playNotificationSound, resolveFFmpegPath));
     }
 
     public static void ShowVideoThumbnailerWindow(string ffmpegPath, VideoThumbnailOptions options,

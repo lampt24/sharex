@@ -73,14 +73,14 @@
   <data name="AnalyzeImageOptionsViewModel_Testing" xml:space="preserve">
     <value>正在测试...</value>
   </data>
-  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
-    <value>打开时自动分析</value>
-  </data>
   <data name="AnalyzeImageOptionsWindow_API_key" xml:space="preserve">
     <value>API 密钥</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key_page" xml:space="preserve">
     <value>API 密钥页面...</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
+    <value>打开时自动分析</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Behavior" xml:space="preserve">
     <value>行为</value>
@@ -102,9 +102,6 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Google_Gemini" xml:space="preserve">
     <value>Google Gemini</value>
-  </data>
-  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
-    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Load_models" xml:space="preserve">
     <value>加载模型</value>
@@ -135,6 +132,9 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Verbosity" xml:space="preserve">
     <value>详细程度</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
+    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageService_Connection_OK" xml:space="preserve">
     <value>连接成功。</value>
@@ -213,6 +213,126 @@
   </data>
   <data name="AnalyzeImageWindow_ShareX_Analyze_image" xml:space="preserve">
     <value>ShareX - 分析图像</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Create_failed" xml:space="preserve">
+    <value>创建 GIF 失败：{0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Created" xml:space="preserve">
+    <value>动态 GIF 已创建。</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Creating" xml:space="preserve">
+    <value>正在创建动态 GIF...</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_failed" xml:space="preserve">
+    <value>预览失败：{0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_info" xml:space="preserve">
+    <value>{0} 帧 • {1} 毫秒</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_images_dialog" xml:space="preserve">
+    <value>添加图像</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_two_images_to_preview" xml:space="preserve">
+    <value>请至少添加两张图像以预览动画。</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animated_GIF_maker" xml:space="preserve">
+    <value>动态 GIF 制作器</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animation" xml:space="preserve">
+    <value>动画</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Create_GIF" xml:space="preserve">
+    <value>创建 GIF...</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Frame_delay" xml:space="preserve">
+    <value>帧延迟</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_GIF_images" xml:space="preserve">
+    <value>GIF 图像</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Loop_animation" xml:space="preserve">
+    <value>循环动画</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Output" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Repeat_count" xml:space="preserve">
+    <value>重复次数</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Save_GIF_dialog" xml:space="preserve">
+    <value>保存动态 GIF</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Zero_repeats_forever" xml:space="preserve">
+    <value>0 表示无限重复。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_ChooseGif" xml:space="preserve">
+    <value>打开或拖入动态 GIF 即可开始</value>
+  </data>
+  <data name="AnimatedGifTrimmer_DependentFrame" xml:space="preserve">
+    <value>此裁剪片段的起始帧需要之前的帧。请另选起始帧以进行无损导出。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Export" xml:space="preserve">
+    <value>保存裁剪后的 GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Exporting" xml:space="preserve">
+    <value>正在保存裁剪后的 GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Frame" xml:space="preserve">
+    <value>第 {0} 帧，共 {1} 帧</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Gif" xml:space="preserve">
+    <value>动态 GIF</value>
+  </data>
+  <data name="AnimatedGifTrimmer_GifFiles" xml:space="preserve">
+    <value>GIF 文件</value>
+  </data>
+  <data name="AnimatedGifTrimmer_InvalidGif" xml:space="preserve">
+    <value>请选择至少包含两帧的动态 GIF。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Loading" xml:space="preserve">
+    <value>正在准备 GIF 时间轴…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Lossless" xml:space="preserve">
+    <value>无损</value>
+  </data>
+  <data name="AnimatedGifTrimmer_NextFrame" xml:space="preserve">
+    <value>下一帧</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Open" xml:space="preserve">
+    <value>打开 GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_OutputExtension" xml:space="preserve">
+    <value>输出文件请使用 .gif 扩展名。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Play" xml:space="preserve">
+    <value>播放</value>
+  </data>
+  <data name="AnimatedGifTrimmer_PreviousFrame" xml:space="preserve">
+    <value>上一帧</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Reencode" xml:space="preserve">
+    <value>重新编码</value>
+  </data>
+  <data name="AnimatedGifTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>请使用其他文件名或将裁剪后的 GIF 保存到其他文件夹。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Timeline" xml:space="preserve">
+    <value>GIF 时间轴和裁剪选区</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Title" xml:space="preserve">
+    <value>ShareX - 动态 GIF 裁剪工具</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UnsupportedGif" xml:space="preserve">
+    <value>此 GIF 包含纯文本图形块，无损裁剪工具无法安全复制该块。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UseReencode" xml:space="preserve">
+    <value>此裁剪片段需要之前的帧，无法无损保存。请选择“重新编码”裁剪模式，然后再次保存。</value>
   </data>
   <data name="BackgroundRemoverViewModel_Background_removed_ms" xml:space="preserve">
     <value>已在 {0} 毫秒内移除背景。</value>
@@ -311,6 +431,18 @@
   <data name="BorderlessWindowWindow_Window_title" xml:space="preserve">
     <value>窗口标题</value>
   </data>
+  <data name="ClassicRulerOverlayControl_Distance" xml:space="preserve">
+    <value>距离: {0:0.00} px | 角度: {1:0.00}°</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Position" xml:space="preserve">
+    <value>X: {0} | Y: {1} | 右: {2} | 下: {3}</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Size" xml:space="preserve">
+    <value>宽度: {0} px | 高度: {1} px | 面积: {2} px | 周长: {3} px</value>
+  </data>
+  <data name="ClassicRulerWindow_Title" xml:space="preserve">
+    <value>ShareX - 标尺</value>
+  </data>
   <data name="ClipboardViewerViewModel_Clipboard_content" xml:space="preserve">
     <value>剪贴板内容</value>
   </data>
@@ -377,14 +509,14 @@
   <data name="DirectoryIndexerWindow_Browse" xml:space="preserve">
     <value>浏览...</value>
   </data>
+  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
+    <value>CSS 文件</value>
+  </data>
   <data name="DirectoryIndexerWindow_Choose_a_folder_and_generate_output_Nothing_is_saved_until_you_use_Save_as_or_Upload" xml:space="preserve">
     <value>选择文件夹并生成输出。在使用“另存为”或“上传”之前不会保存任何内容。</value>
   </data>
   <data name="DirectoryIndexerWindow_Create_parseable_structured_JSON" xml:space="preserve">
     <value>创建可解析的结构化 JSON</value>
-  </data>
-  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
-    <value>CSS 文件</value>
   </data>
   <data name="DirectoryIndexerWindow_Display_folder_paths" xml:space="preserve">
     <value>显示文件夹路径</value>
@@ -437,10 +569,10 @@
   <data name="DirectoryIndexerWindow_Save_directory_index_dialog" xml:space="preserve">
     <value>保存目录索引</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
+  <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
     <value>选择 CSS 文件</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
+  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
     <value>选择 CSS 文件</value>
   </data>
   <data name="DirectoryIndexerWindow_Select_folder_to_index_dialog" xml:space="preserve">
@@ -656,9 +788,6 @@
   <data name="IconConverterWindow_Image" xml:space="preserve">
     <value>图像</value>
   </data>
-  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
-    <value>或使用“浏览”选择文件</value>
-  </data>
   <data name="IconConverterWindow_Save_icon_as_dialog" xml:space="preserve">
     <value>图标另存为</value>
   </data>
@@ -667,6 +796,9 @@
   </data>
   <data name="IconConverterWindow_Sizes" xml:space="preserve">
     <value>大小</value>
+  </data>
+  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
+    <value>或使用“浏览”选择文件</value>
   </data>
   <data name="ImageCombinerViewModel_Add_two_images" xml:space="preserve">
     <value>至少添加两张要合并的图像。</value>
@@ -794,6 +926,102 @@
   <data name="ImageComparerWindow_Slider" xml:space="preserve">
     <value>滑块</value>
   </data>
+  <data name="ImageConverterService_Failed_to_encode_image" xml:space="preserve">
+    <value>无法将图像编码为 {0} 格式。</value>
+  </data>
+  <data name="ImageConverterWindow_BMPBitDepth" xml:space="preserve">
+    <value>BMP 位深度：</value>
+  </data>
+  <data name="ImageConverterWindow_BackgroundColor" xml:space="preserve">
+    <value>背景颜色：</value>
+  </data>
+  <data name="ImageConverterWindow_Convert_images" xml:space="preserve">
+    <value>转换图像</value>
+  </data>
+  <data name="ImageConverterWindow_FileNameTemplate" xml:space="preserve">
+    <value>文件名模板：</value>
+  </data>
+  <data name="ImageConverterWindow_Image_converter" xml:space="preserve">
+    <value>图像转换器</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling" xml:space="preserve">
+    <value>JPEG 色度抽样：</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling420" xml:space="preserve">
+    <value>4:2:0（文件更小）</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling422" xml:space="preserve">
+    <value>4:2:2（均衡）</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling444" xml:space="preserve">
+    <value>4:4:4（完整色彩分辨率）</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsamplingHint" xml:space="preserve">
+    <value>4:4:4 能保留文字和锐利边缘周围的更多色彩细节，但通常会生成更大的文件。</value>
+  </data>
+  <data name="ImageConverterWindow_OutputFormat" xml:space="preserve">
+    <value>输出格式：</value>
+  </data>
+  <data name="ImageConverterWindow_PNGBitDepth" xml:space="preserve">
+    <value>PNG 位深度：</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionHint" xml:space="preserve">
+    <value>0 = 不压缩，1 = 最快，9 = 文件最小。所有级别均为无损。</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionLevel" xml:space="preserve">
+    <value>PNG 压缩级别：</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilter" xml:space="preserve">
+    <value>PNG 筛选器：</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAutomatic" xml:space="preserve">
+    <value>自动（所有筛选器）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAverage" xml:space="preserve">
+    <value>平均（左侧和上方）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterNone" xml:space="preserve">
+    <value>不使用筛选器</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterPaeth" xml:space="preserve">
+    <value>Paeth（预测）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterSub" xml:space="preserve">
+    <value>Sub（左侧像素）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterUp" xml:space="preserve">
+    <value>Up（上方像素）</value>
+  </data>
+  <data name="ImageConverterWindow_Quality" xml:space="preserve">
+    <value>质量：</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffort" xml:space="preserve">
+    <value>压缩力度：</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffortHint" xml:space="preserve">
+    <value>较低的值可加快编码速度。较高的值可生成更小的文件。所有值都会保持图像质量。</value>
+  </data>
+  <data name="ImageConverterWindow_WebPLossless" xml:space="preserve">
+    <value>无损</value>
+  </data>
+  <data name="ImageResizerWindow_Fill" xml:space="preserve">
+    <value>填充</value>
+  </data>
+  <data name="ImageResizerWindow_Fit" xml:space="preserve">
+    <value>适应</value>
+  </data>
+  <data name="ImageResizerWindow_Image_resizer" xml:space="preserve">
+    <value>图像大小调整工具</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_image" xml:space="preserve">
+    <value>调整图像大小</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_mode" xml:space="preserve">
+    <value>调整大小模式</value>
+  </data>
+  <data name="ImageResizerWindow_Stretch" xml:space="preserve">
+    <value>拉伸</value>
+  </data>
   <data name="ImageSplitterViewModel_Grid_size" xml:space="preserve">
     <value>{0} × {1}</value>
   </data>
@@ -863,9 +1091,6 @@
   <data name="ImageThumbnailerWindow_File_name_template" xml:space="preserve">
     <value>文件名模板</value>
   </data>
-  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
-    <value>$filename_th</value>
-  </data>
   <data name="ImageThumbnailerWindow_Generate_thumbnails" xml:space="preserve">
     <value>生成缩略图</value>
   </data>
@@ -886,6 +1111,36 @@
   </data>
   <data name="ImageThumbnailerWindow_Width" xml:space="preserve">
     <value>宽度</value>
+  </data>
+  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
+    <value>$filename_th</value>
+  </data>
+  <data name="ImageWatermarkWindow_Apply_watermark" xml:space="preserve">
+    <value>应用水印</value>
+  </data>
+  <data name="ImageWatermarkWindow_Font_size" xml:space="preserve">
+    <value>字体大小</value>
+  </data>
+  <data name="ImageWatermarkWindow_Image_watermark" xml:space="preserve">
+    <value>图像水印</value>
+  </data>
+  <data name="ImageWatermarkWindow_Margin" xml:space="preserve">
+    <value>外边距</value>
+  </data>
+  <data name="ImageWatermarkWindow_Position" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="ImageWatermarkWindow_Rotation" xml:space="preserve">
+    <value>旋转</value>
+  </data>
+  <data name="ImageWatermarkWindow_Scale" xml:space="preserve">
+    <value>缩放</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark" xml:space="preserve">
+    <value>水印</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark_type" xml:space="preserve">
+    <value>水印类型</value>
   </data>
   <data name="IndexerHtml_File_count" xml:space="preserve">
     <value>{0:n0} 个文件</value>
@@ -1001,20 +1256,20 @@
   <data name="LocalizedDisplayConverter_Backward_diagonal" xml:space="preserve">
     <value>反向对角线</value>
   </data>
-  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
-    <value>棋盘格</value>
-  </data>
   <data name="LocalizedDisplayConverter_CPU" xml:space="preserve">
     <value>CPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
+    <value>棋盘格</value>
   </data>
   <data name="LocalizedDisplayConverter_Forward_diagonal" xml:space="preserve">
     <value>正向对角线</value>
   </data>
-  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
-    <value>Gemini</value>
-  </data>
   <data name="LocalizedDisplayConverter_GPU" xml:space="preserve">
     <value>GPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
+    <value>Gemini</value>
   </data>
   <data name="LocalizedDisplayConverter_High" xml:space="preserve">
     <value>高</value>
@@ -1168,17 +1423,200 @@
   <data name="MonitorTestWindow_Pattern" xml:space="preserve">
     <value>图案</value>
   </data>
-  <data name="MonitorTestWindow_Red" xml:space="preserve">
-    <value>红色</value>
-  </data>
   <data name="MonitorTestWindow_RGB" xml:space="preserve">
     <value>RGB</value>
+  </data>
+  <data name="MonitorTestWindow_Red" xml:space="preserve">
+    <value>红色</value>
   </data>
   <data name="MonitorTestWindow_ShareX_Monitor_Test" xml:space="preserve">
     <value>ShareX - 显示器测试</value>
   </data>
   <data name="MonitorTestWindow_Speed" xml:space="preserve">
     <value>速度</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColor" xml:space="preserve">
+    <value>始终突出显示颜色：</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColorHelp" xml:space="preserve">
+    <value>使用透明颜色禁用持续突出显示。</value>
+  </data>
+  <data name="MouseHighlighter_AutoActivate" xml:space="preserve">
+    <value>ShareX 启动时自动激活</value>
+  </data>
+  <data name="MouseHighlighter_Circle" xml:space="preserve">
+    <value>圆圈突出显示</value>
+  </data>
+  <data name="MouseHighlighter_FadeDelay" xml:space="preserve">
+    <value>淡入淡出延迟（毫秒）：</value>
+  </data>
+  <data name="MouseHighlighter_FadeDuration" xml:space="preserve">
+    <value>淡入淡出持续时间（毫秒）：</value>
+  </data>
+  <data name="MouseHighlighter_FollowCursor" xml:space="preserve">
+    <value>按住按钮时跟随光标</value>
+  </data>
+  <data name="MouseHighlighter_KeepAfterRecording" xml:space="preserve">
+    <value>录制后保持高亮显示</value>
+  </data>
+  <data name="MouseHighlighter_MiddleColor" xml:space="preserve">
+    <value>中间按钮颜色：</value>
+  </data>
+  <data name="MouseHighlighter_MiddleReleaseCrosshairs" xml:space="preserve">
+    <value>释放中间按钮时显示十字准线</value>
+  </data>
+  <data name="MouseHighlighter_Mode" xml:space="preserve">
+    <value>突出显示模式：</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryColor" xml:space="preserve">
+    <value>主按钮颜色：</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryReleaseCrosshairs" xml:space="preserve">
+    <value>在主按钮释放时显示十字准线</value>
+  </data>
+  <data name="MouseHighlighter_Radius" xml:space="preserve">
+    <value>半径（像素）：</value>
+  </data>
+  <data name="MouseHighlighter_RecordingHelp" xml:space="preserve">
+    <value>要突出显示录制中的点击，请在任务设置 → 捕获 → 屏幕录像机中启用鼠标突出显示选项。</value>
+  </data>
+  <data name="MouseHighlighter_ReleaseCrosshairs" xml:space="preserve">
+    <value>释放辅助按钮时显示十字准线</value>
+  </data>
+  <data name="MouseHighlighter_Ripple" xml:space="preserve">
+    <value>波纹</value>
+  </data>
+  <data name="MouseHighlighter_RippleDuration" xml:space="preserve">
+    <value>纹波持续时间（毫秒）：</value>
+  </data>
+  <data name="MouseHighlighter_RippleIntensity" xml:space="preserve">
+    <value>纹波强度：</value>
+  </data>
+  <data name="MouseHighlighter_RippleSize" xml:space="preserve">
+    <value>波纹尺寸（像素）：</value>
+  </data>
+  <data name="MouseHighlighter_SecondaryColor" xml:space="preserve">
+    <value>辅助按钮颜色：</value>
+  </data>
+  <data name="MouseHighlighter_Start" xml:space="preserve">
+    <value>开始突出显示</value>
+  </data>
+  <data name="MouseHighlighter_StartFailed" xml:space="preserve">
+    <value>无法启动鼠标突出显示。</value>
+  </data>
+  <data name="MouseHighlighter_Stop" xml:space="preserve">
+    <value>停止突出显示</value>
+  </data>
+  <data name="MouseHighlighter_StopAfterRecording" xml:space="preserve">
+    <value>录制停止时停止突出显示</value>
+  </data>
+  <data name="MouseHighlighter_Title" xml:space="preserve">
+    <value>鼠标荧光笔</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_failed" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_timed_out" xml:space="preserve">
+    <value>{0} 超时。</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_network_interface" xml:space="preserve">
+    <value>未找到活动的网络接口。</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_response" xml:space="preserve">
+    <value>没有端点响应。</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Automatic_recommended" xml:space="preserve">
+    <value>自动（推荐）</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Checking" xml:space="preserve">
+    <value>正在检查...</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Connected" xml:space="preserve">
+    <value>已连接.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Disconnected" xml:space="preserve">
+    <value>已断开连接.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_15_minutes" xml:space="preserve">
+    <value>最近 15 分钟</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_5_minutes" xml:space="preserve">
+    <value>最近 5 分钟</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_6_hours" xml:space="preserve">
+    <value>最近 6 小时</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_hour" xml:space="preserve">
+    <value>最近一小时</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Milliseconds" xml:space="preserve">
+    <value>{0:0} 毫秒</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Paused" xml:space="preserve">
+    <value>已暂停</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Percentage" xml:space="preserve">
+    <value>{0:0.0}%</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Session" xml:space="preserve">
+    <value>会话</value>
+  </data>
+  <data name="NetworkMonitorWindow_Availability" xml:space="preserve">
+    <value>可用性</value>
+  </data>
+  <data name="NetworkMonitorWindow_Average_latency" xml:space="preserve">
+    <value>平均延迟</value>
+  </data>
+  <data name="NetworkMonitorWindow_Check_every" xml:space="preserve">
+    <value>检查间隔</value>
+  </data>
+  <data name="NetworkMonitorWindow_Clear_log" xml:space="preserve">
+    <value>清除日志</value>
+  </data>
+  <data name="NetworkMonitorWindow_Connection_events" xml:space="preserve">
+    <value>连接事件</value>
+  </data>
+  <data name="NetworkMonitorWindow_Copy_all" xml:space="preserve">
+    <value>全部复制</value>
+  </data>
+  <data name="NetworkMonitorWindow_Current_latency" xml:space="preserve">
+    <value>当前延迟</value>
+  </data>
+  <data name="NetworkMonitorWindow_Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="NetworkMonitorWindow_Disconnects" xml:space="preserve">
+    <value>断开次数</value>
+  </data>
+  <data name="NetworkMonitorWindow_Latency_history" xml:space="preserve">
+    <value>延迟历史</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_events" xml:space="preserve">
+    <value>尚未记录任何连接变化。</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_samples" xml:space="preserve">
+    <value>尚无延迟样本。</value>
+  </data>
+  <data name="NetworkMonitorWindow_Open_log" xml:space="preserve">
+    <value>打开日志...</value>
+  </data>
+  <data name="NetworkMonitorWindow_Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="NetworkMonitorWindow_Range" xml:space="preserve">
+    <value>范围</value>
+  </data>
+  <data name="NetworkMonitorWindow_ShareX_Network_Monitor" xml:space="preserve">
+    <value>ShareX - 网络监控器</value>
+  </data>
+  <data name="NetworkMonitorWindow_Start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="NetworkMonitorWindow_Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="NetworkMonitorWindow_Target" xml:space="preserve">
+    <value>目标</value>
   </data>
   <data name="OCRHelper_Language_unavailable" xml:space="preserve">
     <value>此系统不提供 {0} 语言用于 OCR。</value>
@@ -1468,11 +1906,11 @@
   <data name="QRCodeWindow_PNG_image" xml:space="preserve">
     <value>PNG 图像</value>
   </data>
-  <data name="QRCodeWindow_px" xml:space="preserve">
-    <value>像素</value>
-  </data>
   <data name="QRCodeWindow_QR_code_size" xml:space="preserve">
     <value>QR 码大小</value>
+  </data>
+  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
+    <value>SVG 图像</value>
   </data>
   <data name="QRCodeWindow_Save" xml:space="preserve">
     <value>保存...</value>
@@ -1495,17 +1933,125 @@
   <data name="QRCodeWindow_ShareX_QR_Code" xml:space="preserve">
     <value>ShareX - QR 码</value>
   </data>
-  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
-    <value>SVG 图像</value>
-  </data>
   <data name="QRCodeWindow_Upload" xml:space="preserve">
     <value>上传</value>
+  </data>
+  <data name="QRCodeWindow_px" xml:space="preserve">
+    <value>像素</value>
+  </data>
+  <data name="RemoteStorageBrowser_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="RemoteStorageBrowser_CopyUrl" xml:space="preserve">
+    <value>复制 URL</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreateFolder" xml:space="preserve">
+    <value>新建文件夹...</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreatedFolder" xml:space="preserve">
+    <value>已创建文件夹“{0}”。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Delete" xml:space="preserve">
+    <value>删除...</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFileConfirmation" xml:space="preserve">
+    <value>要删除文件“{0}”吗？</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFolderConfirmation" xml:space="preserve">
+    <value>要删除文件夹“{0}”吗？</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteNonEmptyFolderConfirmation" xml:space="preserve">
+    <value>文件夹“{0}”不为空。要删除它及其中的所有内容吗？此操作无法撤销。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Deleted" xml:space="preserve">
+    <value>已删除“{0}”。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Download" xml:space="preserve">
+    <value>下载...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Downloaded" xml:space="preserve">
+    <value>已下载“{0}”。</value>
+  </data>
+  <data name="RemoteStorageBrowser_DropFilesToUpload" xml:space="preserve">
+    <value>拖放文件以上传到此文件夹</value>
+  </data>
+  <data name="RemoteStorageBrowser_EmptyFolder" xml:space="preserve">
+    <value>此文件夹为空。</value>
+  </data>
+  <data name="RemoteStorageBrowser_ItemCount" xml:space="preserve">
+    <value>{0} 个文件，{1} 个文件夹 • 共 {2}</value>
+  </data>
+  <data name="RemoteStorageBrowser_Loading" xml:space="preserve">
+    <value>正在加载...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Location" xml:space="preserve">
+    <value>位置：</value>
+  </data>
+  <data name="RemoteStorageBrowser_Modified" xml:space="preserve">
+    <value>修改时间</value>
+  </data>
+  <data name="RemoteStorageBrowser_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="RemoteStorageBrowser_NameAlreadyExists" xml:space="preserve">
+    <value>已存在名为“{0}”的项目。</value>
+  </data>
+  <data name="RemoteStorageBrowser_NewFolder" xml:space="preserve">
+    <value>新文件夹</value>
+  </data>
+  <data name="RemoteStorageBrowser_NoMatchingItems" xml:space="preserve">
+    <value>没有匹配的项目。</value>
+  </data>
+  <data name="RemoteStorageBrowser_OpenUrl" xml:space="preserve">
+    <value>打开网址</value>
+  </data>
+  <data name="RemoteStorageBrowser_OperationFailed" xml:space="preserve">
+    <value>远程存储操作失败。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Provider" xml:space="preserve">
+    <value>服务提供商：</value>
+  </data>
+  <data name="RemoteStorageBrowser_Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RemoteStorageBrowser_Rename" xml:space="preserve">
+    <value>重命名...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Renamed" xml:space="preserve">
+    <value>已将“{0}”重命名为“{1}”。</value>
+  </data>
+  <data name="RemoteStorageBrowser_SaveDownloadedFile" xml:space="preserve">
+    <value>保存下载的文件</value>
+  </data>
+  <data name="RemoteStorageBrowser_SearchCurrentFolder" xml:space="preserve">
+    <value>搜索当前文件夹...</value>
+  </data>
+  <data name="RemoteStorageBrowser_SelectFilesToUpload" xml:space="preserve">
+    <value>选择要上传的文件</value>
+  </data>
+  <data name="RemoteStorageBrowser_Size" xml:space="preserve">
+    <value>大小</value>
+  </data>
+  <data name="RemoteStorageBrowser_Title" xml:space="preserve">
+    <value>远程存储浏览器</value>
+  </data>
+  <data name="RemoteStorageBrowser_Up" xml:space="preserve">
+    <value>上一级</value>
+  </data>
+  <data name="RemoteStorageBrowser_Upload" xml:space="preserve">
+    <value>上传...</value>
+  </data>
+  <data name="RemoteStorageBrowser_UploadedFiles" xml:space="preserve">
+    <value>已上传 {0} 个文件。</value>
+  </data>
+  <data name="RemoteStorageBrowser_View" xml:space="preserve">
+    <value>查看</value>
   </data>
   <data name="RulerOverlayControl_Tolerance" xml:space="preserve">
     <value>容差：{0}%</value>
   </data>
   <data name="RulerWindow_ShareX_Ruler" xml:space="preserve">
-    <value>ShareX - 标尺</value>
+    <value>ShareX - 测量</value>
   </data>
   <data name="VideoConverterViewModel_Choose_video" xml:space="preserve">
     <value>选择视频以开始。</value>
@@ -1576,9 +2122,6 @@
   <data name="VideoConverterWindow_Input_file" xml:space="preserve">
     <value>输入文件</value>
   </data>
-  <data name="VideoConverterWindow_kbps" xml:space="preserve">
-    <value>kbps</value>
-  </data>
   <data name="VideoConverterWindow_Open_the_output_folder_when_finished" xml:space="preserve">
     <value>完成后打开输出文件夹</value>
   </data>
@@ -1612,8 +2155,35 @@
   <data name="VideoConverterWindow_Video_encoder" xml:space="preserve">
     <value>视频编码器</value>
   </data>
+  <data name="VideoConverterWindow_kbps" xml:space="preserve">
+    <value>kbps</value>
+  </data>
   <data name="VideoConverterWindow_video_output" xml:space="preserve">
     <value>video-output</value>
+  </data>
+  <data name="VideoPlayer_ExitFullscreen" xml:space="preserve">
+    <value>退出全屏</value>
+  </data>
+  <data name="VideoPlayer_Fullscreen" xml:space="preserve">
+    <value>全屏</value>
+  </data>
+  <data name="VideoPlayer_Loading" xml:space="preserve">
+    <value>正在加载视频...</value>
+  </data>
+  <data name="VideoPlayer_Mute" xml:space="preserve">
+    <value>静音</value>
+  </data>
+  <data name="VideoPlayer_Seek" xml:space="preserve">
+    <value>播放位置</value>
+  </data>
+  <data name="VideoPlayer_Title" xml:space="preserve">
+    <value>ShareX - 视频播放器</value>
+  </data>
+  <data name="VideoPlayer_Unmute" xml:space="preserve">
+    <value>取消静音</value>
+  </data>
+  <data name="VideoPlayer_Volume" xml:space="preserve">
+    <value>播放音量</value>
   </data>
   <data name="VideoThumbnailerViewModel_Custom_folder" xml:space="preserve">
     <value>自定义文件夹</value>
@@ -1709,6 +2279,96 @@
     <value>视频</value>
   </data>
   <data name="VideoThumbnailerWindow_Video_files" xml:space="preserve">
+    <value>视频文件</value>
+  </data>
+  <data name="VideoTrimmer_AllFiles" xml:space="preserve">
+    <value>所有文件 (*.*)</value>
+  </data>
+  <data name="VideoTrimmer_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="VideoTrimmer_Cancelled" xml:space="preserve">
+    <value>已取消。</value>
+  </data>
+  <data name="VideoTrimmer_ChooseVideo" xml:space="preserve">
+    <value>打开或拖放视频以开始</value>
+  </data>
+  <data name="VideoTrimmer_CopyHint" xml:space="preserve">
+    <value>无需重新编码即可复制原始流。剪切点可能会移动到附近的关键帧。</value>
+  </data>
+  <data name="VideoTrimmer_Duration" xml:space="preserve">
+    <value>时长：</value>
+  </data>
+  <data name="VideoTrimmer_EmptyOutput" xml:space="preserve">
+    <value>FFmpeg 未生成输出视频。</value>
+  </data>
+  <data name="VideoTrimmer_End" xml:space="preserve">
+    <value>结束：</value>
+  </data>
+  <data name="VideoTrimmer_Export" xml:space="preserve">
+    <value>保存剪辑后的视频…</value>
+  </data>
+  <data name="VideoTrimmer_Exporting" xml:space="preserve">
+    <value>正在保存剪辑后的视频…</value>
+  </data>
+  <data name="VideoTrimmer_InvalidVideo" xml:space="preserve">
+    <value>请选择时长已知且有限的视频。</value>
+  </data>
+  <data name="VideoTrimmer_Loading" xml:space="preserve">
+    <value>正在准备时间线预览…</value>
+  </data>
+  <data name="VideoTrimmer_Lossless" xml:space="preserve">
+    <value>无损</value>
+  </data>
+  <data name="VideoTrimmer_Open" xml:space="preserve">
+    <value>打开视频…</value>
+  </data>
+  <data name="VideoTrimmer_OutputExtension" xml:space="preserve">
+    <value>此导出模式请使用 {0} 扩展名。</value>
+  </data>
+  <data name="VideoTrimmer_PlaybackError" xml:space="preserve">
+    <value>Windows 无法播放此视频。请检查 Windows 是否支持其格式，以及是否已安装 Windows 媒体组件。{0}</value>
+  </data>
+  <data name="VideoTrimmer_Precise" xml:space="preserve">
+    <value>重新编码</value>
+  </data>
+  <data name="VideoTrimmer_PreciseHint" xml:space="preserve">
+    <value>重新编码为 H.264 / AAC MP4，以获得精确的剪切点。</value>
+  </data>
+  <data name="VideoTrimmer_Reset" xml:space="preserve">
+    <value>重置选择范围</value>
+  </data>
+  <data name="VideoTrimmer_Saved" xml:space="preserve">
+    <value>已保存：{0}</value>
+  </data>
+  <data name="VideoTrimmer_Selection" xml:space="preserve">
+    <value>保留 {0}</value>
+  </data>
+  <data name="VideoTrimmer_SetEnd" xml:space="preserve">
+    <value>在此设置结束位置</value>
+  </data>
+  <data name="VideoTrimmer_SetStart" xml:space="preserve">
+    <value>在此设置开始位置</value>
+  </data>
+  <data name="VideoTrimmer_ShowOutput" xml:space="preserve">
+    <value>显示输出文件夹...</value>
+  </data>
+  <data name="VideoTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>剪辑后的视频无法替换原始视频。请使用其他文件名或保存到其他文件夹。</value>
+  </data>
+  <data name="VideoTrimmer_Start" xml:space="preserve">
+    <value>开始：</value>
+  </data>
+  <data name="VideoTrimmer_Timeline" xml:space="preserve">
+    <value>视频时间线和剪辑选择范围</value>
+  </data>
+  <data name="VideoTrimmer_Title" xml:space="preserve">
+    <value>ShareX - 视频剪辑</value>
+  </data>
+  <data name="VideoTrimmer_TrimMode" xml:space="preserve">
+    <value>剪辑模式：</value>
+  </data>
+  <data name="VideoTrimmer_VideoFiles" xml:space="preserve">
     <value>视频文件</value>
   </data>
 </root>

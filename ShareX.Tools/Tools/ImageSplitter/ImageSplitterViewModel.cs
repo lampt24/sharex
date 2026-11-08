@@ -11,8 +11,14 @@
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -20,9 +26,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShareX.HelpersLib;
-using ShareX.Tools.Infrastructure;
-using System.Drawing;
-using System.Drawing.Imaging;
+using Bitmap = SkiaSharp.SKBitmap;
+using ImageFormat = SkiaSharp.SKEncodedImageFormat;
 
 namespace ShareX.Tools;
 
@@ -137,13 +142,13 @@ public sealed partial class ImageSplitterViewModel : ViewModelBase
     private static List<string> SplitImage(string filePath, int rowCount, int columnCount, string outputFolder)
     {
         List<string> filePaths = [];
-        using Bitmap? source = ImageHelpers.LoadImage(filePath);
+        using Bitmap? source = SkiaImageHelpers.LoadImage(filePath);
         if (source == null)
         {
             return filePaths;
         }
 
-        List<Bitmap> images = ImageHelpers.SplitImage(source, rowCount, columnCount);
+        List<Bitmap> images = SkiaImageHelpers.SplitImage(source, rowCount, columnCount);
         try
         {
             string originalFileName = Path.GetFileNameWithoutExtension(filePath);

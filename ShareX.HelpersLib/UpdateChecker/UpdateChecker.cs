@@ -23,10 +23,10 @@
 
 #endregion License Information (GPL v3)
 
+using ShareX.AvaloniaUI.Integration;
 using System;
 using System.Threading.Tasks;
 using System.Web;
-using System.Windows.Forms;
 
 namespace ShareX.HelpersLib
 {
@@ -68,7 +68,7 @@ namespace ShareX.HelpersLib
         {
             if (CurrentVersion == null)
             {
-                CurrentVersion = Version.Parse(Application.ProductVersion);
+                CurrentVersion = Version.Parse(Helpers.GetApplicationVersion(true));
             }
 
             if (Status != UpdateStatus.UpdateCheckFailed && CurrentVersion != null && LatestVersion != null && !string.IsNullOrEmpty(DownloadURL) &&
@@ -98,7 +98,7 @@ namespace ShareX.HelpersLib
 
                 if (result.Status == DownloaderWindowStatus.InstallStarted)
                 {
-                    Application.Exit();
+                    AvaloniaBootstrapper.Shutdown();
                 }
             }
         }

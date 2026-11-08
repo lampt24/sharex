@@ -8,15 +8,26 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
 
 using Avalonia;
-using System.Drawing;
-using System.Drawing.Imaging;
+using ShareX.HelpersLib;
+using SkiaSharp;
+
 using System.Runtime.InteropServices;
-using DrawingPoint = System.Drawing.Point;
 using DrawingRectangle = System.Drawing.Rectangle;
 
 namespace ShareX.Tools.Ruler;
@@ -40,29 +51,11 @@ internal sealed class ScreenPixelBuffer
             throw new ArgumentOutOfRangeException(nameof(bounds));
         }
 
-        using Bitmap bitmap = new(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
-        using (Graphics graphics = Graphics.FromImage(bitmap))
-        {
-            graphics.CopyFromScreen(bounds.X, bounds.Y, 0, 0, bitmap.Size, CopyPixelOperation.SourceCopy);
-        }
-
-        DrawingRectangle bitmapBounds = new(0, 0, bitmap.Width, bitmap.Height);
-        BitmapData data = bitmap.LockBits(bitmapBounds, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-        try
-        {
-            int[] pixels = new int[bitmap.Width * bitmap.Height];
-            for (int y = 0; y < bitmap.Height; y++)
-            {
-                Marshal.Copy(IntPtr.Add(data.Scan0, y * data.Stride), pixels, y * bitmap.Width, bitmap.Width);
-            }
-
-            return new ScreenPixelBuffer(bounds, pixels);
-        }
-        finally
-        {
-            bitmap.UnlockBits(data);
-        }
+        using SKBitmap bitmap = WindowsImageInterop.Capture(new DrawingRectangle(bounds.X, bounds.Y, bounds.Width, bounds.Height));
+        int[] pixels = new int[bitmap.Width * bitmap.Height];
+        for (int y = 0; y < bitmap.Height; y++)
+            Marshal.Copy(IntPtr.Add(bitmap.GetPixels(), y * bitmap.RowBytes), pixels, y * bitmap.Width, bitmap.Width);
+        return new ScreenPixelBuffer(bounds, pixels);
     }
 
     public DrawingRectangle FindColorRun(PixelPoint point, bool horizontal, int tolerance)

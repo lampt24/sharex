@@ -173,6 +173,151 @@ namespace ShareX.UploadersLib.FileUploaders
             return result;
         }
 
+        public async Task<bool> DeleteObjectAsync(string objectKey, CancellationToken cancellationToken = default)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(objectKey);
+
+            AmazonS3RequestData requestData = CreateRequestData(objectKey);
+
+            using MemoryStream emptyStream = new MemoryStream(Array.Empty<byte>(), false);
+            await SendAmazonS3RequestAsync(HttpMethod.DELETE, requestData, "", emptyStream, 0, 0, null, null,
+                cancellationToken).ConfigureAwait(false);
+
+            return LastResponseInfo != null && LastResponseInfo.IsSuccess;
+        }
+
+        public async Task<IReadOnlyList<AmazonS3ObjectInfo>> ListObjectsAsync(string prefix = "", string delimiter = "/",
+            CancellationToken cancellationToken = default, int? maxKeys = null)
+        {
+            prefix = NormalizeObjectKey(prefix);
+            List<AmazonS3ObjectInfo> objects = new List<AmazonS3ObjectInfo>();
+            string continuationToken = null;
+
+            do
+            {
+                SortedDictionary<string, string> query = new SortedDictionary<string, string>(StringComparer.Ordinal)
+                {
+                    ["encoding-type"] = "url",
+                    ["list-type"] = "2"
+                };
+
+                if (!string.IsNullOrEmpty(prefix))
+                {
+                    query["prefix"] = prefix;
+                }
+
+                if (!string.IsNullOrEmpty(delimiter))
+                {
+                    query["delimiter"] = delimiter;
+                }
+
+                if (maxKeys > 0)
+                {
+                    query["max-keys"] = maxKeys.Value.ToString(CultureInfo.InvariantCulture);
+                }
+
+                if (!string.IsNullOrEmpty(continuationToken))
+                {
+                    query["continuation-token"] = continuationToken;
+                }
+
+                string canonicalQueryString = CreateCanonicalQueryString(query);
+                AmazonS3RequestData requestData = CreateRequestData("");
+                NameValueCollection headers = CreateSignedRequestHeaders(HttpMethod.GET, requestData, canonicalQueryString,
+                    GetEmptyPayloadHash(), null, null);
+                string response = await SendRequestAsync(HttpMethod.GET, GetRequestURL(requestData, canonicalQueryString),
+                    headers: headers, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+                if (LastResponseInfo == null || !LastResponseInfo.IsSuccess || string.IsNullOrWhiteSpace(response))
+                {
+                    return null;
+                }
+
+                AmazonS3ListPage page = ParseListObjectsResponse(response);
+                if (page == null)
+                {
+                    return null;
+                }
+
+                objects.AddRange(page.Objects);
+                if (maxKeys > 0 && objects.Count >= maxKeys.Value)
+                {
+                    break;
+                }
+
+                continuationToken = page.IsTruncated ? page.NextContinuationToken : null;
+
+                if (page.IsTruncated && string.IsNullOrEmpty(continuationToken))
+                {
+                    return null;
+                }
+            }
+            while (!string.IsNullOrEmpty(continuationToken));
+
+            return objects;
+        }
+
+        public async Task<bool> DownloadObjectAsync(string objectKey, Stream destination,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(objectKey);
+            ArgumentNullException.ThrowIfNull(destination);
+
+            AmazonS3RequestData requestData = CreateRequestData(NormalizeObjectKey(objectKey));
+            NameValueCollection headers = CreateSignedRequestHeaders(HttpMethod.GET, requestData, "", GetEmptyPayloadHash(), null, null);
+            return await SendRequestDownloadAsync(HttpMethod.GET, GetRequestURL(requestData, ""), destination, headers: headers,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
+        }
+
+        public Task<bool> UploadObjectAsync(Stream stream, string objectKey, CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(stream);
+            ArgumentException.ThrowIfNullOrEmpty(objectKey);
+
+            objectKey = NormalizeObjectKey(objectKey);
+            return RunOperationAsync(token => UploadObjectCoreAsync(stream, objectKey, token), cancellationToken);
+        }
+
+        private async Task<bool> UploadObjectCoreAsync(Stream stream, string objectKey, CancellationToken cancellationToken)
+        {
+            string contentType = MimeTypes.GetMimeTypeFromFileName(objectKey);
+            AmazonS3RequestData requestData = CreateRequestData(objectKey);
+            UploadResult result;
+
+            if (Settings.UseMultipartUpload && stream.Length > 0)
+            {
+                result = await UploadMultipartAsync(stream, contentType, GenerateURL(objectKey), requestData,
+                    cancellationToken).ConfigureAwait(false);
+            }
+            else
+            {
+                result = await UploadSingleRequestAsync(stream, contentType, GenerateURL(objectKey), requestData,
+                    cancellationToken).ConfigureAwait(false);
+            }
+
+            return result != null;
+        }
+
+        public async Task<bool> CopyObjectAsync(string sourceObjectKey, string destinationObjectKey,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(sourceObjectKey);
+            ArgumentException.ThrowIfNullOrEmpty(destinationObjectKey);
+
+            sourceObjectKey = NormalizeObjectKey(sourceObjectKey);
+            destinationObjectKey = NormalizeObjectKey(destinationObjectKey);
+            AmazonS3RequestData requestData = CreateRequestData(destinationObjectKey);
+            NameValueCollection headers = CreateObjectHeaders();
+            headers["x-amz-copy-source"] = "/" + URLHelpers.URLEncode(
+                URLHelpers.CombineURL(Settings.Bucket, sourceObjectKey), true);
+
+            using MemoryStream emptyStream = new MemoryStream(Array.Empty<byte>(), false);
+            string response = await SendAmazonS3RequestAsync(HttpMethod.PUT, requestData, "", emptyStream, 0, 0, null,
+                headers, cancellationToken).ConfigureAwait(false);
+
+            return LastResponseInfo != null && LastResponseInfo.IsSuccess && !IsAmazonS3ErrorResponse(response);
+        }
+
         private async Task<UploadResult> UploadSingleRequestAsync(Stream stream, string contentType, string resultURL,
             AmazonS3RequestData requestData, CancellationToken cancellationToken)
         {
@@ -209,34 +354,12 @@ namespace ShareX.UploadersLib.FileUploaders
                     return null;
                 }
 
-                List<AmazonS3MultipartPart> parts = new List<AmazonS3MultipartPart>();
-                long position = 0;
-                int partNumber = 1;
+                AmazonS3MultipartPart[] parts = await UploadPartsAsync(stream, partSize, contentType, requestData, uploadID,
+                    cancellationToken).ConfigureAwait(false);
 
-                while (position < stream.Length)
+                if (parts == null)
                 {
-                    long length = Math.Min(partSize, stream.Length - position);
-                    string queryString = "partNumber=" + partNumber.ToString(CultureInfo.InvariantCulture) +
-                        "&uploadId=" + URLHelpers.URLEncode(uploadID);
-
-                    await SendAmazonS3RequestAsync(HttpMethod.PUT, requestData, queryString, stream, position, length,
-                        contentType, null, cancellationToken).ConfigureAwait(false);
-
-                    if (LastResponseInfo == null || !LastResponseInfo.IsSuccess)
-                    {
-                        return null;
-                    }
-
-                    string entityTag = LastResponseInfo.Headers?["ETag"];
-
-                    if (string.IsNullOrWhiteSpace(entityTag))
-                    {
-                        return null;
-                    }
-
-                    parts.Add(new AmazonS3MultipartPart(partNumber, entityTag.Trim()));
-                    position += length;
-                    partNumber++;
+                    return null;
                 }
 
                 byte[] completePayload = CreateCompleteMultipartUploadPayload(parts);
@@ -262,6 +385,146 @@ namespace ShareX.UploadersLib.FileUploaders
                 {
                     await AbortMultipartUploadAsync(requestData, uploadID).ConfigureAwait(false);
                 }
+            }
+        }
+
+        private sealed class AmazonS3MultipartUploadContext
+        {
+            public Stream Stream { get; }
+            public object StreamLock { get; } = new object();
+            public object ProgressLock { get; } = new object();
+            public ProgressManager Progress { get; }
+            public bool ReportProgress { get; }
+            public SemaphoreSlim Throttle { get; }
+            public CancellationTokenSource Cancellation { get; }
+            public AmazonS3MultipartPart[] Parts { get; }
+            public AmazonS3RequestData RequestData { get; }
+            public string UploadID { get; }
+            public string ContentType { get; }
+
+            public AmazonS3MultipartUploadContext(Stream stream, int partCount, bool reportProgress, SemaphoreSlim throttle,
+                CancellationTokenSource cancellation, AmazonS3RequestData requestData, string uploadID, string contentType)
+            {
+                Stream = stream;
+                Progress = new ProgressManager(stream.Length);
+                ReportProgress = reportProgress;
+                Throttle = throttle;
+                Cancellation = cancellation;
+                Parts = new AmazonS3MultipartPart[partCount];
+                RequestData = requestData;
+                UploadID = uploadID;
+                ContentType = contentType;
+            }
+        }
+
+        private async Task<AmazonS3MultipartPart[]> UploadPartsAsync(Stream stream, long partSize, string contentType,
+            AmazonS3RequestData requestData, string uploadID, CancellationToken cancellationToken)
+        {
+            int partCount = (int)((stream.Length + partSize - 1) / partSize);
+            int concurrency = Math.Clamp(Settings.MultipartConcurrency, AmazonS3Settings.MinMultipartConcurrency,
+                AmazonS3Settings.MaxMultipartConcurrency);
+            concurrency = Math.Min(concurrency, partCount);
+
+            bool allowReportProgress = AllowReportProgress;
+            AllowReportProgress = false;
+
+            using CancellationTokenSource partsCancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            using SemaphoreSlim throttle = new SemaphoreSlim(concurrency, concurrency);
+            AmazonS3MultipartUploadContext context = new AmazonS3MultipartUploadContext(stream, partCount, allowReportProgress,
+                throttle, partsCancellation, requestData, uploadID, contentType);
+
+            try
+            {
+                Task<bool>[] uploads = new Task<bool>[partCount];
+
+                for (int partIndex = 0; partIndex < partCount; partIndex++)
+                {
+                    long position = partIndex * partSize;
+                    long length = Math.Min(partSize, stream.Length - position);
+                    uploads[partIndex] = UploadPartAsync(context, partIndex, position, length);
+                }
+
+                bool[] results = await Task.WhenAll(uploads).ConfigureAwait(false);
+                return results.All(x => x) ? context.Parts : null;
+            }
+            catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
+            {
+                return null;
+            }
+            finally
+            {
+                AllowReportProgress = allowReportProgress;
+            }
+        }
+
+        private async Task<bool> UploadPartAsync(AmazonS3MultipartUploadContext context, int partIndex, long position, long length)
+        {
+            CancellationToken cancellationToken = context.Cancellation.Token;
+            bool succeeded = false;
+
+            await context.Throttle.WaitAsync(cancellationToken).ConfigureAwait(false);
+
+            try
+            {
+                int partNumber = partIndex + 1;
+                string queryString = "partNumber=" + partNumber.ToString(CultureInfo.InvariantCulture) +
+                    "&uploadId=" + URLHelpers.URLEncode(context.UploadID);
+                string hashedPayload;
+
+                using (SharedStreamSegment hashSegment = new SharedStreamSegment(context.Stream, context.StreamLock, position, length))
+                {
+                    hashedPayload = GetPayloadHash(hashSegment, 0, length, cancellationToken);
+                }
+
+                using SharedStreamSegment uploadSegment = new SharedStreamSegment(context.Stream, context.StreamLock, position, length,
+                    bytesRead => ReportMultipartProgress(context, bytesRead));
+                ResponseInfo responseInfo = await SendAmazonS3RequestForResponseAsync(HttpMethod.PUT, context.RequestData, queryString,
+                    uploadSegment, 0, length, context.ContentType, null, hashedPayload, cancellationToken).ConfigureAwait(false);
+
+                if (responseInfo == null || !responseInfo.IsSuccess)
+                {
+                    return false;
+                }
+
+                string entityTag = responseInfo.Headers?["ETag"];
+
+                if (string.IsNullOrWhiteSpace(entityTag))
+                {
+                    return false;
+                }
+
+                context.Parts[partIndex] = new AmazonS3MultipartPart(partNumber, entityTag.Trim());
+                succeeded = true;
+                return true;
+            }
+            finally
+            {
+                if (!succeeded)
+                {
+                    context.Cancellation.Cancel();
+                }
+
+                context.Throttle.Release();
+            }
+        }
+
+        private void ReportMultipartProgress(AmazonS3MultipartUploadContext context, int bytesRead)
+        {
+            if (!context.ReportProgress)
+            {
+                return;
+            }
+
+            bool changed;
+
+            lock (context.ProgressLock)
+            {
+                changed = context.Progress.UpdateProgress(bytesRead);
+            }
+
+            if (changed)
+            {
+                OnProgressChanged(context.Progress);
             }
         }
 
@@ -291,6 +554,26 @@ namespace ShareX.UploadersLib.FileUploaders
             NameValueCollection requestHeaders, CancellationToken cancellationToken)
         {
             string hashedPayload = GetPayloadHash(stream, position, length, cancellationToken);
+            NameValueCollection headers = CreateSignedRequestHeaders(method, requestData, canonicalQueryString, hashedPayload,
+                contentType, requestHeaders);
+            string url = GetRequestURL(requestData, canonicalQueryString);
+            return await SendRequestAsync(method, url, stream, position, length, contentType, null, headers,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
+        }
+
+        private Task<ResponseInfo> SendAmazonS3RequestForResponseAsync(HttpMethod method, AmazonS3RequestData requestData,
+            string canonicalQueryString, Stream stream, long position, long length, string contentType,
+            NameValueCollection requestHeaders, string hashedPayload, CancellationToken cancellationToken)
+        {
+            NameValueCollection headers = CreateSignedRequestHeaders(method, requestData, canonicalQueryString, hashedPayload,
+                contentType, requestHeaders);
+            string url = GetRequestURL(requestData, canonicalQueryString);
+            return SendRequestForResponseAsync(method, url, stream, position, length, contentType, headers, cancellationToken);
+        }
+
+        private NameValueCollection CreateSignedRequestHeaders(HttpMethod method, AmazonS3RequestData requestData,
+            string canonicalQueryString, string hashedPayload, string contentType, NameValueCollection requestHeaders)
+        {
             DateTime requestTime = DateTime.UtcNow;
             string credentialDate = requestTime.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
             string timeStamp = requestTime.ToString("yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture);
@@ -302,7 +585,6 @@ namespace ShareX.UploadersLib.FileUploaders
                 : new NameValueCollection();
 
             headers["Host"] = requestData.Host;
-            headers["Content-Length"] = length.ToString(CultureInfo.InvariantCulture);
 
             if (!string.IsNullOrEmpty(contentType))
             {
@@ -338,10 +620,7 @@ namespace ShareX.UploadersLib.FileUploaders
 
             headers.Remove("Host");
             headers.Remove("Content-Type");
-
-            string url = GetRequestURL(requestData, canonicalQueryString);
-            return await SendRequestAsync(method, url, stream, position, length, contentType, null, headers,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
+            return headers;
         }
 
         private AmazonS3RequestData CreateRequestData(string uploadPath)
@@ -509,6 +788,91 @@ namespace ShareX.UploadersLib.FileUploaders
             };
         }
 
+        private sealed class AmazonS3ListPage
+        {
+            public List<AmazonS3ObjectInfo> Objects { get; } = new List<AmazonS3ObjectInfo>();
+            public bool IsTruncated { get; set; }
+            public string NextContinuationToken { get; set; }
+        }
+
+        private static AmazonS3ListPage ParseListObjectsResponse(string response)
+        {
+            try
+            {
+                XDocument document = XDocument.Parse(response);
+                XElement root = document.Root;
+                if (root == null || root.Name.LocalName != "ListBucketResult")
+                {
+                    return null;
+                }
+
+                AmazonS3ListPage page = new AmazonS3ListPage
+                {
+                    IsTruncated = bool.TryParse(GetElementValue(root, "IsTruncated"), out bool isTruncated) && isTruncated,
+                    NextContinuationToken = GetElementValue(root, "NextContinuationToken")
+                };
+
+                foreach (XElement commonPrefix in root.Elements().Where(x => x.Name.LocalName == "CommonPrefixes"))
+                {
+                    string encodedPrefix = GetElementValue(commonPrefix, "Prefix");
+                    string key = DecodeListObjectValue(encodedPrefix);
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        page.Objects.Add(new AmazonS3ObjectInfo(key, true));
+                    }
+                }
+
+                foreach (XElement content in root.Elements().Where(x => x.Name.LocalName == "Contents"))
+                {
+                    string encodedKey = GetElementValue(content, "Key");
+                    string key = DecodeListObjectValue(encodedKey);
+                    if (string.IsNullOrEmpty(key))
+                    {
+                        continue;
+                    }
+
+                    long? size = long.TryParse(GetElementValue(content, "Size"), NumberStyles.Integer,
+                        CultureInfo.InvariantCulture, out long parsedSize) ? parsedSize : null;
+                    DateTimeOffset? lastModified = DateTimeOffset.TryParse(GetElementValue(content, "LastModified"),
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out DateTimeOffset parsedDate)
+                        ? parsedDate : null;
+                    page.Objects.Add(new AmazonS3ObjectInfo(key, false, size, lastModified));
+                }
+
+                return page;
+            }
+            catch (XmlException)
+            {
+                return null;
+            }
+        }
+
+        private static string GetElementValue(XElement parent, string localName)
+        {
+            return parent.Elements().FirstOrDefault(x => x.Name.LocalName == localName)?.Value;
+        }
+
+        private static string DecodeListObjectValue(string value)
+        {
+            return string.IsNullOrEmpty(value) ? value : URLHelpers.URLDecode(value);
+        }
+
+        private static string CreateCanonicalQueryString(IEnumerable<KeyValuePair<string, string>> parameters)
+        {
+            return string.Join("&", parameters.OrderBy(x => x.Key, StringComparer.Ordinal).Select(x =>
+                URLHelpers.URLEncode(x.Key) + "=" + URLHelpers.URLEncode(x.Value ?? "")));
+        }
+
+        private static string NormalizeObjectKey(string objectKey)
+        {
+            return objectKey?.Replace('\\', '/').TrimStart('/') ?? "";
+        }
+
+        private string GetEmptyPayloadHash()
+        {
+            return Settings.SignedPayload ? Helpers.BytesToHex(Helpers.ComputeSHA256("")) : UnsignedPayload;
+        }
+
         private string GetRegion()
         {
             if (!string.IsNullOrEmpty(Settings.Region))
@@ -569,24 +933,59 @@ namespace ShareX.UploadersLib.FileUploaders
             if (!string.IsNullOrEmpty(Settings.Endpoint) && !string.IsNullOrEmpty(Settings.Bucket))
             {
                 uploadPath = URLHelpers.URLEncode(uploadPath, true, HelpersOptions.URLEncodeIgnoreEmoji);
-
-                string url;
-
-                if (Settings.UseCustomCNAME && !string.IsNullOrEmpty(Settings.CustomDomain))
-                {
-                    ShareXCustomUploaderSyntaxParser parser = new ShareXCustomUploaderSyntaxParser();
-                    string parsedDomain = parser.Parse(Settings.CustomDomain);
-                    url = URLHelpers.CombineURL(parsedDomain, uploadPath);
-                }
-                else
-                {
-                    url = URLHelpers.CombineURL(Settings.Endpoint, Settings.Bucket, uploadPath);
-                }
-
-                return URLHelpers.FixPrefix(url);
+                return URLHelpers.CombineURL(GetObjectBaseURL(), uploadPath);
             }
 
             return "";
+        }
+
+        public bool TryGetObjectKey(string url, out string objectKey)
+        {
+            objectKey = null;
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri objectURI) ||
+                !Uri.TryCreate(GetObjectBaseURL(), UriKind.Absolute, out Uri baseURI) ||
+                !string.Equals(objectURI.Scheme, baseURI.Scheme, StringComparison.OrdinalIgnoreCase) ||
+                !string.Equals(objectURI.IdnHost, baseURI.IdnHost, StringComparison.OrdinalIgnoreCase) ||
+                objectURI.Port != baseURI.Port)
+            {
+                return false;
+            }
+
+            string basePath = baseURI.AbsolutePath.TrimEnd('/');
+            string objectPath = objectURI.AbsolutePath;
+
+            if (!objectPath.StartsWith(basePath + "/", StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            string escapedObjectKey = objectPath.Substring(basePath.Length + 1);
+
+            if (string.IsNullOrEmpty(escapedObjectKey))
+            {
+                return false;
+            }
+
+            objectKey = Uri.UnescapeDataString(escapedObjectKey);
+            return !string.IsNullOrEmpty(objectKey);
+        }
+
+        private string GetObjectBaseURL()
+        {
+            string url;
+
+            if (Settings.UseCustomCNAME && !string.IsNullOrEmpty(Settings.CustomDomain))
+            {
+                ShareXCustomUploaderSyntaxParser parser = new ShareXCustomUploaderSyntaxParser();
+                url = parser.Parse(Settings.CustomDomain);
+            }
+            else
+            {
+                url = URLHelpers.CombineURL(Settings.Endpoint, Settings.Bucket);
+            }
+
+            return URLHelpers.FixPrefix(url);
         }
 
         public string GetPreviewURL()

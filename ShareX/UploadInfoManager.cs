@@ -30,7 +30,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ShareX
 {
@@ -202,7 +201,7 @@ namespace ShareX
         {
             if (IsItemSelected && SelectedItem.IsImageFile)
             {
-                Size size = ImageHelpers.GetImageFileDimensions(SelectedItem.Info.FilePath);
+                Size size = SkiaImageHelpers.GetImageFileDimensions(SelectedItem.Info.FilePath);
 
                 if (!size.IsEmpty)
                 {
@@ -382,6 +381,32 @@ namespace ShareX
             if (IsItemSelected && SelectedItem.IsImageFile) TaskHelpers.AnnotateImageFromFile(SelectedItem.Info.FilePath);
         }
 
+        public void TrimVideo()
+        {
+            if (IsItemSelected && SelectedItem.IsVideoFile)
+            {
+                TaskHelpers.OpenVideoTrimmer(SelectedItem.Info.TaskSettings, SelectedItem.Info.FilePath);
+            }
+        }
+
+        public void TrimAnimatedGif()
+        {
+            if (IsItemSelected && SelectedItem.IsFileExist &&
+                string.Equals(Path.GetExtension(SelectedItem.Info.FilePath), ".gif", System.StringComparison.OrdinalIgnoreCase))
+            {
+                TaskHelpers.OpenAnimatedGifTrimmer(SelectedItem.Info.FilePath, SelectedItem.Info.TaskSettings);
+            }
+        }
+
+        public void EditImageInPhotoEditor()
+        {
+            if (IsItemSelected)
+            {
+                string[] imageFiles = SelectedItems.Where(x => x.IsImageFile).Select(x => x.Info.FilePath).ToArray();
+                if (imageFiles.Length > 0) TaskHelpers.OpenPhotoEditor(imageFiles, null);
+            }
+        }
+
         public void BeautifyImage()
         {
             if (IsItemSelected && SelectedItem.IsImageFile) TaskHelpers.OpenImageBeautifier(SelectedItem.Info.FilePath);
@@ -449,6 +474,19 @@ namespace ShareX
             if (IsItemSelected && SelectedItem.IsImageFile) await TaskHelpers.OCRImage(SelectedItem.Info.FilePath);
         }
 
+        public void ResizeImages()
+        {
+            if (IsItemSelected)
+            {
+                string[] imageFiles = SelectedItems.Where(x => x.IsImageFile).Select(x => x.Info.FilePath).ToArray();
+
+                if (imageFiles.Length > 0)
+                {
+                    TaskHelpers.OpenImageResizer(imageFiles);
+                }
+            }
+        }
+
         public void CombineImages()
         {
             if (IsItemSelected)
@@ -462,7 +500,7 @@ namespace ShareX
             }
         }
 
-        public void CombineImages(Orientation orientation)
+        public void CombineImages(ImageOrientation orientation)
         {
             if (IsItemSelected)
             {

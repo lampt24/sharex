@@ -1,8 +1,24 @@
 #region License Information (GPL v3)
 
 /*
-    ShareX - A program developed by ShareX Team
+    ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -10,9 +26,9 @@
 #nullable enable
 
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using ShareX.AvaloniaUI.Controls;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
 using ShareX.Localization;
@@ -40,8 +56,8 @@ public partial class ActionsToolbarEditorWindow : Window
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
         _toolbarChanged = toolbarChanged;
 
-        Program.Settings.ActionsToolbarList ??= [];
-        foreach (HotkeyType action in Program.Settings.ActionsToolbarList)
+        ApplicationState.Settings.ActionsToolbarList ??= [];
+        foreach (HotkeyType action in ApplicationState.Settings.ActionsToolbarList)
         {
             _items.Add(new ActionsToolbarItem(action));
         }
@@ -75,7 +91,7 @@ public partial class ActionsToolbarEditorWindow : Window
             MenuItem item = new()
             {
                 Header = title,
-                Icon = CreateIcon(TaskHelpers.FindMenuLucideIcon(action))
+                Icon = CreateIcon(TaskHelpers.FindMenuIcon(action))
             };
             item.Click += (_, _) => AddAction(action);
 
@@ -103,19 +119,17 @@ public partial class ActionsToolbarEditorWindow : Window
         return new ContextMenu { ItemsSource = rootItems };
     }
 
-    private static TextBlock CreateIcon(string icon) => new()
+    private static IconPresenter CreateIcon(string icon) => new()
     {
-        Classes = { "icon" },
-        Text = icon,
+        Icon = icon,
         FontSize = 15,
-        Width = 18,
-        TextAlignment = Avalonia.Media.TextAlignment.Center
+        Width = 18
     };
 
     private void AddAction(HotkeyType action)
     {
         ActionsToolbarItem item = new(action);
-        Program.Settings.ActionsToolbarList.Add(action);
+        ApplicationState.Settings.ActionsToolbarList.Add(action);
         _items.Add(item);
         ActionList.SelectedItem = item;
         NotifyChanged();
@@ -129,7 +143,7 @@ public partial class ActionsToolbarEditorWindow : Window
         }
 
         int index = _items.IndexOf(item);
-        Program.Settings.ActionsToolbarList.RemoveAt(index);
+        ApplicationState.Settings.ActionsToolbarList.RemoveAt(index);
         _items.RemoveAt(index);
         ActionList.SelectedItem = _items.Count == 0 ? null : _items[Math.Min(index, _items.Count - 1)];
         NotifyChanged();
@@ -154,9 +168,9 @@ public partial class ActionsToolbarEditorWindow : Window
         }
 
         _items.Move(oldIndex, newIndex);
-        HotkeyType model = Program.Settings.ActionsToolbarList[oldIndex];
-        Program.Settings.ActionsToolbarList.RemoveAt(oldIndex);
-        Program.Settings.ActionsToolbarList.Insert(newIndex, model);
+        HotkeyType model = ApplicationState.Settings.ActionsToolbarList[oldIndex];
+        ApplicationState.Settings.ActionsToolbarList.RemoveAt(oldIndex);
+        ApplicationState.Settings.ActionsToolbarList.Insert(newIndex, model);
         ActionList.SelectedItem = item;
         NotifyChanged();
     }
@@ -200,7 +214,7 @@ public sealed class ActionsToolbarItem
     public HotkeyType Action { get; }
     public bool IsSeparator => Action == HotkeyType.None;
     public string Title => IsSeparator ? Strings.ActionsToolbarEditorWindow_Separator : Action.GetLocalizedDescription();
-    public string Icon => TaskHelpers.FindMenuLucideIcon(Action);
+    public string Icon => TaskHelpers.FindMenuIcon(Action);
 
     public ActionsToolbarItem(HotkeyType action)
     {

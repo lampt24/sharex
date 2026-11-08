@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -20,8 +36,8 @@ using ShareX.UploadersLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using DrawingBitmap = System.Drawing.Bitmap;
-using DrawingImageFormat = System.Drawing.Imaging.ImageFormat;
+using DrawingBitmap = SkiaSharp.SKBitmap;
+using DrawingImageFormat = SkiaSharp.SKEncodedImageFormat;
 
 namespace ShareX;
 
@@ -54,7 +70,7 @@ public partial class BeforeUploadWindow : Window
         }
         else if (!string.IsNullOrEmpty(info.FilePath) && File.Exists(info.FilePath) && FileHelpers.IsImageFile(info.FilePath))
         {
-            _ownedSourceImage = ImageHelpers.LoadImage(info.FilePath);
+            _ownedSourceImage = SkiaImageHelpers.LoadImage(info.FilePath);
             _sourceImage = _ownedSourceImage;
         }
 
@@ -86,7 +102,7 @@ public partial class BeforeUploadWindow : Window
                 foreach (ImageDestination destination in Helpers.GetEnums<ImageDestination>())
                 {
                     if (destination == ImageDestination.FileUploader ||
-                        !UploadersConfigValidator.Validate<ImageDestination>((int)destination, Program.UploadersConfig))
+                        !UploadersConfigValidator.Validate<ImageDestination>((int)destination, ApplicationState.UploadersConfig))
                     {
                         continue;
                     }
@@ -98,7 +114,7 @@ public partial class BeforeUploadWindow : Window
 
                 foreach (FileDestination destination in Helpers.GetEnums<FileDestination>())
                 {
-                    if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, Program.UploadersConfig))
+                    if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, ApplicationState.UploadersConfig))
                     {
                         continue;
                     }
@@ -117,7 +133,7 @@ public partial class BeforeUploadWindow : Window
                 foreach (TextDestination destination in Helpers.GetEnums<TextDestination>())
                 {
                     if (destination == TextDestination.FileUploader ||
-                        !UploadersConfigValidator.Validate<TextDestination>((int)destination, Program.UploadersConfig))
+                        !UploadersConfigValidator.Validate<TextDestination>((int)destination, ApplicationState.UploadersConfig))
                     {
                         continue;
                     }
@@ -129,7 +145,7 @@ public partial class BeforeUploadWindow : Window
 
                 foreach (FileDestination destination in Helpers.GetEnums<FileDestination>())
                 {
-                    if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, Program.UploadersConfig))
+                    if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, ApplicationState.UploadersConfig))
                     {
                         continue;
                     }
@@ -147,7 +163,7 @@ public partial class BeforeUploadWindow : Window
             case EDataType.File:
                 foreach (FileDestination destination in Helpers.GetEnums<FileDestination>())
                 {
-                    if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, Program.UploadersConfig))
+                    if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, ApplicationState.UploadersConfig))
                     {
                         continue;
                     }
@@ -166,7 +182,7 @@ public partial class BeforeUploadWindow : Window
             case EDataType.URL:
                 foreach (UrlShortenerType destination in Helpers.GetEnums<UrlShortenerType>())
                 {
-                    if (!UploadersConfigValidator.Validate<UrlShortenerType>((int)destination, Program.UploadersConfig))
+                    if (!UploadersConfigValidator.Validate<UrlShortenerType>((int)destination, ApplicationState.UploadersConfig))
                     {
                         continue;
                     }
@@ -196,19 +212,19 @@ public partial class BeforeUploadWindow : Window
 
         if (destination is ImageDestination.CustomImageUploader)
         {
-            customUploaderIndex = Program.UploadersConfig.CustomImageUploaderSelected;
+            customUploaderIndex = ApplicationState.UploadersConfig.CustomImageUploaderSelected;
         }
         else if (destination is TextDestination.CustomTextUploader)
         {
-            customUploaderIndex = Program.UploadersConfig.CustomTextUploaderSelected;
+            customUploaderIndex = ApplicationState.UploadersConfig.CustomTextUploaderSelected;
         }
         else if (destination is FileDestination.CustomFileUploader)
         {
-            customUploaderIndex = Program.UploadersConfig.CustomFileUploaderSelected;
+            customUploaderIndex = ApplicationState.UploadersConfig.CustomFileUploaderSelected;
         }
         else if (destination is UrlShortenerType.CustomURLShortener)
         {
-            customUploaderIndex = Program.UploadersConfig.CustomURLShortenerSelected;
+            customUploaderIndex = ApplicationState.UploadersConfig.CustomURLShortenerSelected;
         }
 
         if (customUploaderIndex >= 0)
@@ -216,10 +232,10 @@ public partial class BeforeUploadWindow : Window
             if (taskSettings.OverrideCustomUploader)
             {
                 customUploaderIndex = taskSettings.CustomUploaderIndex.BetweenOrDefault(
-                    0, Program.UploadersConfig.CustomUploadersList.Count - 1);
+                    0, ApplicationState.UploadersConfig.CustomUploadersList.Count - 1);
             }
 
-            CustomUploaderItem? uploader = Program.UploadersConfig.CustomUploadersList.ReturnIfValidIndex(customUploaderIndex);
+            CustomUploaderItem? uploader = ApplicationState.UploadersConfig.CustomUploadersList.ReturnIfValidIndex(customUploaderIndex);
             if (uploader != null)
             {
                 return string.Format(Strings.BeforeUploadWindow_CustomUploader, uploader);

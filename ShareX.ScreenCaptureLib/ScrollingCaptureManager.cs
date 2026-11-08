@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -24,12 +24,13 @@
 #endregion License Information (GPL v3)
 
 using ShareX.HelpersLib;
+using SkiaSharp;
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Bitmap = SkiaSharp.SKBitmap;
 
 namespace ShareX.ScreenCaptureLib
 {
@@ -178,7 +179,7 @@ namespace ShareX.ScreenCaptureLib
                             if (Result == null && direction == ScrollingCaptureDirection.Horizontal)
                             {
                                 firstScreenshot?.Dispose();
-                                firstScreenshot = (Bitmap)lastScreenshot.Clone();
+                                firstScreenshot = lastScreenshot.Copy();
                             }
 
                             Bitmap newResult = await CombineImagesAsync(Result, lastScreenshot);
@@ -336,7 +337,7 @@ namespace ShareX.ScreenCaptureLib
         {
             if (lastScreenshot != null && previousScreenshot != null)
             {
-                return ImageHelpers.CompareImages(lastScreenshot, previousScreenshot);
+                return SkiaImageHelpers.CompareImages(lastScreenshot, previousScreenshot);
             }
 
             return false;
@@ -420,12 +421,14 @@ namespace ShareX.ScreenCaptureLib
             {
                 status = ScrollingCaptureStatus.Successful;
 
-                return (Bitmap)currentImage.Clone();
+                return currentImage.Copy();
             }
 
             int width = currentImage.Width;
             int height = currentImage.Height;
 
+            // Each capture is clipped to the current screen, so a display that changes size mid-capture gives a frame that
+            // cannot be stitched on. It is treated like a frame with no match: the capture ends with what it has.
             if (result.Width != width || result.Height < height)
             {
                 status = ScrollingCaptureStatus.Failed;
@@ -489,17 +492,15 @@ namespace ShareX.ScreenCaptureLib
                         bestIgnoreBottomOffset = ignoreBottomOffset;
                     }
 
-                    Bitmap newResult = new Bitmap(result.Width, result.Height - ignoreBottomOffset + matchHeight);
+                    Bitmap newResult = SkiaImageHelpers.CreateBitmap(result.Width, result.Height - ignoreBottomOffset + matchHeight);
 
-                    using (Graphics g = Graphics.FromImage(newResult))
+                    using (SKCanvas g = new(newResult))
+                    using (SKPaint paint = new() { BlendMode = SKBlendMode.Src })
                     {
-                        g.CompositingMode = CompositingMode.SourceCopy;
-                        g.InterpolationMode = InterpolationMode.NearestNeighbor;
-
-                        g.DrawImage(result, new Rectangle(0, 0, result.Width, result.Height - ignoreBottomOffset),
-                            new Rectangle(0, 0, result.Width, result.Height - ignoreBottomOffset), GraphicsUnit.Pixel);
-                        g.DrawImage(currentImage, new Rectangle(0, result.Height - ignoreBottomOffset, currentImage.Width, matchHeight),
-                            new Rectangle(0, matchIndex + 1, currentImage.Width, matchHeight), GraphicsUnit.Pixel);
+                        g.DrawBitmap(result, SKRect.Create(0, 0, result.Width, result.Height - ignoreBottomOffset),
+                            SKRect.Create(0, 0, result.Width, result.Height - ignoreBottomOffset), paint);
+                        g.DrawBitmap(currentImage, SKRect.Create(0, matchIndex + 1, currentImage.Width, matchHeight),
+                            SKRect.Create(0, result.Height - ignoreBottomOffset, currentImage.Width, matchHeight), paint);
                     }
 
                     if (bestGuess)

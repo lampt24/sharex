@@ -3,17 +3,32 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
 
 #nullable enable
 
+using ShareX.AvaloniaUI.Integration;
 using ShareX.HelpersLib;
 using System;
-using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 
 namespace ShareX;
 
@@ -26,87 +41,81 @@ internal interface ITrayIconService : IDisposable
     string ToolTipText { get; set; }
 
     void SetIcon(byte[] iconBytes);
-    void SetIcon(Icon icon);
 }
 
-/// <summary>
-/// WinForms tray icon adapter. The visible tray menu remains an Avalonia menu;
-/// this class only owns the notification icon and its mouse interaction.
-/// </summary>
-internal sealed class WinFormsTrayIconService : ITrayIconService
+/// <summary>Desktop tray adapter; Windows retains its additional mouse actions.</summary>
+internal sealed class DesktopTrayIconService : ITrayIconService
 {
-    private readonly NotifyIcon _notifyIcon;
-    private readonly Timer _singleClickTimer;
-    private Icon? _ownedIcon;
+    private readonly WindowsTrayIcon? _windowsIcon;
+    private readonly Avalonia.Controls.TrayIcon? _avaloniaIcon;
+    private readonly IDisposable? _avaloniaIconRegistration;
+    private readonly Avalonia.Threading.DispatcherTimer _singleClickTimer;
     private int _leftClickCount;
     private bool _disposed;
-
     public event Action? RightButtonDown;
     public event Action? RightButtonUp;
 
     public bool Visible
     {
-        get => _notifyIcon.Visible;
-        set => _notifyIcon.Visible = value;
+        get => _windowsIcon?.Visible ?? _avaloniaIcon!.IsVisible;
+        set { if (_windowsIcon != null) _windowsIcon.Visible = value; else _avaloniaIcon!.IsVisible = value; }
     }
-
     public string ToolTipText
     {
-        get => _notifyIcon.Text;
-        set => _notifyIcon.Text = value.Truncate(63);
+        get => _windowsIcon?.ToolTipText ?? _avaloniaIcon!.ToolTipText ?? string.Empty;
+        set { if (_windowsIcon != null) _windowsIcon.ToolTipText = value; else _avaloniaIcon!.ToolTipText = value; }
     }
 
-    public WinFormsTrayIconService(Icon icon, string toolTipText, bool visible)
+    public DesktopTrayIconService(IHotkeyHost host, byte[] icon, string text, bool visible)
     {
-        _notifyIcon = new NotifyIcon
+        _singleClickTimer = new Avalonia.Threading.DispatcherTimer
         {
-            ContextMenuStrip = null,
-            Text = toolTipText.Truncate(63)
-        };
-        _notifyIcon.MouseDown += OnMouseDown;
-        _notifyIcon.MouseUp += OnMouseUp;
-
-        _singleClickTimer = new Timer
-        {
-            Interval = SystemInformation.DoubleClickTime
+            Interval = OperatingSystem.IsWindows() ? WindowsTrayIcon.DoubleClickTime :
+                Avalonia.Application.Current?.PlatformSettings?.GetDoubleTapTime(Avalonia.Input.PointerType.Mouse) ?? TimeSpan.FromMilliseconds(500)
         };
         _singleClickTimer.Tick += OnSingleClickTimerTick;
-
-        SetIcon(icon);
-        _notifyIcon.Visible = visible;
-    }
-
-    public void SetIcon(byte[] iconBytes)
-    {
-        using MemoryStream stream = new(iconBytes, writable: false);
-        using Icon icon = new(stream);
-        SetIcon(icon);
-    }
-
-    public void SetIcon(Icon icon)
-    {
-        Icon replacement = (Icon)icon.Clone();
-        _notifyIcon.Icon = replacement;
-        _ownedIcon?.Dispose();
-        _ownedIcon = replacement;
-    }
-
-    private void OnMouseDown(object? sender, MouseEventArgs e)
-    {
-        if (e.Button == MouseButtons.Right)
+        if (OperatingSystem.IsWindows())
         {
-            RightButtonDown?.Invoke();
+            _windowsIcon = new WindowsTrayIcon(host);
+            _windowsIcon.MouseDown += OnMouseDown;
+            _windowsIcon.MouseUp += OnMouseUp;
+        }
+        else
+        {
+            _avaloniaIcon = new Avalonia.Controls.TrayIcon { Menu = new Avalonia.Controls.NativeMenu(), IsVisible = false };
+            _avaloniaIcon.Clicked += OnAvaloniaClick;
+            _avaloniaIcon.Menu.Opening += (_, _) => BuildNativeMenu(_avaloniaIcon.Menu, new MainMenuBuilder(true).BuildTrayMenu());
+        }
+        ToolTipText = text;
+        SetIcon(icon);
+        if (_avaloniaIcon != null) _avaloniaIconRegistration = DesktopServices.RegisterTrayIcon(_avaloniaIcon);
+        Visible = visible;
+    }
+
+    public void SetIcon(byte[] bytes)
+    {
+        if (_windowsIcon != null) _windowsIcon.SetIcon(bytes);
+        else
+        {
+            using MemoryStream stream = new(bytes, writable: false);
+            _avaloniaIcon!.Icon = new Avalonia.Controls.WindowIcon(stream);
         }
     }
 
-    private async void OnMouseUp(object? sender, MouseEventArgs e)
+    private void OnMouseDown(InputMouseButton button)
     {
-        switch (e.Button)
+        if (button == InputMouseButton.Right) RightButtonDown?.Invoke();
+    }
+    private void OnAvaloniaClick(object? sender, EventArgs e) => OnMouseUp(InputMouseButton.Left);
+
+    private async void OnMouseUp(InputMouseButton button)
+    {
+        switch (button)
         {
-            case MouseButtons.Left:
-                if (Program.Settings.TrayLeftDoubleClickAction == HotkeyType.None)
+            case InputMouseButton.Left:
+                if (ApplicationState.Settings.TrayLeftDoubleClickAction == HotkeyType.None)
                 {
-                    await TaskHelpers.ExecuteJob(Program.Settings.TrayLeftClickAction);
+                    await TaskHelpers.ExecuteJob(ApplicationState.Settings.TrayLeftClickAction);
                 }
                 else
                 {
@@ -120,14 +129,14 @@ internal sealed class WinFormsTrayIconService : ITrayIconService
                     {
                         _leftClickCount = 0;
                         _singleClickTimer.Stop();
-                        await TaskHelpers.ExecuteJob(Program.Settings.TrayLeftDoubleClickAction);
+                        await TaskHelpers.ExecuteJob(ApplicationState.Settings.TrayLeftDoubleClickAction);
                     }
                 }
                 break;
-            case MouseButtons.Middle:
-                await TaskHelpers.ExecuteJob(Program.Settings.TrayMiddleClickAction);
+            case InputMouseButton.Middle:
+                await TaskHelpers.ExecuteJob(ApplicationState.Settings.TrayMiddleClickAction);
                 break;
-            case MouseButtons.Right:
+            case InputMouseButton.Right:
                 RightButtonUp?.Invoke();
                 break;
         }
@@ -140,29 +149,58 @@ internal sealed class WinFormsTrayIconService : ITrayIconService
         if (_leftClickCount == 1)
         {
             _leftClickCount = 0;
-            await TaskHelpers.ExecuteJob(Program.Settings.TrayLeftClickAction);
+            await TaskHelpers.ExecuteJob(ApplicationState.Settings.TrayLeftClickAction);
+        }
+    }
+
+    private static void BuildNativeMenu(Avalonia.Controls.NativeMenu menu, System.Collections.Generic.IReadOnlyList<MainMenuEntry> entries)
+    {
+        menu.Items.Clear();
+        foreach (MainMenuEntry entry in entries)
+        {
+            if (!entry.IsVisible) continue;
+            if (entry.IsSeparator) { menu.Items.Add(new Avalonia.Controls.NativeMenuItemSeparator()); continue; }
+            Avalonia.Controls.NativeMenuItem item = new(entry.Header) { IsEnabled = entry.IsEnabled, IsChecked = entry.IsChecked };
+            if (entry.CreateChildren != null)
+            {
+                item.Menu = new Avalonia.Controls.NativeMenu();
+                item.Menu.Opening += (_, _) => BuildNativeMenu(item.Menu, entry.CreateChildren());
+            }
+            else if (entry.CreateCategories != null)
+            {
+                item.Menu = new Avalonia.Controls.NativeMenu();
+                item.Menu.Opening += (_, _) =>
+                {
+                    item.Menu.Items.Clear();
+                    foreach (MainMenuCategory category in entry.CreateCategories())
+                    {
+                        Avalonia.Controls.NativeMenuItem categoryItem = new(category.Header) { Menu = new Avalonia.Controls.NativeMenu() };
+                        BuildNativeMenu(categoryItem.Menu, category.Entries);
+                        item.Menu.Items.Add(categoryItem);
+                    }
+                };
+            }
+            else item.Click += async (_, _) => { if (entry.ExecuteAsync != null) await entry.ExecuteAsync(); };
+            menu.Items.Add(item);
         }
     }
 
     public void Dispose()
     {
-        if (_disposed)
-        {
-            return;
-        }
-
+        if (_disposed) return;
         _disposed = true;
         _singleClickTimer.Stop();
         _singleClickTimer.Tick -= OnSingleClickTimerTick;
-        _singleClickTimer.Dispose();
-
-        _notifyIcon.Visible = false;
-        _notifyIcon.MouseDown -= OnMouseDown;
-        _notifyIcon.MouseUp -= OnMouseUp;
-        _notifyIcon.Icon = null;
-        _notifyIcon.Dispose();
-
-        _ownedIcon?.Dispose();
-        _ownedIcon = null;
+        if (_windowsIcon != null)
+        {
+            _windowsIcon.MouseDown -= OnMouseDown;
+            _windowsIcon.MouseUp -= OnMouseUp;
+            _windowsIcon.Dispose();
+        }
+        if (_avaloniaIcon != null)
+        {
+            _avaloniaIcon.Clicked -= OnAvaloniaClick;
+            _avaloniaIconRegistration?.Dispose();
+        }
     }
 }

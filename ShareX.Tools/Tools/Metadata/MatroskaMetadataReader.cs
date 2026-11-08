@@ -8,6 +8,17 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -361,8 +372,15 @@ internal static class MatroskaMetadataReader
 
     private static string GetTrackType(ulong value) => value switch
     {
-        1 => "Video", 2 => "Audio", 3 => "Complex", 0x10 => "Logo", 0x11 => "Subtitle",
-        0x12 => "Buttons", 0x20 => "Control", 0x21 => "Metadata", _ => value.ToString()
+        1 => "Video",
+        2 => "Audio",
+        3 => "Complex",
+        0x10 => "Logo",
+        0x11 => "Subtitle",
+        0x12 => "Buttons",
+        0x20 => "Control",
+        0x21 => "Metadata",
+        _ => value.ToString()
     };
     private static string FormatDuration(double seconds) => TimeSpan.FromSeconds(seconds).ToString(seconds >= 3600 ? @"h\:mm\:ss\.fff" : @"m\:ss\.fff");
 

@@ -13,13 +13,18 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
 
 #nullable enable
 
-using ShareX.Localization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -29,17 +34,19 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using ShareX.AvaloniaUI.Controls;
+using ShareX.AvaloniaUI.Imaging;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+using ShareX.Icons;
+using ShareX.Localization;
 using System;
 using System.Diagnostics;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using DrawingBitmap = System.Drawing.Bitmap;
+using System.Threading.Tasks;
+using DrawingBitmap = SkiaSharp.SKBitmap;
 using DrawingColor = System.Drawing.Color;
-using DrawingContentAlignment = System.Drawing.ContentAlignment;
-using FormsCursor = System.Windows.Forms.Cursor;
+using DrawingContentAlignment = ShareX.HelpersLib.ImageContentAlignment;
 using MessageBox = ShareX.AvaloniaUI.MessageBox;
 using MessageBoxButtons = ShareX.AvaloniaUI.MessageBoxButtons;
 using MessageBoxResult = ShareX.AvaloniaUI.DialogResult;
@@ -82,8 +89,26 @@ public partial class NotificationWindow : Window
         _hoverTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(40) };
         _hoverTimer.Tick += OnHoverTick;
 
+        ApplyToolWindowStyle();
+
         Opened += OnOpened;
         Closed += OnClosed;
+    }
+
+    // ShowInTaskbar="False" alone leaves the window in Alt+Tab, so mark it as a tool window
+    // before it is first shown, and keep the styles whenever Avalonia rewrites them.
+    private void ApplyToolWindowStyle()
+    {
+        const uint extraExStyles = (uint)(WindowStyles.WS_EX_TOOLWINDOW | WindowStyles.WS_EX_NOACTIVATE);
+
+        Win32Properties.AddWindowStylesCallback(this, (style, exStyle) => (style, exStyle | extraExStyles));
+
+        IntPtr handle = TryGetPlatformHandle()?.Handle ?? IntPtr.Zero;
+        if (handle != IntPtr.Zero)
+        {
+            WindowInfo info = new(handle);
+            info.ExStyle |= WindowStyles.WS_EX_TOOLWINDOW | WindowStyles.WS_EX_NOACTIVATE;
+        }
     }
 
     public static void Show(NotificationWindowConfig config)
@@ -96,7 +121,7 @@ public partial class NotificationWindow : Window
 
         if (config.Image == null)
         {
-            config.Image = ImageHelpers.LoadImage(config.FilePath);
+            config.Image = SkiaImageHelpers.LoadImage(config.FilePath);
         }
 
         if (config.Image == null && string.IsNullOrEmpty(config.Text))
@@ -125,14 +150,14 @@ public partial class NotificationWindow : Window
         });
     }
 
-    public static void CloseActiveWindow()
+    public static async Task CloseActiveWindowAsync()
     {
         if (Application.Current == null)
         {
             return;
         }
 
-        Dispatcher.UIThread.Post(() => _instance?.Close());
+        await Dispatcher.UIThread.InvokeAsync(() => _instance?.Close());
     }
 
     public void LoadConfig(NotificationWindowConfig config)
@@ -177,7 +202,7 @@ public partial class NotificationWindow : Window
 
         if (source == null && !string.IsNullOrEmpty(config.FilePath))
         {
-            source = ImageHelpers.LoadImage(config.FilePath);
+            source = SkiaImageHelpers.LoadImage(config.FilePath);
             config.Image = source;
         }
 
@@ -189,18 +214,15 @@ public partial class NotificationWindow : Window
             return;
         }
 
-        using MemoryStream stream = new();
-        source.Save(stream, ImageFormat.Png);
-        stream.Position = 0;
-        _previewBitmap = new Bitmap(stream);
-        PreviewImage.Source = _previewBitmap;
-        PreviewImage.IsVisible = true;
-
         double maxWidth = Math.Max(1, config.Size.Width);
         double maxHeight = Math.Max(1, config.Size.Height);
         double scale = Math.Min(1, Math.Min(maxWidth / source.Width, maxHeight / source.Height));
         PreviewImage.Width = Math.Max(1, Math.Round(source.Width * scale));
         PreviewImage.Height = Math.Max(1, Math.Round(source.Height * scale));
+        _previewBitmap = BitmapConversionHelpers.CreatePreview(source,
+            PixelSize.FromSize(new Size(PreviewImage.Width, PreviewImage.Height), RenderScaling));
+        PreviewImage.Source = _previewBitmap;
+        PreviewImage.IsVisible = true;
         PreviewImage.Clip = new RectangleGeometry(
             new Rect(0, 0, PreviewImage.Width, PreviewImage.Height), 3, 3);
     }
@@ -262,14 +284,14 @@ public partial class NotificationWindow : Window
             string label = string.IsNullOrWhiteSpace(definition.Label)
                 ? definition.Action.GetLocalizedDescription()
                 : definition.Label;
-            string icon = string.IsNullOrWhiteSpace(definition.Icon)
-                ? NotificationActionButton.GetDefaultIcon(definition.Action)
-                : definition.Icon;
+            // A saved icon that is not an icon key, such as one from an older version, falls back to the default.
+            string icon = IconCatalog.Find(definition.Icon) != null
+                ? definition.Icon!
+                : NotificationActionButton.GetDefaultIcon(definition.Action);
 
-            TextBlock iconText = new()
+            IconPresenter iconText = new()
             {
-                Text = icon,
-                FontFamily = (FontFamily)Application.Current!.FindResource("ShareX.FontFamily.Icon")!,
+                Icon = icon,
                 FontSize = iconSize,
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                 VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
@@ -315,7 +337,7 @@ public partial class NotificationWindow : Window
             return;
         }
 
-        System.Drawing.Point cursor = FormsCursor.Position;
+        System.Drawing.Point cursor = CaptureHelpers.GetCursorPosition();
         Screen? screen = Screens.ScreenFromPoint(new PixelPoint(cursor.X, cursor.Y)) ?? Screens.Primary;
         if (screen == null)
         {
@@ -405,7 +427,7 @@ public partial class NotificationWindow : Window
         PixelPoint topLeft = NotificationCard.PointToScreen(default);
         PixelPoint bottomRight = NotificationCard.PointToScreen(
             new Point(NotificationCard.Bounds.Width, NotificationCard.Bounds.Height));
-        System.Drawing.Point cursor = FormsCursor.Position;
+        System.Drawing.Point cursor = CaptureHelpers.GetCursorPosition();
         bool isInside = cursor.X >= topLeft.X && cursor.X < bottomRight.X &&
             cursor.Y >= topLeft.Y && cursor.Y < bottomRight.Y;
 
@@ -618,9 +640,7 @@ public partial class NotificationWindow : Window
                     TaskHelpers.PinToScreen(config.FilePath);
                     break;
                 case ToastClickAction.DeleteFile:
-                    if (MessageBox.Show(Strings.MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_,
-                        "ShareX - " + Strings.MainForm_tsmiDeleteSelectedFile_Click_File_delete_confirmation,
-                        MessageBoxButtons.YesNo) == MessageBoxResult.Yes)
+                    if (TaskHelpers.ConfirmFileDelete())
                     {
                         FileHelpers.DeleteFile(config.FilePath, true);
                     }
@@ -628,13 +648,13 @@ public partial class NotificationWindow : Window
             }
         }
 
-        if (Program.MainForm != null && Program.MainForm.InvokeRequired)
+        if (Dispatcher.UIThread.CheckAccess())
         {
-            Program.MainForm.BeginInvoke((Action)Execute);
+            Execute();
         }
         else
         {
-            Execute();
+            Dispatcher.UIThread.Post(Execute);
         }
     }
 

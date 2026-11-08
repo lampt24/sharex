@@ -24,6 +24,7 @@
 #endregion License Information (GPL v3)
 
 using ShareX.HelpersLib;
+using SkiaSharp;
 using System.ComponentModel;
 using System.Drawing;
 
@@ -46,9 +47,9 @@ namespace ShareX.ImageEffectsLib
             this.ApplyDefaultPropertyValues();
         }
 
-        public override Bitmap Apply(Bitmap bmp)
+        public override SKBitmap Apply(SKBitmap bmp)
         {
-            ImageHelpers.SelectiveColor(bmp, LightColor, DarkColor, MathHelpers.Clamp(PaletteSize, 2, 100));
+            SkiaImageHelpers.SelectiveColor(bmp, LightColor, DarkColor, MathHelpers.Clamp(PaletteSize, 2, 100));
             return bmp;
         }
     }

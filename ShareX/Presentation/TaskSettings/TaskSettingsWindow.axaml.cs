@@ -3,21 +3,42 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
 
 #nullable enable
 
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
-using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
+using ShareX.AvaloniaUI.Controls;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+using ShareX.ImageEditor.Integration;
+using ShareX.ImageEditor.Presentation.ViewModels;
+using ShareX.ImageEditor.Presentation.Views;
 using ShareX.Localization;
+using ShareX.ScreenCaptureLib;
+using ShareX.ScreenCaptureLib.Presentation.RegionCapture;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -73,12 +94,59 @@ public partial class TaskSettingsWindow : Window
         };
     }
 
+    internal void NavigateToPage(string pageId) => _viewModel?.SelectPage(pageId);
+
+    internal void RefreshSettingsSearch() => Navigation.RefreshFilter();
+
     private void SelectPage(string? pageId)
     {
         foreach ((string id, Control page) in _pages)
         {
             page.IsVisible = id == pageId;
         }
+    }
+
+    internal void ShowImageEditorToolbarEditor(ImageEditorOptions options)
+    {
+        ImageEditorIntegration.Initialize();
+
+        ShowToolbarEditor(ToolbarCustomizationItemViewModel.CreateFromOptions(options.ToolbarItems),
+            items => options.ToolbarItems = items);
+    }
+
+    internal void ShowRegionCaptureToolbarEditor(RegionCaptureOptions options)
+    {
+        ImageEditorIntegration.Initialize();
+
+        ShowToolbarEditor(RegionCaptureToolbar.CreateItems(options.ToolbarItems),
+            items => options.ToolbarItems = items,
+            () => RegionCaptureToolbar.CreateItems());
+    }
+
+    private void ShowToolbarEditor(
+        IReadOnlyList<ToolbarCustomizationItemViewModel> sourceItems,
+        Action<List<ImageEditorToolbarItemOptions>> saved,
+        Func<IReadOnlyList<ToolbarCustomizationItemViewModel>>? createDefaultItems = null)
+    {
+        ToolbarCustomizationDialogView view = new();
+        view.DataContext = new ToolbarCustomizationDialogViewModel(
+            sourceItems,
+            items =>
+            {
+                saved(items.Select(item => item.ToOptions()).ToList());
+                HideToolbarEditor();
+            },
+            HideToolbarEditor,
+            createDefaultItems);
+
+        ToolbarEditor.Content = view;
+        ToolbarEditorOverlay.IsVisible = true;
+    }
+
+    private void HideToolbarEditor()
+    {
+        ToolbarEditorOverlay.IsVisible = false;
+        ToolbarEditor.Content = null;
     }
 
     internal void ShowActionEditor(ExternalProgram? action, Action<ExternalProgram> saved)
@@ -185,7 +253,12 @@ public partial class TaskSettingsWindow : Window
             return;
         }
 
-        if (NotificationButtonsEditorOverlay.IsVisible)
+        if (ToolbarEditorOverlay.IsVisible)
+        {
+            HideToolbarEditor();
+            e.Handled = true;
+        }
+        else if (NotificationButtonsEditorOverlay.IsVisible)
         {
             HideNotificationButtonsEditor();
             e.Handled = true;
@@ -323,13 +396,11 @@ public partial class TaskSettingsWindow : Window
             MenuItem item = new()
             {
                 Header = action.GetLocalizedDescription(),
-                Icon = new TextBlock
+                Icon = new IconPresenter
                 {
-                    Classes = { "icon" },
-                    Text = NotificationActionButton.GetDefaultIcon(action),
+                    Icon = NotificationActionButton.GetDefaultIcon(action),
                     FontSize = 15,
-                    Width = 18,
-                    TextAlignment = Avalonia.Media.TextAlignment.Center
+                    Width = 18
                 }
             };
             item.Click += (_, _) => AddNotificationButton(action);

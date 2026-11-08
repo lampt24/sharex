@@ -28,6 +28,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using ShareX.ImageEditor.Core.Annotations;
 using ShareX.ImageEditor.Integration;
 using ShareX.ImageEditor.Localization;
+using ShareX.ImageEditor.Presentation.Helpers;
 using System.Reflection;
 
 namespace ShareX.ImageEditor.Presentation.ViewModels
@@ -732,6 +733,42 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         }
 
         [ObservableProperty]
+        private bool _arrowRoundedCorners = true;
+
+        partial void OnArrowRoundedCornersChanged(bool value)
+        {
+            bool isArrow = ActiveTool == EditorTool.Arrow;
+
+            if (ActiveTool == EditorTool.Select && SelectedAnnotation != null)
+            {
+                isArrow = SelectedAnnotation is ArrowAnnotation;
+            }
+
+            if (isArrow)
+            {
+                Options.ArrowRoundedCorners = value;
+            }
+        }
+
+        [ObservableProperty]
+        private bool _freehandArrow;
+
+        partial void OnFreehandArrowChanged(bool value)
+        {
+            bool isFreehand = ActiveTool == EditorTool.Freehand;
+
+            if (ActiveTool == EditorTool.Select && SelectedAnnotation != null)
+            {
+                isFreehand = SelectedAnnotation is FreehandAnnotation;
+            }
+
+            if (isFreehand)
+            {
+                Options.FreehandArrow = value;
+            }
+        }
+
+        [ObservableProperty]
         private bool _speechBalloonTail = true;
 
         partial void OnSpeechBalloonTailChanged(bool value)
@@ -967,6 +1004,15 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
             _ => false
         };
 
+        public bool ShowArrowRoundedCorners => ShowArrowStyle;
+
+        public bool ShowFreehandArrow => ActiveTool switch
+        {
+            EditorTool.Freehand => true,
+            EditorTool.Select => _selectedAnnotation is FreehandAnnotation,
+            _ => false
+        };
+
         public bool ShowSpeechBalloonTail => ActiveTool switch
         {
             EditorTool.SpeechBalloon or EditorTool.Step => true,
@@ -1006,7 +1052,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                     tool = _selectedAnnotation.ToolType;
                 }
 
-                return EditorIcons.ForTool(tool);
+                return tool == EditorTool.Emoji ? _emojiToolIcon : EditorIcons.ForTool(tool);
             }
         }
 
@@ -1045,6 +1091,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                     EditorTool.Crop => Strings.ToolbarCustomizationItemViewModel_Crop,
                     EditorTool.CutOut => Strings.ToolbarCustomizationItemViewModel_CutOut,
                     EditorTool.Image => Strings.ToolbarCustomizationItemViewModel_Image,
+                    EditorTool.Clone => Strings.ToolbarCustomizationItemViewModel_Clone,
                     _ => Strings.ToolbarCustomizationItemViewModel_Select
                 };
             }
@@ -1077,6 +1124,8 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
             OnPropertyChanged(nameof(ShowFontFamily));
             OnPropertyChanged(nameof(ShowBorderStyle));
             OnPropertyChanged(nameof(ShowArrowStyle));
+            OnPropertyChanged(nameof(ShowArrowRoundedCorners));
+            OnPropertyChanged(nameof(ShowFreehandArrow));
             OnPropertyChanged(nameof(ShowCursorType));
             OnPropertyChanged(nameof(ShowCornerRadius));
             OnPropertyChanged(nameof(ShowStrength));
@@ -1201,6 +1250,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                     ShadowEnabled = Options.Shadow;
                     SelectedBorderStyle = NormalizeBorderStyle(Options.BorderStyle);
                     FontSize = Options.TextFontSize;
+                    FreehandArrow = Options.FreehandArrow;
                     break;
                 case EditorTool.Arrow:
                     SelectedColorValue = Options.BorderColor;
@@ -1210,6 +1260,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                     ShadowEnabled = Options.Shadow;
                     FontSize = Options.TextFontSize;
                     SelectedArrowStyle = NormalizeArrowStyle(Options.ArrowStyle);
+                    ArrowRoundedCorners = Options.ArrowRoundedCorners;
                     break;
                 case EditorTool.Cursor:
                     SelectedCursorType = NormalizeCursorType(Options.CursorType);
@@ -1280,6 +1331,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                     .Select(fontFamily => fontFamily.Name)
                     .Where(fontFamily => !string.IsNullOrWhiteSpace(fontFamily))
                     .Distinct(StringComparer.OrdinalIgnoreCase)
+                    .Where(fontFamily => FontFamilyHelper.TryCreateFontFamily(fontFamily, out _))
                     .OrderBy(fontFamily => fontFamily, StringComparer.CurrentCultureIgnoreCase)
                     .ToArray();
 
@@ -1378,7 +1430,9 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
 
         private static string NormalizeFontFamily(string? fontFamily)
         {
-            return string.IsNullOrWhiteSpace(fontFamily) ? DefaultAnnotationFontFamily : fontFamily;
+            return !string.IsNullOrWhiteSpace(fontFamily) && FontFamilyHelper.TryCreateFontFamily(fontFamily, out _)
+                ? fontFamily
+                : DefaultAnnotationFontFamily;
         }
 
         private static ArrowStyle NormalizeArrowStyle(ArrowStyle arrowStyle)

@@ -23,47 +23,50 @@
 
 #endregion License Information (GPL v3)
 
-using ShareX.HelpersLib;
+using ShareX.ImageEditor.Integration;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace ShareX.ScreenCaptureLib
 {
     public class RegionCaptureOptions
     {
-        public const int DefaultMinimumSize = 5;
+        public const int MinimumSize = 5;
+        public const int InputDelay = 500;
+        public const int MagnifierSizeMinimum = 50;
+        public const int MagnifierSizeMaximum = 500;
         public const int MagnifierPixelCountMinimum = 3;
         public const int MagnifierPixelCountMaximum = 35;
         public const int MagnifierPixelSizeMinimum = 3;
-        public const int MagnifierPixelSizeMaximum = 30;
         public const int MoveSpeedMinimum = 1;
         public const int MoveSpeedMaximum = 10;
 
-        public bool QuickCrop = true;
-        public int MinimumSize = DefaultMinimumSize;
+        public bool QuickCapture = true;
+        public bool MultiRegionMode = false;
+        public bool DetectWindows = true;
+        public bool DetectControls = true;
+        public bool ActiveMonitorMode = false;
+        public int BackgroundDimStrength = 35;
+        public bool DimAllExceptSelection = false;
+        public List<ImageEditorToolbarItemOptions> ToolbarItems = new List<ImageEditorToolbarItemOptions>();
+        public bool CompactToolbar = false;
+
         public RegionCaptureAction RegionCaptureActionRightClick = RegionCaptureAction.RemoveShapeCancelCapture;
         public RegionCaptureAction RegionCaptureActionMiddleClick = RegionCaptureAction.SwapToolType;
         public RegionCaptureAction RegionCaptureActionX1Click = RegionCaptureAction.CaptureFullscreen;
         public RegionCaptureAction RegionCaptureActionX2Click = RegionCaptureAction.CaptureActiveMonitor;
-        public bool DetectWindows = true;
-        public bool DetectControls = true;
-        // TEMP: For backward compatibility
-        public bool UseDimming = true;
-        public int BackgroundDimStrength = 35;
+
+        public bool ShowInfo = true;
         public bool UseCustomInfoText = false;
         public string CustomInfoText = "X: $x, Y: $y$nR: $r, G: $g, B: $b$nHex: $hex"; // Formats: $x, $y, $r, $g, $b, $hex, $HEX, $n
-        public bool ShowInfo = true;
         public bool ShowMagnifier = true;
         public bool UseSquareMagnifier = false;
+        public int MagnifierSize = 150;
         public int MagnifierPixelCount = 15; // Must be odd number like 11, 13, 15 etc.
-        public int MagnifierPixelSize = 10;
-        public bool ShowCenterCrosshair = false;
-        public bool ShowCrosshair = false;
-        public int InputDelay = 500;
-        public bool ActiveMonitorMode = false;
+        public bool ShowCenterCrosshair = true;
+        public bool ShowScreenCrosshair = false;
 
-        // Color picker
-        public ColorPickerOptions ColorPickerOptions = new ColorPickerOptions();
-
-        // Screen color picker
-        public string ScreenColorPickerInfoText = "";
+        // Desktop position of the toolbar's top centre, in physical pixels. Empty means centred on the active monitor.
+        public Point ToolbarPosition = Point.Empty;
     }
 }

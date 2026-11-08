@@ -86,9 +86,6 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         private bool _showFileMenu;
 
         [ObservableProperty]
-        private bool _showOptionsButton = true;
-
-        [ObservableProperty]
         private bool _showTaskButtons = true;
 
         [ObservableProperty]
@@ -101,6 +98,11 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
 
         [ObservableProperty]
         private bool _showStartScreen = true;
+
+        /// <summary>
+        /// Lets the host turn off automatic canvas expansion, e.g. region capture where the canvas is the screen.
+        /// </summary>
+        public bool AllowAutoExpandCanvas { get; set; } = true;
 
         public bool AreToolbarsHidden => !ShowToolbars;
 
@@ -295,9 +297,20 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
             get => _previewImage;
             set
             {
-                if (SetProperty(ref _previewImage, value))
+                if (_disposed)
                 {
-                    OnPreviewImageChanged(value);
+                    value?.Dispose();
+                    return;
+                }
+                if (ReferenceEquals(_previewImage, value)) return;
+                var previous = _previewImage;
+                try
+                {
+                    if (SetProperty(ref _previewImage, value)) OnPreviewImageChanged(value);
+                }
+                finally
+                {
+                    previous?.Dispose();
                 }
             }
         }
@@ -967,6 +980,14 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         {
             _editorCore = editorCore;
             UpdateCoreHistoryState(editorCore.CanUndo, editorCore.CanRedo);
+        }
+
+        internal void DetachEditorCore(EditorCore editorCore)
+        {
+            if (ReferenceEquals(_editorCore, editorCore))
+            {
+                _editorCore = null;
+            }
         }
 
         public void RequestZoomToFitOnNextImageLoad()

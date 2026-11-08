@@ -26,9 +26,9 @@
 using FluentFTP;
 using FluentFTP.Exceptions;
 using ShareX.HelpersLib;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Security;
@@ -273,11 +273,12 @@ namespace ShareX.UploadersLib.FileUploaders
             }
         }
 
-        public void UploadImage(Image image, string remotePath)
+        public void UploadImage(SKBitmap image, string remotePath)
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                image.Save(stream, image.RawFormat);
+                image.Save(stream, SkiaImageHelpers.GetImageFormat(remotePath));
+                stream.Position = 0;
                 UploadData(stream, remotePath);
             }
         }
@@ -321,7 +322,7 @@ namespace ShareX.UploadersLib.FileUploaders
             {
                 using (Stream remoteStream = client.OpenRead(remotePath))
                 {
-                    TransferData(remoteStream, localStream);
+                    remoteStream.CopyTo(localStream, BufferSize);
                 }
                 client.GetReply();
             }

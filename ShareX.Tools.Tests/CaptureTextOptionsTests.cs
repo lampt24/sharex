@@ -220,7 +220,7 @@ internal static class CaptureTextOptionsTests
 
         try
         {
-            using Bitmap image = new(1, 1);
+            using SkiaSharp.SKBitmap image = new(1, 1);
             AnthropicProvider provider = new("test-key", "claude-test", "http://127.0.0.1:1/v1");
 
             try

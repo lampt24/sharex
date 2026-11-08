@@ -17,6 +17,8 @@
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -42,6 +44,7 @@ public partial class ScrollingCaptureRegionWindow : Window
     private readonly DrawingRectangle _regionRectangle;
     private readonly int _frameWidth;
     private readonly int _frameHeight;
+    private readonly PixelPoint _initialPosition;
     private double _windowScaling = 1;
 
     public ScrollingCaptureRegionWindow()
@@ -54,11 +57,12 @@ public partial class ScrollingCaptureRegionWindow : Window
         _regionRectangle = regionRectangle;
         _frameWidth = regionRectangle.Width + BorderPixels * 2;
         _frameHeight = regionRectangle.Height + BorderPixels * 2;
-
-        InitializeComponent();
-        Position = new PixelPoint(
+        _initialPosition = new PixelPoint(
             regionRectangle.X - BorderPixels,
             regionRectangle.Y - BorderPixels);
+
+        InitializeComponent();
+        Position = _initialPosition;
         ConfigureGeometry(1);
 
         Opened += OnOpened;
@@ -72,6 +76,7 @@ public partial class ScrollingCaptureRegionWindow : Window
     private void OnOpened(object? sender, EventArgs e)
     {
         ConfigureGeometry(GetScreenScaling());
+        Helpers.EnsureWindowPosition(this, _initialPosition.X, _initialPosition.Y);
         ApplyClickThroughToolWindowStyle();
         ApplyNativeFrameRegion();
         Dispatcher.UIThread.Post(ApplyNativeFrameRegion, DispatcherPriority.Loaded);

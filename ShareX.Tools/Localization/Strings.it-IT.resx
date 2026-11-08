@@ -73,14 +73,14 @@
   <data name="AnalyzeImageOptionsViewModel_Testing" xml:space="preserve">
     <value>Test in corso...</value>
   </data>
-  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
-    <value>Analizza automaticamente all’apertura</value>
-  </data>
   <data name="AnalyzeImageOptionsWindow_API_key" xml:space="preserve">
     <value>Chiave API</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key_page" xml:space="preserve">
     <value>Pagina della chiave API...</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
+    <value>Analizza automaticamente all’apertura</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Behavior" xml:space="preserve">
     <value>Comportamento</value>
@@ -102,9 +102,6 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Google_Gemini" xml:space="preserve">
     <value>Google Gemini</value>
-  </data>
-  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
-    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Load_models" xml:space="preserve">
     <value>Carica modelli</value>
@@ -135,6 +132,9 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Verbosity" xml:space="preserve">
     <value>Livello di dettaglio</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
+    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageService_Connection_OK" xml:space="preserve">
     <value>Connessione riuscita.</value>
@@ -213,6 +213,126 @@
   </data>
   <data name="AnalyzeImageWindow_ShareX_Analyze_image" xml:space="preserve">
     <value>ShareX - Analizza immagine</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Create_failed" xml:space="preserve">
+    <value>Creazione della GIF non riuscita: {0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Created" xml:space="preserve">
+    <value>GIF animata creata.</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Creating" xml:space="preserve">
+    <value>Creazione della GIF animata...</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_failed" xml:space="preserve">
+    <value>Anteprima non riuscita: {0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_info" xml:space="preserve">
+    <value>{0} fotogrammi • {1} ms</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_images_dialog" xml:space="preserve">
+    <value>Aggiungi immagini</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_two_images_to_preview" xml:space="preserve">
+    <value>Aggiungi almeno due immagini per visualizzare l'anteprima dell'animazione.</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animated_GIF_maker" xml:space="preserve">
+    <value>Creatore di GIF animate</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animation" xml:space="preserve">
+    <value>Animazione</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Create_GIF" xml:space="preserve">
+    <value>Crea GIF...</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Frame_delay" xml:space="preserve">
+    <value>Ritardo fotogramma</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_GIF_images" xml:space="preserve">
+    <value>Immagini GIF</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Loop_animation" xml:space="preserve">
+    <value>Ripeti animazione</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Output" xml:space="preserve">
+    <value>Risultato</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Preview" xml:space="preserve">
+    <value>Anteprima</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Repeat_count" xml:space="preserve">
+    <value>Numero di ripetizioni</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Save_GIF_dialog" xml:space="preserve">
+    <value>Salva GIF animata</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Zero_repeats_forever" xml:space="preserve">
+    <value>0 ripete all'infinito.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_ChooseGif" xml:space="preserve">
+    <value>Apri o trascina una GIF animata per iniziare</value>
+  </data>
+  <data name="AnimatedGifTrimmer_DependentFrame" xml:space="preserve">
+    <value>Questo taglio inizia con un fotogramma che richiede fotogrammi precedenti. Scegli un altro fotogramma iniziale per l’esportazione senza perdita.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Export" xml:space="preserve">
+    <value>Salva GIF tagliata…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Exporting" xml:space="preserve">
+    <value>Salvataggio della GIF tagliata…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Frame" xml:space="preserve">
+    <value>Fotogramma {0} di {1}</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Gif" xml:space="preserve">
+    <value>GIF animata</value>
+  </data>
+  <data name="AnimatedGifTrimmer_GifFiles" xml:space="preserve">
+    <value>File GIF</value>
+  </data>
+  <data name="AnimatedGifTrimmer_InvalidGif" xml:space="preserve">
+    <value>Seleziona una GIF animata con almeno due fotogrammi.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Loading" xml:space="preserve">
+    <value>Preparazione della sequenza temporale della GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Lossless" xml:space="preserve">
+    <value>Senza perdita</value>
+  </data>
+  <data name="AnimatedGifTrimmer_NextFrame" xml:space="preserve">
+    <value>Fotogramma successivo</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Open" xml:space="preserve">
+    <value>Apri GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_OutputExtension" xml:space="preserve">
+    <value>Usa l’estensione .gif per il file di output.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Play" xml:space="preserve">
+    <value>Riproduci</value>
+  </data>
+  <data name="AnimatedGifTrimmer_PreviousFrame" xml:space="preserve">
+    <value>Fotogramma precedente</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Reencode" xml:space="preserve">
+    <value>Ricodifica</value>
+  </data>
+  <data name="AnimatedGifTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>Salva la GIF tagliata con un nome diverso o in un’altra cartella.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Timeline" xml:space="preserve">
+    <value>Sequenza temporale della GIF e selezione del taglio</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Title" xml:space="preserve">
+    <value>ShareX - Strumento di taglio per GIF animate</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UnsupportedGif" xml:space="preserve">
+    <value>Questa GIF contiene un blocco grafico di testo semplice che lo strumento di taglio senza perdita non può copiare in modo sicuro.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UseReencode" xml:space="preserve">
+    <value>Questo taglio richiede fotogrammi precedenti e non può essere salvato senza perdita. Seleziona la modalità di taglio Ricodifica e salva di nuovo.</value>
   </data>
   <data name="BackgroundRemoverViewModel_Background_removed_ms" xml:space="preserve">
     <value>Sfondo rimosso in {0} ms.</value>
@@ -311,6 +431,18 @@ Percorso file: {0}</value>
   <data name="BorderlessWindowWindow_Window_title" xml:space="preserve">
     <value>Titolo finestra</value>
   </data>
+  <data name="ClassicRulerOverlayControl_Distance" xml:space="preserve">
+    <value>Distanza: {0:0.00} px | Angolo: {1:0.00}°</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Position" xml:space="preserve">
+    <value>X: {0} | Y: {1} | Destra: {2} | Basso: {3}</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Size" xml:space="preserve">
+    <value>Larghezza: {0} px | Altezza: {1} px | Area: {2} px | Perimetro: {3} px</value>
+  </data>
+  <data name="ClassicRulerWindow_Title" xml:space="preserve">
+    <value>ShareX - Righello</value>
+  </data>
   <data name="ClipboardViewerViewModel_Clipboard_content" xml:space="preserve">
     <value>Contenuto degli appunti</value>
   </data>
@@ -377,14 +509,14 @@ Percorso file: {0}</value>
   <data name="DirectoryIndexerWindow_Browse" xml:space="preserve">
     <value>Sfoglia...</value>
   </data>
+  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
+    <value>File CSS</value>
+  </data>
   <data name="DirectoryIndexerWindow_Choose_a_folder_and_generate_output_Nothing_is_saved_until_you_use_Save_as_or_Upload" xml:space="preserve">
     <value>Scegli una cartella e genera l’output. Nulla viene salvato finché non usi Salva con nome o Carica.</value>
   </data>
   <data name="DirectoryIndexerWindow_Create_parseable_structured_JSON" xml:space="preserve">
     <value>Crea JSON strutturato analizzabile</value>
-  </data>
-  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
-    <value>File CSS</value>
   </data>
   <data name="DirectoryIndexerWindow_Display_folder_paths" xml:space="preserve">
     <value>Mostra percorsi delle cartelle</value>
@@ -437,11 +569,11 @@ Percorso file: {0}</value>
   <data name="DirectoryIndexerWindow_Save_directory_index_dialog" xml:space="preserve">
     <value>Salva indice della directory</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
-    <value>Seleziona un file CSS</value>
-  </data>
   <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
     <value>Seleziona file CSS</value>
+  </data>
+  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
+    <value>Seleziona un file CSS</value>
   </data>
   <data name="DirectoryIndexerWindow_Select_folder_to_index_dialog" xml:space="preserve">
     <value>Seleziona cartella da indicizzare</value>
@@ -656,9 +788,6 @@ Percorso file: {0}</value>
   <data name="IconConverterWindow_Image" xml:space="preserve">
     <value>Immagine</value>
   </data>
-  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
-    <value>oppure usa Sfoglia per scegliere un file</value>
-  </data>
   <data name="IconConverterWindow_Save_icon_as_dialog" xml:space="preserve">
     <value>Salva icona con nome</value>
   </data>
@@ -667,6 +796,9 @@ Percorso file: {0}</value>
   </data>
   <data name="IconConverterWindow_Sizes" xml:space="preserve">
     <value>Dimensioni</value>
+  </data>
+  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
+    <value>oppure usa Sfoglia per scegliere un file</value>
   </data>
   <data name="ImageCombinerViewModel_Add_two_images" xml:space="preserve">
     <value>Aggiungi almeno due immagini da combinare.</value>
@@ -794,6 +926,102 @@ Percorso file: {0}</value>
   <data name="ImageComparerWindow_Slider" xml:space="preserve">
     <value>Cursore</value>
   </data>
+  <data name="ImageConverterService_Failed_to_encode_image" xml:space="preserve">
+    <value>Impossibile codificare l'immagine in formato {0}.</value>
+  </data>
+  <data name="ImageConverterWindow_BMPBitDepth" xml:space="preserve">
+    <value>Profondità colore BMP:</value>
+  </data>
+  <data name="ImageConverterWindow_BackgroundColor" xml:space="preserve">
+    <value>Colore di sfondo:</value>
+  </data>
+  <data name="ImageConverterWindow_Convert_images" xml:space="preserve">
+    <value>Converti immagini</value>
+  </data>
+  <data name="ImageConverterWindow_FileNameTemplate" xml:space="preserve">
+    <value>Modello nome file:</value>
+  </data>
+  <data name="ImageConverterWindow_Image_converter" xml:space="preserve">
+    <value>Convertitore di immagini</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling" xml:space="preserve">
+    <value>Sottocampionamento cromatico JPEG:</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling420" xml:space="preserve">
+    <value>4:2:0 (file più piccoli)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling422" xml:space="preserve">
+    <value>4:2:2 (bilanciato)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling444" xml:space="preserve">
+    <value>4:4:4 (risoluzione cromatica completa)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsamplingHint" xml:space="preserve">
+    <value>4:4:4 conserva più dettagli cromatici intorno al testo e ai bordi netti, ma in genere produce file più grandi.</value>
+  </data>
+  <data name="ImageConverterWindow_OutputFormat" xml:space="preserve">
+    <value>Formato output:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGBitDepth" xml:space="preserve">
+    <value>Profondità colore PNG:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionHint" xml:space="preserve">
+    <value>0 = nessuna compressione, 1 = più veloce, 9 = file più piccoli. Tutti i livelli sono senza perdita.</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionLevel" xml:space="preserve">
+    <value>Livello di compressione PNG:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilter" xml:space="preserve">
+    <value>Filtro PNG:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAutomatic" xml:space="preserve">
+    <value>Automatico (tutti i filtri)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAverage" xml:space="preserve">
+    <value>Media (sinistra e sopra)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterNone" xml:space="preserve">
+    <value>Nessun filtro</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterPaeth" xml:space="preserve">
+    <value>Paeth (predizione)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterSub" xml:space="preserve">
+    <value>Sub (pixel a sinistra)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterUp" xml:space="preserve">
+    <value>Up (pixel sopra)</value>
+  </data>
+  <data name="ImageConverterWindow_Quality" xml:space="preserve">
+    <value>Qualità:</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffort" xml:space="preserve">
+    <value>Impegno di compressione:</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffortHint" xml:space="preserve">
+    <value>I valori più bassi velocizzano la codifica. I valori più alti producono file più piccoli. Tutti i valori preservano la qualità dell’immagine.</value>
+  </data>
+  <data name="ImageConverterWindow_WebPLossless" xml:space="preserve">
+    <value>Senza perdita</value>
+  </data>
+  <data name="ImageResizerWindow_Fill" xml:space="preserve">
+    <value>Riempi</value>
+  </data>
+  <data name="ImageResizerWindow_Fit" xml:space="preserve">
+    <value>Adatta</value>
+  </data>
+  <data name="ImageResizerWindow_Image_resizer" xml:space="preserve">
+    <value>Ridimensionatore immagini</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_image" xml:space="preserve">
+    <value>Ridimensiona immagine</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_mode" xml:space="preserve">
+    <value>Modalità di ridimensionamento</value>
+  </data>
+  <data name="ImageResizerWindow_Stretch" xml:space="preserve">
+    <value>Allunga</value>
+  </data>
   <data name="ImageSplitterViewModel_Grid_size" xml:space="preserve">
     <value>{0} × {1}</value>
   </data>
@@ -863,9 +1091,6 @@ Percorso file: {0}</value>
   <data name="ImageThumbnailerWindow_File_name_template" xml:space="preserve">
     <value>Modello nome file</value>
   </data>
-  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
-    <value>$filename_th</value>
-  </data>
   <data name="ImageThumbnailerWindow_Generate_thumbnails" xml:space="preserve">
     <value>Genera miniature</value>
   </data>
@@ -886,6 +1111,36 @@ Percorso file: {0}</value>
   </data>
   <data name="ImageThumbnailerWindow_Width" xml:space="preserve">
     <value>Larghezza</value>
+  </data>
+  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
+    <value>$filename_th</value>
+  </data>
+  <data name="ImageWatermarkWindow_Apply_watermark" xml:space="preserve">
+    <value>Applica filigrana</value>
+  </data>
+  <data name="ImageWatermarkWindow_Font_size" xml:space="preserve">
+    <value>Dimensione carattere</value>
+  </data>
+  <data name="ImageWatermarkWindow_Image_watermark" xml:space="preserve">
+    <value>Filigrana immagine</value>
+  </data>
+  <data name="ImageWatermarkWindow_Margin" xml:space="preserve">
+    <value>Margine</value>
+  </data>
+  <data name="ImageWatermarkWindow_Position" xml:space="preserve">
+    <value>Posizione</value>
+  </data>
+  <data name="ImageWatermarkWindow_Rotation" xml:space="preserve">
+    <value>Ruota</value>
+  </data>
+  <data name="ImageWatermarkWindow_Scale" xml:space="preserve">
+    <value>Scala</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark" xml:space="preserve">
+    <value>Filigrana</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark_type" xml:space="preserve">
+    <value>Tipo di filigrana</value>
   </data>
   <data name="IndexerHtml_File_count" xml:space="preserve">
     <value>{0:n0} file</value>
@@ -1001,20 +1256,20 @@ Percorso file: {0}</value>
   <data name="LocalizedDisplayConverter_Backward_diagonal" xml:space="preserve">
     <value>Diagonale indietro</value>
   </data>
-  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
-    <value>Scacchiera</value>
-  </data>
   <data name="LocalizedDisplayConverter_CPU" xml:space="preserve">
     <value>CPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
+    <value>Scacchiera</value>
   </data>
   <data name="LocalizedDisplayConverter_Forward_diagonal" xml:space="preserve">
     <value>Diagonale avanti</value>
   </data>
-  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
-    <value>Gemini</value>
-  </data>
   <data name="LocalizedDisplayConverter_GPU" xml:space="preserve">
     <value>GPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
+    <value>Gemini</value>
   </data>
   <data name="LocalizedDisplayConverter_High" xml:space="preserve">
     <value>Alto</value>
@@ -1168,17 +1423,200 @@ Percorso file: {0}</value>
   <data name="MonitorTestWindow_Pattern" xml:space="preserve">
     <value>Motivo</value>
   </data>
-  <data name="MonitorTestWindow_Red" xml:space="preserve">
-    <value>Rosso</value>
-  </data>
   <data name="MonitorTestWindow_RGB" xml:space="preserve">
     <value>RGB</value>
+  </data>
+  <data name="MonitorTestWindow_Red" xml:space="preserve">
+    <value>Rosso</value>
   </data>
   <data name="MonitorTestWindow_ShareX_Monitor_Test" xml:space="preserve">
     <value>ShareX - Test monitor</value>
   </data>
   <data name="MonitorTestWindow_Speed" xml:space="preserve">
     <value>Velocità</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColor" xml:space="preserve">
+    <value>Evidenzia sempre il colore:</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColorHelp" xml:space="preserve">
+    <value>Utilizza un colore trasparente per disattivare l'evidenziazione persistente.</value>
+  </data>
+  <data name="MouseHighlighter_AutoActivate" xml:space="preserve">
+    <value>Attiva automaticamente all'avvio di ShareX</value>
+  </data>
+  <data name="MouseHighlighter_Circle" xml:space="preserve">
+    <value>Evidenziazione del cerchio</value>
+  </data>
+  <data name="MouseHighlighter_FadeDelay" xml:space="preserve">
+    <value>Ritardo dissolvenza (ms):</value>
+  </data>
+  <data name="MouseHighlighter_FadeDuration" xml:space="preserve">
+    <value>Durata della dissolvenza (ms):</value>
+  </data>
+  <data name="MouseHighlighter_FollowCursor" xml:space="preserve">
+    <value>Segui il cursore mentre si tiene premuto un pulsante</value>
+  </data>
+  <data name="MouseHighlighter_KeepAfterRecording" xml:space="preserve">
+    <value>Continua a evidenziare dopo la registrazione</value>
+  </data>
+  <data name="MouseHighlighter_MiddleColor" xml:space="preserve">
+    <value>Colore pulsante centrale:</value>
+  </data>
+  <data name="MouseHighlighter_MiddleReleaseCrosshairs" xml:space="preserve">
+    <value>Mostra il mirino al rilascio del pulsante centrale</value>
+  </data>
+  <data name="MouseHighlighter_Mode" xml:space="preserve">
+    <value>Modalità evidenziazione:</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryColor" xml:space="preserve">
+    <value>Colore del pulsante principale:</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryReleaseCrosshairs" xml:space="preserve">
+    <value>Mostra il mirino al rilascio del pulsante principale</value>
+  </data>
+  <data name="MouseHighlighter_Radius" xml:space="preserve">
+    <value>Raggio (px):</value>
+  </data>
+  <data name="MouseHighlighter_RecordingHelp" xml:space="preserve">
+    <value>Per evidenziare i clic nelle registrazioni, abilitare l'opzione evidenziatore del mouse in Impostazioni attività → Acquisisci → Registratore schermo.</value>
+  </data>
+  <data name="MouseHighlighter_ReleaseCrosshairs" xml:space="preserve">
+    <value>Mostra il mirino al rilascio del pulsante secondario</value>
+  </data>
+  <data name="MouseHighlighter_Ripple" xml:space="preserve">
+    <value>Ondulazione</value>
+  </data>
+  <data name="MouseHighlighter_RippleDuration" xml:space="preserve">
+    <value>Durata dell'ondulazione (ms):</value>
+  </data>
+  <data name="MouseHighlighter_RippleIntensity" xml:space="preserve">
+    <value>Intensità dell'ondulazione:</value>
+  </data>
+  <data name="MouseHighlighter_RippleSize" xml:space="preserve">
+    <value>Dimensione dell'ondulazione (px):</value>
+  </data>
+  <data name="MouseHighlighter_SecondaryColor" xml:space="preserve">
+    <value>Colore pulsante secondario:</value>
+  </data>
+  <data name="MouseHighlighter_Start" xml:space="preserve">
+    <value>Inizia a evidenziare</value>
+  </data>
+  <data name="MouseHighlighter_StartFailed" xml:space="preserve">
+    <value>Impossibile avviare l'evidenziazione del mouse.</value>
+  </data>
+  <data name="MouseHighlighter_Stop" xml:space="preserve">
+    <value>Smetti di evidenziare</value>
+  </data>
+  <data name="MouseHighlighter_StopAfterRecording" xml:space="preserve">
+    <value>Interrompe l'evidenziazione quando si interrompe la registrazione</value>
+  </data>
+  <data name="MouseHighlighter_Title" xml:space="preserve">
+    <value>Evidenziatore del mouse</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_failed" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_timed_out" xml:space="preserve">
+    <value>Tempo scaduto per {0}.</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_network_interface" xml:space="preserve">
+    <value>Non è stata trovata alcuna interfaccia di rete attiva.</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_response" xml:space="preserve">
+    <value>Nessun endpoint ha risposto.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Automatic_recommended" xml:space="preserve">
+    <value>Automatico (consigliato)</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Checking" xml:space="preserve">
+    <value>Controllo...</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Connected" xml:space="preserve">
+    <value>Connesso.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Disconnected" xml:space="preserve">
+    <value>Disconnesso.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_15_minutes" xml:space="preserve">
+    <value>Ultimi 15 minuti</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_5_minutes" xml:space="preserve">
+    <value>Ultimi 5 minuti</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_6_hours" xml:space="preserve">
+    <value>Ultime 6 ore</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_hour" xml:space="preserve">
+    <value>Ultima ora</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Milliseconds" xml:space="preserve">
+    <value>{0:0} ms</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Paused" xml:space="preserve">
+    <value>In pausa</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Percentage" xml:space="preserve">
+    <value>{0:0.0}%</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Session" xml:space="preserve">
+    <value>Sessione</value>
+  </data>
+  <data name="NetworkMonitorWindow_Availability" xml:space="preserve">
+    <value>Disponibilità</value>
+  </data>
+  <data name="NetworkMonitorWindow_Average_latency" xml:space="preserve">
+    <value>Latenza media</value>
+  </data>
+  <data name="NetworkMonitorWindow_Check_every" xml:space="preserve">
+    <value>Controlla ogni</value>
+  </data>
+  <data name="NetworkMonitorWindow_Clear_log" xml:space="preserve">
+    <value>Cancella registro</value>
+  </data>
+  <data name="NetworkMonitorWindow_Connection_events" xml:space="preserve">
+    <value>Eventi di connessione</value>
+  </data>
+  <data name="NetworkMonitorWindow_Copy_all" xml:space="preserve">
+    <value>Copia tutto</value>
+  </data>
+  <data name="NetworkMonitorWindow_Current_latency" xml:space="preserve">
+    <value>Latenza attuale</value>
+  </data>
+  <data name="NetworkMonitorWindow_Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="NetworkMonitorWindow_Disconnects" xml:space="preserve">
+    <value>Disconnessioni</value>
+  </data>
+  <data name="NetworkMonitorWindow_Latency_history" xml:space="preserve">
+    <value>Cronologia latenza</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_events" xml:space="preserve">
+    <value>Non è stata ancora registrata alcuna modifica della connessione.</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_samples" xml:space="preserve">
+    <value>Non sono ancora presenti campioni di latenza.</value>
+  </data>
+  <data name="NetworkMonitorWindow_Open_log" xml:space="preserve">
+    <value>Apri registro...</value>
+  </data>
+  <data name="NetworkMonitorWindow_Pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="NetworkMonitorWindow_Range" xml:space="preserve">
+    <value>Intervallo</value>
+  </data>
+  <data name="NetworkMonitorWindow_ShareX_Network_Monitor" xml:space="preserve">
+    <value>ShareX - Monitor di rete</value>
+  </data>
+  <data name="NetworkMonitorWindow_Start" xml:space="preserve">
+    <value>Avvia</value>
+  </data>
+  <data name="NetworkMonitorWindow_Status" xml:space="preserve">
+    <value>Stato</value>
+  </data>
+  <data name="NetworkMonitorWindow_Target" xml:space="preserve">
+    <value>Destinazione</value>
   </data>
   <data name="OCRHelper_Language_unavailable" xml:space="preserve">
     <value>La lingua {0} non è disponibile per l’OCR in questo sistema.</value>
@@ -1468,11 +1906,11 @@ Percorso file: {0}</value>
   <data name="QRCodeWindow_PNG_image" xml:space="preserve">
     <value>Immagine PNG</value>
   </data>
-  <data name="QRCodeWindow_px" xml:space="preserve">
-    <value>px</value>
-  </data>
   <data name="QRCodeWindow_QR_code_size" xml:space="preserve">
     <value>Dimensione codice QR</value>
+  </data>
+  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
+    <value>Immagine SVG</value>
   </data>
   <data name="QRCodeWindow_Save" xml:space="preserve">
     <value>Salva...</value>
@@ -1495,17 +1933,125 @@ Percorso file: {0}</value>
   <data name="QRCodeWindow_ShareX_QR_Code" xml:space="preserve">
     <value>ShareX - Codice QR</value>
   </data>
-  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
-    <value>Immagine SVG</value>
-  </data>
   <data name="QRCodeWindow_Upload" xml:space="preserve">
     <value>Carica</value>
+  </data>
+  <data name="QRCodeWindow_px" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="RemoteStorageBrowser_Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="RemoteStorageBrowser_CopyUrl" xml:space="preserve">
+    <value>Copia URL</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreateFolder" xml:space="preserve">
+    <value>Crea cartella...</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreatedFolder" xml:space="preserve">
+    <value>La cartella “{0}” è stata creata.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Delete" xml:space="preserve">
+    <value>Elimina...</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFileConfirmation" xml:space="preserve">
+    <value>Eliminare il file “{0}”?</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFolderConfirmation" xml:space="preserve">
+    <value>Eliminare la cartella “{0}”?</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteNonEmptyFolderConfirmation" xml:space="preserve">
+    <value>La cartella “{0}” non è vuota. Eliminarla insieme a tutto il suo contenuto? Questa azione non può essere annullata.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Deleted" xml:space="preserve">
+    <value>“{0}” è stato eliminato.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Download" xml:space="preserve">
+    <value>Scarica...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Downloaded" xml:space="preserve">
+    <value>“{0}” è stato scaricato.</value>
+  </data>
+  <data name="RemoteStorageBrowser_DropFilesToUpload" xml:space="preserve">
+    <value>Trascina i file per caricarli in questa cartella</value>
+  </data>
+  <data name="RemoteStorageBrowser_EmptyFolder" xml:space="preserve">
+    <value>Questa cartella è vuota.</value>
+  </data>
+  <data name="RemoteStorageBrowser_ItemCount" xml:space="preserve">
+    <value>{0} file, {1} cartelle • {2} in totale</value>
+  </data>
+  <data name="RemoteStorageBrowser_Loading" xml:space="preserve">
+    <value>Caricamento...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Location" xml:space="preserve">
+    <value>Percorso:</value>
+  </data>
+  <data name="RemoteStorageBrowser_Modified" xml:space="preserve">
+    <value>Modificato</value>
+  </data>
+  <data name="RemoteStorageBrowser_Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="RemoteStorageBrowser_NameAlreadyExists" xml:space="preserve">
+    <value>Esiste già un elemento denominato “{0}”.</value>
+  </data>
+  <data name="RemoteStorageBrowser_NewFolder" xml:space="preserve">
+    <value>Nuova cartella</value>
+  </data>
+  <data name="RemoteStorageBrowser_NoMatchingItems" xml:space="preserve">
+    <value>Nessun elemento corrispondente.</value>
+  </data>
+  <data name="RemoteStorageBrowser_OpenUrl" xml:space="preserve">
+    <value>Apri URL</value>
+  </data>
+  <data name="RemoteStorageBrowser_OperationFailed" xml:space="preserve">
+    <value>Operazione di archiviazione remota non riuscita.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Provider" xml:space="preserve">
+    <value>Fornitore:</value>
+  </data>
+  <data name="RemoteStorageBrowser_Refresh" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="RemoteStorageBrowser_Rename" xml:space="preserve">
+    <value>Rinomina...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Renamed" xml:space="preserve">
+    <value>“{0}” è stato rinominato in “{1}”.</value>
+  </data>
+  <data name="RemoteStorageBrowser_SaveDownloadedFile" xml:space="preserve">
+    <value>Salva il file scaricato</value>
+  </data>
+  <data name="RemoteStorageBrowser_SearchCurrentFolder" xml:space="preserve">
+    <value>Cerca nella cartella corrente...</value>
+  </data>
+  <data name="RemoteStorageBrowser_SelectFilesToUpload" xml:space="preserve">
+    <value>Seleziona i file da caricare</value>
+  </data>
+  <data name="RemoteStorageBrowser_Size" xml:space="preserve">
+    <value>Dimensione</value>
+  </data>
+  <data name="RemoteStorageBrowser_Title" xml:space="preserve">
+    <value>Browser archiviazione remota</value>
+  </data>
+  <data name="RemoteStorageBrowser_Up" xml:space="preserve">
+    <value>Su</value>
+  </data>
+  <data name="RemoteStorageBrowser_Upload" xml:space="preserve">
+    <value>Carica...</value>
+  </data>
+  <data name="RemoteStorageBrowser_UploadedFiles" xml:space="preserve">
+    <value>{0} file caricati.</value>
+  </data>
+  <data name="RemoteStorageBrowser_View" xml:space="preserve">
+    <value>Visualizza</value>
   </data>
   <data name="RulerOverlayControl_Tolerance" xml:space="preserve">
     <value>Tolleranza: {0}%</value>
   </data>
   <data name="RulerWindow_ShareX_Ruler" xml:space="preserve">
-    <value>ShareX - Righello</value>
+    <value>ShareX - Misura</value>
   </data>
   <data name="VideoConverterViewModel_Choose_video" xml:space="preserve">
     <value>Scegli un video per iniziare.</value>
@@ -1576,9 +2122,6 @@ Percorso file: {0}</value>
   <data name="VideoConverterWindow_Input_file" xml:space="preserve">
     <value>File di input</value>
   </data>
-  <data name="VideoConverterWindow_kbps" xml:space="preserve">
-    <value>kbps</value>
-  </data>
   <data name="VideoConverterWindow_Open_the_output_folder_when_finished" xml:space="preserve">
     <value>Apri la cartella di output al termine</value>
   </data>
@@ -1612,8 +2155,35 @@ Percorso file: {0}</value>
   <data name="VideoConverterWindow_Video_encoder" xml:space="preserve">
     <value>Codificatore video</value>
   </data>
+  <data name="VideoConverterWindow_kbps" xml:space="preserve">
+    <value>kbps</value>
+  </data>
   <data name="VideoConverterWindow_video_output" xml:space="preserve">
     <value>video-output</value>
+  </data>
+  <data name="VideoPlayer_ExitFullscreen" xml:space="preserve">
+    <value>Esci da schermo intero</value>
+  </data>
+  <data name="VideoPlayer_Fullscreen" xml:space="preserve">
+    <value>Schermo intero</value>
+  </data>
+  <data name="VideoPlayer_Loading" xml:space="preserve">
+    <value>Caricamento del video...</value>
+  </data>
+  <data name="VideoPlayer_Mute" xml:space="preserve">
+    <value>Disattiva audio</value>
+  </data>
+  <data name="VideoPlayer_Seek" xml:space="preserve">
+    <value>Posizione di riproduzione</value>
+  </data>
+  <data name="VideoPlayer_Title" xml:space="preserve">
+    <value>ShareX - Lettore video</value>
+  </data>
+  <data name="VideoPlayer_Unmute" xml:space="preserve">
+    <value>Attiva audio</value>
+  </data>
+  <data name="VideoPlayer_Volume" xml:space="preserve">
+    <value>Volume di riproduzione</value>
   </data>
   <data name="VideoThumbnailerViewModel_Custom_folder" xml:space="preserve">
     <value>Cartella personalizzata</value>
@@ -1709,6 +2279,96 @@ Percorso file: {0}</value>
     <value>Video</value>
   </data>
   <data name="VideoThumbnailerWindow_Video_files" xml:space="preserve">
+    <value>File video</value>
+  </data>
+  <data name="VideoTrimmer_AllFiles" xml:space="preserve">
+    <value>Tutti i file (*.*)</value>
+  </data>
+  <data name="VideoTrimmer_Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="VideoTrimmer_Cancelled" xml:space="preserve">
+    <value>Annullato.</value>
+  </data>
+  <data name="VideoTrimmer_ChooseVideo" xml:space="preserve">
+    <value>Apri o trascina un video per iniziare</value>
+  </data>
+  <data name="VideoTrimmer_CopyHint" xml:space="preserve">
+    <value>Copia i flussi originali senza ricodifica. I punti di taglio possono spostarsi ai fotogrammi chiave vicini.</value>
+  </data>
+  <data name="VideoTrimmer_Duration" xml:space="preserve">
+    <value>Durata:</value>
+  </data>
+  <data name="VideoTrimmer_EmptyOutput" xml:space="preserve">
+    <value>FFmpeg non ha prodotto un video di output.</value>
+  </data>
+  <data name="VideoTrimmer_End" xml:space="preserve">
+    <value>Fine:</value>
+  </data>
+  <data name="VideoTrimmer_Export" xml:space="preserve">
+    <value>Salva video tagliato…</value>
+  </data>
+  <data name="VideoTrimmer_Exporting" xml:space="preserve">
+    <value>Salvataggio del video tagliato…</value>
+  </data>
+  <data name="VideoTrimmer_InvalidVideo" xml:space="preserve">
+    <value>Seleziona un video con una durata nota e finita.</value>
+  </data>
+  <data name="VideoTrimmer_Loading" xml:space="preserve">
+    <value>Preparazione delle anteprime della sequenza temporale…</value>
+  </data>
+  <data name="VideoTrimmer_Lossless" xml:space="preserve">
+    <value>Senza perdita</value>
+  </data>
+  <data name="VideoTrimmer_Open" xml:space="preserve">
+    <value>Apri video…</value>
+  </data>
+  <data name="VideoTrimmer_OutputExtension" xml:space="preserve">
+    <value>Usa l’estensione {0} per questa modalità di esportazione.</value>
+  </data>
+  <data name="VideoTrimmer_PlaybackError" xml:space="preserve">
+    <value>Windows non ha potuto riprodurre questo video. Verifica che Windows supporti il formato e che i componenti multimediali di Windows siano installati. {0}</value>
+  </data>
+  <data name="VideoTrimmer_Precise" xml:space="preserve">
+    <value>Ricodifica</value>
+  </data>
+  <data name="VideoTrimmer_PreciseHint" xml:space="preserve">
+    <value>Ricodifica in H.264 / AAC MP4 per punti di taglio esatti.</value>
+  </data>
+  <data name="VideoTrimmer_Reset" xml:space="preserve">
+    <value>Reimposta selezione</value>
+  </data>
+  <data name="VideoTrimmer_Saved" xml:space="preserve">
+    <value>Salvato: {0}</value>
+  </data>
+  <data name="VideoTrimmer_Selection" xml:space="preserve">
+    <value>Conserva {0}</value>
+  </data>
+  <data name="VideoTrimmer_SetEnd" xml:space="preserve">
+    <value>Imposta qui la fine</value>
+  </data>
+  <data name="VideoTrimmer_SetStart" xml:space="preserve">
+    <value>Imposta qui l’inizio</value>
+  </data>
+  <data name="VideoTrimmer_ShowOutput" xml:space="preserve">
+    <value>Mostra cartella di output...</value>
+  </data>
+  <data name="VideoTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>Il video tagliato non può sostituire il video originale. Salvalo con un nome diverso o in un’altra cartella.</value>
+  </data>
+  <data name="VideoTrimmer_Start" xml:space="preserve">
+    <value>Inizio:</value>
+  </data>
+  <data name="VideoTrimmer_Timeline" xml:space="preserve">
+    <value>Sequenza temporale video e selezione del taglio</value>
+  </data>
+  <data name="VideoTrimmer_Title" xml:space="preserve">
+    <value>ShareX - Taglia video</value>
+  </data>
+  <data name="VideoTrimmer_TrimMode" xml:space="preserve">
+    <value>Modalità di taglio:</value>
+  </data>
+  <data name="VideoTrimmer_VideoFiles" xml:space="preserve">
     <value>File video</value>
   </data>
 </root>

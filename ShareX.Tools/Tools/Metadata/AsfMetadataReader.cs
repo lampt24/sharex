@@ -8,6 +8,17 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -197,9 +208,17 @@ internal static class AsfMetadataReader
     private static string FormatDuration(double seconds) => TimeSpan.FromSeconds(seconds).ToString(seconds >= 3600 ? @"h\:mm\:ss\.fff" : @"m\:ss\.fff");
     private static string GetAudioCodec(ushort value) => value switch
     {
-        1 => "PCM", 2 => "Microsoft ADPCM", 3 => "IEEE float", 0x50 => "MPEG", 0x55 => "MP3",
-        0x00FF => "AAC", 0x0161 => "Windows Media Audio", 0x0162 => "Windows Media Audio Professional",
-        0x0163 => "Windows Media Audio Lossless", 0x2000 => "AC-3", _ => $"0x{value:X4}"
+        1 => "PCM",
+        2 => "Microsoft ADPCM",
+        3 => "IEEE float",
+        0x50 => "MPEG",
+        0x55 => "MP3",
+        0x00FF => "AAC",
+        0x0161 => "Windows Media Audio",
+        0x0162 => "Windows Media Audio Professional",
+        0x0163 => "Windows Media Audio Lossless",
+        0x2000 => "AC-3",
+        _ => $"0x{value:X4}"
     };
 
     private static bool TryReadExactly(Stream stream, Span<byte> buffer)

@@ -73,14 +73,14 @@
   <data name="AnalyzeImageOptionsViewModel_Testing" xml:space="preserve">
     <value>テスト中...</value>
   </data>
-  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
-    <value>開いたときに自動的に分析する</value>
-  </data>
   <data name="AnalyzeImageOptionsWindow_API_key" xml:space="preserve">
     <value>API キー</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key_page" xml:space="preserve">
     <value>API キーのページ...</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
+    <value>開いたときに自動的に分析する</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Behavior" xml:space="preserve">
     <value>動作</value>
@@ -102,9 +102,6 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Google_Gemini" xml:space="preserve">
     <value>Google Gemini</value>
-  </data>
-  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
-    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Load_models" xml:space="preserve">
     <value>モデルを読み込む</value>
@@ -135,6 +132,9 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Verbosity" xml:space="preserve">
     <value>詳細度</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
+    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageService_Connection_OK" xml:space="preserve">
     <value>接続に成功しました。</value>
@@ -213,6 +213,126 @@
   </data>
   <data name="AnalyzeImageWindow_ShareX_Analyze_image" xml:space="preserve">
     <value>ShareX - 画像を分析</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Create_failed" xml:space="preserve">
+    <value>GIF を作成できませんでした: {0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Created" xml:space="preserve">
+    <value>アニメーション GIF を作成しました。</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Creating" xml:space="preserve">
+    <value>アニメーション GIF を作成しています...</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_failed" xml:space="preserve">
+    <value>プレビューに失敗しました: {0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_info" xml:space="preserve">
+    <value>{0} フレーム • {1} ms</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_images_dialog" xml:space="preserve">
+    <value>画像を追加</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_two_images_to_preview" xml:space="preserve">
+    <value>アニメーションをプレビューするには、2 枚以上の画像を追加してください。</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animated_GIF_maker" xml:space="preserve">
+    <value>アニメーション GIF メーカー</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animation" xml:space="preserve">
+    <value>アニメーション</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Create_GIF" xml:space="preserve">
+    <value>GIF を作成...</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Frame_delay" xml:space="preserve">
+    <value>フレーム遅延</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_GIF_images" xml:space="preserve">
+    <value>GIF 画像</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Loop_animation" xml:space="preserve">
+    <value>アニメーションをループ</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Output" xml:space="preserve">
+    <value>出力</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Preview" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Repeat_count" xml:space="preserve">
+    <value>繰り返し回数</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Save_GIF_dialog" xml:space="preserve">
+    <value>アニメーション GIF を保存</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Zero_repeats_forever" xml:space="preserve">
+    <value>0 は無限に繰り返します。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_ChooseGif" xml:space="preserve">
+    <value>アニメーションGIFを開くかドロップして開始します</value>
+  </data>
+  <data name="AnimatedGifTrimmer_DependentFrame" xml:space="preserve">
+    <value>この範囲の先頭フレームには前のフレームが必要です。ロスレスで出力するには別の開始フレームを選択してください。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Export" xml:space="preserve">
+    <value>トリミングしたGIFを保存…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Exporting" xml:space="preserve">
+    <value>トリミングしたGIFを保存中…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Frame" xml:space="preserve">
+    <value>フレーム {0} / {1}</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Gif" xml:space="preserve">
+    <value>アニメーションGIF</value>
+  </data>
+  <data name="AnimatedGifTrimmer_GifFiles" xml:space="preserve">
+    <value>GIFファイル</value>
+  </data>
+  <data name="AnimatedGifTrimmer_InvalidGif" xml:space="preserve">
+    <value>2フレーム以上のアニメーションGIFを選択してください。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Loading" xml:space="preserve">
+    <value>GIFのタイムラインを準備中…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Lossless" xml:space="preserve">
+    <value>ロスレス</value>
+  </data>
+  <data name="AnimatedGifTrimmer_NextFrame" xml:space="preserve">
+    <value>次のフレーム</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Open" xml:space="preserve">
+    <value>GIFを開く…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_OutputExtension" xml:space="preserve">
+    <value>出力ファイルの拡張子には .gif を使用してください。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Pause" xml:space="preserve">
+    <value>一時停止</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Play" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="AnimatedGifTrimmer_PreviousFrame" xml:space="preserve">
+    <value>前のフレーム</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Reencode" xml:space="preserve">
+    <value>再エンコード</value>
+  </data>
+  <data name="AnimatedGifTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>トリミングしたGIFは別のファイル名または別のフォルダーに保存してください。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Timeline" xml:space="preserve">
+    <value>GIFのタイムラインとトリミング範囲</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Title" xml:space="preserve">
+    <value>ShareX - アニメーションGIFトリマー</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UnsupportedGif" xml:space="preserve">
+    <value>このGIFにはプレーンテキストのグラフィックブロックが含まれており、ロスレストリマーで安全にコピーできません。</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UseReencode" xml:space="preserve">
+    <value>この範囲には前のフレームが必要なため、ロスレスで保存できません。トリミングモードを「再エンコード」にして、もう一度保存してください。</value>
   </data>
   <data name="BackgroundRemoverViewModel_Background_removed_ms" xml:space="preserve">
     <value>{0} ms で背景を削除しました。</value>
@@ -310,6 +430,18 @@
   <data name="BorderlessWindowWindow_Window_title" xml:space="preserve">
     <value>ウィンドウ タイトル</value>
   </data>
+  <data name="ClassicRulerOverlayControl_Distance" xml:space="preserve">
+    <value>距離: {0:0.00} px | 角度: {1:0.00}°</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Position" xml:space="preserve">
+    <value>X: {0} | Y: {1} | 右: {2} | 下: {3}</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Size" xml:space="preserve">
+    <value>幅: {0} px | 高さ: {1} px | 面積: {2} px | 外周: {3} px</value>
+  </data>
+  <data name="ClassicRulerWindow_Title" xml:space="preserve">
+    <value>ShareX - 定規</value>
+  </data>
   <data name="ClipboardViewerViewModel_Clipboard_content" xml:space="preserve">
     <value>クリップボードの内容</value>
   </data>
@@ -373,14 +505,14 @@
   <data name="DirectoryIndexerWindow_Browse" xml:space="preserve">
     <value>参照...</value>
   </data>
+  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
+    <value>CSS ファイル</value>
+  </data>
   <data name="DirectoryIndexerWindow_Choose_a_folder_and_generate_output_Nothing_is_saved_until_you_use_Save_as_or_Upload" xml:space="preserve">
     <value>フォルダーを選択して出力を生成します。「名前を付けて保存」または「アップロード」を使用するまで保存されません。</value>
   </data>
   <data name="DirectoryIndexerWindow_Create_parseable_structured_JSON" xml:space="preserve">
     <value>解析可能な構造化 JSON を作成</value>
-  </data>
-  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
-    <value>CSS ファイル</value>
   </data>
   <data name="DirectoryIndexerWindow_Display_folder_paths" xml:space="preserve">
     <value>フォルダー パスを表示</value>
@@ -433,10 +565,10 @@
   <data name="DirectoryIndexerWindow_Save_directory_index_dialog" xml:space="preserve">
     <value>ディレクトリ インデックスを保存</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
+  <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
     <value>CSS ファイルを選択</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
+  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
     <value>CSS ファイルを選択</value>
   </data>
   <data name="DirectoryIndexerWindow_Select_folder_to_index_dialog" xml:space="preserve">
@@ -652,9 +784,6 @@
   <data name="IconConverterWindow_Image" xml:space="preserve">
     <value>画像</value>
   </data>
-  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
-    <value>または「参照」でファイルを選択</value>
-  </data>
   <data name="IconConverterWindow_Save_icon_as_dialog" xml:space="preserve">
     <value>アイコンに名前を付けて保存</value>
   </data>
@@ -663,6 +792,9 @@
   </data>
   <data name="IconConverterWindow_Sizes" xml:space="preserve">
     <value>サイズ</value>
+  </data>
+  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
+    <value>または「参照」でファイルを選択</value>
   </data>
   <data name="ImageCombinerViewModel_Add_two_images" xml:space="preserve">
     <value>結合する画像を 2 枚以上追加してください。</value>
@@ -790,6 +922,102 @@
   <data name="ImageComparerWindow_Slider" xml:space="preserve">
     <value>スライダー</value>
   </data>
+  <data name="ImageConverterService_Failed_to_encode_image" xml:space="preserve">
+    <value>画像を {0} 形式でエンコードできませんでした。</value>
+  </data>
+  <data name="ImageConverterWindow_BMPBitDepth" xml:space="preserve">
+    <value>BMP ビット深度:</value>
+  </data>
+  <data name="ImageConverterWindow_BackgroundColor" xml:space="preserve">
+    <value>背景色:</value>
+  </data>
+  <data name="ImageConverterWindow_Convert_images" xml:space="preserve">
+    <value>画像を変換</value>
+  </data>
+  <data name="ImageConverterWindow_FileNameTemplate" xml:space="preserve">
+    <value>ファイル名テンプレート:</value>
+  </data>
+  <data name="ImageConverterWindow_Image_converter" xml:space="preserve">
+    <value>画像変換</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling" xml:space="preserve">
+    <value>JPEG クロマサブサンプリング:</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling420" xml:space="preserve">
+    <value>4:2:0 (ファイルサイズ優先)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling422" xml:space="preserve">
+    <value>4:2:2 (バランス)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling444" xml:space="preserve">
+    <value>4:4:4 (色の解像度を維持)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsamplingHint" xml:space="preserve">
+    <value>4:4:4 は文字や鮮明な輪郭の周囲の色の詳細をより多く保持しますが、通常はファイルサイズが大きくなります。</value>
+  </data>
+  <data name="ImageConverterWindow_OutputFormat" xml:space="preserve">
+    <value>出力形式:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGBitDepth" xml:space="preserve">
+    <value>PNG ビット深度:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionHint" xml:space="preserve">
+    <value>0 = 圧縮なし、1 = 最速、9 = 最小ファイルサイズ。すべてのレベルで画質は劣化しません。</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionLevel" xml:space="preserve">
+    <value>PNG 圧縮レベル:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilter" xml:space="preserve">
+    <value>PNG フィルター:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAutomatic" xml:space="preserve">
+    <value>自動（すべてのフィルター）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAverage" xml:space="preserve">
+    <value>平均（左と上）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterNone" xml:space="preserve">
+    <value>フィルターなし</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterPaeth" xml:space="preserve">
+    <value>Paeth（予測）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterSub" xml:space="preserve">
+    <value>Sub（左のピクセル）</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterUp" xml:space="preserve">
+    <value>Up（上のピクセル）</value>
+  </data>
+  <data name="ImageConverterWindow_Quality" xml:space="preserve">
+    <value>品質:</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffort" xml:space="preserve">
+    <value>圧縮にかける処理量:</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffortHint" xml:space="preserve">
+    <value>値を低くするとエンコードが速くなります。値を高くするとファイルサイズが小さくなります。どの値でも画質は維持されます。</value>
+  </data>
+  <data name="ImageConverterWindow_WebPLossless" xml:space="preserve">
+    <value>ロスレス</value>
+  </data>
+  <data name="ImageResizerWindow_Fill" xml:space="preserve">
+    <value>塗りつぶし</value>
+  </data>
+  <data name="ImageResizerWindow_Fit" xml:space="preserve">
+    <value>全体を表示</value>
+  </data>
+  <data name="ImageResizerWindow_Image_resizer" xml:space="preserve">
+    <value>画像リサイザー</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_image" xml:space="preserve">
+    <value>画像のサイズ変更</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_mode" xml:space="preserve">
+    <value>リサイズモード</value>
+  </data>
+  <data name="ImageResizerWindow_Stretch" xml:space="preserve">
+    <value>引き伸ばし</value>
+  </data>
   <data name="ImageSplitterViewModel_Grid_size" xml:space="preserve">
     <value>{0} × {1}</value>
   </data>
@@ -859,9 +1087,6 @@
   <data name="ImageThumbnailerWindow_File_name_template" xml:space="preserve">
     <value>ファイル名テンプレート</value>
   </data>
-  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
-    <value>$filename_th</value>
-  </data>
   <data name="ImageThumbnailerWindow_Generate_thumbnails" xml:space="preserve">
     <value>サムネイルを生成</value>
   </data>
@@ -882,6 +1107,36 @@
   </data>
   <data name="ImageThumbnailerWindow_Width" xml:space="preserve">
     <value>幅</value>
+  </data>
+  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
+    <value>$filename_th</value>
+  </data>
+  <data name="ImageWatermarkWindow_Apply_watermark" xml:space="preserve">
+    <value>透かしを適用</value>
+  </data>
+  <data name="ImageWatermarkWindow_Font_size" xml:space="preserve">
+    <value>フォントサイズ</value>
+  </data>
+  <data name="ImageWatermarkWindow_Image_watermark" xml:space="preserve">
+    <value>画像透かし</value>
+  </data>
+  <data name="ImageWatermarkWindow_Margin" xml:space="preserve">
+    <value>余白</value>
+  </data>
+  <data name="ImageWatermarkWindow_Position" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="ImageWatermarkWindow_Rotation" xml:space="preserve">
+    <value>回転</value>
+  </data>
+  <data name="ImageWatermarkWindow_Scale" xml:space="preserve">
+    <value>拡大縮小</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark" xml:space="preserve">
+    <value>透かし</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark_type" xml:space="preserve">
+    <value>透かしの種類</value>
   </data>
   <data name="IndexerHtml_File_count" xml:space="preserve">
     <value>{0:n0} 個のファイル</value>
@@ -997,20 +1252,20 @@
   <data name="LocalizedDisplayConverter_Backward_diagonal" xml:space="preserve">
     <value>右上がり対角線</value>
   </data>
-  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
-    <value>市松模様</value>
-  </data>
   <data name="LocalizedDisplayConverter_CPU" xml:space="preserve">
     <value>CPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
+    <value>市松模様</value>
   </data>
   <data name="LocalizedDisplayConverter_Forward_diagonal" xml:space="preserve">
     <value>右下がり対角線</value>
   </data>
-  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
-    <value>Gemini</value>
-  </data>
   <data name="LocalizedDisplayConverter_GPU" xml:space="preserve">
     <value>GPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
+    <value>Gemini</value>
   </data>
   <data name="LocalizedDisplayConverter_High" xml:space="preserve">
     <value>高</value>
@@ -1162,17 +1417,200 @@
   <data name="MonitorTestWindow_Pattern" xml:space="preserve">
     <value>パターン</value>
   </data>
-  <data name="MonitorTestWindow_Red" xml:space="preserve">
-    <value>赤</value>
-  </data>
   <data name="MonitorTestWindow_RGB" xml:space="preserve">
     <value>RGB</value>
+  </data>
+  <data name="MonitorTestWindow_Red" xml:space="preserve">
+    <value>赤</value>
   </data>
   <data name="MonitorTestWindow_ShareX_Monitor_Test" xml:space="preserve">
     <value>ShareX - モニター テスト</value>
   </data>
   <data name="MonitorTestWindow_Speed" xml:space="preserve">
     <value>速度</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColor" xml:space="preserve">
+    <value>常にハイライトカラー:</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColorHelp" xml:space="preserve">
+    <value>永続的なハイライトを無効にするには、透明色を使用します。</value>
+  </data>
+  <data name="MouseHighlighter_AutoActivate" xml:space="preserve">
+    <value>ShareX の起動時に自動的にアクティブ化する</value>
+  </data>
+  <data name="MouseHighlighter_Circle" xml:space="preserve">
+    <value>サークルハイライト</value>
+  </data>
+  <data name="MouseHighlighter_FadeDelay" xml:space="preserve">
+    <value>フェード遅延 (ミリ秒):</value>
+  </data>
+  <data name="MouseHighlighter_FadeDuration" xml:space="preserve">
+    <value>フェード持続時間 (ミリ秒):</value>
+  </data>
+  <data name="MouseHighlighter_FollowCursor" xml:space="preserve">
+    <value>ボタンを押したままカーソルを追う</value>
+  </data>
+  <data name="MouseHighlighter_KeepAfterRecording" xml:space="preserve">
+    <value>録画後もハイライトを維持する</value>
+  </data>
+  <data name="MouseHighlighter_MiddleColor" xml:space="preserve">
+    <value>中央のボタンの色:</value>
+  </data>
+  <data name="MouseHighlighter_MiddleReleaseCrosshairs" xml:space="preserve">
+    <value>中ボタンを離したときに十字線を表示する</value>
+  </data>
+  <data name="MouseHighlighter_Mode" xml:space="preserve">
+    <value>ハイライトモード:</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryColor" xml:space="preserve">
+    <value>主なボタンの色:</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryReleaseCrosshairs" xml:space="preserve">
+    <value>主ボタンを放したときに十字線を表示する</value>
+  </data>
+  <data name="MouseHighlighter_Radius" xml:space="preserve">
+    <value>半径 (ピクセル):</value>
+  </data>
+  <data name="MouseHighlighter_RecordingHelp" xml:space="preserve">
+    <value>録画内のクリックを強調表示するには、[タスク設定] → [キャプチャ] → [スクリーン レコーダー] でマウス ハイライト オプションを有効にします。</value>
+  </data>
+  <data name="MouseHighlighter_ReleaseCrosshairs" xml:space="preserve">
+    <value>二次ボタンを離したときに十字線を表示する</value>
+  </data>
+  <data name="MouseHighlighter_Ripple" xml:space="preserve">
+    <value>リップル</value>
+  </data>
+  <data name="MouseHighlighter_RippleDuration" xml:space="preserve">
+    <value>リップル持続時間 (ms):</value>
+  </data>
+  <data name="MouseHighlighter_RippleIntensity" xml:space="preserve">
+    <value>リップル強度:</value>
+  </data>
+  <data name="MouseHighlighter_RippleSize" xml:space="preserve">
+    <value>リップルサイズ (px):</value>
+  </data>
+  <data name="MouseHighlighter_SecondaryColor" xml:space="preserve">
+    <value>二次ボタンの色:</value>
+  </data>
+  <data name="MouseHighlighter_Start" xml:space="preserve">
+    <value>ハイライトの開始</value>
+  </data>
+  <data name="MouseHighlighter_StartFailed" xml:space="preserve">
+    <value>マウスの強調表示を開始できませんでした。</value>
+  </data>
+  <data name="MouseHighlighter_Stop" xml:space="preserve">
+    <value>ハイライトをやめる</value>
+  </data>
+  <data name="MouseHighlighter_StopAfterRecording" xml:space="preserve">
+    <value>録画が停止したらハイライトを停止します</value>
+  </data>
+  <data name="MouseHighlighter_Title" xml:space="preserve">
+    <value>マウスハイライター</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_failed" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_timed_out" xml:space="preserve">
+    <value>{0} がタイムアウトしました。</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_network_interface" xml:space="preserve">
+    <value>アクティブなネットワーク インターフェイスが見つかりませんでした。</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_response" xml:space="preserve">
+    <value>どのエンドポイントからも応答がありません。</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Automatic_recommended" xml:space="preserve">
+    <value>自動（推奨）</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Checking" xml:space="preserve">
+    <value>確認中...</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Connected" xml:space="preserve">
+    <value>接続済み.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Disconnected" xml:space="preserve">
+    <value>切断.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_15_minutes" xml:space="preserve">
+    <value>過去 15 分</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_5_minutes" xml:space="preserve">
+    <value>過去 5 分</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_6_hours" xml:space="preserve">
+    <value>過去 6 時間</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_hour" xml:space="preserve">
+    <value>過去 1 時間</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Milliseconds" xml:space="preserve">
+    <value>{0:0} ミリ秒</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Paused" xml:space="preserve">
+    <value>一時停止</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Percentage" xml:space="preserve">
+    <value>{0:0.0}%</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Session" xml:space="preserve">
+    <value>セッション</value>
+  </data>
+  <data name="NetworkMonitorWindow_Availability" xml:space="preserve">
+    <value>可用性</value>
+  </data>
+  <data name="NetworkMonitorWindow_Average_latency" xml:space="preserve">
+    <value>平均遅延</value>
+  </data>
+  <data name="NetworkMonitorWindow_Check_every" xml:space="preserve">
+    <value>確認間隔</value>
+  </data>
+  <data name="NetworkMonitorWindow_Clear_log" xml:space="preserve">
+    <value>ログを消去</value>
+  </data>
+  <data name="NetworkMonitorWindow_Connection_events" xml:space="preserve">
+    <value>接続イベント</value>
+  </data>
+  <data name="NetworkMonitorWindow_Copy_all" xml:space="preserve">
+    <value>すべてコピー</value>
+  </data>
+  <data name="NetworkMonitorWindow_Current_latency" xml:space="preserve">
+    <value>現在の遅延</value>
+  </data>
+  <data name="NetworkMonitorWindow_Date" xml:space="preserve">
+    <value>日時</value>
+  </data>
+  <data name="NetworkMonitorWindow_Disconnects" xml:space="preserve">
+    <value>切断回数</value>
+  </data>
+  <data name="NetworkMonitorWindow_Latency_history" xml:space="preserve">
+    <value>遅延履歴</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_events" xml:space="preserve">
+    <value>接続の変更はまだ記録されていません。</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_samples" xml:space="preserve">
+    <value>遅延サンプルはまだありません。</value>
+  </data>
+  <data name="NetworkMonitorWindow_Open_log" xml:space="preserve">
+    <value>ログを開く...</value>
+  </data>
+  <data name="NetworkMonitorWindow_Pause" xml:space="preserve">
+    <value>一時停止</value>
+  </data>
+  <data name="NetworkMonitorWindow_Range" xml:space="preserve">
+    <value>範囲</value>
+  </data>
+  <data name="NetworkMonitorWindow_ShareX_Network_Monitor" xml:space="preserve">
+    <value>ShareX - ネットワーク モニター</value>
+  </data>
+  <data name="NetworkMonitorWindow_Start" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="NetworkMonitorWindow_Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="NetworkMonitorWindow_Target" xml:space="preserve">
+    <value>ターゲット</value>
   </data>
   <data name="OCRHelper_Language_unavailable" xml:space="preserve">
     <value>このシステムでは OCR 用の {0} 言語を利用できません。</value>
@@ -1462,11 +1900,11 @@
   <data name="QRCodeWindow_PNG_image" xml:space="preserve">
     <value>PNG 画像</value>
   </data>
-  <data name="QRCodeWindow_px" xml:space="preserve">
-    <value>px</value>
-  </data>
   <data name="QRCodeWindow_QR_code_size" xml:space="preserve">
     <value>QR コード サイズ</value>
+  </data>
+  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
+    <value>SVG 画像</value>
   </data>
   <data name="QRCodeWindow_Save" xml:space="preserve">
     <value>保存...</value>
@@ -1489,17 +1927,125 @@
   <data name="QRCodeWindow_ShareX_QR_Code" xml:space="preserve">
     <value>ShareX - QR コード</value>
   </data>
-  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
-    <value>SVG 画像</value>
-  </data>
   <data name="QRCodeWindow_Upload" xml:space="preserve">
     <value>アップロード</value>
+  </data>
+  <data name="QRCodeWindow_px" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="RemoteStorageBrowser_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="RemoteStorageBrowser_CopyUrl" xml:space="preserve">
+    <value>URL をコピー</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreateFolder" xml:space="preserve">
+    <value>フォルダーを作成...</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreatedFolder" xml:space="preserve">
+    <value>フォルダー「{0}」を作成しました。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Delete" xml:space="preserve">
+    <value>削除...</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFileConfirmation" xml:space="preserve">
+    <value>ファイル「{0}」を削除しますか？</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFolderConfirmation" xml:space="preserve">
+    <value>フォルダー「{0}」を削除しますか？</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteNonEmptyFolderConfirmation" xml:space="preserve">
+    <value>フォルダー「{0}」は空ではありません。フォルダーとそのすべての内容を削除しますか？この操作は元に戻せません。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Deleted" xml:space="preserve">
+    <value>「{0}」を削除しました。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Download" xml:space="preserve">
+    <value>ダウンロード...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Downloaded" xml:space="preserve">
+    <value>「{0}」をダウンロードしました。</value>
+  </data>
+  <data name="RemoteStorageBrowser_DropFilesToUpload" xml:space="preserve">
+    <value>このフォルダーにアップロードするファイルをドロップ</value>
+  </data>
+  <data name="RemoteStorageBrowser_EmptyFolder" xml:space="preserve">
+    <value>このフォルダーは空です。</value>
+  </data>
+  <data name="RemoteStorageBrowser_ItemCount" xml:space="preserve">
+    <value>{0} 個のファイル、{1} 個のフォルダー • 合計 {2}</value>
+  </data>
+  <data name="RemoteStorageBrowser_Loading" xml:space="preserve">
+    <value>読み込み中...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Location" xml:space="preserve">
+    <value>場所:</value>
+  </data>
+  <data name="RemoteStorageBrowser_Modified" xml:space="preserve">
+    <value>更新日時</value>
+  </data>
+  <data name="RemoteStorageBrowser_Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="RemoteStorageBrowser_NameAlreadyExists" xml:space="preserve">
+    <value>「{0}」という名前の項目は既に存在します。</value>
+  </data>
+  <data name="RemoteStorageBrowser_NewFolder" xml:space="preserve">
+    <value>新しいフォルダー</value>
+  </data>
+  <data name="RemoteStorageBrowser_NoMatchingItems" xml:space="preserve">
+    <value>一致する項目はありません。</value>
+  </data>
+  <data name="RemoteStorageBrowser_OpenUrl" xml:space="preserve">
+    <value>URLを開く</value>
+  </data>
+  <data name="RemoteStorageBrowser_OperationFailed" xml:space="preserve">
+    <value>リモートストレージ操作に失敗しました。</value>
+  </data>
+  <data name="RemoteStorageBrowser_Provider" xml:space="preserve">
+    <value>プロバイダー:</value>
+  </data>
+  <data name="RemoteStorageBrowser_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="RemoteStorageBrowser_Rename" xml:space="preserve">
+    <value>名前の変更...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Renamed" xml:space="preserve">
+    <value>「{0}」の名前を「{1}」に変更しました。</value>
+  </data>
+  <data name="RemoteStorageBrowser_SaveDownloadedFile" xml:space="preserve">
+    <value>ダウンロードしたファイルを保存</value>
+  </data>
+  <data name="RemoteStorageBrowser_SearchCurrentFolder" xml:space="preserve">
+    <value>現在のフォルダーを検索...</value>
+  </data>
+  <data name="RemoteStorageBrowser_SelectFilesToUpload" xml:space="preserve">
+    <value>アップロードするファイルを選択</value>
+  </data>
+  <data name="RemoteStorageBrowser_Size" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="RemoteStorageBrowser_Title" xml:space="preserve">
+    <value>リモートストレージブラウザー</value>
+  </data>
+  <data name="RemoteStorageBrowser_Up" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="RemoteStorageBrowser_Upload" xml:space="preserve">
+    <value>アップロード...</value>
+  </data>
+  <data name="RemoteStorageBrowser_UploadedFiles" xml:space="preserve">
+    <value>{0} 個のファイルをアップロードしました。</value>
+  </data>
+  <data name="RemoteStorageBrowser_View" xml:space="preserve">
+    <value>表示</value>
   </data>
   <data name="RulerOverlayControl_Tolerance" xml:space="preserve">
     <value>許容差: {0}%</value>
   </data>
   <data name="RulerWindow_ShareX_Ruler" xml:space="preserve">
-    <value>ShareX - 定規</value>
+    <value>ShareX - 計測</value>
   </data>
   <data name="VideoConverterViewModel_Choose_video" xml:space="preserve">
     <value>開始するには動画を選択してください。</value>
@@ -1570,9 +2116,6 @@
   <data name="VideoConverterWindow_Input_file" xml:space="preserve">
     <value>入力ファイル</value>
   </data>
-  <data name="VideoConverterWindow_kbps" xml:space="preserve">
-    <value>kbps</value>
-  </data>
   <data name="VideoConverterWindow_Open_the_output_folder_when_finished" xml:space="preserve">
     <value>完了時に出力フォルダーを開く</value>
   </data>
@@ -1606,8 +2149,35 @@
   <data name="VideoConverterWindow_Video_encoder" xml:space="preserve">
     <value>映像エンコーダー</value>
   </data>
+  <data name="VideoConverterWindow_kbps" xml:space="preserve">
+    <value>kbps</value>
+  </data>
   <data name="VideoConverterWindow_video_output" xml:space="preserve">
     <value>video-output</value>
+  </data>
+  <data name="VideoPlayer_ExitFullscreen" xml:space="preserve">
+    <value>全画面表示を終了</value>
+  </data>
+  <data name="VideoPlayer_Fullscreen" xml:space="preserve">
+    <value>全画面</value>
+  </data>
+  <data name="VideoPlayer_Loading" xml:space="preserve">
+    <value>動画を読み込み中...</value>
+  </data>
+  <data name="VideoPlayer_Mute" xml:space="preserve">
+    <value>ミュート</value>
+  </data>
+  <data name="VideoPlayer_Seek" xml:space="preserve">
+    <value>再生位置</value>
+  </data>
+  <data name="VideoPlayer_Title" xml:space="preserve">
+    <value>ShareX - 動画プレーヤー</value>
+  </data>
+  <data name="VideoPlayer_Unmute" xml:space="preserve">
+    <value>ミュート解除</value>
+  </data>
+  <data name="VideoPlayer_Volume" xml:space="preserve">
+    <value>再生音量</value>
   </data>
   <data name="VideoThumbnailerViewModel_Custom_folder" xml:space="preserve">
     <value>カスタム フォルダー</value>
@@ -1703,6 +2273,96 @@
     <value>映像</value>
   </data>
   <data name="VideoThumbnailerWindow_Video_files" xml:space="preserve">
+    <value>動画ファイル</value>
+  </data>
+  <data name="VideoTrimmer_AllFiles" xml:space="preserve">
+    <value>すべてのファイル (*.*)</value>
+  </data>
+  <data name="VideoTrimmer_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="VideoTrimmer_Cancelled" xml:space="preserve">
+    <value>キャンセルしました。</value>
+  </data>
+  <data name="VideoTrimmer_ChooseVideo" xml:space="preserve">
+    <value>動画を開くかドロップして開始</value>
+  </data>
+  <data name="VideoTrimmer_CopyHint" xml:space="preserve">
+    <value>元のストリームを再エンコードせずにコピーします。切り取り位置は近くのキーフレームにずれる場合があります。</value>
+  </data>
+  <data name="VideoTrimmer_Duration" xml:space="preserve">
+    <value>長さ:</value>
+  </data>
+  <data name="VideoTrimmer_EmptyOutput" xml:space="preserve">
+    <value>FFmpeg は出力動画を生成しませんでした。</value>
+  </data>
+  <data name="VideoTrimmer_End" xml:space="preserve">
+    <value>終了:</value>
+  </data>
+  <data name="VideoTrimmer_Export" xml:space="preserve">
+    <value>トリミングした動画を保存…</value>
+  </data>
+  <data name="VideoTrimmer_Exporting" xml:space="preserve">
+    <value>トリミングした動画を保存中…</value>
+  </data>
+  <data name="VideoTrimmer_InvalidVideo" xml:space="preserve">
+    <value>長さが判明している有効な動画を選択してください。</value>
+  </data>
+  <data name="VideoTrimmer_Loading" xml:space="preserve">
+    <value>タイムラインのプレビューを準備中…</value>
+  </data>
+  <data name="VideoTrimmer_Lossless" xml:space="preserve">
+    <value>ロスレス</value>
+  </data>
+  <data name="VideoTrimmer_Open" xml:space="preserve">
+    <value>動画を開く…</value>
+  </data>
+  <data name="VideoTrimmer_OutputExtension" xml:space="preserve">
+    <value>このエクスポートモードでは拡張子 {0} を使用してください。</value>
+  </data>
+  <data name="VideoTrimmer_PlaybackError" xml:space="preserve">
+    <value>Windows でこの動画を再生できませんでした。Windows がこの形式をサポートしていることと、Windows のメディアコンポーネントがインストールされていることを確認してください。{0}</value>
+  </data>
+  <data name="VideoTrimmer_Precise" xml:space="preserve">
+    <value>再エンコード</value>
+  </data>
+  <data name="VideoTrimmer_PreciseHint" xml:space="preserve">
+    <value>正確な切り取り位置のため H.264 / AAC MP4 に再エンコードします。</value>
+  </data>
+  <data name="VideoTrimmer_Reset" xml:space="preserve">
+    <value>選択範囲をリセット</value>
+  </data>
+  <data name="VideoTrimmer_Saved" xml:space="preserve">
+    <value>保存先: {0}</value>
+  </data>
+  <data name="VideoTrimmer_Selection" xml:space="preserve">
+    <value>{0} を残す</value>
+  </data>
+  <data name="VideoTrimmer_SetEnd" xml:space="preserve">
+    <value>ここを終了位置に設定</value>
+  </data>
+  <data name="VideoTrimmer_SetStart" xml:space="preserve">
+    <value>ここを開始位置に設定</value>
+  </data>
+  <data name="VideoTrimmer_ShowOutput" xml:space="preserve">
+    <value>出力フォルダーを表示...</value>
+  </data>
+  <data name="VideoTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>トリミングした動画で元の動画を上書きすることはできません。別のファイル名または別のフォルダーに保存してください。</value>
+  </data>
+  <data name="VideoTrimmer_Start" xml:space="preserve">
+    <value>開始:</value>
+  </data>
+  <data name="VideoTrimmer_Timeline" xml:space="preserve">
+    <value>動画タイムラインとトリミング範囲</value>
+  </data>
+  <data name="VideoTrimmer_Title" xml:space="preserve">
+    <value>ShareX - 動画トリマー</value>
+  </data>
+  <data name="VideoTrimmer_TrimMode" xml:space="preserve">
+    <value>トリミングモード:</value>
+  </data>
+  <data name="VideoTrimmer_VideoFiles" xml:space="preserve">
     <value>動画ファイル</value>
   </data>
 </root>

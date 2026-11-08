@@ -26,10 +26,10 @@
 using ShareX.HelpersLib;
 using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows.Forms;
+using Bitmap = SkiaSharp.SKBitmap;
 
 namespace ShareX.ScreenCaptureLib
 {
@@ -37,14 +37,14 @@ namespace ShareX.ScreenCaptureLib
     {
         public Bitmap CaptureWindowTransparent(IntPtr handle)
         {
-            if (handle.ToInt32() > 0)
+            if (handle != IntPtr.Zero)
             {
                 Rectangle rect = CaptureHelpers.GetWindowRectangle(handle);
 
                 if (CaptureShadow && !NativeMethods.IsZoomed(handle) && NativeMethods.IsDWMEnabled())
                 {
                     rect.Inflate(ShadowOffset, ShadowOffset);
-                    Rectangle intersectBounds = Screen.AllScreens.Select(x => x.Bounds).Where(x => x.IntersectsWith(rect)).Combine();
+                    Rectangle intersectBounds = DesktopScreen.AllScreens.Select(x => x.Bounds).Where(x => x.IntersectsWith(rect)).Combine();
                     rect.Intersect(intersectBounds);
                 }
 
@@ -71,48 +71,30 @@ namespace ShareX.ScreenCaptureLib
                         }
                     }
 
-                    using (Form form = new Form())
+                    using (WindowsNativeWindow window = new("ShareX - Transparent capture background", rect,
+                        WindowStyles.WS_EX_LAYERED | WindowStyles.WS_EX_TOOLWINDOW | WindowStyles.WS_EX_NOACTIVATE))
                     {
-                        form.BackColor = Color.White;
-                        form.FormBorderStyle = FormBorderStyle.None;
-                        form.ShowInTaskbar = false;
-                        form.StartPosition = FormStartPosition.Manual;
-                        form.Location = new Point(rect.X, rect.Y);
-                        form.Size = new Size(rect.Width, rect.Height);
-
-                        NativeMethods.ShowWindow(form.Handle, (int)WindowShowStyle.ShowNoActivate);
-
-                        if (!NativeMethods.SetWindowPos(form.Handle, handle, 0, 0, 0, 0,
+                        window.SetBackground(Color.White, rect);
+                        NativeMethods.ShowWindow(window.Handle, (int)WindowShowStyle.ShowNoActivate);
+                        if (!NativeMethods.SetWindowPos(window.Handle, handle, 0, 0, 0, 0,
                             SetWindowPosFlags.SWP_NOMOVE | SetWindowPosFlags.SWP_NOSIZE | SetWindowPosFlags.SWP_NOACTIVATE))
                         {
-                            form.Close();
                             DebugHelper.WriteLine("Transparent capture failed. Reason: SetWindowPos fail.");
                             return CaptureWindow(handle);
                         }
-
-                        Application.DoEvents();
-                        Thread.Sleep(10);
-
+                        FlushCaptureBackground();
                         whiteBackground = CaptureRectangleNative(rect);
-
-                        form.BackColor = Color.Black;
-                        Application.DoEvents();
-                        Thread.Sleep(10);
-
+                        window.SetBackground(Color.Black, rect);
+                        FlushCaptureBackground();
                         blackBackground = CaptureRectangleNative(rect);
-
-                        form.BackColor = Color.White;
-                        Application.DoEvents();
-                        Thread.Sleep(10);
-
+                        window.SetBackground(Color.White, rect);
+                        FlushCaptureBackground();
                         whiteBackground2 = CaptureRectangleNative(rect);
-
-                        form.Close();
                     }
 
                     Bitmap transparentImage;
 
-                    if (ImageHelpers.CompareImages(whiteBackground, whiteBackground2))
+                    if (SkiaImageHelpers.CompareImages(whiteBackground, whiteBackground2))
                     {
                         transparentImage = CreateTransparentImage(whiteBackground, blackBackground);
                         isTransparent = true;
@@ -130,7 +112,7 @@ namespace ShareX.ScreenCaptureLib
 
                     if (isTransparent)
                     {
-                        transparentImage = ImageHelpers.AutoCropImage(transparentImage);
+                        transparentImage = SkiaImageHelpers.AutoCropImage(transparentImage);
 
                         if (!CaptureShadow)
                         {
@@ -156,6 +138,15 @@ namespace ShareX.ScreenCaptureLib
             return null;
         }
 
+        private static void FlushCaptureBackground()
+        {
+            if (NativeMethods.IsDWMEnabled()) DwmFlush();
+            Thread.Sleep(10);
+        }
+
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmFlush();
+
         public Bitmap CaptureActiveWindowTransparent()
         {
             IntPtr handle = NativeMethods.GetForegroundWindow();
@@ -165,13 +156,13 @@ namespace ShareX.ScreenCaptureLib
 
         private Bitmap CreateTransparentImage(Bitmap whiteBackground, Bitmap blackBackground)
         {
-            if (whiteBackground != null && blackBackground != null && whiteBackground.Size == blackBackground.Size)
+            if (whiteBackground != null && blackBackground != null && whiteBackground.GetSize() == blackBackground.GetSize())
             {
-                Bitmap result = new Bitmap(whiteBackground.Width, whiteBackground.Height, PixelFormat.Format32bppArgb);
+                Bitmap result = SkiaImageHelpers.CreateBitmap(whiteBackground.Width, whiteBackground.Height);
 
-                using (UnsafeBitmap whiteBitmap = new UnsafeBitmap(whiteBackground, true, ImageLockMode.ReadOnly))
-                using (UnsafeBitmap blackBitmap = new UnsafeBitmap(blackBackground, true, ImageLockMode.ReadOnly))
-                using (UnsafeBitmap resultBitmap = new UnsafeBitmap(result, true, ImageLockMode.WriteOnly))
+                using (SkiaPixelBuffer whiteBitmap = new SkiaPixelBuffer(whiteBackground, true, PixelAccess.ReadOnly))
+                using (SkiaPixelBuffer blackBitmap = new SkiaPixelBuffer(blackBackground, true, PixelAccess.ReadOnly))
+                using (SkiaPixelBuffer resultBitmap = new SkiaPixelBuffer(result, true, PixelAccess.WriteOnly))
                 {
                     int pixelCount = blackBitmap.PixelCount;
 
@@ -206,10 +197,16 @@ namespace ShareX.ScreenCaptureLib
 
         private void TrimShadow(Bitmap bitmap)
         {
-            int cornerSize = 10;
+            // The auto-cropped image has no minimum size, and SkiaPixelBuffer does not check bounds, so the corners must fit in it.
+            int cornerSize = Math.Min(10, Math.Min(bitmap.Width, bitmap.Height));
             int alphaOffset = 200;
 
-            using (UnsafeBitmap unsafeBitmap = new UnsafeBitmap(bitmap, true))
+            if (cornerSize <= 0)
+            {
+                return;
+            }
+
+            using (SkiaPixelBuffer unsafeBitmap = new SkiaPixelBuffer(bitmap, true))
             {
                 for (int i = 0; i < cornerSize; i++)
                 {

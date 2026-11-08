@@ -1,5 +1,5 @@
 using ShareX;
-using System.Windows.Forms;
+using ShareX.HelpersLib;
 
 internal static class ActionsToolbarTooltipBuilderTests
 {
@@ -12,7 +12,7 @@ internal static class ActionsToolbarTooltipBuilderTests
 
     private static void ShowsConfiguredHotkeyForMatchingAction()
     {
-        HotkeySettings[] hotkeys = [new(HotkeyType.RectangleRegion, Keys.Control | Keys.R)];
+        HotkeySettings[] hotkeys = [new(HotkeyType.RectangleRegion, InputKey.Control | InputKey.R)];
 
         string tooltip = ActionsToolbarTooltipBuilder.Build(HotkeyType.RectangleRegion, "Capture region", hotkeys);
 
@@ -23,10 +23,10 @@ internal static class ActionsToolbarTooltipBuilderTests
     {
         HotkeySettings[] hotkeys =
         [
-            new(HotkeyType.RectangleRegion, Keys.Control | Keys.R),
-            new(HotkeyType.PrintScreen, Keys.PrintScreen),
-            new(HotkeyType.RectangleRegion, Keys.Shift | Keys.R),
-            new(HotkeyType.RectangleRegion, Keys.Control | Keys.R)
+            new(HotkeyType.RectangleRegion, InputKey.Control | InputKey.R),
+            new(HotkeyType.PrintScreen, InputKey.PrintScreen),
+            new(HotkeyType.RectangleRegion, InputKey.Shift | InputKey.R),
+            new(HotkeyType.RectangleRegion, InputKey.Control | InputKey.R)
         ];
 
         string tooltip = ActionsToolbarTooltipBuilder.Build(HotkeyType.RectangleRegion, "Capture region", hotkeys);

@@ -73,14 +73,14 @@
   <data name="AnalyzeImageOptionsViewModel_Testing" xml:space="preserve">
     <value>בודק...</value>
   </data>
-  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
-    <value>נתח אוטומטית בעת הפתיחה</value>
-  </data>
   <data name="AnalyzeImageOptionsWindow_API_key" xml:space="preserve">
     <value>מפתח API</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_API_key_page" xml:space="preserve">
     <value>דף מפתח API...</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_Analyze_automatically_when_opened" xml:space="preserve">
+    <value>נתח אוטומטית בעת הפתיחה</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Behavior" xml:space="preserve">
     <value>אופן פעולה</value>
@@ -102,9 +102,6 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Google_Gemini" xml:space="preserve">
     <value>Google Gemini</value>
-  </data>
-  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
-    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageOptionsWindow_Load_models" xml:space="preserve">
     <value>טען מודלים</value>
@@ -135,6 +132,9 @@
   </data>
   <data name="AnalyzeImageOptionsWindow_Verbosity" xml:space="preserve">
     <value>רמת פירוט</value>
+  </data>
+  <data name="AnalyzeImageOptionsWindow_https_api_openai_com" xml:space="preserve">
+    <value>https://api.openai.com</value>
   </data>
   <data name="AnalyzeImageService_Connection_OK" xml:space="preserve">
     <value>החיבור תקין.</value>
@@ -213,6 +213,126 @@
   </data>
   <data name="AnalyzeImageWindow_ShareX_Analyze_image" xml:space="preserve">
     <value>ShareX - ניתוח תמונה</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Create_failed" xml:space="preserve">
+    <value>יצירת ה-GIF נכשלה: {0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Created" xml:space="preserve">
+    <value>ה-GIF המונפש נוצר.</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Creating" xml:space="preserve">
+    <value>יוצר GIF מונפש...</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_failed" xml:space="preserve">
+    <value>התצוגה המקדימה נכשלה: {0}</value>
+  </data>
+  <data name="AnimatedGifMakerViewModel_Preview_info" xml:space="preserve">
+    <value>{0} פריימים • {1} מ״ש</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_images_dialog" xml:space="preserve">
+    <value>הוספת תמונות</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Add_two_images_to_preview" xml:space="preserve">
+    <value>יש להוסיף לפחות שתי תמונות לתצוגה מקדימה של ההנפשה.</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animated_GIF_maker" xml:space="preserve">
+    <value>יוצר GIF מונפש</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Animation" xml:space="preserve">
+    <value>הנפשה</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Create_GIF" xml:space="preserve">
+    <value>יצירת GIF...</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Frame_delay" xml:space="preserve">
+    <value>השהיית פריים</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_GIF_images" xml:space="preserve">
+    <value>תמונות GIF</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Loop_animation" xml:space="preserve">
+    <value>חזרה על ההנפשה</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Output" xml:space="preserve">
+    <value>פלט</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Preview" xml:space="preserve">
+    <value>תצוגה מקדימה</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Repeat_count" xml:space="preserve">
+    <value>מספר חזרות</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Save_GIF_dialog" xml:space="preserve">
+    <value>שמירת GIF מונפש</value>
+  </data>
+  <data name="AnimatedGifMakerWindow_Zero_repeats_forever" xml:space="preserve">
+    <value>0 חוזר ללא הגבלה.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_ChooseGif" xml:space="preserve">
+    <value>כדי להתחיל, יש לפתוח או לגרור לכאן GIF מונפש</value>
+  </data>
+  <data name="AnimatedGifTrimmer_DependentFrame" xml:space="preserve">
+    <value>הקטע הזה מתחיל בתמונה שדורשת תמונות קודמות. יש לבחור תמונת התחלה אחרת לייצוא ללא אובדן.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Export" xml:space="preserve">
+    <value>שמירת GIF חתוך…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Exporting" xml:space="preserve">
+    <value>שמירת ה־GIF החתוך…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Frame" xml:space="preserve">
+    <value>תמונה {0} מתוך {1}</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Gif" xml:space="preserve">
+    <value>GIF מונפש</value>
+  </data>
+  <data name="AnimatedGifTrimmer_GifFiles" xml:space="preserve">
+    <value>קובצי GIF</value>
+  </data>
+  <data name="AnimatedGifTrimmer_InvalidGif" xml:space="preserve">
+    <value>יש לבחור GIF מונפש עם לפחות שתי תמונות.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Loading" xml:space="preserve">
+    <value>הכנת ציר הזמן של ה־GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Lossless" xml:space="preserve">
+    <value>ללא אובדן</value>
+  </data>
+  <data name="AnimatedGifTrimmer_NextFrame" xml:space="preserve">
+    <value>התמונה הבאה</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Open" xml:space="preserve">
+    <value>פתיחת GIF…</value>
+  </data>
+  <data name="AnimatedGifTrimmer_OutputExtension" xml:space="preserve">
+    <value>יש להשתמש בסיומת .gif לקובץ הפלט.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Pause" xml:space="preserve">
+    <value>השהה</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Play" xml:space="preserve">
+    <value>נגן</value>
+  </data>
+  <data name="AnimatedGifTrimmer_PreviousFrame" xml:space="preserve">
+    <value>התמונה הקודמת</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Reencode" xml:space="preserve">
+    <value>קידוד מחדש</value>
+  </data>
+  <data name="AnimatedGifTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>יש לשמור את ה־GIF החתוך בשם קובץ אחר או בתיקייה אחרת.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Timeline" xml:space="preserve">
+    <value>ציר הזמן של ה־GIF ובחירת טווח החיתוך</value>
+  </data>
+  <data name="AnimatedGifTrimmer_Title" xml:space="preserve">
+    <value>ShareX - כלי חיתוך GIF מונפש</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UnsupportedGif" xml:space="preserve">
+    <value>ה־GIF הזה מכיל בלוק גרפי של טקסט פשוט שכלי החיתוך ללא אובדן אינו יכול להעתיק בבטחה.</value>
+  </data>
+  <data name="AnimatedGifTrimmer_UseReencode" xml:space="preserve">
+    <value>הקטע הזה דורש תמונות קודמות ולא ניתן לשמור אותו ללא אובדן. יש לבחור במצב החיתוך קידוד מחדש ולשמור שוב.</value>
   </data>
   <data name="BackgroundRemoverViewModel_Background_removed_ms" xml:space="preserve">
     <value>הרקע הוסר בתוך {0} אלפיות שנייה.</value>
@@ -310,6 +430,18 @@
   <data name="BorderlessWindowWindow_Window_title" xml:space="preserve">
     <value>כותרת החלון</value>
   </data>
+  <data name="ClassicRulerOverlayControl_Distance" xml:space="preserve">
+    <value>מרחק: {0:0.00} px | זווית: {1:0.00}°</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Position" xml:space="preserve">
+    <value>X: {0} | Y: {1} | ימין: {2} | תחתון: {3}</value>
+  </data>
+  <data name="ClassicRulerOverlayControl_Size" xml:space="preserve">
+    <value>רוחב: {0} px | גובה: {1} px | שטח: {2} px | היקף: {3} px</value>
+  </data>
+  <data name="ClassicRulerWindow_Title" xml:space="preserve">
+    <value>ShareX - סרגל</value>
+  </data>
   <data name="ClipboardViewerViewModel_Clipboard_content" xml:space="preserve">
     <value>תוכן הלוח</value>
   </data>
@@ -373,14 +505,14 @@
   <data name="DirectoryIndexerWindow_Browse" xml:space="preserve">
     <value>עיון...</value>
   </data>
+  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
+    <value>קובצי CSS</value>
+  </data>
   <data name="DirectoryIndexerWindow_Choose_a_folder_and_generate_output_Nothing_is_saved_until_you_use_Save_as_or_Upload" xml:space="preserve">
     <value>בחר תיקייה וצור פלט. דבר לא נשמר עד לשימוש ב'שמור בשם' או 'העלה'.</value>
   </data>
   <data name="DirectoryIndexerWindow_Create_parseable_structured_JSON" xml:space="preserve">
     <value>צור JSON מובנה שניתן לניתוח</value>
-  </data>
-  <data name="DirectoryIndexerWindow_CSS_files" xml:space="preserve">
-    <value>קובצי CSS</value>
   </data>
   <data name="DirectoryIndexerWindow_Display_folder_paths" xml:space="preserve">
     <value>הצג נתיבי תיקיות</value>
@@ -433,10 +565,10 @@
   <data name="DirectoryIndexerWindow_Save_directory_index_dialog" xml:space="preserve">
     <value>שמור אינדקס תיקייה</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
+  <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
     <value>בחר קובץ CSS</value>
   </data>
-  <data name="DirectoryIndexerWindow_Select_CSS_file_dialog" xml:space="preserve">
+  <data name="DirectoryIndexerWindow_Select_a_CSS_file" xml:space="preserve">
     <value>בחר קובץ CSS</value>
   </data>
   <data name="DirectoryIndexerWindow_Select_folder_to_index_dialog" xml:space="preserve">
@@ -652,9 +784,6 @@
   <data name="IconConverterWindow_Image" xml:space="preserve">
     <value>תמונה</value>
   </data>
-  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
-    <value>או השתמש בעיון כדי לבחור קובץ</value>
-  </data>
   <data name="IconConverterWindow_Save_icon_as_dialog" xml:space="preserve">
     <value>שמור סמל בשם</value>
   </data>
@@ -663,6 +792,9 @@
   </data>
   <data name="IconConverterWindow_Sizes" xml:space="preserve">
     <value>גדלים</value>
+  </data>
+  <data name="IconConverterWindow_or_use_Browse_to_choose_a_file" xml:space="preserve">
+    <value>או השתמש בעיון כדי לבחור קובץ</value>
   </data>
   <data name="ImageCombinerViewModel_Add_two_images" xml:space="preserve">
     <value>הוסף לפחות שתי תמונות לשילוב.</value>
@@ -790,6 +922,102 @@
   <data name="ImageComparerWindow_Slider" xml:space="preserve">
     <value>מחוון</value>
   </data>
+  <data name="ImageConverterService_Failed_to_encode_image" xml:space="preserve">
+    <value>לא ניתן לקודד את התמונה בפורמט {0}.</value>
+  </data>
+  <data name="ImageConverterWindow_BMPBitDepth" xml:space="preserve">
+    <value>עומק סיביות BMP:</value>
+  </data>
+  <data name="ImageConverterWindow_BackgroundColor" xml:space="preserve">
+    <value>צבע רקע:</value>
+  </data>
+  <data name="ImageConverterWindow_Convert_images" xml:space="preserve">
+    <value>המרת תמונות</value>
+  </data>
+  <data name="ImageConverterWindow_FileNameTemplate" xml:space="preserve">
+    <value>תבנית שם קובץ:</value>
+  </data>
+  <data name="ImageConverterWindow_Image_converter" xml:space="preserve">
+    <value>ממיר תמונות</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling" xml:space="preserve">
+    <value>תת־דגימת צבע ב-JPEG:</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling420" xml:space="preserve">
+    <value>4:2:0 (קבצים קטנים יותר)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling422" xml:space="preserve">
+    <value>4:2:2 (מאוזן)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsampling444" xml:space="preserve">
+    <value>4:4:4 (רזולוציית צבע מלאה)</value>
+  </data>
+  <data name="ImageConverterWindow_JPEGSubsamplingHint" xml:space="preserve">
+    <value>4:4:4 שומר על יותר פרטי צבע סביב טקסט וקצוות חדים, אך בדרך כלל יוצר קבצים גדולים יותר.</value>
+  </data>
+  <data name="ImageConverterWindow_OutputFormat" xml:space="preserve">
+    <value>תבנית פלט:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGBitDepth" xml:space="preserve">
+    <value>עומק סיביות PNG:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionHint" xml:space="preserve">
+    <value>0 = ללא דחיסה, 1 = המהיר ביותר, 9 = הקבצים הקטנים ביותר. כל הרמות ללא אובדן איכות.</value>
+  </data>
+  <data name="ImageConverterWindow_PNGCompressionLevel" xml:space="preserve">
+    <value>רמת דחיסת PNG:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilter" xml:space="preserve">
+    <value>מסנן PNG:</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAutomatic" xml:space="preserve">
+    <value>אוטומטי (כל המסננים)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterAverage" xml:space="preserve">
+    <value>ממוצע (משמאל ומעל)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterNone" xml:space="preserve">
+    <value>ללא סינון</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterPaeth" xml:space="preserve">
+    <value>Paeth (חיזוי)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterSub" xml:space="preserve">
+    <value>Sub (הפיקסל משמאל)</value>
+  </data>
+  <data name="ImageConverterWindow_PNGFilterUp" xml:space="preserve">
+    <value>Up (הפיקסל מעל)</value>
+  </data>
+  <data name="ImageConverterWindow_Quality" xml:space="preserve">
+    <value>איכות:</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffort" xml:space="preserve">
+    <value>מאמץ דחיסה:</value>
+  </data>
+  <data name="ImageConverterWindow_WebPCompressionEffortHint" xml:space="preserve">
+    <value>ערכים נמוכים מאפשרים קידוד מהיר יותר. ערכים גבוהים יוצרים קבצים קטנים יותר. כל הערכים שומרים על איכות התמונה.</value>
+  </data>
+  <data name="ImageConverterWindow_WebPLossless" xml:space="preserve">
+    <value>ללא אובדן</value>
+  </data>
+  <data name="ImageResizerWindow_Fill" xml:space="preserve">
+    <value>מילוי</value>
+  </data>
+  <data name="ImageResizerWindow_Fit" xml:space="preserve">
+    <value>התאמה</value>
+  </data>
+  <data name="ImageResizerWindow_Image_resizer" xml:space="preserve">
+    <value>כלי לשינוי גודל תמונה</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_image" xml:space="preserve">
+    <value>שינוי גודל התמונה</value>
+  </data>
+  <data name="ImageResizerWindow_Resize_mode" xml:space="preserve">
+    <value>מצב שינוי גודל</value>
+  </data>
+  <data name="ImageResizerWindow_Stretch" xml:space="preserve">
+    <value>מתיחה</value>
+  </data>
   <data name="ImageSplitterViewModel_Grid_size" xml:space="preserve">
     <value>{0} × {1}</value>
   </data>
@@ -859,9 +1087,6 @@
   <data name="ImageThumbnailerWindow_File_name_template" xml:space="preserve">
     <value>תבנית שם קובץ</value>
   </data>
-  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
-    <value>$filename_th</value>
-  </data>
   <data name="ImageThumbnailerWindow_Generate_thumbnails" xml:space="preserve">
     <value>צור תמונות ממוזערות</value>
   </data>
@@ -882,6 +1107,36 @@
   </data>
   <data name="ImageThumbnailerWindow_Width" xml:space="preserve">
     <value>רוחב</value>
+  </data>
+  <data name="ImageThumbnailerWindow_filename_th" xml:space="preserve">
+    <value>$filename_th</value>
+  </data>
+  <data name="ImageWatermarkWindow_Apply_watermark" xml:space="preserve">
+    <value>החלת סימן מים</value>
+  </data>
+  <data name="ImageWatermarkWindow_Font_size" xml:space="preserve">
+    <value>גודל גופן</value>
+  </data>
+  <data name="ImageWatermarkWindow_Image_watermark" xml:space="preserve">
+    <value>סימן מים לתמונה</value>
+  </data>
+  <data name="ImageWatermarkWindow_Margin" xml:space="preserve">
+    <value>שוליים</value>
+  </data>
+  <data name="ImageWatermarkWindow_Position" xml:space="preserve">
+    <value>מיקום</value>
+  </data>
+  <data name="ImageWatermarkWindow_Rotation" xml:space="preserve">
+    <value>סיבוב</value>
+  </data>
+  <data name="ImageWatermarkWindow_Scale" xml:space="preserve">
+    <value>שינוי קנה מידה</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark" xml:space="preserve">
+    <value>סימן מים</value>
+  </data>
+  <data name="ImageWatermarkWindow_Watermark_type" xml:space="preserve">
+    <value>סוג סימן מים</value>
   </data>
   <data name="IndexerHtml_File_count" xml:space="preserve">
     <value>{0:n0} קבצים</value>
@@ -997,20 +1252,20 @@
   <data name="LocalizedDisplayConverter_Backward_diagonal" xml:space="preserve">
     <value>אלכסון לאחור</value>
   </data>
-  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
-    <value>לוח שחמט</value>
-  </data>
   <data name="LocalizedDisplayConverter_CPU" xml:space="preserve">
     <value>CPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Checkerboard" xml:space="preserve">
+    <value>לוח שחמט</value>
   </data>
   <data name="LocalizedDisplayConverter_Forward_diagonal" xml:space="preserve">
     <value>אלכסון קדימה</value>
   </data>
-  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
-    <value>Gemini</value>
-  </data>
   <data name="LocalizedDisplayConverter_GPU" xml:space="preserve">
     <value>GPU</value>
+  </data>
+  <data name="LocalizedDisplayConverter_Gemini" xml:space="preserve">
+    <value>Gemini</value>
   </data>
   <data name="LocalizedDisplayConverter_High" xml:space="preserve">
     <value>גבוה</value>
@@ -1162,17 +1417,200 @@
   <data name="MonitorTestWindow_Pattern" xml:space="preserve">
     <value>תבנית</value>
   </data>
-  <data name="MonitorTestWindow_Red" xml:space="preserve">
-    <value>אדום</value>
-  </data>
   <data name="MonitorTestWindow_RGB" xml:space="preserve">
     <value>RGB</value>
+  </data>
+  <data name="MonitorTestWindow_Red" xml:space="preserve">
+    <value>אדום</value>
   </data>
   <data name="MonitorTestWindow_ShareX_Monitor_Test" xml:space="preserve">
     <value>ShareX - בדיקת צג</value>
   </data>
   <data name="MonitorTestWindow_Speed" xml:space="preserve">
     <value>מהירות</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColor" xml:space="preserve">
+    <value>תמיד הדגש צבע:</value>
+  </data>
+  <data name="MouseHighlighter_AlwaysColorHelp" xml:space="preserve">
+    <value>השתמש בצבע שקוף כדי להשבית את ההדגשה המתמשכת.</value>
+  </data>
+  <data name="MouseHighlighter_AutoActivate" xml:space="preserve">
+    <value>הפעלה אוטומטית כאשר ShareX מתחיל</value>
+  </data>
+  <data name="MouseHighlighter_Circle" xml:space="preserve">
+    <value>סימון עיגול</value>
+  </data>
+  <data name="MouseHighlighter_FadeDelay" xml:space="preserve">
+    <value>עיכוב דהייה (ms):</value>
+  </data>
+  <data name="MouseHighlighter_FadeDuration" xml:space="preserve">
+    <value>משך דהייה (ms):</value>
+  </data>
+  <data name="MouseHighlighter_FollowCursor" xml:space="preserve">
+    <value>עקוב אחר הסמן בזמן שהלחצן מוחזק</value>
+  </data>
+  <data name="MouseHighlighter_KeepAfterRecording" xml:space="preserve">
+    <value>המשך להדגיש לאחר ההקלטה</value>
+  </data>
+  <data name="MouseHighlighter_MiddleColor" xml:space="preserve">
+    <value>צבע הכפתור האמצעי:</value>
+  </data>
+  <data name="MouseHighlighter_MiddleReleaseCrosshairs" xml:space="preserve">
+    <value>הצג את הכוונת בשחרור הכפתור האמצעי</value>
+  </data>
+  <data name="MouseHighlighter_Mode" xml:space="preserve">
+    <value>מצב הדגשה:</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryColor" xml:space="preserve">
+    <value>צבע כפתור ראשי:</value>
+  </data>
+  <data name="MouseHighlighter_PrimaryReleaseCrosshairs" xml:space="preserve">
+    <value>הצג את הכוונת בשחרור הכפתור הראשי</value>
+  </data>
+  <data name="MouseHighlighter_Radius" xml:space="preserve">
+    <value>רדיוס (פיקסלים):</value>
+  </data>
+  <data name="MouseHighlighter_RecordingHelp" xml:space="preserve">
+    <value>כדי להדגיש קליקים בהקלטות, הפעל את אפשרות סימון העכבר בהגדרות משימות ← לכידה ← מקליט מסך.</value>
+  </data>
+  <data name="MouseHighlighter_ReleaseCrosshairs" xml:space="preserve">
+    <value>הצג את הכוונת בשחרור הכפתור המשני</value>
+  </data>
+  <data name="MouseHighlighter_Ripple" xml:space="preserve">
+    <value>אדווה</value>
+  </data>
+  <data name="MouseHighlighter_RippleDuration" xml:space="preserve">
+    <value>משך אדוות (ms):</value>
+  </data>
+  <data name="MouseHighlighter_RippleIntensity" xml:space="preserve">
+    <value>עוצמת אדוות:</value>
+  </data>
+  <data name="MouseHighlighter_RippleSize" xml:space="preserve">
+    <value>גודל אדוות (px):</value>
+  </data>
+  <data name="MouseHighlighter_SecondaryColor" xml:space="preserve">
+    <value>צבע כפתור משני:</value>
+  </data>
+  <data name="MouseHighlighter_Start" xml:space="preserve">
+    <value>התחל להדגיש</value>
+  </data>
+  <data name="MouseHighlighter_StartFailed" xml:space="preserve">
+    <value>לא ניתן היה להתחיל את הדגשת העכבר.</value>
+  </data>
+  <data name="MouseHighlighter_Stop" xml:space="preserve">
+    <value>תפסיק להדגיש</value>
+  </data>
+  <data name="MouseHighlighter_StopAfterRecording" xml:space="preserve">
+    <value>הפסק את ההדגשה כאשר ההקלטה נפסקת</value>
+  </data>
+  <data name="MouseHighlighter_Title" xml:space="preserve">
+    <value>סימון עכבר</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_failed" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="NetworkMonitorProbe_Endpoint_timed_out" xml:space="preserve">
+    <value>תם הזמן הקצוב עבור {0}.</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_network_interface" xml:space="preserve">
+    <value>לא נמצא ממשק רשת פעיל.</value>
+  </data>
+  <data name="NetworkMonitorProbe_No_response" xml:space="preserve">
+    <value>אף נקודת קצה לא הגיבה.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Automatic_recommended" xml:space="preserve">
+    <value>אוטומטי (מומלץ)</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Checking" xml:space="preserve">
+    <value>בודק...</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Connected" xml:space="preserve">
+    <value>מחובר.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Disconnected" xml:space="preserve">
+    <value>מנותק.</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_15_minutes" xml:space="preserve">
+    <value>15 הדקות האחרונות</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_5_minutes" xml:space="preserve">
+    <value>5 הדקות האחרונות</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_6_hours" xml:space="preserve">
+    <value>6 השעות האחרונות</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Last_hour" xml:space="preserve">
+    <value>השעה האחרונה</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Milliseconds" xml:space="preserve">
+    <value>{0:0} אלפיות שנייה</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Paused" xml:space="preserve">
+    <value>מושהה</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Percentage" xml:space="preserve">
+    <value>{0:0.0}%</value>
+  </data>
+  <data name="NetworkMonitorViewModel_Session" xml:space="preserve">
+    <value>הפעלה</value>
+  </data>
+  <data name="NetworkMonitorWindow_Availability" xml:space="preserve">
+    <value>זמינות</value>
+  </data>
+  <data name="NetworkMonitorWindow_Average_latency" xml:space="preserve">
+    <value>השהיה ממוצעת</value>
+  </data>
+  <data name="NetworkMonitorWindow_Check_every" xml:space="preserve">
+    <value>בדוק כל</value>
+  </data>
+  <data name="NetworkMonitorWindow_Clear_log" xml:space="preserve">
+    <value>נקה יומן</value>
+  </data>
+  <data name="NetworkMonitorWindow_Connection_events" xml:space="preserve">
+    <value>אירועי חיבור</value>
+  </data>
+  <data name="NetworkMonitorWindow_Copy_all" xml:space="preserve">
+    <value>העתק הכול</value>
+  </data>
+  <data name="NetworkMonitorWindow_Current_latency" xml:space="preserve">
+    <value>השהיה נוכחית</value>
+  </data>
+  <data name="NetworkMonitorWindow_Date" xml:space="preserve">
+    <value>תאריך</value>
+  </data>
+  <data name="NetworkMonitorWindow_Disconnects" xml:space="preserve">
+    <value>ניתוקים</value>
+  </data>
+  <data name="NetworkMonitorWindow_Latency_history" xml:space="preserve">
+    <value>היסטוריית השהיה</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_events" xml:space="preserve">
+    <value>עדיין לא נרשמו שינויי חיבור.</value>
+  </data>
+  <data name="NetworkMonitorWindow_No_samples" xml:space="preserve">
+    <value>עדיין אין דגימות השהיה.</value>
+  </data>
+  <data name="NetworkMonitorWindow_Open_log" xml:space="preserve">
+    <value>פתח יומן...</value>
+  </data>
+  <data name="NetworkMonitorWindow_Pause" xml:space="preserve">
+    <value>השהה</value>
+  </data>
+  <data name="NetworkMonitorWindow_Range" xml:space="preserve">
+    <value>טווח</value>
+  </data>
+  <data name="NetworkMonitorWindow_ShareX_Network_Monitor" xml:space="preserve">
+    <value>ShareX - מנטר רשת</value>
+  </data>
+  <data name="NetworkMonitorWindow_Start" xml:space="preserve">
+    <value>התחל</value>
+  </data>
+  <data name="NetworkMonitorWindow_Status" xml:space="preserve">
+    <value>מצב</value>
+  </data>
+  <data name="NetworkMonitorWindow_Target" xml:space="preserve">
+    <value>יעד</value>
   </data>
   <data name="OCRHelper_Language_unavailable" xml:space="preserve">
     <value>השפה {0} אינה זמינה במערכת זו עבור OCR.</value>
@@ -1462,11 +1900,11 @@
   <data name="QRCodeWindow_PNG_image" xml:space="preserve">
     <value>תמונת PNG</value>
   </data>
-  <data name="QRCodeWindow_px" xml:space="preserve">
-    <value>פיקסלים</value>
-  </data>
   <data name="QRCodeWindow_QR_code_size" xml:space="preserve">
     <value>גודל קוד QR</value>
+  </data>
+  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
+    <value>תמונת SVG</value>
   </data>
   <data name="QRCodeWindow_Save" xml:space="preserve">
     <value>שמור...</value>
@@ -1489,17 +1927,125 @@
   <data name="QRCodeWindow_ShareX_QR_Code" xml:space="preserve">
     <value>ShareX - קוד QR</value>
   </data>
-  <data name="QRCodeWindow_SVG_image" xml:space="preserve">
-    <value>תמונת SVG</value>
-  </data>
   <data name="QRCodeWindow_Upload" xml:space="preserve">
     <value>העלאה</value>
+  </data>
+  <data name="QRCodeWindow_px" xml:space="preserve">
+    <value>פיקסלים</value>
+  </data>
+  <data name="RemoteStorageBrowser_Cancel" xml:space="preserve">
+    <value>ביטול</value>
+  </data>
+  <data name="RemoteStorageBrowser_CopyUrl" xml:space="preserve">
+    <value>העתקת כתובת</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreateFolder" xml:space="preserve">
+    <value>צור תיקייה...</value>
+  </data>
+  <data name="RemoteStorageBrowser_CreatedFolder" xml:space="preserve">
+    <value>התיקייה „{0}” נוצרה.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Delete" xml:space="preserve">
+    <value>מחק...</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFileConfirmation" xml:space="preserve">
+    <value>למחוק את הקובץ „{0}”?</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteFolderConfirmation" xml:space="preserve">
+    <value>למחוק את התיקייה „{0}”?</value>
+  </data>
+  <data name="RemoteStorageBrowser_DeleteNonEmptyFolderConfirmation" xml:space="preserve">
+    <value>התיקייה „{0}” אינה ריקה. למחוק אותה ואת כל התוכן שלה? לא ניתן לבטל פעולה זו.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Deleted" xml:space="preserve">
+    <value>„{0}” נמחק.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Download" xml:space="preserve">
+    <value>הורד...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Downloaded" xml:space="preserve">
+    <value>„{0}” הורד.</value>
+  </data>
+  <data name="RemoteStorageBrowser_DropFilesToUpload" xml:space="preserve">
+    <value>שחרר קבצים כדי להעלות אותם לתיקייה זו</value>
+  </data>
+  <data name="RemoteStorageBrowser_EmptyFolder" xml:space="preserve">
+    <value>התיקייה הזו ריקה.</value>
+  </data>
+  <data name="RemoteStorageBrowser_ItemCount" xml:space="preserve">
+    <value>{0} קבצים, {1} תיקיות • סה״כ {2}</value>
+  </data>
+  <data name="RemoteStorageBrowser_Loading" xml:space="preserve">
+    <value>טוען...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Location" xml:space="preserve">
+    <value>מיקום:</value>
+  </data>
+  <data name="RemoteStorageBrowser_Modified" xml:space="preserve">
+    <value>תאריך שינוי</value>
+  </data>
+  <data name="RemoteStorageBrowser_Name" xml:space="preserve">
+    <value>שם</value>
+  </data>
+  <data name="RemoteStorageBrowser_NameAlreadyExists" xml:space="preserve">
+    <value>כבר קיים פריט בשם „{0}”.</value>
+  </data>
+  <data name="RemoteStorageBrowser_NewFolder" xml:space="preserve">
+    <value>תיקייה חדשה</value>
+  </data>
+  <data name="RemoteStorageBrowser_NoMatchingItems" xml:space="preserve">
+    <value>לא נמצאו פריטים תואמים.</value>
+  </data>
+  <data name="RemoteStorageBrowser_OpenUrl" xml:space="preserve">
+    <value>פתח קישור</value>
+  </data>
+  <data name="RemoteStorageBrowser_OperationFailed" xml:space="preserve">
+    <value>פעולת האחסון המרוחק נכשלה.</value>
+  </data>
+  <data name="RemoteStorageBrowser_Provider" xml:space="preserve">
+    <value>ספק:</value>
+  </data>
+  <data name="RemoteStorageBrowser_Refresh" xml:space="preserve">
+    <value>רענן</value>
+  </data>
+  <data name="RemoteStorageBrowser_Rename" xml:space="preserve">
+    <value>שנה שם...</value>
+  </data>
+  <data name="RemoteStorageBrowser_Renamed" xml:space="preserve">
+    <value>השם „{0}” שונה ל-„{1}”.</value>
+  </data>
+  <data name="RemoteStorageBrowser_SaveDownloadedFile" xml:space="preserve">
+    <value>שמור קובץ שהורד</value>
+  </data>
+  <data name="RemoteStorageBrowser_SearchCurrentFolder" xml:space="preserve">
+    <value>חיפוש בתיקייה הנוכחית...</value>
+  </data>
+  <data name="RemoteStorageBrowser_SelectFilesToUpload" xml:space="preserve">
+    <value>בחר קבצים להעלאה</value>
+  </data>
+  <data name="RemoteStorageBrowser_Size" xml:space="preserve">
+    <value>גודל</value>
+  </data>
+  <data name="RemoteStorageBrowser_Title" xml:space="preserve">
+    <value>דפדפן אחסון מרוחק</value>
+  </data>
+  <data name="RemoteStorageBrowser_Up" xml:space="preserve">
+    <value>למעלה</value>
+  </data>
+  <data name="RemoteStorageBrowser_Upload" xml:space="preserve">
+    <value>העלה...</value>
+  </data>
+  <data name="RemoteStorageBrowser_UploadedFiles" xml:space="preserve">
+    <value>הועלו {0} קבצים.</value>
+  </data>
+  <data name="RemoteStorageBrowser_View" xml:space="preserve">
+    <value>הצג</value>
   </data>
   <data name="RulerOverlayControl_Tolerance" xml:space="preserve">
     <value>סבילות: {0}%</value>
   </data>
   <data name="RulerWindow_ShareX_Ruler" xml:space="preserve">
-    <value>ShareX - סרגל</value>
+    <value>ShareX - מדידה</value>
   </data>
   <data name="VideoConverterViewModel_Choose_video" xml:space="preserve">
     <value>בחר סרטון כדי להתחיל.</value>
@@ -1570,9 +2116,6 @@
   <data name="VideoConverterWindow_Input_file" xml:space="preserve">
     <value>קובץ קלט</value>
   </data>
-  <data name="VideoConverterWindow_kbps" xml:space="preserve">
-    <value>kbps</value>
-  </data>
   <data name="VideoConverterWindow_Open_the_output_folder_when_finished" xml:space="preserve">
     <value>פתח את תיקיית הפלט בסיום</value>
   </data>
@@ -1606,8 +2149,35 @@
   <data name="VideoConverterWindow_Video_encoder" xml:space="preserve">
     <value>מקודד וידאו</value>
   </data>
+  <data name="VideoConverterWindow_kbps" xml:space="preserve">
+    <value>kbps</value>
+  </data>
   <data name="VideoConverterWindow_video_output" xml:space="preserve">
     <value>video-output</value>
+  </data>
+  <data name="VideoPlayer_ExitFullscreen" xml:space="preserve">
+    <value>יציאה ממסך מלא</value>
+  </data>
+  <data name="VideoPlayer_Fullscreen" xml:space="preserve">
+    <value>מסך מלא</value>
+  </data>
+  <data name="VideoPlayer_Loading" xml:space="preserve">
+    <value>טוען וידאו...</value>
+  </data>
+  <data name="VideoPlayer_Mute" xml:space="preserve">
+    <value>השתקה</value>
+  </data>
+  <data name="VideoPlayer_Seek" xml:space="preserve">
+    <value>מיקום ההפעלה</value>
+  </data>
+  <data name="VideoPlayer_Title" xml:space="preserve">
+    <value>ShareX - נגן וידאו</value>
+  </data>
+  <data name="VideoPlayer_Unmute" xml:space="preserve">
+    <value>ביטול השתקה</value>
+  </data>
+  <data name="VideoPlayer_Volume" xml:space="preserve">
+    <value>עוצמת השמע</value>
   </data>
   <data name="VideoThumbnailerViewModel_Custom_folder" xml:space="preserve">
     <value>תיקייה מותאמת אישית</value>
@@ -1704,5 +2274,95 @@
   </data>
   <data name="VideoThumbnailerWindow_Video_files" xml:space="preserve">
     <value>קובצי סרטונים</value>
+  </data>
+  <data name="VideoTrimmer_AllFiles" xml:space="preserve">
+    <value>כל הקבצים (*.*)</value>
+  </data>
+  <data name="VideoTrimmer_Cancel" xml:space="preserve">
+    <value>ביטול</value>
+  </data>
+  <data name="VideoTrimmer_Cancelled" xml:space="preserve">
+    <value>בוטל.</value>
+  </data>
+  <data name="VideoTrimmer_ChooseVideo" xml:space="preserve">
+    <value>פתח או גרור לכאן וידאו כדי להתחיל</value>
+  </data>
+  <data name="VideoTrimmer_CopyHint" xml:space="preserve">
+    <value>מעתיק את הזרמים המקוריים ללא קידוד מחדש. נקודות החיתוך עשויות לזוז לתמונות מפתח סמוכות.</value>
+  </data>
+  <data name="VideoTrimmer_Duration" xml:space="preserve">
+    <value>משך:</value>
+  </data>
+  <data name="VideoTrimmer_EmptyOutput" xml:space="preserve">
+    <value>FFmpeg לא יצר וידאו פלט.</value>
+  </data>
+  <data name="VideoTrimmer_End" xml:space="preserve">
+    <value>סיום:</value>
+  </data>
+  <data name="VideoTrimmer_Export" xml:space="preserve">
+    <value>שמירת הווידאו החתוך…</value>
+  </data>
+  <data name="VideoTrimmer_Exporting" xml:space="preserve">
+    <value>שומר את הווידאו החתוך…</value>
+  </data>
+  <data name="VideoTrimmer_InvalidVideo" xml:space="preserve">
+    <value>בחר וידאו בעל משך ידוע וסופי.</value>
+  </data>
+  <data name="VideoTrimmer_Loading" xml:space="preserve">
+    <value>מכין תצוגות מקדימות של ציר הזמן…</value>
+  </data>
+  <data name="VideoTrimmer_Lossless" xml:space="preserve">
+    <value>ללא אובדן</value>
+  </data>
+  <data name="VideoTrimmer_Open" xml:space="preserve">
+    <value>פתיחת וידאו…</value>
+  </data>
+  <data name="VideoTrimmer_OutputExtension" xml:space="preserve">
+    <value>השתמש בסיומת {0} עבור מצב ייצוא זה.</value>
+  </data>
+  <data name="VideoTrimmer_PlaybackError" xml:space="preserve">
+    <value>Windows לא הצליח להפעיל את הסרטון הזה. יש לוודא ש־Windows תומך בפורמט שלו ושמותקנים רכיבי המדיה של Windows. {0}</value>
+  </data>
+  <data name="VideoTrimmer_Precise" xml:space="preserve">
+    <value>קידוד מחדש</value>
+  </data>
+  <data name="VideoTrimmer_PreciseHint" xml:space="preserve">
+    <value>מקודד מחדש ל-H.264 / AAC MP4 לקבלת נקודות חיתוך מדויקות.</value>
+  </data>
+  <data name="VideoTrimmer_Reset" xml:space="preserve">
+    <value>איפוס הבחירה</value>
+  </data>
+  <data name="VideoTrimmer_Saved" xml:space="preserve">
+    <value>נשמר: {0}</value>
+  </data>
+  <data name="VideoTrimmer_Selection" xml:space="preserve">
+    <value>שמירת {0}</value>
+  </data>
+  <data name="VideoTrimmer_SetEnd" xml:space="preserve">
+    <value>הגדרת סיום כאן</value>
+  </data>
+  <data name="VideoTrimmer_SetStart" xml:space="preserve">
+    <value>הגדרת התחלה כאן</value>
+  </data>
+  <data name="VideoTrimmer_ShowOutput" xml:space="preserve">
+    <value>הצגת תיקיית הפלט...</value>
+  </data>
+  <data name="VideoTrimmer_SourceOverwrite" xml:space="preserve">
+    <value>הווידאו החתוך לא יכול להחליף את הווידאו המקורי. שמור אותו בשם קובץ אחר או בתיקייה אחרת.</value>
+  </data>
+  <data name="VideoTrimmer_Start" xml:space="preserve">
+    <value>התחלה:</value>
+  </data>
+  <data name="VideoTrimmer_Timeline" xml:space="preserve">
+    <value>ציר זמן של הווידאו ובחירת חיתוך</value>
+  </data>
+  <data name="VideoTrimmer_Title" xml:space="preserve">
+    <value>ShareX - חיתוך וידאו</value>
+  </data>
+  <data name="VideoTrimmer_TrimMode" xml:space="preserve">
+    <value>מצב חיתוך:</value>
+  </data>
+  <data name="VideoTrimmer_VideoFiles" xml:space="preserve">
+    <value>קובצי וידאו</value>
   </data>
 </root>

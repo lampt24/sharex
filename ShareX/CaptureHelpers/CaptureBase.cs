@@ -44,11 +44,6 @@ namespace ShareX
         {
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
 
-            if (taskSettings.GeneralSettings.ToastWindowAutoHide)
-            {
-                NotificationWindow.CloseActiveWindow();
-            }
-
             _ = CaptureAsync(taskSettings, autoHideForm);
         }
 
@@ -66,6 +61,12 @@ namespace ShareX
                 if (taskSettings.CaptureSettings.ScreenshotDelay > 0)
                 {
                     int delay = (int)(taskSettings.CaptureSettings.ScreenshotDelay * 1000);
+
+                    if (taskSettings.UseDefaultCaptureSettings && ApplicationState.Settings.ScreenshotDelayJustOnce)
+                    {
+                        MainWindowIntegration.SetScreenshotDelay(0);
+                    }
+
                     await Task.Delay(delay);
                 }
 
@@ -83,6 +84,11 @@ namespace ShareX
             bool showDesktopIcons = false;
             bool showMainForm = false;
 
+            if (taskSettings.GeneralSettings.ToastWindowAutoHide)
+            {
+                await NotificationWindow.CloseActiveWindowAsync();
+            }
+
             if (taskSettings.CaptureSettings.CaptureAutoHideDesktopIcons && !CaptureHelpers.IsActiveWindowFullscreen() && DesktopIconManager.AreDesktopIconsVisible())
             {
                 DesktopIconManager.SetDesktopIconsVisibility(false);
@@ -92,7 +98,7 @@ namespace ShareX
 
             if (autoHideForm && AllowAutoHideForm)
             {
-                Program.MainForm.Hide();
+                MainWindowIntegration.Hide();
                 showMainForm = true;
                 wait = true;
             }
@@ -122,7 +128,7 @@ namespace ShareX
 
                 if (showMainForm)
                 {
-                    Program.MainForm.ForceActivate();
+                    MainWindowIntegration.Activate();
                 }
 
                 AfterCapture(metadata, taskSettings);
@@ -141,7 +147,8 @@ namespace ShareX
                 }
 
                 if (taskSettings.ImageSettings.ImageEffectOnlyRegionCapture &&
-                    GetType() != typeof(CaptureRegion) && GetType() != typeof(CaptureLastRegion))
+                    GetType() != typeof(CaptureRegion) && GetType() != typeof(CaptureLastRegion) &&
+                    GetType() != typeof(CaptureRegionTransparent))
                 {
                     taskSettings.AfterCaptureJob = taskSettings.AfterCaptureJob.Remove(AfterCaptureTasks.AddImageEffects);
                 }

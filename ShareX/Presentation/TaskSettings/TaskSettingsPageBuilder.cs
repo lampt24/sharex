@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -17,12 +33,15 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using ShareX.AvaloniaUI.Controls;
-using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+using ShareX.Icons;
+using ShareX.ImageEditor.Integration;
 using ShareX.Localization;
 using ShareX.ScreenCaptureLib;
+using ShareX.ScreenRecordingLib;
 using ShareX.Tools;
 using ShareX.UploadersLib;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,12 +51,17 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DrawingRectangle = System.Drawing.Rectangle;
 using DrawingSize = System.Drawing.Size;
-using WinForms = System.Windows.Forms;
 
 namespace ShareX;
 
 internal sealed class TaskSettingsPageBuilder
 {
+    private static readonly string[] UploadInfoTokens =
+    [
+        "$result", "$url", "$shorturl", "$thumbnailurl", "$deletionurl", "$filepath", "$filename",
+        "$filenamenoext", "$thumbnailfilename", "$thumbnailfilenamenoext", "$folderpath", "$foldername", "$uploadtime"
+    ];
+
     private readonly TaskSettingsWindow _window;
     private readonly TaskSettings _settings;
     private readonly bool _isDefault;
@@ -56,7 +80,7 @@ internal sealed class TaskSettingsPageBuilder
     private readonly BoundValue<bool> _toolsOverride;
     private readonly BoundValue<bool> _actionsOverride;
     private readonly BoundValue<bool> _advancedOverride;
-    private ContextMenu? _activeNamePatternMenu;
+    private ContextMenu? _activeCodeMenu;
 
     public TaskSettingsPageBuilder(TaskSettingsWindow window, TaskSettings settings, bool isDefault)
     {
@@ -118,7 +142,7 @@ internal sealed class TaskSettingsPageBuilder
             pages.Add("task", BuildTaskPage());
         }
 
-        pages.Add("general", ParentPage("general", Strings.TaskSettingsWindow_General, LucideIcons.settings, _generalOverride, Strings.TaskSettingsWindow_OverrideGeneralSettings));
+        pages.Add("general", ParentPage("general", Strings.TaskSettingsWindow_General, AppIcons.Settings, _generalOverride, Strings.TaskSettingsWindow_OverrideGeneralSettings));
         pages.Add("general-notifications", BuildNotificationsPage());
         pages.Add("image", BuildImagePage());
         pages.Add("image-effects", BuildImageEffectsPage());
@@ -127,11 +151,13 @@ internal sealed class TaskSettingsPageBuilder
         pages.Add("capture-region", BuildRegionCapturePage());
         pages.Add("capture-screen-recorder", BuildScreenRecorderPage());
         pages.Add("capture-ocr", BuildOcrPage());
-        pages.Add("upload", ParentPage("upload", Strings.TaskSettingsWindow_Upload, LucideIcons.upload, _uploadOverride, Strings.TaskSettingsWindow_OverrideUploadSettings));
+        pages.Add("upload", ParentPage("upload", Strings.TaskSettingsWindow_Upload, AppIcons.Upload, _uploadOverride, Strings.TaskSettingsWindow_OverrideUploadSettings));
         pages.Add("upload-file-naming", BuildFileNamingPage());
         pages.Add("upload-clipboard", BuildClipboardUploadPage());
         pages.Add("upload-filters", BuildUploaderFiltersPage());
         pages.Add("tools", BuildToolsPage());
+        pages.Add("tools-image-editor", BuildImageEditorPage());
+        pages.Add("tools-mouse-highlighter", BuildMouseHighlighterPage());
         pages.Add("actions", BuildActionsPage());
         pages.Add("watch-folders", BuildWatchFoldersPage());
         pages.Add("advanced", BuildAdvancedPage());
@@ -155,14 +181,14 @@ internal sealed class TaskSettingsPageBuilder
             () => _settings.AfterCaptureJob,
             value => _settings.AfterCaptureJob = value,
             MainMenuBuilder.GetAfterCaptureTaskMenuOptions(),
-            LucideIcons.image_up);
+            AppIcons.ImageUpload);
         BindEnabled(afterCapture, afterCaptureOverride);
 
         Control afterUpload = TaskFlagsMenu(
             () => _settings.AfterUploadJob,
             value => _settings.AfterUploadJob = value,
             MainMenuBuilder.GetAfterUploadTaskMenuOptions(),
-            LucideIcons.cloud_upload);
+            AppIcons.CloudUpload);
         BindEnabled(afterUpload, afterUploadOverride);
 
         Control destinations = DestinationMenu(_settings);
@@ -170,25 +196,25 @@ internal sealed class TaskSettingsPageBuilder
 
         List<Control> accountControls = [];
 
-        if (Program.UploadersConfig?.FTPAccountList.Count > 0)
+        if (ApplicationState.UploadersConfigOrNull?.FTPAccountList.Count > 0)
         {
             BoundValue<bool> ftpOverride = new(_settings.OverrideFTP, value => _settings.OverrideFTP = value);
             ComboBox ftp = ObjectCombo(
-                Program.UploadersConfig.FTPAccountList,
-                () => Program.UploadersConfig.FTPAccountList[_settings.FTPIndex.BetweenOrDefault(0, Program.UploadersConfig.FTPAccountList.Count - 1)],
-                value => _settings.FTPIndex = Program.UploadersConfig.FTPAccountList.IndexOf(value));
+                ApplicationState.UploadersConfig.FTPAccountList,
+                () => ApplicationState.UploadersConfig.FTPAccountList[_settings.FTPIndex.BetweenOrDefault(0, ApplicationState.UploadersConfig.FTPAccountList.Count - 1)],
+                value => _settings.FTPIndex = ApplicationState.UploadersConfig.FTPAccountList.IndexOf(value));
             BindEnabled(ftp, ftpOverride);
             accountControls.Add(Check(Strings.TaskSettingsWindow_OverrideDefaultFTPAccount, ftpOverride));
             accountControls.Add(Row(Strings.TaskSettingsWindow_FTPAccount, ftp));
         }
 
-        if (Program.UploadersConfig?.CustomUploadersList.Count > 0)
+        if (ApplicationState.UploadersConfigOrNull?.CustomUploadersList.Count > 0)
         {
             BoundValue<bool> customOverride = new(_settings.OverrideCustomUploader, value => _settings.OverrideCustomUploader = value);
             ComboBox custom = ObjectCombo(
-                Program.UploadersConfig.CustomUploadersList,
-                () => Program.UploadersConfig.CustomUploadersList[_settings.CustomUploaderIndex.BetweenOrDefault(0, Program.UploadersConfig.CustomUploadersList.Count - 1)],
-                value => _settings.CustomUploaderIndex = Program.UploadersConfig.CustomUploadersList.IndexOf(value));
+                ApplicationState.UploadersConfig.CustomUploadersList,
+                () => ApplicationState.UploadersConfig.CustomUploadersList[_settings.CustomUploaderIndex.BetweenOrDefault(0, ApplicationState.UploadersConfig.CustomUploadersList.Count - 1)],
+                value => _settings.CustomUploaderIndex = ApplicationState.UploadersConfig.CustomUploadersList.IndexOf(value));
             BindEnabled(custom, customOverride);
             accountControls.Add(Check(Strings.TaskSettingsWindow_OverrideDefaultCustomUploader, customOverride));
             accountControls.Add(Row(Strings.TaskSettingsWindow_CustomUploader, custom));
@@ -208,7 +234,7 @@ internal sealed class TaskSettingsPageBuilder
         BindEnabled(browseFolder, folderOverride);
         Grid folderRow = InputWithButton(folderText, browseFolder);
 
-        return Page("task", Strings.TaskSettingsWindow_Task, LucideIcons.keyboard,
+        return Page("task", Strings.TaskSettingsWindow_Task, AppIcons.Keyboard,
             Card(Strings.TaskSettingsWindow_Task, Row(Strings.TaskSettingsWindow_TaskLabel, TaskMenu(() => _settings.Job, value => _settings.Job = value)),
                 Row(Strings.TaskSettingsWindow_Description, Text(() => _settings.Description, value => _settings.Description = value))),
             Card(Strings.TaskSettingsWindow_AfterCaptureTasks, Check(Strings.TaskSettingsWindow_OverrideAfterCaptureTasks, afterCaptureOverride), afterCapture),
@@ -240,7 +266,7 @@ internal sealed class TaskSettingsPageBuilder
         toastOptions.Children.Add(Check(Strings.TaskSettingsWindow_DisableToastNotificationsOnFullscreen, () => general.DisableNotificationsOnFullscreen, value => general.DisableNotificationsOnFullscreen = value));
         BindEnabled(toastOptions, showToast);
 
-        return Page("general-notifications", Strings.TaskSettingsWindow_Notifications, LucideIcons.bell,
+        return Page("general-notifications", Strings.TaskSettingsWindow_Notifications, AppIcons.Bell,
             EnabledCard(_generalOverride, Strings.TaskSettingsWindow_Sounds,
                 Check(Strings.TaskSettingsWindow_PlaySoundAfterCaptureIsMade, () => general.PlaySoundAfterCapture, value => general.PlaySoundAfterCapture = value),
                 Check(Strings.TaskSettingsWindow_PlaySoundAfterTaskIsCompleted, () => general.PlaySoundAfterUpload, value => general.PlaySoundAfterUpload = value),
@@ -267,23 +293,119 @@ internal sealed class TaskSettingsPageBuilder
         BindEnabled(autoJpegSize, autoJpeg);
         BindEnabled(autoQuality, autoJpeg);
 
-        return Page("image", Strings.TaskSettingsWindow_Image, LucideIcons.image,
+        StackPanel pngOptions = new()
+        {
+            Spacing = 4,
+            Children =
+            {
+                Row(Strings.TaskSettingsWindow_PNGBitDepth, EnumCombo(() => image.ImagePNGBitDepth, value => image.ImagePNGBitDepth = value)),
+                Row(Strings.TaskSettingsWindow_PNGCompressionLevel,
+                    ObjectCombo(Enumerable.Range(0, 10), () => Math.Clamp(image.ImagePNGCompressionLevel, 0, 9),
+                        value => image.ImagePNGCompressionLevel = value),
+                    Strings.TaskSettingsWindow_PNGCompressionHint),
+                Row(Strings.TaskSettingsWindow_PNGFilter, ObjectCombo(
+                    new[] { SKPngEncoderFilterFlags.AllFilters, SKPngEncoderFilterFlags.None, SKPngEncoderFilterFlags.Sub,
+                        SKPngEncoderFilterFlags.Up, SKPngEncoderFilterFlags.Avg, SKPngEncoderFilterFlags.Paeth },
+                    () => image.ImagePNGFilter, value => image.ImagePNGFilter = value, value => value switch
+                    {
+                        SKPngEncoderFilterFlags.None => Strings.TaskSettingsWindow_PNGFilterNone,
+                        SKPngEncoderFilterFlags.Sub => Strings.TaskSettingsWindow_PNGFilterSub,
+                        SKPngEncoderFilterFlags.Up => Strings.TaskSettingsWindow_PNGFilterUp,
+                        SKPngEncoderFilterFlags.Avg => Strings.TaskSettingsWindow_PNGFilterAverage,
+                        SKPngEncoderFilterFlags.Paeth => Strings.TaskSettingsWindow_PNGFilterPaeth,
+                        _ => Strings.TaskSettingsWindow_PNGFilterAutomatic
+                    }))
+            }
+        };
+        StackPanel jpegOptions = new()
+        {
+            Spacing = 4,
+            Children =
+            {
+                Row(Strings.TaskSettingsWindow_JPEGQuality, Number(() => image.ImageJPEGQuality, value => image.ImageJPEGQuality = (int)value, 0, 100)),
+                Row(Strings.TaskSettingsWindow_JPEGSubsampling, ObjectCombo(
+                    new[] { SKJpegEncoderDownsample.Downsample420, SKJpegEncoderDownsample.Downsample422, SKJpegEncoderDownsample.Downsample444 },
+                    () => image.ImageJPEGSubsampling, value => image.ImageJPEGSubsampling = value, value => value switch
+                    {
+                        SKJpegEncoderDownsample.Downsample422 => Strings.TaskSettingsWindow_JPEGSubsampling422,
+                        SKJpegEncoderDownsample.Downsample444 => Strings.TaskSettingsWindow_JPEGSubsampling444,
+                        _ => Strings.TaskSettingsWindow_JPEGSubsampling420
+                    }), Strings.TaskSettingsWindow_JPEGSubsamplingHint)
+            }
+        };
+        Control gifOptions = Row(Strings.TaskSettingsWindow_GIFQuality, EnumCombo(() => image.ImageGIFQuality, value => image.ImageGIFQuality = value));
+        Control bmpOptions = Row(Strings.TaskSettingsWindow_BMPBitDepth, EnumCombo(() => image.ImageBMPBitDepth, value => image.ImageBMPBitDepth = value));
+        Control webpQuality = Row(Strings.TaskSettingsWindow_WebPQuality,
+            Number(() => image.ImageWebPQuality, value => image.ImageWebPQuality = (int)value, 0, 100));
+        Control webpCompressionEffort = Row(Strings.TaskSettingsWindow_WebPCompressionEffort,
+            Number(() => image.ImageWebPCompressionEffort, value => image.ImageWebPCompressionEffort = (int)value, 0, 100),
+            Strings.TaskSettingsWindow_WebPCompressionEffortHint);
+        void UpdateWebPOptionsVisibility()
+        {
+            webpQuality.IsVisible = !image.ImageWebPLossless;
+            webpCompressionEffort.IsVisible = image.ImageWebPLossless;
+        }
+        StackPanel webpOptions = new()
+        {
+            Spacing = 4,
+            Children =
+            {
+                Check(Strings.TaskSettingsWindow_WebPLossless, () => image.ImageWebPLossless, value =>
+                {
+                    image.ImageWebPLossless = value;
+                    UpdateWebPOptionsVisibility();
+                    _window.RefreshSettingsSearch();
+                }),
+                webpQuality,
+                webpCompressionEffort
+            }
+        };
+        UpdateWebPOptionsVisibility();
+        Border automaticJpeg = new()
+        {
+            Child = EnabledCard(_imageOverride, Strings.TaskSettingsWindow_AutomaticJPEG,
+                Check(Strings.TaskSettingsWindow_UseJPEGIfImageSizeIsBiggerThanTheSpecifiedSize, autoJpeg),
+                Row(Strings.TaskSettingsWindow_SizeLimitKB, autoJpegSize), autoQuality)
+        };
+        SettingsSearch.SetIsAvailabilityContainer(pngOptions, true);
+        SettingsSearch.SetIsAvailabilityContainer(jpegOptions, true);
+        SettingsSearch.SetIsAvailabilityContainer(gifOptions, true);
+        SettingsSearch.SetIsAvailabilityContainer(bmpOptions, true);
+        SettingsSearch.SetIsAvailabilityContainer(webpOptions, true);
+        SettingsSearch.SetIsAvailabilityContainer(webpQuality, true);
+        SettingsSearch.SetIsAvailabilityContainer(webpCompressionEffort, true);
+        SettingsSearch.SetIsAvailabilityContainer(automaticJpeg, true);
+
+        void UpdateEncoderVisibility(EImageFormat format)
+        {
+            pngOptions.IsVisible = format == EImageFormat.PNG;
+            jpegOptions.IsVisible = format == EImageFormat.JPEG;
+            gifOptions.IsVisible = format == EImageFormat.GIF;
+            bmpOptions.IsVisible = format == EImageFormat.BMP;
+            webpOptions.IsVisible = format == EImageFormat.WEBP;
+            automaticJpeg.IsVisible = format != EImageFormat.JPEG;
+        }
+
+        UpdateEncoderVisibility(Enum.IsDefined(image.ImageFormat) ? image.ImageFormat : EImageFormat.PNG);
+
+        return Page("image", Strings.TaskSettingsWindow_Image, AppIcons.Image,
             OverrideCard(_imageOverride, Strings.TaskSettingsWindow_OverrideImageSettings),
             EnabledCard(_imageOverride, Strings.TaskSettingsWindow_ImageQuality,
-                Row(Strings.TaskSettingsWindow_ImageFormat, EnumCombo(() => image.ImageFormat, value => image.ImageFormat = value)),
-                Row(Strings.TaskSettingsWindow_PNGBitDepth, EnumCombo(() => image.ImagePNGBitDepth, value => image.ImagePNGBitDepth = value)),
-                Row(Strings.TaskSettingsWindow_JPEGQuality, Number(() => image.ImageJPEGQuality, value => image.ImageJPEGQuality = (int)value, 0, 100)),
-                Row(Strings.TaskSettingsWindow_GIFQuality, EnumCombo(() => image.ImageGIFQuality, value => image.ImageGIFQuality = value)),
+                Row(Strings.TaskSettingsWindow_ImageFormat, EnumCombo(() => image.ImageFormat, value =>
+                {
+                    image.ImageFormat = value;
+                    UpdateEncoderVisibility(value);
+                    _window.RefreshSettingsSearch();
+                })),
+                pngOptions, jpegOptions, gifOptions, bmpOptions, webpOptions,
                 Row(Strings.TaskSettingsWindow_IfFileExists, EnumCombo(() => image.FileExistAction, value => image.FileExistAction = value))),
-            EnabledCard(_imageOverride, Strings.TaskSettingsWindow_AutomaticJPEG,
-                Check(Strings.TaskSettingsWindow_UseJPEGIfImageSizeIsBiggerThanTheSpecifiedSize, autoJpeg),
-                Row(Strings.TaskSettingsWindow_SizeLimitKB, autoJpegSize), autoQuality));
+            automaticJpeg);
     }
 
     private Control BuildImageEffectsPage()
     {
         TaskSettingsImage image = _settings.ImageSettings;
-        return Page("image-effects", Strings.TaskSettingsWindow_Effects, LucideIcons.wand_sparkles,
+        return Page("image-effects", Strings.TaskSettingsWindow_Effects, AppIcons.MagicWand,
             EnabledCard(_imageOverride, Strings.TaskSettingsWindow_ImageEffects,
                 Check(Strings.TaskSettingsWindow_ShowImageEffectsWindowAfterCapture, () => image.ShowImageEffectsWindowAfterCapture, value => image.ShowImageEffectsWindowAfterCapture = value),
                 Check(Strings.TaskSettingsWindow_OnlyApplyEffectsToRegionCapture, () => image.ImageEffectOnlyRegionCapture, value => image.ImageEffectOnlyRegionCapture = value),
@@ -299,7 +421,7 @@ internal sealed class TaskSettingsPageBuilder
         TextBlock preview = Hint(Strings.TaskSettingsWindow_ImageNameSample + image.ThumbnailName + ".jpg");
         name.PropertyChanged += (_, _) => preview.Text = Strings.TaskSettingsWindow_ImageNameSample + name.Value + ".jpg";
 
-        return Page("image-thumbnail", Strings.TaskSettingsWindow_Thumbnail, LucideIcons.images,
+        return Page("image-thumbnail", Strings.TaskSettingsWindow_Thumbnail, AppIcons.Images,
             EnabledCard(_imageOverride, Strings.TaskSettingsWindow_Thumbnail,
                 Row(Strings.TaskSettingsWindow_Width, Number(() => image.ThumbnailWidth, value => image.ThumbnailWidth = (int)value, 0, 10000)),
                 Row(Strings.TaskSettingsWindow_Height, Number(() => image.ThumbnailHeight, value => image.ThumbnailHeight = (int)value, 0, 10000)),
@@ -328,7 +450,7 @@ internal sealed class TaskSettingsPageBuilder
 
         Button selectRegion = Button(Strings.TaskSettingsWindow_SelectRegionWithEllipsis, async () =>
         {
-            var selection = await RegionCaptureTasks.GetRectangleRegionAsync(capture.SurfaceOptions);
+            var selection = await RegionCaptureTasks.GetRectangleRegionAsync(capture.RegionCaptureOptions);
             if (selection != null)
             {
                 DrawingRectangle rectangle = selection.Value.Rectangle;
@@ -355,7 +477,7 @@ internal sealed class TaskSettingsPageBuilder
         AddGridLabel(regionGrid, Strings.TaskSettingsWindow_Height, 1, 2);
         AddGridControl(regionGrid, Number(regionHeight, 0, 100000), 1, 3);
 
-        return Page("capture", Strings.TaskSettingsWindow_Capture, LucideIcons.camera,
+        return Page("capture", Strings.TaskSettingsWindow_Capture, AppIcons.Camera,
             OverrideCard(_captureOverride, Strings.TaskSettingsWindow_OverrideCaptureSettings),
             EnabledCard(_captureOverride, Strings.TaskSettingsWindow_Screenshots,
                 Check(Strings.TaskSettingsWindow_ShowCursorInScreenshots, () => capture.ShowCursor, value => capture.ShowCursor = value),
@@ -373,31 +495,41 @@ internal sealed class TaskSettingsPageBuilder
 
     private Control BuildRegionCapturePage()
     {
-        RegionCaptureOptions options = _settings.CaptureSettings.SurfaceOptions;
+        RegionCaptureOptions options = _captureSettings.RegionCaptureOptions;
         BoundValue<bool> detectWindows = new(options.DetectWindows, value => options.DetectWindows = value);
         CheckBox detectControls = Check(Strings.TaskSettingsWindow_AlsoDetectControlsInsideWindows, () => options.DetectControls, value => options.DetectControls = value);
         BindEnabled(detectControls, detectWindows);
 
+        // Multi region mode keeps regions open for editing, so it always overrides quick capture.
+        BoundValue<bool> multiRegion = new(options.MultiRegionMode, value => options.MultiRegionMode = value);
+        CheckBox quickCapture = Check(Strings.TaskSettingsWindow_QuickCapture, () => options.QuickCapture, value => options.QuickCapture = value);
+        BindEnabled(quickCapture, multiRegion, invert: true);
+
         BoundValue<bool> customInfo = new(options.UseCustomInfoText, value => options.UseCustomInfoText = value);
-        TextBox customInfoText = Text(() => options.CustomInfoText, value => options.CustomInfoText = value.Replace("\r\n", "$n").Replace("\n", "$n"));
+        TextBox customInfoText = PixelInfoText(new(options.CustomInfoText,
+            value => options.CustomInfoText = value.Replace("\r\n", "$n").Replace("\n", "$n")));
         BindEnabled(customInfoText, customInfo);
 
         BoundValue<bool> magnifier = new(options.ShowMagnifier, value => options.ShowMagnifier = value);
         CheckBox squareMagnifier = Check(Strings.TaskSettingsWindow_UseSquareMagnifier, () => options.UseSquareMagnifier, value => options.UseSquareMagnifier = value);
+        NumericUpDown magnifierSize = Number(() => options.MagnifierSize, value => options.MagnifierSize = (int)value,
+            RegionCaptureOptions.MagnifierSizeMinimum, RegionCaptureOptions.MagnifierSizeMaximum);
         NumericUpDown pixelCount = Number(() => options.MagnifierPixelCount, value => options.MagnifierPixelCount = (int)value,
             RegionCaptureOptions.MagnifierPixelCountMinimum, RegionCaptureOptions.MagnifierPixelCountMaximum);
-        NumericUpDown pixelSize = Number(() => options.MagnifierPixelSize, value => options.MagnifierPixelSize = (int)value,
-            RegionCaptureOptions.MagnifierPixelSizeMinimum, RegionCaptureOptions.MagnifierPixelSizeMaximum);
         BindEnabled(squareMagnifier, magnifier);
+        BindEnabled(magnifierSize, magnifier);
         BindEnabled(pixelCount, magnifier);
-        BindEnabled(pixelSize, magnifier);
 
-        return Page("capture-region", Strings.TaskSettingsWindow_RegionCapture, LucideIcons.crop,
+        return Page("capture-region", Strings.TaskSettingsWindow_RegionCapture, AppIcons.Crop,
             EnabledCard(_captureOverride, Strings.TaskSettingsWindow_Selection,
-                Check(Strings.TaskSettingsWindow_UseMultiRegionMode, () => !options.QuickCrop, value => options.QuickCrop = !value),
+                quickCapture,
+                Check(Strings.TaskSettingsWindow_MultiRegionMode, multiRegion),
                 Check(Strings.TaskSettingsWindow_DetectWindowRegions, detectWindows), detectControls,
                 Check(Strings.TaskSettingsWindow_RestrictCaptureAndCursorToTheActiveMonitor, () => options.ActiveMonitorMode, value => options.ActiveMonitorMode = value),
-                Row(Strings.TaskSettingsWindow_BackgroundDimStrengthPercent, Number(() => options.BackgroundDimStrength, value => options.BackgroundDimStrength = (int)value, 0, 100))),
+                Row(Strings.TaskSettingsWindow_BackgroundDimStrengthPercent, Number(() => options.BackgroundDimStrength, value => options.BackgroundDimStrength = (int)value, 0, 100)),
+                Check(Strings.TaskSettingsWindow_DimHoveredWindowsAndControls, () => options.DimAllExceptSelection, value => options.DimAllExceptSelection = value),
+                Check(Strings.TaskSettingsWindow_CompactRegionCaptureToolbar, () => options.CompactToolbar, value => options.CompactToolbar = value),
+                Button(Strings.TaskSettingsWindow_CustomizeToolbarWithEllipsis, () => _window.ShowRegionCaptureToolbarEditor(options))),
             EnabledCard(_captureOverride, Strings.TaskSettingsWindow_MouseActions,
                 Row(Strings.TaskSettingsWindow_RightClick, EnumCombo(() => options.RegionCaptureActionRightClick, value => options.RegionCaptureActionRightClick = value)),
                 Row(Strings.TaskSettingsWindow_MiddleClick, EnumCombo(() => options.RegionCaptureActionMiddleClick, value => options.RegionCaptureActionMiddleClick = value)),
@@ -407,36 +539,109 @@ internal sealed class TaskSettingsPageBuilder
                 Check(Strings.TaskSettingsWindow_ShowPositionAndSizeInfo, () => options.ShowInfo, value => options.ShowInfo = value),
                 Check(Strings.TaskSettingsWindow_UseCustomInfoText, customInfo), customInfoText,
                 Check(Strings.TaskSettingsWindow_ShowMagnifierNearCursor, magnifier), squareMagnifier,
+                Row(Strings.TaskSettingsWindow_MagnifierSize, magnifierSize),
                 Row(Strings.TaskSettingsWindow_MagnifierPixelCount, pixelCount),
-                Row(Strings.TaskSettingsWindow_MagnifierPixelSize, pixelSize),
                 Check(Strings.TaskSettingsWindow_ShowCenterCrosshair, () => options.ShowCenterCrosshair, value => options.ShowCenterCrosshair = value),
-                Check(Strings.TaskSettingsWindow_ShowScreenWideCrosshair, () => options.ShowCrosshair, value => options.ShowCrosshair = value)));
+                Check(Strings.TaskSettingsWindow_ShowScreenWideCrosshair, () => options.ShowScreenCrosshair, value => options.ShowScreenCrosshair = value)));
     }
 
     private Control BuildScreenRecorderPage()
     {
         TaskSettingsCapture capture = _settings.CaptureSettings;
+        BoundValue<bool> native = new(capture.ScreenRecordUseNative, value => capture.ScreenRecordUseNative = value);
+        BoundValue<bool> recordSystemAudio = new(capture.ScreenRecordSystemAudio, value => capture.ScreenRecordSystemAudio = value);
+        Control systemAudio = Check(Strings.TaskSettingsWindow_NativeRecorderSystemAudio, recordSystemAudio);
+        ComboBox systemAudioDevices = AudioDeviceCombo(AudioCaptureDevices.GetSystemAudioDevices,
+            () => capture.ScreenRecordSystemAudioDeviceId, value => capture.ScreenRecordSystemAudioDeviceId = value,
+            Strings.TaskSettingsWindow_NativeRecorderDefaultSystemAudioDevice, Strings.TaskSettingsWindow_NativeRecorderUnavailableSystemAudioDevice);
+        BindEnabled(systemAudioDevices, recordSystemAudio);
+        Control systemAudioDevice = Row(Strings.TaskSettingsWindow_NativeRecorderSystemAudioDevice, systemAudioDevices);
+        BoundValue<bool> recordMicrophone = new(capture.ScreenRecordMicrophone, value => capture.ScreenRecordMicrophone = value);
+        Control microphone = Check(Strings.TaskSettingsWindow_NativeRecorderMicrophone, recordMicrophone);
+        ComboBox microphones = AudioDeviceCombo(AudioCaptureDevices.GetMicrophones,
+            () => capture.ScreenRecordMicrophoneDeviceId, value => capture.ScreenRecordMicrophoneDeviceId = value,
+            Strings.TaskSettingsWindow_NativeRecorderDefaultMicrophone, Strings.TaskSettingsWindow_NativeRecorderUnavailableMicrophone);
+        BindEnabled(microphones, recordMicrophone);
+        Control microphoneDevice = Row(Strings.TaskSettingsWindow_NativeRecorderMicrophoneDevice, microphones);
+        Control hardware = Check(Strings.TaskSettingsWindow_NativeRecorderHardware, () => capture.ScreenRecordRequireHardwareEncoder, value => capture.ScreenRecordRequireHardwareEncoder = value);
+        NumericUpDown bitrateControl = Number(() => capture.ScreenRecordVideoBitrate, value => capture.ScreenRecordVideoBitrate = (int)value, 100, 200000, 100);
+        bitrateControl.Width = 160;
+        Control bitrate = Row(Strings.TaskSettingsWindow_NativeRecorderBitrate, bitrateControl);
+        Control hdrToneMapping = Check(Strings.TaskSettingsWindow_NativeRecorderHDRToneMapping, () => capture.ScreenRecordHDRToneMapping, value => capture.ScreenRecordHDRToneMapping = value);
+        BoundValue<bool> recordCamera = new(capture.ScreenRecordCamera, value => capture.ScreenRecordCamera = value);
+        Control cameraEnabled = Check(Strings.TaskSettingsWindow_NativeRecorderCamera_Enabled, recordCamera);
+        ComboBox cameras = CaptureDeviceCombo(() => CameraCaptureDevices.GetCameras().Select(device => (device.Id, device.Name)).ToArray(),
+            () => capture.ScreenRecordCameraDeviceId, value => capture.ScreenRecordCameraDeviceId = value,
+            Strings.TaskSettingsWindow_NativeRecorderCamera_DefaultDevice, Strings.TaskSettingsWindow_NativeRecorderCamera_UnavailableDevice,
+            Strings.TaskSettingsWindow_NativeRecorderCamera_NoDevices);
+        Control cameraDevice = Row(Strings.TaskSettingsWindow_NativeRecorderCamera_Device, cameras);
+        Control cameraResolution = Row(Strings.TaskSettingsWindow_NativeRecorderCamera_Resolution,
+            ObjectCombo(Enum.GetValues<CameraCaptureResolution>(), () => capture.ScreenRecordCameraResolution,
+                value => capture.ScreenRecordCameraResolution = value, value => value switch
+                {
+                    CameraCaptureResolution.Size640x480 => "640 × 480",
+                    CameraCaptureResolution.Size1920x1080 => "1920 × 1080",
+                    _ => "1280 × 720"
+                }));
+        Control cameraFps = Row(Strings.TaskSettingsWindow_NativeRecorderCamera_FPS,
+            Number(() => capture.ScreenRecordCameraFPS, value => capture.ScreenRecordCameraFPS = (int)value, 1, 60));
+        Control cameraPosition = Row(Strings.TaskSettingsWindow_Placement,
+            ObjectCombo(Enum.GetValues<CameraOverlayPosition>(), () => capture.ScreenRecordCameraPosition,
+                value => capture.ScreenRecordCameraPosition = value, value => value switch
+                {
+                    CameraOverlayPosition.TopLeft => Strings.ApplicationSettingsWindow_TopLeft,
+                    CameraOverlayPosition.TopRight => Strings.ApplicationSettingsWindow_TopRight,
+                    CameraOverlayPosition.BottomLeft => Strings.ApplicationSettingsWindow_BottomLeft,
+                    _ => Strings.ApplicationSettingsWindow_BottomRight
+                }));
+        Control cameraWidth = Row(Strings.TaskSettingsWindow_NativeRecorderCamera_Width,
+            Number(() => capture.ScreenRecordCameraWidthPercent, value => capture.ScreenRecordCameraWidthPercent = (int)value, 5, 50));
+        Control cameraShape = Row(Strings.TaskSettingsWindow_NativeRecorderCamera_Shape,
+            ObjectCombo(Enum.GetValues<CameraOverlayShape>(), () => capture.ScreenRecordCameraShape,
+                value => capture.ScreenRecordCameraShape = value, value => value == CameraOverlayShape.Circle
+                    ? Strings.TaskSettingsWindow_NativeRecorderCamera_Circle : Strings.TaskSettingsWindow_NativeRecorderCamera_Rectangle));
+        Control cameraMargin = Row(Strings.TaskSettingsWindow_NativeRecorderCamera_Margin,
+            Number(() => capture.ScreenRecordCameraMargin, value => capture.ScreenRecordCameraMargin = (int)value, 0, 1000));
+        Control[] cameraControls = [cameraDevice, cameraResolution, cameraFps, cameraShape, cameraPosition, cameraWidth, cameraMargin];
+        foreach (Control control in cameraControls) BindEnabled(control, recordCamera);
+        StackPanel cameraContent = new() { Spacing = 4 };
+        cameraContent.Children.Add(cameraEnabled);
+        foreach (Control control in cameraControls) cameraContent.Children.Add(control);
+        BindEnabled(cameraContent, native);
+        Control cameraPanel = EnabledCard(_captureOverride, Strings.TaskSettingsWindow_NativeRecorderCamera, cameraContent);
+        Control twoPass = Check(Strings.TaskSettingsWindow_RecordLosslesslyFirstThenApplyEncodingOptions, () => capture.ScreenRecordTwoPassEncoding, value => capture.ScreenRecordTwoPassEncoding = value);
+        Control legacyOptions = Button(Strings.TaskSettingsWindow_ScreenRecordingOptionsWithEllipsis, ShowScreenRecordingOptions);
+        foreach (Control control in new[] { systemAudio, systemAudioDevice, microphone, microphoneDevice, hardware, bitrate, hdrToneMapping }) BindEnabled(control, native);
+        BindEnabled(twoPass, native, invert: true);
+        BindEnabled(legacyOptions, native, invert: true);
         BoundValue<bool> fixedDuration = new(capture.ScreenRecordFixedDuration, value => capture.ScreenRecordFixedDuration = value);
         NumericUpDown duration = Number(() => (decimal)capture.ScreenRecordDuration, value => capture.ScreenRecordDuration = (float)value, 0, 86400, 0.1m);
         BindEnabled(duration, fixedDuration);
 
-        BoundValue<bool> autoStart = new(capture.ScreenRecordAutoStart, value => capture.ScreenRecordAutoStart = value);
+        BoundValue<bool> startDelayEnabled = new(capture.ScreenRecordStartDelayEnabled, value => capture.ScreenRecordStartDelayEnabled = value);
         NumericUpDown startDelay = Number(() => (decimal)capture.ScreenRecordStartDelay, value => capture.ScreenRecordStartDelay = (float)value, 0, 3600, 0.1m);
-        BindEnabled(startDelay, autoStart);
+        BindEnabled(startDelay, startDelayEnabled);
 
-        return Page("capture-screen-recorder", Strings.TaskSettingsWindow_ScreenRecorder, LucideIcons.video,
+        return Page("capture-screen-recorder", Strings.TaskSettingsWindow_ScreenRecorder, AppIcons.Video,
+            EnabledCard(_captureOverride, Strings.TaskSettingsWindow_NativeRecorder,
+                Check(Strings.TaskSettingsWindow_NativeRecorderEnabled, native),
+                systemAudio, systemAudioDevice, microphone, microphoneDevice, hardware, bitrate, hdrToneMapping),
+            cameraPanel,
             EnabledCard(_captureOverride, Strings.TaskSettingsWindow_Recording,
-                Row(Strings.TaskSettingsWindow_ScreenRecordingFPS, Number(() => capture.ScreenRecordFPS, value => capture.ScreenRecordFPS = (int)value, 1, HelpersOptions.DevMode ? 300 : 60)),
+                Check(Strings.ScreenRecorderBar_ShowBeforeRecording, () => capture.ScreenRecordShowBar, value => capture.ScreenRecordShowBar = value),
+                Row(Strings.TaskSettingsWindow_ScreenRecordingFPS, Number(() => capture.ScreenRecordFPS, value => capture.ScreenRecordFPS = (int)value, 1, 120)),
                 Row(Strings.TaskSettingsWindow_GIFFPS, Number(() => capture.GIFFPS, value => capture.GIFFPS = (int)value, 1, HelpersOptions.DevMode ? 60 : 30)),
                 Check(Strings.TaskSettingsWindow_ShowCursorInRecording, () => capture.ScreenRecordShowCursor, value => capture.ScreenRecordShowCursor = value),
+                Check(Strings.TaskSettingsWindow_HighlightMouseWhileRecording, () => capture.ScreenRecordMouseHighlighter, value => capture.ScreenRecordMouseHighlighter = value),
+                Button(Strings.TaskSettingsWindow_MouseHighlighterOptions, () => _window.NavigateToPage("tools-mouse-highlighter")),
                 Check(Strings.TaskSettingsWindow_ShowRecordingTimer, () => capture.ScreenRecordShowTimer, value => capture.ScreenRecordShowTimer = value),
                 Check(Strings.TaskSettingsWindow_ShowRecordingButtonLabels, () => capture.ScreenRecordShowButtonLabels, value => capture.ScreenRecordShowButtonLabels = value),
-                Check(Strings.TaskSettingsWindow_StartRecordingAfterADelay, autoStart), Row(Strings.TaskSettingsWindow_StartDelaySeconds, startDelay),
+                Check(Strings.TaskSettingsWindow_UseStartDelay, startDelayEnabled), Row(Strings.TaskSettingsWindow_StartDelaySeconds, startDelay),
                 Check(Strings.TaskSettingsWindow_UseFixedDuration, fixedDuration), Row(Strings.TaskSettingsWindow_DurationSeconds, duration)),
             EnabledCard(_captureOverride, Strings.TaskSettingsWindow_EncodingAndCapture,
-                Check(Strings.TaskSettingsWindow_RecordLosslesslyFirstThenApplyEncodingOptions, () => capture.ScreenRecordTwoPassEncoding, value => capture.ScreenRecordTwoPassEncoding = value),
+                twoPass,
                 Check(Strings.TaskSettingsWindow_AskForConfirmationWhenAborting, () => capture.ScreenRecordAskConfirmationOnAbort, value => capture.ScreenRecordAskConfirmationOnAbort = value),
-                Button(Strings.TaskSettingsWindow_ScreenRecordingOptionsWithEllipsis, ShowScreenRecordingOptions)));
+                legacyOptions));
     }
 
     private async Task ShowScreenRecordingOptions()
@@ -449,13 +654,66 @@ internal sealed class TaskSettingsPageBuilder
             FPS = capture.ScreenRecordFPS,
             Duration = capture.ScreenRecordFixedDuration ? capture.ScreenRecordDuration : 0,
             OutputPath = "output.mp4",
-            CaptureArea = WinForms.Screen.PrimaryScreen?.Bounds ?? DrawingRectangle.Empty,
+            CaptureArea = DesktopScreen.PrimaryScreen?.Bounds ?? DrawingRectangle.Empty,
             DrawCursor = capture.ScreenRecordShowCursor
         };
 
         FFmpegOptionsWindow window = new(options);
         await window.ShowDialog(_window);
         capture.FFmpegOptions = window.Options.FFmpeg;
+    }
+
+    private static ComboBox AudioDeviceCombo(Func<IReadOnlyList<AudioCaptureDevice>> getDevices,
+        Func<string> getSelectedId, Action<string> setSelectedId, string defaultLabel, string unavailableLabel)
+        => CaptureDeviceCombo(() => getDevices().Select(device => (device.Id, device.Name)).ToArray(),
+            getSelectedId, setSelectedId, defaultLabel, unavailableLabel);
+
+    private static ComboBox CaptureDeviceCombo(Func<IReadOnlyList<(string Id, string Name)>> getDevices,
+        Func<string> getSelectedId, Action<string> setSelectedId, string defaultLabel, string unavailableLabel, string? emptyLabel = null)
+    {
+        ComboBox combo = new();
+        combo.Classes.Add("form-control");
+        bool refreshing = false;
+
+        void Refresh()
+        {
+            List<(string Id, string Name)> devices = [("", defaultLabel)];
+            try
+            {
+                var available = getDevices();
+                devices.AddRange(available.OrderBy(device => device.Name, StringComparer.CurrentCultureIgnoreCase));
+                if (available.Count == 0 && emptyLabel != null) devices[0] = ("", emptyLabel);
+            }
+            catch (Exception ex)
+            {
+                DebugHelper.WriteException(ex);
+            }
+
+            string selectedId = getSelectedId() ?? "";
+            if (!devices.Any(device => device.Id == selectedId))
+            {
+                devices.Add((selectedId, unavailableLabel));
+            }
+
+            // Replacing ItemsSource can clear selection. Keep a disconnected device's saved ID intact.
+            refreshing = true;
+            try
+            {
+                ChoiceOption<string>[] choices = devices.Select(device => new ChoiceOption<string>(device.Id, device.Name)).ToArray();
+                combo.ItemsSource = choices;
+                combo.SelectedItem = choices.First(choice => choice.Value == selectedId);
+            }
+            finally { refreshing = false; }
+        }
+
+        combo.SelectionChanged += (_, _) =>
+        {
+            if (!refreshing && combo.SelectedItem is ChoiceOption<string> choice)
+                setSelectedId(choice.Value);
+        };
+        combo.DropDownOpened += (_, _) => Refresh();
+        Refresh();
+        return combo;
     }
 
     private Control BuildOcrPage()
@@ -480,7 +738,7 @@ internal sealed class TaskSettingsPageBuilder
         CheckBox autoCopy = Check(Strings.TaskSettingsWindow_AutomaticallyCopyResultsToClipboard, () => options.AutoCopy, value => options.AutoCopy = value);
         BindEnabled(autoCopy, silent, invert: true);
 
-        return Page("capture-ocr", Strings.TaskSettingsWindow_OCR, LucideIcons.scan_text,
+        return Page("capture-ocr", Strings.TaskSettingsWindow_OCR, AppIcons.TextRecognition,
             EnabledCard(_captureOverride, Strings.TaskSettingsWindow_OpticalCharacterRecognition,
                 Row(Strings.TaskSettingsWindow_DefaultLanguage, language),
                 Check(Strings.TaskSettingsWindow_ProcessOCRSilently, silent), autoCopy,
@@ -498,7 +756,7 @@ internal sealed class TaskSettingsPageBuilder
         {
             NameParser parser = new(NameParserType.FileName)
             {
-                AutoIncrementNumber = Program.Settings.NameParserAutoIncrementNumber,
+                AutoIncrementNumber = ApplicationState.Settings.NameParserAutoIncrementNumber,
                 ImageWidth = 1920,
                 ImageHeight = 1080,
                 MaxNameLength = _settings.AdvancedSettings.NamePatternMaxLength,
@@ -528,7 +786,7 @@ internal sealed class TaskSettingsPageBuilder
         BindEnabled(regexPattern, regexReplace);
         BindEnabled(regexReplacement, regexReplace);
 
-        NumericUpDown autoIncrement = Number(() => Program.Settings.NameParserAutoIncrementNumber, value => Program.Settings.NameParserAutoIncrementNumber = (int)value, 0, int.MaxValue);
+        NumericUpDown autoIncrement = Number(() => ApplicationState.Settings.NameParserAutoIncrementNumber, value => ApplicationState.Settings.NameParserAutoIncrementNumber = (int)value, 0, int.MaxValue);
         if (autoIncrement.DataContext is BoundValue<decimal?> autoIncrementValue)
         {
             autoIncrementValue.PropertyChanged += (_, _) => UpdatePreviews();
@@ -536,7 +794,7 @@ internal sealed class TaskSettingsPageBuilder
 
         UpdatePreviews();
 
-        return Page("upload-file-naming", Strings.TaskSettingsWindow_FileNaming, LucideIcons.file_pen,
+        return Page("upload-file-naming", Strings.TaskSettingsWindow_FileNaming, AppIcons.FileEdit,
             EnabledCard(_uploadOverride, Strings.TaskSettingsWindow_NamePatterns,
                 Row(Strings.TaskSettingsWindow_CaptureOrClipboardUpload, capturePatternTextBox), Row(Strings.TaskSettingsWindow_Preview, capturePreview),
                 Row(Strings.TaskSettingsWindow_WindowCapture, windowPatternTextBox), Row(Strings.TaskSettingsWindow_Preview, windowPreview),
@@ -553,7 +811,7 @@ internal sealed class TaskSettingsPageBuilder
     private Control BuildClipboardUploadPage()
     {
         TaskSettingsUpload upload = _settings.UploadSettings;
-        return Page("upload-clipboard", Strings.TaskSettingsWindow_ClipboardUpload, LucideIcons.clipboard,
+        return Page("upload-clipboard", Strings.TaskSettingsWindow_ClipboardUpload, AppIcons.Clipboard,
             EnabledCard(_uploadOverride, Strings.TaskSettingsWindow_ClipboardContent,
                 Check(Strings.TaskSettingsWindow_IfClipboardContainsAFileURLDownloadAndUploadIt, () => upload.ClipboardUploadURLContents, value => upload.ClipboardUploadURLContents = value),
                 Check(Strings.TaskSettingsWindow_IfClipboardContainsAURLUseURLShortener, () => upload.ClipboardUploadShortenURL, value => upload.ClipboardUploadShortenURL = value),
@@ -641,7 +899,7 @@ internal sealed class TaskSettingsPageBuilder
             }
         });
 
-        return Page("upload-filters", Strings.TaskSettingsWindow_UploaderFilters, LucideIcons.filter,
+        return Page("upload-filters", Strings.TaskSettingsWindow_UploaderFilters, AppIcons.Filter,
             EnabledCard(_uploadOverride, Strings.TaskSettingsWindow_Filters, list,
                 Row(Strings.TaskSettingsWindow_Uploader, uploader),
                 Row(Strings.TaskSettingsWindow_Extensions, extensions),
@@ -653,15 +911,41 @@ internal sealed class TaskSettingsPageBuilder
 
     private Control BuildToolsPage()
     {
-        TaskSettingsTools tools = _settings.ToolsSettings;
+        TaskSettingsTools tools = _toolsSettings;
         var picker = tools.ScreenColorPickerOptions;
-        return Page("tools", Strings.TaskSettingsWindow_Tools, LucideIcons.wrench,
+        return Page("tools", Strings.TaskSettingsWindow_Tools, AppIcons.Wrench,
             OverrideCard(_toolsOverride, Strings.TaskSettingsWindow_OverrideToolsSettings),
             EnabledCard(_toolsOverride, Strings.TaskSettingsWindow_ScreenColorPicker,
-                Row(Strings.TaskSettingsWindow_Format, Text(() => picker.Format, value => picker.Format = value)),
-                Row(Strings.TaskSettingsWindow_FormatCtrlPlusClick, Text(() => picker.FormatCtrl, value => picker.FormatCtrl = value)),
-                Row(Strings.TaskSettingsWindow_InfoText, Text(() => picker.InfoText, value => picker.InfoText = value)),
+                Row(Strings.TaskSettingsWindow_Format, PixelInfoText(new(picker.Format, value => picker.Format = value))),
+                Row(Strings.TaskSettingsWindow_FormatCtrlPlusClick, PixelInfoText(new(picker.FormatCtrl, value => picker.FormatCtrl = value))),
+                Row(Strings.TaskSettingsWindow_InfoText, PixelInfoText(new(picker.InfoText, value => picker.InfoText = value))),
                 Check(Strings.TaskSettingsWindow_ShowMagnifier, () => picker.ShowMagnifier, value => picker.ShowMagnifier = value)));
+    }
+
+    private Control BuildMouseHighlighterPage()
+    {
+        return Page("tools-mouse-highlighter", Strings.MouseHighlighter, AppIcons.PointerClick,
+            EnabledCard(_toolsOverride, Strings.MouseHighlighter,
+                new MouseHighlighterSettingsControl(_toolsSettings.MouseHighlighterOptions)));
+    }
+
+    private Control BuildImageEditorPage()
+    {
+        ImageEditorOptions options = _toolsSettings.ImageEditorOptions;
+
+        return Page("tools-image-editor", Strings.TaskSettingsWindow_ImageEditor, AppIcons.Image,
+            EnabledCard(_toolsOverride, Strings.TaskSettingsWindow_General,
+                Check(Strings.TaskSettingsWindow_RememberWindowState, () => options.RememberWindowState, value => options.RememberWindowState = value),
+                Check(Strings.TaskSettingsWindow_ShowExitConfirmation, () => options.ShowExitConfirmation, value => options.ShowExitConfirmation = value),
+                Check(Strings.TaskSettingsWindow_ZoomToFitOnOpen, () => options.ZoomToFitOnOpen, value => options.ZoomToFitOnOpen = value),
+                Check(Strings.TaskSettingsWindow_QuickCrop, () => options.QuickCrop, value => options.QuickCrop = value),
+                Check(Strings.TaskSettingsWindow_AutoCloseEditorOnTask, () => options.AutoCloseEditorOnTask, value => options.AutoCloseEditorOnTask = value),
+                Check(Strings.TaskSettingsWindow_AutoCopyImageToClipboard, () => options.AutoCopyImageToClipboard, value => options.AutoCopyImageToClipboard = value),
+                Check(Strings.TaskSettingsWindow_ShowInsertImageDialog, () => options.ShowInsertImageDialog, value => options.ShowInsertImageDialog = value),
+                Check(Strings.TaskSettingsWindow_AutoExpandCanvas, () => options.AutoExpandCanvas, value => options.AutoExpandCanvas = value),
+                Row(Strings.TaskSettingsWindow_CanvasFillColor, CanvasFillColorPicker(options)),
+                Check(Strings.TaskSettingsWindow_ShowNotifications, () => options.ShowNotifications, value => options.ShowNotifications = value),
+                Button(Strings.TaskSettingsWindow_CustomizeToolbarWithEllipsis, () => _window.ShowImageEditorToolbarEditor(options))));
     }
 
     private Control BuildActionsPage()
@@ -762,7 +1046,7 @@ internal sealed class TaskSettingsPageBuilder
             }
         });
 
-        return Page("actions", Strings.TaskSettingsWindow_Actions, LucideIcons.zap,
+        return Page("actions", Strings.TaskSettingsWindow_Actions, AppIcons.Zap,
             OverrideCard(_actionsOverride, Strings.TaskSettingsWindow_OverrideActions),
             EnabledCard(_actionsOverride, Strings.TaskSettingsWindow_Actions, list, ButtonRow(add, edit, duplicate, remove),
                 Hint(Strings.TaskSettingsWindow_YouCanEnableOrDisableActionsFromAfterCaptureTasksPerformActions)));
@@ -774,20 +1058,20 @@ internal sealed class TaskSettingsPageBuilder
 
         foreach (WatchFolderSettings folder in _settings.WatchFolderList)
         {
-            Program.WatchFolderManager?.AddWatchFolder(folder, _settings);
+            ApplicationState.WatchFolderManager?.AddWatchFolder(folder, _settings);
         }
 
         ObservableCollection<string> rows = new(_settings.WatchFolderList.Select(WatchFolderTitle));
         ListBox list = new() { ItemsSource = rows, MinHeight = 230 };
         list.Classes.Add("settings-list");
 
-        void UpdateState(WatchFolderSettings folder) => Program.WatchFolderManager?.UpdateWatchFolderState(folder);
+        void UpdateState(WatchFolderSettings folder) => ApplicationState.WatchFolderManager?.UpdateWatchFolderState(folder);
 
         Button add = Button(Strings.TaskSettingsWindow_AddWithEllipsis, () =>
         {
             _window.ShowWatchFolderEditor(null, folder =>
             {
-                Program.WatchFolderManager?.AddWatchFolder(folder, _settings);
+                ApplicationState.WatchFolderManager?.AddWatchFolder(folder, _settings);
                 if (!_settings.WatchFolderList.Contains(folder))
                 {
                     _settings.WatchFolderList.Add(folder);
@@ -815,7 +1099,7 @@ internal sealed class TaskSettingsPageBuilder
             if (index >= 0)
             {
                 WatchFolderSettings folder = _settings.WatchFolderList[index];
-                Program.WatchFolderManager?.RemoveWatchFolder(folder);
+                ApplicationState.WatchFolderManager?.RemoveWatchFolder(folder);
                 _settings.WatchFolderList.Remove(folder);
                 rows.RemoveAt(index);
             }
@@ -830,7 +1114,7 @@ internal sealed class TaskSettingsPageBuilder
             }
         });
 
-        return Page("watch-folders", Strings.TaskSettingsWindow_WatchFolders, LucideIcons.folder_search,
+        return Page("watch-folders", Strings.TaskSettingsWindow_WatchFolders, AppIcons.FolderSearch,
             Card(Strings.TaskSettingsWindow_WatchFolders,
                 Check(Strings.TaskSettingsWindow_WatchFoldersAndUploadNewlyCreatedFiles, enabled),
                 list, ButtonRow(add, edit, remove)));
@@ -872,7 +1156,7 @@ internal sealed class TaskSettingsPageBuilder
             controls.Add(EnabledCard(_advancedOverride, GetAdvancedCategoryTitle(category.Key), settings.ToArray()));
         }
 
-        return Page("advanced", Strings.TaskSettingsWindow_Advanced, LucideIcons.sliders_horizontal, controls.ToArray());
+        return Page("advanced", Strings.TaskSettingsWindow_Advanced, AppIcons.Sliders, controls.ToArray());
     }
 
     private Control AdvancedEditor(PropertyInfo property)
@@ -890,7 +1174,18 @@ internal sealed class TaskSettingsPageBuilder
 
         if (property.PropertyType == typeof(string))
         {
-            TextBox text = Text(() => (string?)property.GetValue(_settings.AdvancedSettings) ?? string.Empty, value => property.SetValue(_settings.AdvancedSettings, value));
+            BoundValue<string> value = new(
+                (string?)property.GetValue(_settings.AdvancedSettings) ?? string.Empty,
+                value => property.SetValue(_settings.AdvancedSettings, value));
+
+            if (property.Name is nameof(TaskSettingsAdvanced.ClipboardContentFormat)
+                or nameof(TaskSettingsAdvanced.BalloonTipContentFormat)
+                or nameof(TaskSettingsAdvanced.OpenURLFormat))
+            {
+                return UploadInfoText(value);
+            }
+
+            TextBox text = Text(value);
             if (property.Name == nameof(TaskSettingsAdvanced.TextCustom))
             {
                 text.AcceptsReturn = true;
@@ -958,11 +1253,10 @@ internal sealed class TaskSettingsPageBuilder
     {
         StackPanel content = new()
         {
-            Margin = new Thickness(28, 24, 28, 32),
-            MaxWidth = 780,
-            HorizontalAlignment = HorizontalAlignment.Left,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
             Spacing = 0
         };
+        content.Classes.Add("settings-page");
 
         Grid header = new()
         {
@@ -972,8 +1266,7 @@ internal sealed class TaskSettingsPageBuilder
         header.Classes.Add("page-title");
         SettingsSearch.SetIsPageTitle(header, true);
 
-        TextBlock iconBlock = new() { Text = icon };
-        iconBlock.Classes.Add("icon");
+        IconPresenter iconBlock = new() { Icon = icon };
         iconBlock.Classes.Add("page-title-icon");
         TextBlock titleBlock = new() { Text = title };
         titleBlock.Classes.Add("page-title-text");
@@ -987,7 +1280,13 @@ internal sealed class TaskSettingsPageBuilder
             content.Children.Add(control);
         }
 
-        ScrollViewer page = new() { Content = content, IsVisible = false };
+        ScrollViewer page = new()
+        {
+            Content = content,
+            IsVisible = false,
+            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled
+        };
         SettingsSearch.SetPageId(page, id);
         return page;
     }
@@ -1038,14 +1337,20 @@ internal sealed class TaskSettingsPageBuilder
         return availability;
     }
 
-    private static Grid Row(string label, Control editor)
+    private static Grid Row(string label, Control editor, string? tooltip = null)
     {
         Grid row = new()
         {
             ColumnDefinitions = new ColumnDefinitions("210,*"),
             ColumnSpacing = 8
         };
-        row.Children.Add(Label(label));
+        TextBlock rowLabel = Label(label);
+        if (tooltip != null)
+        {
+            ToolTip.SetTip(rowLabel, tooltip);
+            ToolTip.SetTip(editor, tooltip);
+        }
+        row.Children.Add(rowLabel);
         Grid.SetColumn(editor, 1);
         row.Children.Add(editor);
         return row;
@@ -1096,40 +1401,81 @@ internal sealed class TaskSettingsPageBuilder
     }
 
     private TextBox NamePatternText(BoundValue<string> value, params CodeMenuEntryFilename[] ignoredEntries)
+        => CodeMenuText(value, true, ignoredEntries);
+
+    private TextBox PixelInfoText(BoundValue<string> value)
+        => CodeMenuText<CodeMenuEntryPixelInfo>(value, false);
+
+    private TextBox UploadInfoText(BoundValue<string> value)
+    {
+        TextBox textBox = NamePatternText(value);
+        List<MenuItem> uploadItems = UploadInfoTokens.Select(token =>
+        {
+            MenuItem item = new() { Header = token, Focusable = false };
+            item.Click += (_, _) => InsertText(textBox, token);
+            return item;
+        }).ToList();
+
+        List<MenuItem> rootItems =
+        [
+            new MenuItem
+            {
+                Header = Strings.ApplicationSettingsWindow_UploadResult,
+                ItemsSource = uploadItems,
+                Focusable = false
+            }
+        ];
+        rootItems.AddRange((IEnumerable<MenuItem>)textBox.ContextMenu!.ItemsSource!);
+        textBox.ContextMenu.ItemsSource = rootItems;
+
+        return textBox;
+    }
+
+    private TextBox CodeMenuText<T>(BoundValue<string> value, bool useCategories, params T[] ignoredEntries) where T : CodeMenuEntry
     {
         TextBox textBox = Text(value);
-        HashSet<CodeMenuEntryFilename> ignored = ignoredEntries.ToHashSet();
-        IEnumerable<CodeMenuEntryFilename> entries = typeof(CodeMenuEntryFilename)
+        HashSet<T> ignored = ignoredEntries.ToHashSet();
+        List<T> entries = typeof(T)
             .GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Where(field => field.FieldType == typeof(CodeMenuEntryFilename))
+            .Where(field => field.FieldType == typeof(T))
             .Select(field => field.GetValue(null))
-            .OfType<CodeMenuEntryFilename>()
-            .Where(entry => !ignored.Contains(entry));
+            .OfType<T>()
+            .Where(entry => !ignored.Contains(entry))
+            .ToList();
 
         List<MenuItem> rootItems = [];
 
-        foreach (IGrouping<string?, CodeMenuEntryFilename> group in entries.GroupBy(entry => entry.Category))
+        MenuItem CreateItem(T entry)
         {
-            List<MenuItem> items = group.Select(entry =>
+            string pattern = entry.ToPrefixString();
+            MenuItem item = new()
             {
-                string pattern = entry.ToPrefixString();
-                MenuItem item = new()
-                {
-                    Header = $"{pattern} - {entry.Description}",
-                    Focusable = false
-                };
-                item.Click += (_, _) => InsertText(textBox, pattern);
-                return item;
-            }).ToList();
+                Header = $"{pattern} - {entry.Description}",
+                Focusable = false
+            };
+            item.Click += (_, _) => InsertText(textBox, pattern);
+            return item;
+        }
 
-            if (string.IsNullOrWhiteSpace(group.Key))
+        if (useCategories)
+        {
+            foreach (IGrouping<string?, T> group in entries.GroupBy(entry => entry.Category))
             {
-                rootItems.AddRange(items);
+                List<MenuItem> items = group.Select(CreateItem).ToList();
+
+                if (string.IsNullOrWhiteSpace(group.Key))
+                {
+                    rootItems.AddRange(items);
+                }
+                else
+                {
+                    rootItems.Add(new MenuItem { Header = group.Key, ItemsSource = items, Focusable = false });
+                }
             }
-            else
-            {
-                rootItems.Add(new MenuItem { Header = group.Key, ItemsSource = items, Focusable = false });
-            }
+        }
+        else
+        {
+            rootItems.AddRange(entries.Select(CreateItem));
         }
 
         ContextMenu menu = new()
@@ -1143,23 +1489,23 @@ internal sealed class TaskSettingsPageBuilder
 
         void OpenMenu()
         {
-            if (_activeNamePatternMenu != null && !ReferenceEquals(_activeNamePatternMenu, menu))
+            if (_activeCodeMenu != null && !ReferenceEquals(_activeCodeMenu, menu))
             {
-                _activeNamePatternMenu.Close();
+                _activeCodeMenu.Close();
             }
 
             if (!menu.IsOpen)
             {
-                _activeNamePatternMenu = menu;
+                _activeCodeMenu = menu;
                 menu.Open(textBox);
             }
         }
 
         menu.Closed += (_, _) =>
         {
-            if (ReferenceEquals(_activeNamePatternMenu, menu))
+            if (ReferenceEquals(_activeCodeMenu, menu))
             {
-                _activeNamePatternMenu = null;
+                _activeCodeMenu = null;
             }
         };
         textBox.GotFocus += (_, _) => OpenMenu();
@@ -1208,20 +1554,19 @@ internal sealed class TaskSettingsPageBuilder
 
     private static Button TaskMenu(Func<HotkeyType> getter, Action<HotkeyType> setter)
     {
-        TextBlock selectedIcon = CreateTaskMenuIcon(getter());
+        IconPresenter selectedIcon = CreateTaskMenuIcon(getter());
         TextBlock selectedTitle = new()
         {
             FontWeight = FontWeight.Normal,
             TextTrimming = TextTrimming.CharacterEllipsis,
             VerticalAlignment = VerticalAlignment.Center
         };
-        TextBlock chevron = new()
+        IconPresenter chevron = new()
         {
-            Text = LucideIcons.chevron_down,
+            Icon = AppIcons.ChevronDown,
             FontSize = 14,
             VerticalAlignment = VerticalAlignment.Center
         };
-        chevron.Classes.Add("icon");
 
         Grid content = new()
         {
@@ -1238,15 +1583,14 @@ internal sealed class TaskSettingsPageBuilder
         {
             Content = content,
             MinWidth = 250,
-            MinHeight = 32,
-            Padding = new Thickness(8, 4),
             HorizontalAlignment = HorizontalAlignment.Left,
             HorizontalContentAlignment = HorizontalAlignment.Stretch
         };
+        button.Classes.Add("form-control");
 
         void UpdateSelectedTask(HotkeyType task)
         {
-            selectedIcon.Text = TaskHelpers.FindMenuLucideIcon(task);
+            selectedIcon.Icon = TaskHelpers.FindMenuIcon(task);
             selectedTitle.Text = task.GetLocalizedDescription();
         }
 
@@ -1296,7 +1640,7 @@ internal sealed class TaskSettingsPageBuilder
     {
         IReadOnlyDictionary<T, (string Header, string Icon)> taskOptions = options
             .ToDictionary(option => option.Task, option => (option.Header, option.Icon));
-        TextBlock selectedIcon = CreateAccentMenuIcon(emptyIcon);
+        IconPresenter selectedIcon = CreateAccentMenuIcon(emptyIcon);
         T lastSelectedTask = taskOptions.Keys.LastOrDefault(task => HasFlag(getter(), task));
         TextBlock selectedTasks = new()
         {
@@ -1304,13 +1648,12 @@ internal sealed class TaskSettingsPageBuilder
             TextTrimming = TextTrimming.CharacterEllipsis,
             VerticalAlignment = VerticalAlignment.Center
         };
-        TextBlock chevron = new()
+        IconPresenter chevron = new()
         {
-            Text = LucideIcons.chevron_down,
+            Icon = AppIcons.ChevronDown,
             FontSize = 14,
             VerticalAlignment = VerticalAlignment.Center
         };
-        chevron.Classes.Add("icon");
 
         Grid content = new()
         {
@@ -1327,11 +1670,10 @@ internal sealed class TaskSettingsPageBuilder
         {
             Content = content,
             MinWidth = 300,
-            MinHeight = 32,
-            Padding = new Thickness(8, 4),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             HorizontalContentAlignment = HorizontalAlignment.Stretch
         };
+        button.Classes.Add("form-control");
 
         void UpdateSelectedTasks()
         {
@@ -1341,7 +1683,7 @@ internal sealed class TaskSettingsPageBuilder
                 lastSelectedTask = taskOptions.Keys.LastOrDefault(task => HasFlag(selected, task));
             }
 
-            selectedIcon.Text = EqualityComparer<T>.Default.Equals(lastSelectedTask, default)
+            selectedIcon.Icon = EqualityComparer<T>.Default.Equals(lastSelectedTask, default)
                 ? emptyIcon
                 : taskOptions[lastSelectedTask].Icon;
 
@@ -1398,20 +1740,19 @@ internal sealed class TaskSettingsPageBuilder
 
     private static Button DestinationMenu(TaskSettings settings)
     {
-        TextBlock icon = CreateAccentMenuIcon(LucideIcons.server);
+        IconPresenter icon = CreateAccentMenuIcon(AppIcons.Destinations);
         TextBlock title = new()
         {
             Text = Strings.TaskSettingsWindow_Destinations + "...",
             FontWeight = FontWeight.Normal,
             VerticalAlignment = VerticalAlignment.Center
         };
-        TextBlock chevron = new()
+        IconPresenter chevron = new()
         {
-            Text = LucideIcons.chevron_down,
+            Icon = AppIcons.ChevronDown,
             FontSize = 14,
             VerticalAlignment = VerticalAlignment.Center
         };
-        chevron.Classes.Add("icon");
 
         Grid content = new()
         {
@@ -1428,11 +1769,10 @@ internal sealed class TaskSettingsPageBuilder
         {
             Content = content,
             MinWidth = 300,
-            MinHeight = 32,
-            Padding = new Thickness(8, 4),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             HorizontalContentAlignment = HorizontalAlignment.Stretch
         };
+        button.Classes.Add("form-control");
 
         button.Click += (_, _) =>
         {
@@ -1502,22 +1842,21 @@ internal sealed class TaskSettingsPageBuilder
         return item;
     }
 
-    private static TextBlock CreateTaskMenuIcon(HotkeyType task)
-        => CreateAccentMenuIcon(TaskHelpers.FindMenuLucideIcon(task));
+    private static IconPresenter CreateTaskMenuIcon(HotkeyType task)
+        => CreateAccentMenuIcon(TaskHelpers.FindMenuIcon(task));
 
-    private static TextBlock CreateAccentMenuIcon(string glyph)
+    private static IconPresenter CreateAccentMenuIcon(string icon)
     {
-        TextBlock icon = new()
+        IconPresenter presenter = new()
         {
-            Text = glyph,
+            Icon = icon,
             FontSize = 16,
             Width = 18,
-            TextAlignment = TextAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center
         };
-        icon.Classes.Add("icon");
-        icon.Classes.Add("accent-menu-icon");
-        return icon;
+        presenter.Classes.Add("accent-menu-icon");
+        return presenter;
     }
 
     private static ComboBox ObjectCombo<T>(IEnumerable<T> values, Func<T> getter, Action<T> setter, Func<T, string>? title = null)
@@ -1583,6 +1922,25 @@ internal sealed class TaskSettingsPageBuilder
             row.Children.Add(button);
         }
         return row;
+    }
+
+    private static Control CanvasFillColorPicker(ImageEditorOptions options)
+    {
+        var picker = new ShareX.ImageEditor.Presentation.Controls.ColorPickerDropdown
+        {
+            SelectedColorValue = options.CanvasFillColor,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Center,
+            MinWidth = 130
+        };
+        picker.ColorChanged += (_, brush) =>
+        {
+            if (brush is ISolidColorBrush solid)
+            {
+                options.CanvasFillColor = solid.Color;
+            }
+        };
+        return picker;
     }
 
     private static Button Button(string text, Action action)

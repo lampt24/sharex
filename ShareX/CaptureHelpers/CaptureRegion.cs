@@ -29,6 +29,7 @@ using ShareX.ScreenCaptureLib.Presentation.RegionCapture;
 using SkiaSharp;
 using System.Drawing;
 using System.Threading.Tasks;
+using Bitmap = SkiaSharp.SKBitmap;
 
 namespace ShareX
 {
@@ -49,7 +50,7 @@ namespace ShareX
             Screenshot screenshot = TaskHelpers.GetScreenshot(taskSettings);
             screenshot.CaptureCursor = false;
 
-            bool activeMonitorMode = taskSettings.CaptureSettings.SurfaceOptions.ActiveMonitorMode;
+            bool activeMonitorMode = taskSettings.CaptureSettings.RegionCaptureOptions.ActiveMonitorMode;
             Rectangle screenBounds = activeMonitorMode
                 ? CaptureHelpers.GetActiveScreenBounds()
                 : CaptureHelpers.GetScreenBounds();
@@ -59,7 +60,7 @@ namespace ShareX
                 ? screenshot.CaptureActiveMonitor()
                 : screenshot.CaptureFullscreen())
             {
-                frozenScreenshot = GdiSkiaBitmapConverter.ToSKBitmap(canvas);
+                frozenScreenshot = canvas.Copy();
             }
 
             SKBitmap cursorBitmap = null;
@@ -70,8 +71,8 @@ namespace ShareX
                 CursorData cursorData = new CursorData();
                 if (cursorData.IsVisible)
                 {
-                    using Bitmap cursor = cursorData.ToBitmap();
-                    cursorBitmap = GdiSkiaBitmapConverter.ToSKBitmap(cursor);
+                    using Bitmap cursor = cursorData.ToBitmap(frozenScreenshot, screenBounds.Location);
+                    cursorBitmap = cursor.Copy();
                     cursorPosition = new Point(
                         cursorData.DrawPosition.X - screenBounds.X,
                         cursorData.DrawPosition.Y - screenBounds.Y);
@@ -82,9 +83,10 @@ namespace ShareX
             {
                 Screenshot = frozenScreenshot,
                 ScreenBounds = screenBounds,
-                CaptureOptions = taskSettings.CaptureSettingsReference.SurfaceOptions,
-                EditorOptions = taskSettings.ToolsSettingsReference.ImageEditorOptions,
+                RegionCaptureOptions = taskSettings.CaptureSettingsReference.RegionCaptureOptions,
+                ImageEditorOptions = taskSettings.ToolsSettingsReference.ImageEditorOptions,
                 EnableAnnotations = !taskSettings.AdvancedSettings.RegionCaptureDisableAnnotation,
+                AllowMultipleRegions = true,
                 CursorBitmap = cursorBitmap,
                 CursorPosition = cursorPosition
             };
@@ -97,7 +99,7 @@ namespace ShareX
 
             using (result.Image)
             {
-                Bitmap output = GdiSkiaBitmapConverter.ToGdiBitmap(result.Image);
+                Bitmap output = result.Image.Copy();
                 TaskMetadata metadata = new TaskMetadata(output);
 
                 if (result.ImageModified)

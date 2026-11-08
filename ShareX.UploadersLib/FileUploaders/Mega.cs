@@ -14,9 +14,9 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-    You should have received a copy of the license along with this program; if not,
-    write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-    Boston, MA 02110-1301, USA.
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
     Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
@@ -25,7 +25,6 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ShareX.HelpersLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -35,8 +34,6 @@ using System.Net;
 using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ShareX.UploadersLib.FileUploaders
 {

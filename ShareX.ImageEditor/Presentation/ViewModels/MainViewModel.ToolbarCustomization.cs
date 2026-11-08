@@ -25,7 +25,8 @@
 
 using Avalonia.Input;
 using CommunityToolkit.Mvvm.Input;
-using ShareX.ImageEditor.Presentation.Controls;
+using ShareX.ImageEditor.Core.Annotations;
+using ShareX.ImageEditor.Presentation.Theming;
 using System.Collections.ObjectModel;
 
 namespace ShareX.ImageEditor.Presentation.ViewModels
@@ -36,9 +37,29 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         private readonly ObservableCollection<ToolbarCustomizationItemViewModel> _visibleToolbarItems = new();
         private bool _hostToolbarToolsActive = true;
 
+        // One editor in ten shows sunglasses for the emoji tool.
+        private readonly string _emojiToolIcon = Random.Shared.Next(10) == 0 ? EditorIcons.ToolEmojiSunglasses : EditorIcons.ToolEmoji;
+
         public ReadOnlyObservableCollection<ToolbarCustomizationItemViewModel> ToolbarItems { get; private set; } = null!;
         public ReadOnlyObservableCollection<ToolbarCustomizationItemViewModel> VisibleToolbarItems { get; private set; } = null!;
         public event EventHandler? FileMenuRequested;
+        /// <summary>Raised when the canvas size tool button (or its hotkey) is used.</summary>
+        public event EventHandler? CanvasSizeModeRequested;
+
+        private bool _isCanvasSizeModeActive;
+
+        /// <summary>True while the canvas size frame with handles is shown.</summary>
+        public bool IsCanvasSizeModeActive
+        {
+            get => _isCanvasSizeModeActive;
+            set
+            {
+                if (SetProperty(ref _isCanvasSizeModeActive, value))
+                {
+                    RefreshToolbarItemActiveStates();
+                }
+            }
+        }
 
         private void InitializeToolbarCustomization()
         {
@@ -74,7 +95,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         {
             foreach (ToolbarCustomizationItemViewModel item in _toolbarItems)
             {
-                if (item.IsVisible && item.IsHotkeyEditable && ToolbarHotkeyHelper.Matches(item.Hotkey, key, modifiers))
+                if (item.IsVisible && item.Hotkeys.Any(hotkey => ToolbarHotkeyHelper.Matches(hotkey, key, modifiers)))
                 {
                     ExecuteToolbarItem(item);
                     return true;
@@ -85,20 +106,11 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Applies a host-specific toolbar filter without persisting it to user settings.
-        /// Hosts such as region capture can expose the shared annotation tools while
-        /// excluding image-mutating editor commands whose coordinate semantics do not apply.
+        /// Applies a host-specific toolbar layout without changing the image editor's toolbar settings.
         /// </summary>
-        public void SetHostToolbarFilter(Func<ToolbarCustomizationItemViewModel, bool>? predicate)
+        public void SetHostToolbarItems(IEnumerable<ToolbarCustomizationItemViewModel> items)
         {
-            foreach (ToolbarCustomizationItemViewModel item in _toolbarItems)
-            {
-                item.IsVisible = predicate?.Invoke(item) ?? true;
-            }
-
-            RefreshVisibleToolbarItems();
-            OnPropertyChanged(nameof(ToolbarItems));
-            OnPropertyChanged(nameof(VisibleToolbarItems));
+            ApplyToolbarCustomizationItems(items, persist: false);
         }
 
         /// <summary>Lets an embedding host display its own mutually-exclusive tool mode.</summary>
@@ -129,6 +141,9 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                 case ToolbarCustomizationItemViewModel.BackgroundItemId:
                     ToggleSettingsPanelCommand.Execute(null);
                     break;
+                case ToolbarCustomizationItemViewModel.CanvasSizeItemId:
+                    CanvasSizeModeRequested?.Invoke(this, EventArgs.Empty);
+                    break;
                 case ToolbarCustomizationItemViewModel.ImageEffectsItemId:
                     if (ToggleEffectsPanelCommand.CanExecute(null))
                     {
@@ -144,6 +159,11 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
 
             foreach (ToolbarCustomizationItemViewModel item in items.Select(item => item.Clone()))
             {
+                if (item.Tool == EditorTool.Emoji)
+                {
+                    item.Icon = _emojiToolIcon;
+                }
+
                 _toolbarItems.Add(item);
             }
 
@@ -167,7 +187,8 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
                     : item.Id switch
                     {
                         ToolbarCustomizationItemViewModel.BackgroundItemId => IsSettingsPanelOpen,
-                        ToolbarCustomizationItemViewModel.ImageEffectsItemId => IsEffectsPanelOpen && EffectsPanelContent is not EditorOptionsPanel,
+                        ToolbarCustomizationItemViewModel.ImageEffectsItemId => IsEffectsPanelOpen,
+                        ToolbarCustomizationItemViewModel.CanvasSizeItemId => IsCanvasSizeModeActive,
                         _ => false
                     };
             }

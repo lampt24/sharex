@@ -1,8 +1,24 @@
 #region License Information (GPL v3)
 
 /*
-    ShareX - A program developed by ShareX Team
+    ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -11,22 +27,19 @@
 
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Platform;
-using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using ShareX.AvaloniaUI.Controls;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+using ShareX.Icons;
 using ShareX.Localization;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using DrawingPoint = System.Drawing.Point;
-using FormsDataFormats = System.Windows.Forms.DataFormats;
-using FormsDataObject = System.Windows.Forms.DataObject;
 
 namespace ShareX;
 
@@ -44,8 +57,8 @@ public partial class ActionsToolbarWindow : Window
     {
         InitializeComponent();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
-        Topmost = Program.Settings.ActionsToolbarStayTopMost;
-        Program.Settings.ActionsToolbarList ??= [];
+        Topmost = ApplicationState.Settings.ActionsToolbarStayTopMost;
+        ApplicationState.Settings.ActionsToolbarList ??= [];
         MigrateLegacyDefaultActions();
 
         ToolTip.SetTip(TitleHandle, Strings.ActionsToolbarWindow_Tip);
@@ -75,9 +88,9 @@ public partial class ActionsToolbarWindow : Window
             HotkeyType.ClipboardUploadWithContentViewer
         ];
 
-        if (Program.Settings.ActionsToolbarList.SequenceEqual(legacyDefault))
+        if (ApplicationState.Settings.ActionsToolbarList.SequenceEqual(legacyDefault))
         {
-            Program.Settings.ActionsToolbarList =
+            ApplicationState.Settings.ActionsToolbarList =
             [
                 HotkeyType.PrintScreen,
                 HotkeyType.ActiveWindow,
@@ -92,11 +105,11 @@ public partial class ActionsToolbarWindow : Window
             ];
         }
 
-        int scrollingCaptureIndex = Program.Settings.ActionsToolbarList.IndexOf(HotkeyType.ScrollingCapture);
+        int scrollingCaptureIndex = ApplicationState.Settings.ActionsToolbarList.IndexOf(HotkeyType.ScrollingCapture);
         if (scrollingCaptureIndex >= 0 &&
-            !Program.Settings.ActionsToolbarList.Contains(HotkeyType.HorizontalScrollingCapture))
+            !ApplicationState.Settings.ActionsToolbarList.Contains(HotkeyType.HorizontalScrollingCapture))
         {
-            Program.Settings.ActionsToolbarList.Insert(scrollingCaptureIndex + 1, HotkeyType.HorizontalScrollingCapture);
+            ApplicationState.Settings.ActionsToolbarList.Insert(scrollingCaptureIndex + 1, HotkeyType.HorizontalScrollingCapture);
         }
     }
 
@@ -107,7 +120,7 @@ public partial class ActionsToolbarWindow : Window
             ToolbarItems.Children.RemoveAt(1);
         }
 
-        foreach (HotkeyType action in Program.Settings.ActionsToolbarList)
+        foreach (HotkeyType action in ApplicationState.Settings.ActionsToolbarList)
         {
             if (action == HotkeyType.None)
             {
@@ -122,15 +135,13 @@ public partial class ActionsToolbarWindow : Window
                 continue;
             }
 
-            TextBlock icon = new()
+            IconPresenter icon = new()
             {
-                Text = TaskHelpers.FindMenuLucideIcon(action),
+                Icon = TaskHelpers.FindMenuIcon(action),
                 FontSize = 17,
-                TextAlignment = Avalonia.Media.TextAlignment.Center,
                 Foreground = this.FindResource("ShareX.Brush.Accent") as Avalonia.Media.IBrush,
                 IsHitTestVisible = false
             };
-            icon.Classes.Add("icon");
 
             Button button = new()
             {
@@ -141,7 +152,7 @@ public partial class ActionsToolbarWindow : Window
             ToolTip.SetTip(button, ActionsToolbarTooltipBuilder.Build(
                 action,
                 action.GetLocalizedDescription(),
-                Program.HotkeysConfig?.Hotkeys));
+                ApplicationState.HotkeysConfigOrNull?.Hotkeys));
             ToolTip.SetPlacement(button, PlacementMode.Top);
             ToolTip.SetVerticalOffset(button, -4);
             ToolTip.SetShowDelay(button, 400);
@@ -166,11 +177,11 @@ public partial class ActionsToolbarWindow : Window
             Background = this.FindResource("ShareX.Brush.Border") as Avalonia.Media.IBrush
         });
 
-        _showCursorButton = CreateCaptureOptionButton(LucideIcons.mouse_pointer_2, Strings.MainMenuBuilder_ShowCursor);
+        _showCursorButton = CreateCaptureOptionButton(AppIcons.Pointer, Strings.MainMenuBuilder_ShowCursor);
         _showCursorButton.Click += (_, _) =>
         {
-            Program.DefaultTaskSettings.CaptureSettings.ShowCursor =
-                !Program.DefaultTaskSettings.CaptureSettings.ShowCursor;
+            ApplicationState.DefaultTaskSettings.CaptureSettings.ShowCursor =
+                !ApplicationState.DefaultTaskSettings.CaptureSettings.ShowCursor;
             UpdateCaptureOptions();
             SaveSettings();
         };
@@ -207,24 +218,24 @@ public partial class ActionsToolbarWindow : Window
         Button delayButton = new() { Content = _delayText, Width = 42, MinWidth = 42 };
         delayButton.Classes.Add("toolbar-action");
         ToolTip.SetTip(delayButton, string.Format(Strings.ScreenshotDelay0S,
-            Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay.ToString("0.#")));
+            ApplicationState.DefaultTaskSettings.CaptureSettings.ScreenshotDelay.ToString("0.#")));
         delayButton.Click += (_, _) => ShowDelayMenu(delayButton);
         ToolbarItems.Children.Add(delayButton);
 
         UpdateCaptureOptions();
     }
 
-    private Button CreateCaptureOptionButton(string iconText, string tooltip)
+    private Button CreateCaptureOptionButton(string iconKey, string tooltip)
     {
-        TextBlock icon = new()
+        IconPresenter icon = new()
         {
-            Text = iconText,
+            Icon = iconKey,
             FontSize = 17,
-            TextAlignment = Avalonia.Media.TextAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
             Foreground = this.FindResource("ShareX.Brush.Accent") as Avalonia.Media.IBrush,
             IsHitTestVisible = false
         };
-        icon.Classes.Add("icon");
 
         Button button = new() { Content = icon };
         button.Classes.Add("toolbar-action");
@@ -237,7 +248,7 @@ public partial class ActionsToolbarWindow : Window
     private void ShowDelayMenu(Control target)
     {
         ContextMenu menu = new();
-        decimal current = Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay;
+        decimal current = ApplicationState.DefaultTaskSettings.CaptureSettings.ScreenshotDelay;
 
         for (int delay = 0; delay <= 5; delay++)
         {
@@ -250,7 +261,7 @@ public partial class ActionsToolbarWindow : Window
             };
             item.Click += (_, _) =>
             {
-                Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay = selectedDelay;
+                ApplicationState.DefaultTaskSettings.CaptureSettings.ScreenshotDelay = selectedDelay;
                 UpdateCaptureOptions();
                 SaveSettings();
             };
@@ -264,12 +275,12 @@ public partial class ActionsToolbarWindow : Window
     {
         if (_showCursorButton != null)
         {
-            _showCursorButton.Classes.Set("checked", Program.DefaultTaskSettings.CaptureSettings.ShowCursor);
+            _showCursorButton.Classes.Set("checked", ApplicationState.DefaultTaskSettings.CaptureSettings.ShowCursor);
         }
 
         if (_clipboardToggleButton != null && _clipboardToggleText != null)
         {
-            bool isImage = Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
+            bool isImage = ApplicationState.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard);
             _clipboardToggleText.Text = isImage ? "IMAGE" : "PATH";
             ToolTip.SetTip(_clipboardToggleButton, isImage
                 ? Strings.MainMenuBuilder_CopyImageToClipboard
@@ -278,7 +289,7 @@ public partial class ActionsToolbarWindow : Window
 
         if (_delayText != null)
         {
-            _delayText.Text = $"{Program.DefaultTaskSettings.CaptureSettings.ScreenshotDelay:0.#}s";
+            _delayText.Text = $"{ApplicationState.DefaultTaskSettings.CaptureSettings.ScreenshotDelay:0.#}s";
         }
     }
 
@@ -294,7 +305,7 @@ public partial class ActionsToolbarWindow : Window
             return;
         }
 
-        bool restoreTopmost = Program.Settings.ActionsToolbarStayTopMost;
+        bool restoreTopmost = ApplicationState.Settings.ActionsToolbarStayTopMost;
         if (restoreTopmost)
         {
             Topmost = false;
@@ -317,7 +328,7 @@ public partial class ActionsToolbarWindow : Window
         {
             if (!_closing)
             {
-                Topmost = Program.Settings.ActionsToolbarStayTopMost;
+                Topmost = ApplicationState.Settings.ActionsToolbarStayTopMost;
             }
         }
     }
@@ -338,11 +349,11 @@ public partial class ActionsToolbarWindow : Window
         {
             Header = Strings.ActionsToolbarWindow_LockPosition,
             ToggleType = MenuItemToggleType.CheckBox,
-            IsChecked = Program.Settings.ActionsToolbarLockPosition
+            IsChecked = ApplicationState.Settings.ActionsToolbarLockPosition
         };
         lockPosition.Click += (_, _) =>
         {
-            Program.Settings.ActionsToolbarLockPosition = lockPosition.IsChecked;
+            ApplicationState.Settings.ActionsToolbarLockPosition = lockPosition.IsChecked;
             UpdateTitleCursor();
             SaveSettings();
         };
@@ -352,11 +363,11 @@ public partial class ActionsToolbarWindow : Window
         {
             Header = Strings.ActionsToolbarWindow_StayOnTop,
             ToggleType = MenuItemToggleType.CheckBox,
-            IsChecked = Program.Settings.ActionsToolbarStayTopMost
+            IsChecked = ApplicationState.Settings.ActionsToolbarStayTopMost
         };
         stayTopmost.Click += (_, _) =>
         {
-            Program.Settings.ActionsToolbarStayTopMost = stayTopmost.IsChecked;
+            ApplicationState.Settings.ActionsToolbarStayTopMost = stayTopmost.IsChecked;
             Topmost = stayTopmost.IsChecked;
             SaveSettings();
         };
@@ -366,11 +377,11 @@ public partial class ActionsToolbarWindow : Window
         {
             Header = Strings.ActionsToolbarWindow_OpenAtStartup,
             ToggleType = MenuItemToggleType.CheckBox,
-            IsChecked = Program.Settings.ActionsToolbarRunAtStartup
+            IsChecked = ApplicationState.Settings.ActionsToolbarRunAtStartup
         };
         runAtStartup.Click += (_, _) =>
         {
-            Program.Settings.ActionsToolbarRunAtStartup = runAtStartup.IsChecked;
+            ApplicationState.Settings.ActionsToolbarRunAtStartup = runAtStartup.IsChecked;
             SaveSettings();
         };
         menu.Items.Add(runAtStartup);
@@ -385,7 +396,7 @@ public partial class ActionsToolbarWindow : Window
 
     private async System.Threading.Tasks.Task ShowEditorAsync()
     {
-        bool restoreTopmost = Program.Settings.ActionsToolbarStayTopMost;
+        bool restoreTopmost = ApplicationState.Settings.ActionsToolbarStayTopMost;
         Topmost = false;
 
         try
@@ -406,7 +417,7 @@ public partial class ActionsToolbarWindow : Window
     private void OnTitlePointerPressed(object? sender, PointerPressedEventArgs e)
     {
         PointerUpdateKind kind = e.GetCurrentPoint(TitleHandle).Properties.PointerUpdateKind;
-        if (kind == PointerUpdateKind.LeftButtonPressed && !Program.Settings.ActionsToolbarLockPosition)
+        if (kind == PointerUpdateKind.LeftButtonPressed && !ApplicationState.Settings.ActionsToolbarLockPosition)
         {
             BeginMoveDrag(e);
             e.Handled = true;
@@ -420,7 +431,7 @@ public partial class ActionsToolbarWindow : Window
 
     private void UpdateTitleCursor()
     {
-        TitleHandle.Cursor = new Cursor(Program.Settings.ActionsToolbarLockPosition
+        TitleHandle.Cursor = new Cursor(ApplicationState.Settings.ActionsToolbarLockPosition
             ? StandardCursorType.Arrow
             : StandardCursorType.SizeAll);
     }
@@ -435,7 +446,7 @@ public partial class ActionsToolbarWindow : Window
 
     private void RestorePosition()
     {
-        DrawingPoint saved = Program.Settings.ActionsToolbarPosition;
+        DrawingPoint saved = ApplicationState.Settings.ActionsToolbarPosition;
         if (!saved.IsEmpty)
         {
             PixelPoint point = new(saved.X, saved.Y);
@@ -502,7 +513,7 @@ public partial class ActionsToolbarWindow : Window
             _adjustingPosition = false;
         }
 
-        Program.Settings.ActionsToolbarPosition = new DrawingPoint(adjusted.X, adjusted.Y);
+        ApplicationState.Settings.ActionsToolbarPosition = new DrawingPoint(adjusted.X, adjusted.Y);
     }
 
     private void OnDragEnter(object? sender, DragEventArgs e) => UpdateDragState(e);
@@ -528,25 +539,7 @@ public partial class ActionsToolbarWindow : Window
     {
         DropOverlay.IsVisible = false;
 
-        FormsDataObject dataObject = new();
-        string[] files = e.DataTransfer.TryGetFiles()?
-            .Select(file => file.TryGetLocalPath())
-            .Where(path => !string.IsNullOrEmpty(path))
-            .Cast<string>()
-            .ToArray() ?? [];
-
-        if (files.Length > 0)
-        {
-            dataObject.SetData(FormsDataFormats.FileDrop, files);
-        }
-
-        string? text = e.DataTransfer.TryGetText();
-        if (!string.IsNullOrEmpty(text))
-        {
-            dataObject.SetText(text);
-        }
-
-        UploadManager.DragDropUpload(dataObject);
+        UploadManager.DragDropUpload(e.DataTransfer);
         e.DragEffects = DragDropEffects.Copy;
         e.Handled = true;
     }

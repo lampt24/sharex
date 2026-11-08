@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -10,14 +26,14 @@
 #nullable enable
 
 using ShareX.HelpersLib;
+using ShareX.Icons;
+using ShareX.Localization;
 using ShareX.UploadersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.ImageUploaders;
 using ShareX.UploadersLib.SharingServices;
 using ShareX.UploadersLib.TextUploaders;
 using ShareX.UploadersLib.URLShorteners;
-using ShareX.AvaloniaUI.Theming;
-using ShareX.Localization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,11 +62,11 @@ public sealed class CustomUploaderSettingsViewModel : CustomUploaderNotifyObject
     public ObservableCollection<CustomUploaderEditorItem> FilteredUploaders { get; } = [];
     public IReadOnlyList<CustomUploaderEditorSection> Sections { get; } =
     [
-        new(Strings.CustomUploaderSettingsWindow_Overview, LucideIcons.layout_dashboard),
-        new(Strings.CustomUploaderSettingsWindow_Request, LucideIcons.send),
-        new(Strings.CustomUploaderSettingsWindow_Body, LucideIcons.braces),
-        new(Strings.CustomUploaderSettingsWindow_Response, LucideIcons.reply),
-        new(Strings.CustomUploaderSettingsWindow_Test, LucideIcons.flask_conical)
+        new(Strings.CustomUploaderSettingsWindow_Overview, AppIcons.Dashboard),
+        new(Strings.CustomUploaderSettingsWindow_Request, AppIcons.Send),
+        new(Strings.CustomUploaderSettingsWindow_Body, AppIcons.Braces),
+        new(Strings.CustomUploaderSettingsWindow_Response, AppIcons.Reply),
+        new(Strings.CustomUploaderSettingsWindow_Test, AppIcons.Flask)
     ];
     public string[] RequestMethods { get; } = Enum.GetNames<HttpMethod>();
     public string[] BodyTypes { get; } = Enum.GetValues<CustomUploaderBody>().Select(x => x.GetLocalizedDescription()).ToArray();

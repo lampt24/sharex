@@ -315,6 +315,16 @@ namespace ShareX.ImageEditor.Localization {
                 return ResourceManager.GetString("AnnotationToolbar_Fontfamily", resourceCulture);
             }
         }
+        public static string FontFamilyPickerDropdown_SearchfontsEllipsis {
+            get {
+                return ResourceManager.GetString("FontFamilyPickerDropdown_SearchfontsEllipsis", resourceCulture);
+            }
+        }
+        public static string FontFamilyPickerDropdown_Nomatchingfonts {
+            get {
+                return ResourceManager.GetString("FontFamilyPickerDropdown_Nomatchingfonts", resourceCulture);
+            }
+        }
         public static string AnnotationToolbar_Fontsize {
             get {
                 return ResourceManager.GetString("AnnotationToolbar_Fontsize", resourceCulture);
@@ -353,11 +363,6 @@ namespace ShareX.ImageEditor.Localization {
         public static string AnnotationToolbar_Openrecent {
             get {
                 return ResourceManager.GetString("AnnotationToolbar_Openrecent", resourceCulture);
-            }
-        }
-        public static string AnnotationToolbar_Options {
-            get {
-                return ResourceManager.GetString("AnnotationToolbar_Options", resourceCulture);
             }
         }
         public static string AnnotationToolbar_RedoCtrlY {
@@ -425,6 +430,16 @@ namespace ShareX.ImageEditor.Localization {
                 return ResourceManager.GetString("AnnotationToolbar_ToggleshadowShadowoptionsRightclick", resourceCulture);
             }
         }
+        public static string AnnotationToolbar_Roundedcorners {
+            get {
+                return ResourceManager.GetString("AnnotationToolbar_Roundedcorners", resourceCulture);
+            }
+        }
+        public static string AnnotationToolbar_Freehandarrow {
+            get {
+                return ResourceManager.GetString("AnnotationToolbar_Freehandarrow", resourceCulture);
+            }
+        }
         public static string AnnotationToolbar_Toggletail {
             get {
                 return ResourceManager.GetString("AnnotationToolbar_Toggletail", resourceCulture);
@@ -438,21 +453,6 @@ namespace ShareX.ImageEditor.Localization {
         public static string ColorPickerPanel_Pickcolorfromscreen {
             get {
                 return ResourceManager.GetString("ColorPickerPanel_Pickcolorfromscreen", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_Close {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_Close", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_CustomizetoolbarEllipsis {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_CustomizetoolbarEllipsis", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_Options {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_Options", resourceCulture);
             }
         }
         public static string EditorView_Auto {
@@ -775,6 +775,11 @@ namespace ShareX.ImageEditor.Localization {
                 return ResourceManager.GetString("ToolbarCustomizationItemViewModel_Image", resourceCulture);
             }
         }
+        public static string ToolbarCustomizationItemViewModel_Clone {
+            get {
+                return ResourceManager.GetString("ToolbarCustomizationItemViewModel_Clone", resourceCulture);
+            }
+        }
         public static string ToolbarCustomizationItemViewModel_Emoji {
             get {
                 return ResourceManager.GetString("ToolbarCustomizationItemViewModel_Emoji", resourceCulture);
@@ -1045,46 +1050,6 @@ namespace ShareX.ImageEditor.Localization {
                 return ResourceManager.GetString("TextHorizontalAlignmentHelper_Right", resourceCulture);
             }
         }
-        public static string EditorOptionsPanel_RememberWindowState {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_RememberWindowState", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_ShowExitConfirmation {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_ShowExitConfirmation", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_ZoomToFitOnOpen {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_ZoomToFitOnOpen", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_QuickCrop {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_QuickCrop", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_AutoCloseEditorOnTask {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_AutoCloseEditorOnTask", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_AutoCopyImageToClipboard {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_AutoCopyImageToClipboard", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_ShowInsertImageDialog {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_ShowInsertImageDialog", resourceCulture);
-            }
-        }
-        public static string EditorOptionsPanel_ShowNotifications {
-            get {
-                return ResourceManager.GetString("EditorOptionsPanel_ShowNotifications", resourceCulture);
-            }
-        }
         public static string MainViewModel_BackgroundModeGradient {
             get {
                 return ResourceManager.GetString("MainViewModel_BackgroundModeGradient", resourceCulture);
@@ -1308,6 +1273,26 @@ namespace ShareX.ImageEditor.Localization {
         public static string EditorView_AchievementUnlocked {
             get {
                 return ResourceManager.GetString("EditorView_AchievementUnlocked", resourceCulture);
+            }
+        }
+        public static string ToolbarCustomizationItemViewModel_CanvasSize {
+            get {
+                return ResourceManager.GetString("ToolbarCustomizationItemViewModel_CanvasSize", resourceCulture);
+            }
+        }
+        public static string EditorView_CanvasSizeApply {
+            get {
+                return ResourceManager.GetString("EditorView_CanvasSizeApply", resourceCulture);
+            }
+        }
+        public static string EditorView_CanvasSizeCancel {
+            get {
+                return ResourceManager.GetString("EditorView_CanvasSizeCancel", resourceCulture);
+            }
+        }
+        public static string EditorView_CanvasSizeFillColor {
+            get {
+                return ResourceManager.GetString("EditorView_CanvasSizeFillColor", resourceCulture);
             }
         }
         public static string EditorView_Crop {
@@ -2493,6 +2478,16 @@ namespace ShareX.ImageEditor.Localization {
         public static string EffectBrowserPanel_Effect_wave_distortion {
             get {
                 return ResourceManager.GetString("EffectBrowserPanel_Effect_wave_distortion", resourceCulture);
+            }
+        }
+        public static string ToolbarCustomizationDialogView_Primary {
+            get {
+                return ResourceManager.GetString("ToolbarCustomizationDialogView_Primary", resourceCulture);
+            }
+        }
+        public static string ToolbarCustomizationDialogView_Secondary {
+            get {
+                return ResourceManager.GetString("ToolbarCustomizationDialogView_Secondary", resourceCulture);
             }
         }
     }

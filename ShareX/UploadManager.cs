@@ -23,19 +23,19 @@
 
 #endregion License Information (GPL v3)
 
-using ShareX.Localization;
+using Avalonia.Input;
+using Avalonia.Platform.Storage;
 using ShareX.HelpersLib;
+using ShareX.Localization;
 using ShareX.Tools;
-using ShareX.Properties;
 using ShareX.UploadersLib;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
-using System.Windows.Forms;
+using Bitmap = SkiaSharp.SKBitmap;
 using MessageBox = ShareX.AvaloniaUI.MessageBox;
 using MessageBoxButtons = ShareX.AvaloniaUI.MessageBoxButtons;
 using MessageBoxIcon = ShareX.AvaloniaUI.MessageBoxIcon;
@@ -82,10 +82,10 @@ namespace ShareX
 
         private static bool IsUploadConfirmed(int length)
         {
-            if (Program.Settings.ShowMultiUploadWarning)
+            if (ApplicationState.Settings.ShowMultiUploadWarning)
             {
                 MultiUploadConfirmationResult result = MultiUploadConfirmationWindowIntegration.Show(length);
-                Program.Settings.ShowMultiUploadWarning = !result.DontShowAgain;
+                ApplicationState.Settings.ShowMultiUploadWarning = !result.DontShowAgain;
                 return result.IsConfirmed;
             }
 
@@ -94,39 +94,23 @@ namespace ShareX
 
         public static void UploadFile(TaskSettings taskSettings = null)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            string initialDirectory = Directory.Exists(ApplicationState.Settings.FileUploadDefaultDirectory)
+                ? ApplicationState.Settings.FileUploadDefaultDirectory : Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string[] files = FileDialogHelpers.OpenFiles("ShareX - " + Strings.UploadManager_UploadFile_File_upload,
+                multiselect: true, initialDirectory: initialDirectory);
+            if (files.Length > 0)
             {
-                ofd.Title = "ShareX - " + Strings.UploadManager_UploadFile_File_upload;
-
-                if (!string.IsNullOrEmpty(Program.Settings.FileUploadDefaultDirectory) && Directory.Exists(Program.Settings.FileUploadDefaultDirectory))
-                {
-                    ofd.InitialDirectory = Program.Settings.FileUploadDefaultDirectory;
-                }
-                else
-                {
-                    ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                }
-
-                ofd.Multiselect = true;
-
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    if (!string.IsNullOrEmpty(ofd.FileName))
-                    {
-                        Program.Settings.FileUploadDefaultDirectory = Path.GetDirectoryName(ofd.FileName);
-                    }
-
-                    UploadFile(ofd.FileNames, taskSettings);
-                }
+                ApplicationState.Settings.FileUploadDefaultDirectory = Path.GetDirectoryName(files[0]);
+                UploadFile(files, taskSettings);
             }
         }
 
         public static void UploadFolder(TaskSettings taskSettings = null)
         {
             string initialDirectory;
-            if (!string.IsNullOrEmpty(Program.Settings.FileUploadDefaultDirectory) && Directory.Exists(Program.Settings.FileUploadDefaultDirectory))
+            if (!string.IsNullOrEmpty(ApplicationState.Settings.FileUploadDefaultDirectory) && Directory.Exists(ApplicationState.Settings.FileUploadDefaultDirectory))
             {
-                initialDirectory = Program.Settings.FileUploadDefaultDirectory;
+                initialDirectory = ApplicationState.Settings.FileUploadDefaultDirectory;
             }
             else
             {
@@ -136,7 +120,7 @@ namespace ShareX
 
             if (!string.IsNullOrEmpty(selectedPath))
             {
-                Program.Settings.FileUploadDefaultDirectory = selectedPath;
+                ApplicationState.Settings.FileUploadDefaultDirectory = selectedPath;
                 UploadFile(selectedPath, taskSettings);
             }
         }
@@ -206,7 +190,7 @@ namespace ShareX
 
             try
             {
-                if (Clipboard.ContainsImage())
+                if (ClipboardHelpers.ContainsImage())
                 {
                     Bitmap image;
 
@@ -216,20 +200,20 @@ namespace ShareX
                     }
                     else
                     {
-                        image = (Bitmap)Clipboard.GetImage();
+                        image = ClipboardHelpers.GetImage();
                     }
 
                     ProcessImageUpload(image, taskSettings);
                 }
-                else if (Clipboard.ContainsText())
+                else if (ClipboardHelpers.ContainsText())
                 {
-                    string text = Clipboard.GetText();
+                    string text = ClipboardHelpers.GetText();
 
                     ProcessTextUpload(text, taskSettings);
                 }
-                else if (Clipboard.ContainsFileDropList())
+                else if (ClipboardHelpers.ContainsFileDropList())
                 {
-                    string[] files = Clipboard.GetFileDropList().Cast<string>().ToArray();
+                    string[] files = ClipboardHelpers.GetFileDropList();
 
                     ProcessFilesUpload(files, taskSettings);
                 }
@@ -261,10 +245,10 @@ namespace ShareX
         {
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
 
-            if (Program.Settings.ShowClipboardContentViewer)
+            if (ApplicationState.Settings.ShowClipboardContentViewer)
             {
                 ClipboardUploadWindowIntegration.Show(taskSettings, true, dontShowAgain =>
-                    Program.Settings.ShowClipboardContentViewer = !dontShowAgain);
+                    ApplicationState.Settings.ShowClipboardContentViewer = !dontShowAgain);
             }
             else
             {
@@ -284,25 +268,22 @@ namespace ShareX
             }
         }
 
-        public static void DragDropUpload(IDataObject data, TaskSettings taskSettings = null)
+        public static void DragDropUpload(Avalonia.Input.IDataTransfer data, TaskSettings taskSettings = null)
         {
-            if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
-
-            if (data.GetDataPresent(DataFormats.FileDrop, false))
+            taskSettings ??= TaskSettings.GetDefaultTaskSettings();
+            string[] files = data.TryGetFiles()?.Select(x => x.TryGetLocalPath()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            if (files?.Length > 0) UploadFile(files, taskSettings);
+            else if (data.TryGetBitmap() is { } image)
             {
-                string[] files = data.GetData(DataFormats.FileDrop, false) as string[];
-                UploadFile(files, taskSettings);
+                using (image)
+                using (MemoryStream stream = new())
+                {
+                    image.Save(stream, Avalonia.Media.Imaging.PngBitmapEncoderOptions.Default);
+                    stream.Position = 0;
+                    RunImageTask(SkiaImageHelpers.Decode(stream), taskSettings);
+                }
             }
-            else if (data.GetDataPresent(DataFormats.Bitmap, false))
-            {
-                Bitmap bmp = data.GetData(DataFormats.Bitmap, false) as Bitmap;
-                RunImageTask(bmp, taskSettings);
-            }
-            else if (data.GetDataPresent(DataFormats.Text, false))
-            {
-                string text = data.GetData(DataFormats.Text, false) as string;
-                UploadText(text, taskSettings, true);
-            }
+            else if (data.TryGetText() is { } text) UploadText(text, taskSettings, true);
         }
 
         public static async Task UploadURL(TaskSettings taskSettings = null)
@@ -570,7 +551,7 @@ namespace ShareX
             {
                 if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
 
-                taskSettings.ToolsSettings.IndexerSettings.BinaryUnits = Program.Settings.BinaryUnits;
+                taskSettings.ToolsSettings.IndexerSettings.BinaryUnits = ApplicationState.Settings.BinaryUnits;
 
                 string source = null;
 

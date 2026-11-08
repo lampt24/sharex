@@ -1,5 +1,29 @@
+#region License Information (GPL v3)
+
+/*
+    ShareX - A program that allows you to take screenshots and share any file type
+    Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
+*/
+
+#endregion License Information (GPL v3)
+
 using ShareX.HelpersLib;
-using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -34,7 +58,17 @@ internal static class ImageEffectsLocalization
         string name = Enum.GetName(enumType, value) ?? value.ToString() ?? string.Empty;
         FieldInfo? field = enumType.GetField(name);
         string fallback = field?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? Helpers.GetProperName(name);
-        return Get($"ImageEffectEnum_{Sanitize(enumType.Name)}_{name}", fallback);
+        string resourceType = enumType.Name switch
+        {
+            nameof(ImageContentAlignment) => "ContentAlignment",
+            nameof(ImageSides) => "AnchorStyles",
+            nameof(ImageDashStyle) => "DashStyle",
+            nameof(ImageGradientMode) => "LinearGradientMode",
+            nameof(ImageCompositingMode) => "CompositingMode",
+            nameof(ImageTextRenderingMode) => "TextRenderingHint",
+            _ => enumType.Name
+        };
+        return Get($"ImageEffectEnum_{Sanitize(resourceType)}_{name}", fallback);
     }
 
     private static string Get(string key, string fallback)

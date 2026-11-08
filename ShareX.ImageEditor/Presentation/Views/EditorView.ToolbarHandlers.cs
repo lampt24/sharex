@@ -72,6 +72,8 @@ namespace ShareX.ImageEditor.Presentation.Views
             toolbar.TextItalicChanged += OnToolbarTextItalicChanged;
             toolbar.ShadowChanged += OnToolbarShadowChanged;
             toolbar.ShadowSettingsChanged += OnToolbarShadowSettingsChanged;
+            toolbar.ArrowRoundedCornersChanged += OnToolbarArrowRoundedCornersChanged;
+            toolbar.FreehandArrowChanged += OnToolbarFreehandArrowChanged;
             toolbar.SpeechBalloonTailChanged += OnToolbarSpeechBalloonTailChanged;
             toolbar.EffectEllipseChanged += OnToolbarEffectEllipseChanged;
             toolbar.FavoriteEffectsMenuRequested += OnFavoriteEffectsMenuRequested;
@@ -112,6 +114,8 @@ namespace ShareX.ImageEditor.Presentation.Views
             toolbar.TextItalicChanged -= OnToolbarTextItalicChanged;
             toolbar.ShadowChanged -= OnToolbarShadowChanged;
             toolbar.ShadowSettingsChanged -= OnToolbarShadowSettingsChanged;
+            toolbar.ArrowRoundedCornersChanged -= OnToolbarArrowRoundedCornersChanged;
+            toolbar.FreehandArrowChanged -= OnToolbarFreehandArrowChanged;
             toolbar.SpeechBalloonTailChanged -= OnToolbarSpeechBalloonTailChanged;
             toolbar.EffectEllipseChanged -= OnToolbarEffectEllipseChanged;
             toolbar.FavoriteEffectsMenuRequested -= OnFavoriteEffectsMenuRequested;
@@ -186,7 +190,7 @@ namespace ShareX.ImageEditor.Presentation.Views
             if (DataContext is MainViewModel vm)
             {
                 vm.SelectedFontFamily = fontFamily;
-                ApplySelectedFontFamily(fontFamily);
+                ApplySelectedFontFamily(vm.SelectedFontFamily);
             }
         }
 
@@ -281,6 +285,28 @@ namespace ShareX.ImageEditor.Presentation.Views
             ApplySelectedShadowSettings();
         }
 
+        private void OnToolbarArrowRoundedCornersChanged(object? sender, bool isEnabled)
+        {
+            var selected = _selectionController.SelectedShape;
+
+            if (selected?.Tag is ArrowAnnotation arrowAnnotation && selected is global::Avalonia.Controls.Shapes.Path arrowPath)
+            {
+                arrowAnnotation.RoundedCorners = isEnabled;
+                AnnotationVisualFactory.UpdateVisualControl(arrowPath, arrowAnnotation);
+            }
+        }
+
+        private void OnToolbarFreehandArrowChanged(object? sender, bool isEnabled)
+        {
+            var selected = _selectionController.SelectedShape;
+
+            if (selected?.Tag is FreehandAnnotation freehandAnnotation && selected is global::Avalonia.Controls.Shapes.Path freehandPath)
+            {
+                freehandAnnotation.ShowArrowHead = isEnabled;
+                AnnotationVisualFactory.UpdateVisualControl(freehandPath, freehandAnnotation);
+            }
+        }
+
         private void OnToolbarSpeechBalloonTailChanged(object? sender, bool isEnabled)
         {
             ApplySelectedSpeechBalloonTail(isEnabled);
@@ -321,11 +347,6 @@ namespace ShareX.ImageEditor.Presentation.Views
             {
                 vm.ZoomToFitCommand.Execute(null);
             }
-        }
-
-        private void OnSidebarScrollChanged(object? sender, ScrollChangedEventArgs e)
-        {
-            // TODO: Restore sidebar scrollbar overlay logic
         }
 
         private void OnToolbarScrollChanged(object? sender, ScrollChangedEventArgs e)
@@ -740,7 +761,7 @@ namespace ShareX.ImageEditor.Presentation.Views
                     0,
                     255);
 
-                if (selected is SpotlightControl spotlightControl)
+                if (selected is SpotlightControl)
                 {
                     RefreshSpotlightOverlay();
                 }
@@ -803,17 +824,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
             annotation.ShadowEnabled = isEnabled;
 
-            if (selected is Control control)
-            {
-                if (isEnabled)
-                {
-                    control.Effect = ShareX.ImageEditor.Presentation.Helpers.ShadowEffectHelper.CreateDropShadow(annotation);
-                }
-                else
-                {
-                    control.Effect = null;
-                }
-            }
+            selected.Effect = isEnabled ? ShadowEffectHelper.CreateDropShadow(annotation) : null;
         }
 
         private void ApplySelectedShadowSettings()
@@ -835,9 +846,9 @@ namespace ShareX.ImageEditor.Presentation.Views
             annotation.ShadowOffsetX = vm.Options.ShadowOffsetX;
             annotation.ShadowOffsetY = vm.Options.ShadowOffsetY;
 
-            if (selected is Control control && annotation.ShadowEnabled)
+            if (annotation.ShadowEnabled)
             {
-                control.Effect = ShareX.ImageEditor.Presentation.Helpers.ShadowEffectHelper.CreateDropShadow(annotation);
+                selected.Effect = ShadowEffectHelper.CreateDropShadow(annotation);
             }
         }
 
@@ -863,75 +874,60 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private void ApplySelectedTextBold(bool isBold)
         {
-            if (_selectionController.SelectedShape?.Tag is TextAnnotation textAnn)
-            {
-                textAnn.IsBold = isBold;
-                if (_selectionController.SelectedShape is OutlinedTextControl outlinedText)
-                {
-                    outlinedText.InvalidateMeasure();
-                    outlinedText.InvalidateVisual();
-                }
-
-                if (FindActiveTextEditor(textAnn) is TextBox textEditor)
-                {
-                    ApplyTextFontStyle(textEditor, textAnn.IsBold, textAnn.IsItalic);
-                }
-            }
-            else if (_selectionController.SelectedShape?.Tag is SpeechBalloonAnnotation balloonAnnotation)
-            {
-                balloonAnnotation.IsBold = isBold;
-
-                if (_selectionController.SelectedShape is SpeechBalloonControl balloonControl)
-                {
-                    balloonControl.InvalidateVisual();
-                }
-
-                if (FindActiveTextEditor(balloonAnnotation) is TextBox textEditor)
-                {
-                    ApplyTextFontStyle(textEditor, balloonAnnotation.IsBold, balloonAnnotation.IsItalic);
-                }
-            }
-            else if (_selectionController.SelectedShape?.Tag is NumberAnnotation numberAnnotation)
-            {
-                numberAnnotation.IsBold = isBold;
-
-                if (_selectionController.SelectedShape is StepControl stepControl)
-                {
-                    AnnotationVisualFactory.UpdateVisualControl(stepControl, numberAnnotation);
-                    _selectionController.UpdateSelectionHandles();
-                }
-            }
+            ApplySelectedTextStyle(isBold: isBold);
         }
 
         private void ApplySelectedTextItalic(bool isItalic)
         {
-            if (_selectionController.SelectedShape?.Tag is TextAnnotation textAnn)
-            {
-                textAnn.IsItalic = isItalic;
-                if (_selectionController.SelectedShape is OutlinedTextControl outlinedText)
-                {
-                    outlinedText.InvalidateMeasure();
-                    outlinedText.InvalidateVisual();
-                }
+            ApplySelectedTextStyle(isItalic: isItalic);
+        }
 
-                if (FindActiveTextEditor(textAnn) is TextBox textEditor)
-                {
-                    ApplyTextFontStyle(textEditor, textAnn.IsBold, textAnn.IsItalic);
-                }
+        private void ApplySelectedTextStyle(bool? isBold = null, bool? isItalic = null)
+        {
+            var selected = _selectionController.SelectedShape;
+
+            switch (selected?.Tag)
+            {
+                case TextAnnotation textAnnotation:
+                    textAnnotation.IsBold = isBold ?? textAnnotation.IsBold;
+                    textAnnotation.IsItalic = isItalic ?? textAnnotation.IsItalic;
+
+                    if (selected is OutlinedTextControl outlinedText)
+                    {
+                        outlinedText.InvalidateMeasure();
+                        outlinedText.InvalidateVisual();
+                    }
+
+                    UpdateActiveTextEditorFontStyle(textAnnotation, textAnnotation.IsBold, textAnnotation.IsItalic);
+                    break;
+                case SpeechBalloonAnnotation balloonAnnotation:
+                    balloonAnnotation.IsBold = isBold ?? balloonAnnotation.IsBold;
+                    balloonAnnotation.IsItalic = isItalic ?? balloonAnnotation.IsItalic;
+
+                    if (selected is SpeechBalloonControl balloonControl)
+                    {
+                        balloonControl.InvalidateVisual();
+                    }
+
+                    UpdateActiveTextEditorFontStyle(balloonAnnotation, balloonAnnotation.IsBold, balloonAnnotation.IsItalic);
+                    break;
+                case NumberAnnotation numberAnnotation when isBold.HasValue:
+                    numberAnnotation.IsBold = isBold.Value;
+
+                    if (selected is StepControl stepControl)
+                    {
+                        AnnotationVisualFactory.UpdateVisualControl(stepControl, numberAnnotation);
+                        _selectionController.UpdateSelectionHandles();
+                    }
+                    break;
             }
-            else if (_selectionController.SelectedShape?.Tag is SpeechBalloonAnnotation balloonAnnotation)
+        }
+
+        private void UpdateActiveTextEditorFontStyle(Annotation annotation, bool isBold, bool isItalic)
+        {
+            if (FindActiveTextEditor(annotation) is TextBox textEditor)
             {
-                balloonAnnotation.IsItalic = isItalic;
-
-                if (_selectionController.SelectedShape is SpeechBalloonControl balloonControl)
-                {
-                    balloonControl.InvalidateVisual();
-                }
-
-                if (FindActiveTextEditor(balloonAnnotation) is TextBox textEditor)
-                {
-                    ApplyTextFontStyle(textEditor, balloonAnnotation.IsBold, balloonAnnotation.IsItalic);
-                }
+                ApplyTextFontStyle(textEditor, isBold, isItalic);
             }
         }
 

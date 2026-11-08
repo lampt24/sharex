@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -19,7 +35,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using AvaloniaDialogResult = ShareX.AvaloniaUI.DialogResult;
+using DialogResult = ShareX.AvaloniaUI.DialogResult;
+using MessageBox = ShareX.AvaloniaUI.MessageBox;
+using MessageBoxButtons = ShareX.AvaloniaUI.MessageBoxButtons;
+using MessageBoxDefaultButton = ShareX.AvaloniaUI.MessageBoxDefaultButton;
+using MessageBoxIcon = ShareX.AvaloniaUI.MessageBoxIcon;
 
 namespace ShareX.HelpersLib;
 
@@ -39,6 +60,7 @@ public partial class DownloaderWindow : Window
     public bool AutoStartInstall { get; set; } = true;
     public DownloaderWindowStatus Status { get; private set; } = DownloaderWindowStatus.Waiting;
     public bool RunInstallerInBackground { get; set; } = true;
+    public bool VerifyInstallerSignature { get; set; }
 
     private FileDownloader? _fileDownloader;
     private DialogResult _result;
@@ -78,6 +100,8 @@ public partial class DownloaderWindow : Window
             {
                 window.AcceptHeader = "application/octet-stream";
             }
+
+            window.VerifyInstallerSignature = true;
         });
     }
 
@@ -109,6 +133,24 @@ public partial class DownloaderWindow : Window
     public void Install()
     {
         if (Status != DownloaderWindowStatus.DownloadCompleted) return;
+
+        if (VerifyInstallerSignature && !AuthenticodeSignatureVerifier.IsTrusted(DownloadLocation))
+        {
+            AvaloniaDialogResult result = MessageBox.Show(
+                this,
+                Localization.Strings.DownloaderWindow_InvalidSignatureWarning,
+                Localization.Strings.DownloaderWindow_InvalidSignatureTitle,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2);
+
+            if (result != AvaloniaDialogResult.Yes)
+            {
+                _result = DialogResult.Cancel;
+                Close();
+                return;
+            }
+        }
 
         Status = DownloaderWindowStatus.InstallStarted;
         _result = DialogResult.OK;

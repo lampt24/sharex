@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -19,10 +35,12 @@ using ShareX.Localization;
 using ShareX.UploadersLib;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using DrawingBitmap = System.Drawing.Bitmap;
-using DrawingImageFormat = System.Drawing.Imaging.ImageFormat;
+using DrawingBitmap = SkiaSharp.SKBitmap;
+using DrawingImageFormat = SkiaSharp.SKEncodedImageFormat;
 
 namespace ShareX;
 
@@ -32,12 +50,17 @@ public partial class AfterCaptureWindow : Window
 {
     private readonly DrawingBitmap? _sourceImage;
     private readonly DrawingBitmap? _ownedSourceImage;
+    private readonly bool _fileAlreadySaved;
     private Bitmap? _previewBitmap;
+    private AfterCaptureGoal _goal;
 
     public TaskSettings TaskSettings { get; }
+    public IReadOnlyList<AfterCaptureGoalOption> GoalOptions { get; }
+    public ObservableCollection<string> RequiredOptions { get; } = new();
     public IReadOnlyList<AfterCaptureTaskOption> AfterCaptureOptions { get; }
     public IReadOnlyList<AfterCaptureTaskOption> AfterUploadOptions { get; }
     public IReadOnlyList<AfterCaptureDestinationOption> DestinationOptions { get; }
+    public AfterCaptureDestinationOption? SelectedDestination { get; set; }
     public AfterCaptureWindowResult Result { get; private set; }
 
     public AfterCaptureWindow() : this(global::ShareX.TaskSettings.GetDefaultTaskSettings(), null, null)
@@ -47,12 +70,20 @@ public partial class AfterCaptureWindow : Window
     public AfterCaptureWindow(TaskSettings taskSettings, TaskMetadata? metadata, string? filePath)
     {
         TaskSettings = taskSettings;
+        _fileAlreadySaved = !string.IsNullOrEmpty(filePath);
+        DestinationOptions = CreateDestinationOptions(taskSettings);
+        SelectedDestination = DestinationOptions.FirstOrDefault(option => option.IsSelected);
+
+        bool canUpload = !SystemOptions.DisableUpload && !ApplicationState.Settings.DisableUpload && DestinationOptions.Count > 0;
+        IReadOnlyList<AfterCaptureGoal> goals = AfterCaptureGoals.GetAvailableGoals(metadata?.Image != null, canUpload);
+        _goal = AfterCaptureGoals.InferGoal(taskSettings.AfterCaptureJob, goals);
+        GoalOptions = goals.Select(goal => new AfterCaptureGoalOption(goal, goal == _goal, SelectGoal)).ToArray();
         AfterCaptureOptions = CreateAfterCaptureOptions(taskSettings.AfterCaptureJob);
         AfterUploadOptions = CreateAfterUploadOptions(taskSettings.AfterUploadJob);
-        DestinationOptions = CreateDestinationOptions(taskSettings);
 
         InitializeComponent();
         DataContext = this;
+        UpdateGoalControls();
         RequestedThemeVariant = ThemeManager.GetCurrentTheme();
 
         string fileName;
@@ -61,7 +92,7 @@ public partial class AfterCaptureWindow : Window
             fileName = Path.GetFileNameWithoutExtension(filePath);
             if (FileHelpers.IsImageFile(filePath))
             {
-                _ownedSourceImage = ImageHelpers.LoadImage(filePath);
+                _ownedSourceImage = SkiaImageHelpers.LoadImage(filePath);
                 _sourceImage = _ownedSourceImage;
             }
         }
@@ -75,8 +106,15 @@ public partial class AfterCaptureWindow : Window
         CopyButton.IsEnabled = metadata?.Image != null;
         LoadPreview(filePath);
 
-        Opened += (_, _) => Activate();
+        Opened += OnOpened;
         Closed += OnClosed;
+    }
+
+    private void OnOpened(object? sender, EventArgs e)
+    {
+        Activate();
+        FileNameTextBox.Focus();
+        FileNameTextBox.SelectAll();
     }
 
     private void LoadPreview(string? filePath)
@@ -103,6 +141,31 @@ public partial class AfterCaptureWindow : Window
             : Path.GetFileName(filePath);
     }
 
+    private void SelectGoal(AfterCaptureGoal goal)
+    {
+        _goal = goal;
+        UpdateGoalControls();
+    }
+
+    private void UpdateGoalControls()
+    {
+        RequiredOptions.Clear();
+
+        foreach (Enum task in AfterCaptureGoals.GetRequiredTasks(_goal, _fileAlreadySaved))
+        {
+            RequiredOptions.Add(task.GetLocalizedDescription());
+        }
+
+        foreach (AfterCaptureTaskOption option in AfterCaptureOptions)
+        {
+            option.IsAvailable = AfterCaptureGoals.IsExtraAvailable((AfterCaptureTasks)option.Value, _goal, _fileAlreadySaved);
+        }
+
+        RequiredPanel.IsVisible = RequiredOptions.Count > 0;
+        DestinationPanel.IsVisible = _goal == AfterCaptureGoal.CopyUrl;
+        AfterUploadPanel.IsVisible = _goal == AfterCaptureGoal.CopyUrl;
+    }
+
     private static IReadOnlyList<AfterCaptureTaskOption> CreateAfterCaptureOptions(AfterCaptureTasks selected)
     {
         AfterCaptureTasks[] ignored =
@@ -112,8 +175,10 @@ public partial class AfterCaptureWindow : Window
             AfterCaptureTasks.ShowAfterCaptureWindow
         ];
 
+        // Tasks that belong to a goal are chosen through the goal, not as extras.
+
         return Helpers.GetEnums<AfterCaptureTasks>()
-            .Where(task => !ignored.Contains(task))
+            .Where(task => !ignored.Contains(task) && !AfterCaptureGoals.GoalCaptureTasks.HasFlag(task))
             .Select(task => new AfterCaptureTaskOption(task, task.GetLocalizedDescription(), selected.HasFlag(task)))
             .ToArray();
     }
@@ -121,7 +186,7 @@ public partial class AfterCaptureWindow : Window
     private static IReadOnlyList<AfterCaptureTaskOption> CreateAfterUploadOptions(AfterUploadTasks selected)
     {
         return Helpers.GetEnums<AfterUploadTasks>()
-            .Where(task => task != AfterUploadTasks.None)
+            .Where(task => task != AfterUploadTasks.None && task != AfterUploadTasks.CopyURLToClipboard)
             .Select(task => new AfterCaptureTaskOption(task, task.GetLocalizedDescription(), selected.HasFlag(task)))
             .ToArray();
     }
@@ -133,7 +198,7 @@ public partial class AfterCaptureWindow : Window
         foreach (ImageDestination destination in Helpers.GetEnums<ImageDestination>())
         {
             if (destination == ImageDestination.FileUploader ||
-                !UploadersConfigValidator.Validate<ImageDestination>((int)destination, Program.UploadersConfig))
+                !UploadersConfigValidator.Validate<ImageDestination>((int)destination, ApplicationState.UploadersConfig))
             {
                 continue;
             }
@@ -141,7 +206,7 @@ public partial class AfterCaptureWindow : Window
             string label = destination.GetLocalizedDescription();
             if (destination == ImageDestination.CustomImageUploader)
             {
-                label = GetCustomDestinationLabel(Program.UploadersConfig.CustomImageUploaderSelected, taskSettings, label);
+                label = GetCustomDestinationLabel(ApplicationState.UploadersConfig.CustomImageUploaderSelected, taskSettings, label);
             }
 
             bool selected = taskSettings.ImageDestination == destination;
@@ -150,7 +215,7 @@ public partial class AfterCaptureWindow : Window
 
         foreach (FileDestination destination in Helpers.GetEnums<FileDestination>())
         {
-            if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, Program.UploadersConfig))
+            if (!UploadersConfigValidator.Validate<FileDestination>((int)destination, ApplicationState.UploadersConfig))
             {
                 continue;
             }
@@ -158,7 +223,7 @@ public partial class AfterCaptureWindow : Window
             string label = destination.GetLocalizedDescription();
             if (destination == FileDestination.CustomFileUploader)
             {
-                label = GetCustomDestinationLabel(Program.UploadersConfig.CustomFileUploaderSelected, taskSettings, label);
+                label = GetCustomDestinationLabel(ApplicationState.UploadersConfig.CustomFileUploaderSelected, taskSettings, label);
             }
 
             bool selected = taskSettings.ImageDestination == ImageDestination.FileUploader &&
@@ -177,10 +242,10 @@ public partial class AfterCaptureWindow : Window
     {
         if (taskSettings.OverrideCustomUploader)
         {
-            index = taskSettings.CustomUploaderIndex.BetweenOrDefault(0, Program.UploadersConfig.CustomUploadersList.Count - 1);
+            index = taskSettings.CustomUploaderIndex.BetweenOrDefault(0, ApplicationState.UploadersConfig.CustomUploadersList.Count - 1);
         }
 
-        CustomUploaderItem? uploader = Program.UploadersConfig.CustomUploadersList.ReturnIfValidIndex(index);
+        CustomUploaderItem? uploader = ApplicationState.UploadersConfig.CustomUploadersList.ReturnIfValidIndex(index);
         return uploader == null
             ? fallback
             : string.Format(Strings.AfterCaptureWindow_CustomUploader, uploader);
@@ -188,33 +253,29 @@ public partial class AfterCaptureWindow : Window
 
     private void OnContinueClick(object? sender, RoutedEventArgs e)
     {
-        AfterCaptureTasks afterCaptureTasks = AfterCaptureTasks.None;
+        AfterCaptureTasks captureExtras = AfterCaptureTasks.None;
         foreach (AfterCaptureTaskOption option in AfterCaptureOptions.Where(option => option.IsChecked))
         {
-            afterCaptureTasks |= (AfterCaptureTasks)option.Value;
+            captureExtras |= (AfterCaptureTasks)option.Value;
         }
 
-        AfterUploadTasks afterUploadTasks = AfterUploadTasks.None;
+        // Copying the URL stays as saved unless the goal asks for it; it only runs after an upload.
+        AfterUploadTasks uploadExtras = TaskSettings.AfterUploadJob & AfterUploadTasks.CopyURLToClipboard;
         foreach (AfterCaptureTaskOption option in AfterUploadOptions.Where(option => option.IsChecked))
         {
-            afterUploadTasks |= (AfterUploadTasks)option.Value;
+            uploadExtras |= (AfterUploadTasks)option.Value;
         }
 
-        TaskSettings.AfterCaptureJob = afterCaptureTasks;
-        TaskSettings.AfterUploadJob = afterUploadTasks;
-        AcceptAndClose();
-    }
+        AfterCaptureJobs jobs = AfterCaptureGoals.Resolve(_goal, captureExtras, uploadExtras, _fileAlreadySaved);
+        TaskSettings.AfterCaptureJob = jobs.Capture;
+        TaskSettings.AfterUploadJob = jobs.Upload;
 
-    private void OnSectionSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        if (AfterCaptureOptionsPanel == null || DestinationOptionsPanel == null || AfterUploadOptionsPanel == null)
+        if (_goal == AfterCaptureGoal.CopyUrl)
         {
-            return;
+            SelectedDestination?.Select();
         }
 
-        AfterCaptureOptionsPanel.IsVisible = SectionNavigation.SelectedIndex == 0;
-        DestinationOptionsPanel.IsVisible = SectionNavigation.SelectedIndex == 1;
-        AfterUploadOptionsPanel.IsVisible = SectionNavigation.SelectedIndex == 2;
+        AcceptAndClose();
     }
 
     private void OnCopyClick(object? sender, RoutedEventArgs e)
@@ -257,26 +318,14 @@ public partial class AfterCaptureWindow : Window
     }
 }
 
-public sealed class AfterCaptureTaskOption
+public sealed class AfterCaptureGoalOption
 {
-    public Enum Value { get; }
-    public string Label { get; }
-    public bool IsChecked { get; set; }
-
-    public AfterCaptureTaskOption(Enum value, string label, bool isChecked)
-    {
-        Value = value;
-        Label = label;
-        IsChecked = isChecked;
-    }
-}
-
-public sealed class AfterCaptureDestinationOption
-{
-    private readonly Action _select;
+    private readonly Action<AfterCaptureGoal> _select;
     private bool _isSelected;
 
+    public AfterCaptureGoal Goal { get; }
     public string Label { get; }
+    public string Description { get; }
 
     public bool IsSelected
     {
@@ -291,15 +340,72 @@ public sealed class AfterCaptureDestinationOption
             _isSelected = value;
             if (value)
             {
-                _select();
+                _select(Goal);
             }
         }
     }
 
+    public AfterCaptureGoalOption(AfterCaptureGoal goal, bool isSelected, Action<AfterCaptureGoal> select)
+    {
+        Goal = goal;
+        _isSelected = isSelected;
+        _select = select;
+        (Label, Description) = goal switch
+        {
+            AfterCaptureGoal.CopyImage => (Strings.AfterCaptureWindow_GoalCopyImage, Strings.AfterCaptureWindow_GoalCopyImageDescription),
+            AfterCaptureGoal.CopyFile => (Strings.AfterCaptureWindow_GoalCopyFile, Strings.AfterCaptureWindow_GoalCopyFileDescription),
+            AfterCaptureGoal.CopyFilePath => (Strings.AfterCaptureWindow_GoalCopyFilePath, Strings.AfterCaptureWindow_GoalCopyFilePathDescription),
+            AfterCaptureGoal.CopyFolderPath => (Strings.AfterCaptureWindow_GoalCopyFolderPath, Strings.AfterCaptureWindow_GoalCopyFolderPathDescription),
+            AfterCaptureGoal.CopyUrl => (Strings.AfterCaptureWindow_GoalCopyUrl, Strings.AfterCaptureWindow_GoalCopyUrlDescription),
+            _ => throw new ArgumentOutOfRangeException(nameof(goal), goal, null)
+        };
+    }
+}
+
+public sealed class AfterCaptureTaskOption : INotifyPropertyChanged
+{
+    private bool _isAvailable = true;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public Enum Value { get; }
+    public string Label { get; }
+    public bool IsChecked { get; set; }
+
+    public bool IsAvailable
+    {
+        get => _isAvailable;
+        set
+        {
+            if (_isAvailable != value)
+            {
+                _isAvailable = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsAvailable)));
+            }
+        }
+    }
+
+    public AfterCaptureTaskOption(Enum value, string label, bool isChecked)
+    {
+        Value = value;
+        Label = label;
+        IsChecked = isChecked;
+    }
+}
+
+public sealed class AfterCaptureDestinationOption
+{
+    private readonly Action _select;
+
+    public string Label { get; }
+    public bool IsSelected { get; }
+
     public AfterCaptureDestinationOption(string label, bool isSelected, Action select)
     {
         Label = label;
-        _isSelected = isSelected;
+        IsSelected = isSelected;
         _select = select;
     }
+
+    public void Select() => _select();
 }

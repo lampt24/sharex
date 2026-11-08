@@ -1,17 +1,37 @@
 #region License Information (GPL v3)
 
-/* ShareX - Copyright (c) 2007-2026 ShareX Team - GPL v3 */
+/*
+    ShareX - A program that allows you to take screenshots and share any file type
+    Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
+*/
 
 #endregion License Information (GPL v3)
 
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
 using Newtonsoft.Json.Serialization;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+
+using SkiaSharp;
 
 namespace ShareX.ImageEffectsLib;
 
@@ -26,7 +46,7 @@ public partial class ImageEffectsWindow : Window
     {
     }
 
-    public ImageEffectsWindow(System.Drawing.Bitmap? sourceImage, List<ImageEffectPreset> presets, int selectedPresetIndex,
+    public ImageEffectsWindow(SKBitmap? sourceImage, List<ImageEffectPreset> presets, int selectedPresetIndex,
         ImageEffectsWindowMode mode, ImageEffectsCallbacks? callbacks = null, string? filePath = null)
     {
         ViewModel = new ImageEffectsViewModel(sourceImage, presets, selectedPresetIndex, mode, callbacks, filePath);
@@ -119,7 +139,7 @@ public partial class ImageEffectsWindow : Window
 
     private async void OnClearEffectsClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-            if (await new ImageEffectsConfirmationWindow(Localization.Strings.ImageEffectsWindow_Clear_confirmation).ShowDialog<bool>(this))
+        if (await new ImageEffectsConfirmationWindow(Localization.Strings.ImageEffectsWindow_Clear_confirmation).ShowDialog<bool>(this))
         {
             ViewModel.ClearEffectsCommand.Execute(null);
         }

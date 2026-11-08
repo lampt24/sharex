@@ -25,9 +25,8 @@
 
 using Avalonia.Controls;
 using Avalonia.Input;
-using ShareX.ImageEditor.Presentation.EasterEggs;
-using ShareX.AvaloniaUI.Theming;
 using ShareX.ImageEditor.Localization;
+using ShareX.ImageEditor.Presentation.EasterEggs;
 using ShareX.ImageEditor.Presentation.ViewModels;
 
 namespace ShareX.ImageEditor.Presentation.Views;
@@ -41,11 +40,9 @@ public partial class EditorView
         ShaderEasterEggOverlay? overlay = this.FindControl<ShaderEasterEggOverlay>("EasterEggOverlay");
         if (overlay != null)
         {
-            // Replacing this effect is the only editor-adapter change required for a new animation.
             _easterEggController = new EditorEasterEggController(
                 overlay,
-                GetSnapshot,
-                new InfiniteFoldEffect(),
+                new CrtMonitorEffect(),
                 ShowEasterEggNotification);
         }
     }
@@ -72,5 +69,11 @@ public partial class EditorView
     private void StopEasterEggs()
     {
         _easterEggController?.Stop();
+    }
+
+    private void DisposeEasterEggs()
+    {
+        _easterEggController?.Dispose();
+        _easterEggController = null;
     }
 }

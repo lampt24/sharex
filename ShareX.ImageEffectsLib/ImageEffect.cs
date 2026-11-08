@@ -24,10 +24,9 @@
 #endregion License Information (GPL v3)
 
 using Newtonsoft.Json;
-using ShareX.HelpersLib;
 using ShareX.ImageEffectsLib.Localization;
+using SkiaSharp;
 using System.ComponentModel;
-using System.Drawing;
 
 namespace ShareX.ImageEffectsLib
 {
@@ -45,7 +44,7 @@ namespace ShareX.ImageEffectsLib
             Enabled = true;
         }
 
-        public abstract Bitmap Apply(Bitmap bmp);
+        public abstract SKBitmap Apply(SKBitmap bmp);
 
         protected virtual string GetSummary()
         {

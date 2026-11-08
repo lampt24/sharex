@@ -8,7 +8,7 @@
 #endregion License Information
 
 using ShareX.HelpersLib;
-using System.Drawing;
+using Image = SkiaSharp.SKBitmap;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -32,14 +32,14 @@ public sealed class AnthropicProvider : IAIProvider
 
     public async Task<string> AnalyzeImage(string filePath, string prompt, string reasoningEffort, string verbosity)
     {
-        using Image image = ImageHelpers.LoadImage(filePath);
+        using Image image = SkiaImageHelpers.LoadImage(filePath);
         return await AnalyzeImage(image, prompt, reasoningEffort, verbosity);
     }
 
     public async Task<string> AnalyzeImage(Image image, string prompt, string reasoningEffort, string verbosity)
     {
         using MemoryStream stream = new();
-        ImageHelpers.SaveJPEG(image, stream, 90);
+        SkiaImageHelpers.SaveJPEG(image, stream, 90);
         string base64Image = Convert.ToBase64String(stream.ToArray());
 
         if (string.IsNullOrWhiteSpace(prompt))

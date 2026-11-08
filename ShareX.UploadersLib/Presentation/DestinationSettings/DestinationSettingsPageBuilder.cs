@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -17,7 +33,6 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using ShareX.AvaloniaUI.Controls;
 using ShareX.HelpersLib;
-using ShareX.UploadersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.ImageUploaders;
 using System;
@@ -34,11 +49,13 @@ namespace ShareX.UploadersLib;
 internal sealed class DestinationSettingsPageBuilder
 {
     private readonly UploadersConfig _config;
+    private readonly Action? _openRemoteStorageBrowser;
     private readonly Dictionary<IList, ObservableCollection<object>> _listItems = [];
 
-    public DestinationSettingsPageBuilder(UploadersConfig config)
+    public DestinationSettingsPageBuilder(UploadersConfig config, Action? openRemoteStorageBrowser = null)
     {
         _config = config;
+        _openRemoteStorageBrowser = openRemoteStorageBrowser;
     }
 
     public IReadOnlyDictionary<string, Control> BuildPages()
@@ -64,6 +81,23 @@ internal sealed class DestinationSettingsPageBuilder
     private Control BuildPage(DestinationPageDefinition definition, string icon, PropertyInfo[] properties)
     {
         List<Control> cards = [];
+        Button? remoteStorageBrowser = null;
+        Action? updateRemoteStorageBrowser = null;
+
+        if (definition.Id is "ftp" or "amazon-s3")
+        {
+            remoteStorageBrowser = Button(Localization.Strings.DestinationSettings_Remote_storage_browser,
+                () => _openRemoteStorageBrowser?.Invoke());
+            updateRemoteStorageBrowser = () =>
+            {
+                bool hasValidAccount = definition.Id == "amazon-s3"
+                    ? UploadersConfigValidator.Validate(FileDestination.AmazonS3, _config)
+                    : _config.FTPAccountList?.Any(UploadersConfigValidator.IsValidRemoteStorageAccount) == true;
+                remoteStorageBrowser.IsEnabled = _openRemoteStorageBrowser != null && hasValidAccount;
+            };
+            updateRemoteStorageBrowser();
+        }
+
         Control? accountCard = new DestinationSettingsAccounts(_config).Build(definition.Id);
         if (accountCard != null)
         {
@@ -92,7 +126,7 @@ internal sealed class DestinationSettingsPageBuilder
         }
         else if (definition.Id == "amazon-s3")
         {
-            cards.AddRange(BuildAmazonS3Cards());
+            cards.AddRange(BuildAmazonS3Cards(updateRemoteStorageBrowser));
         }
         else if (definition.Id == "img-fish")
         {
@@ -118,7 +152,10 @@ internal sealed class DestinationSettingsPageBuilder
             }
             else if (value is IList list)
             {
-                cards.Add(Card(label, BuildListEditor(list, member, _config)));
+                Action? listChanged = definition.Id == "ftp" && ReferenceEquals(list, _config.FTPAccountList)
+                    ? updateRemoteStorageBrowser
+                    : null;
+                cards.Add(Card(label, BuildListEditor(list, member, _config, listChanged)));
             }
             else if (value != null)
             {
@@ -143,10 +180,17 @@ internal sealed class DestinationSettingsPageBuilder
                 Hint(Localization.Strings.DestinationSettings_No_additional_configuration_required)));
         }
 
+        if (remoteStorageBrowser != null)
+        {
+            StackPanel actions = ButtonRow(remoteStorageBrowser);
+            actions.Margin = new Thickness(0, 4, 0, 0);
+            cards.Add(actions);
+        }
+
         return Page(definition.Id, definition.Title, icon, cards.ToArray());
     }
 
-    private IEnumerable<Control> BuildAmazonS3Cards()
+    private IEnumerable<Control> BuildAmazonS3Cards(Action? settingsChanged)
     {
         AmazonS3Settings settings = _config.AmazonS3Settings;
         TextBlock preview = Hint(string.Empty);
@@ -156,17 +200,26 @@ internal sealed class DestinationSettingsPageBuilder
             preview.Text = new AmazonS3(settings).GetPreviewURL();
         }
 
-        TextBox accessKey = Text(() => settings.AccessKeyID, value => settings.AccessKeyID = value);
+        TextBox accessKey = Text(() => settings.AccessKeyID, value =>
+        {
+            settings.AccessKeyID = value;
+            settingsChanged?.Invoke();
+        });
         Button accessKeyOpen = Button("...", () =>
             URLHelpers.OpenURL("https://console.aws.amazon.com/iam/home?#security_credential"));
 
-        TextBox secretKey = Text(() => settings.SecretAccessKey, value => settings.SecretAccessKey = value);
+        TextBox secretKey = Text(() => settings.SecretAccessKey, value =>
+        {
+            settings.SecretAccessKey = value;
+            settingsChanged?.Invoke();
+        });
         secretKey.PasswordChar = '●';
 
         TextBox endpoint = Text(() => settings.Endpoint, value =>
         {
             settings.Endpoint = value;
             UpdatePreview();
+            settingsChanged?.Invoke();
         });
         TextBox region = Text(() => settings.Region, value =>
         {
@@ -191,6 +244,7 @@ internal sealed class DestinationSettingsPageBuilder
         {
             settings.Bucket = value;
             UpdatePreview();
+            settingsChanged?.Invoke();
         });
         Button bucketOpen = Button("...", () => URLHelpers.OpenURL("https://console.aws.amazon.com/s3/home"));
 
@@ -219,8 +273,16 @@ internal sealed class DestinationSettingsPageBuilder
         Button storageClassHelp = Button("?", () => URLHelpers.OpenURL("https://aws.amazon.com/s3/storage-classes/"));
         CheckBox signedPayload = Check(FormatLabel(nameof(settings.SignedPayload)), () => settings.SignedPayload,
             value => settings.SignedPayload = value);
-        CheckBox useMultipartUpload = Check(FormatLabel(nameof(settings.UseMultipartUpload)), () => settings.UseMultipartUpload,
-            value => settings.UseMultipartUpload = value);
+        NumericUpDown multipartConcurrency = Number(settings.MultipartConcurrency,
+            value => settings.MultipartConcurrency = (int)value, typeof(int));
+        multipartConcurrency.Minimum = AmazonS3Settings.MinMultipartConcurrency;
+        multipartConcurrency.Maximum = AmazonS3Settings.MaxMultipartConcurrency;
+        multipartConcurrency.IsEnabled = settings.UseMultipartUpload;
+        CheckBox useMultipartUpload = Check(FormatLabel(nameof(settings.UseMultipartUpload)), () => settings.UseMultipartUpload, value =>
+        {
+            settings.UseMultipartUpload = value;
+            multipartConcurrency.IsEnabled = value;
+        });
         CheckBox publicAcl = Check(FormatLabel(nameof(settings.SetPublicACL)), () => settings.SetPublicACL,
             value => settings.SetPublicACL = value);
         CheckBox removeImageExtension = Check(FormatLabel("Image"), () => settings.RemoveExtensionImage, value =>
@@ -257,6 +319,7 @@ internal sealed class DestinationSettingsPageBuilder
             Row(FormatLabel(nameof(settings.StorageClass)) + ":", EditorWithButton(storageClass, storageClassHelp)),
             signedPayload,
             useMultipartUpload,
+            Row(FormatLabel(nameof(settings.MultipartConcurrency)) + ":", multipartConcurrency),
             publicAcl,
             usePathStyle,
             Row(FormatLabel("RemoveFileExtensionOn") + ":",
@@ -717,7 +780,7 @@ internal sealed class DestinationSettingsPageBuilder
         return true;
     }
 
-    private Control BuildListEditor(IList list, DestinationMember member, object owner)
+    private Control BuildListEditor(IList list, DestinationMember member, object owner, Action? listChanged = null)
     {
         Type itemType = member.ValueType.IsGenericType ? member.ValueType.GetGenericArguments()[0] : typeof(object);
 
@@ -742,13 +805,17 @@ internal sealed class DestinationSettingsPageBuilder
             details.Children.Clear();
             if (listBox.SelectedItem is not { } selected) return;
 
-            Action? valueChanged = null;
+            Action? valueChanged = listChanged;
             TextBlock? preview = null;
             if (selected is FTPAccount account)
             {
                 TextBlock ftpPreview = Hint(account.PreviewHttpPath);
                 preview = ftpPreview;
-                valueChanged = () => ftpPreview.Text = account.PreviewHttpPath;
+                valueChanged = () =>
+                {
+                    ftpPreview.Text = account.PreviewHttpPath;
+                    listChanged?.Invoke();
+                };
             }
 
             bool previewAdded = false;
@@ -777,6 +844,7 @@ internal sealed class DestinationSettingsPageBuilder
             list.Add(item);
             items.Add(item);
             listBox.SelectedItem = item;
+            listChanged?.Invoke();
         });
         Button duplicate = Button(Localization.Strings.DestinationSettings_Duplicate, () =>
         {
@@ -786,6 +854,7 @@ internal sealed class DestinationSettingsPageBuilder
             list.Add(copy);
             items.Add(copy);
             listBox.SelectedItem = copy;
+            listChanged?.Invoke();
         });
         Button remove = Button(Localization.Strings.DestinationSettings_Remove, () =>
         {
@@ -793,6 +862,7 @@ internal sealed class DestinationSettingsPageBuilder
             list.Remove(selected);
             items.Remove(selected);
             details.Children.Clear();
+            listChanged?.Invoke();
         });
 
         StackPanel result = new() { Spacing = 6 };
@@ -925,14 +995,15 @@ internal sealed class DestinationSettingsPageBuilder
     {
         StackPanel content = new()
         {
-            Margin = new Thickness(28, 24, 28, 32), MaxWidth = 780,
+            Margin = new Thickness(28, 24, 28, 32),
+            MaxWidth = 780,
             HorizontalAlignment = HorizontalAlignment.Left
         };
         Grid header = new() { ColumnDefinitions = new ColumnDefinitions("Auto,*"), ColumnSpacing = 9 };
         header.Classes.Add("page-title");
         SettingsSearch.SetIsPageTitle(header, true);
-        TextBlock iconBlock = new() { Text = icon };
-        iconBlock.Classes.Add("icon"); iconBlock.Classes.Add("page-title-icon");
+        IconPresenter iconBlock = new() { Icon = icon };
+        iconBlock.Classes.Add("page-title-icon");
         TextBlock titleBlock = new() { Text = title };
         titleBlock.Classes.Add("page-title-text"); Grid.SetColumn(titleBlock, 1);
         header.Children.Add(iconBlock); header.Children.Add(titleBlock); content.Children.Add(header);

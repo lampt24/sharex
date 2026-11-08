@@ -4,20 +4,23 @@ using System.Reflection;
 using System.Windows.Forms;
 using ShareX.ScreenCaptureLib;
 using ShareX.ScreenCaptureLib.Presentation.RegionCapture;
+using SkiaSharp;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 if (Array.IndexOf(args, "--scroll-target") >= 0) ScrollingCaptureTargetTests.Run();
 
 using Bitmap source = CreateStripedBitmap(Color.Red, Color.Green, Color.Blue, Color.Yellow);
-using Bitmap firstFrame = source.Clone(new Rectangle(0, 0, 3, 2), source.PixelFormat);
-using Bitmap secondFrame = source.Clone(new Rectangle(1, 0, 3, 2), source.PixelFormat);
-using Bitmap? combined = ScrollingCaptureImageCombiner.Combine(firstFrame, secondFrame, ScrollingCaptureDirection.Horizontal);
+using SKBitmap firstFrame = ToSk(source.Clone(new Rectangle(0, 0, 3, 2), source.PixelFormat));
+using SKBitmap secondFrame = ToSk(source.Clone(new Rectangle(1, 0, 3, 2), source.PixelFormat));
+using SKBitmap? combined = ScrollingCaptureImageCombiner.Combine(firstFrame, secondFrame, ScrollingCaptureDirection.Horizontal);
 
 Assert(combined != null, "Horizontal frames with overlap should combine.");
-Assert(combined!.Size == new Size(4, 2), $"Expected 4x2 output, got {combined.Size}.");
+Assert(combined!.Width == 4 && combined.Height == 2, $"Expected 4x2 output, got {combined.Width}x{combined.Height}.");
 
 for (int x = 0; x < source.Width; x++)
 {
-    Assert(combined.GetPixel(x, 0).ToArgb() == source.GetPixel(x, 0).ToArgb(), $"Unexpected pixel at x={x}.");
+    Assert(Argb(combined.GetPixel(x, 0)) == source.GetPixel(x, 0).ToArgb(), $"Unexpected pixel at x={x}.");
 }
 
 Color[] excelContent = new Color[220];
@@ -26,40 +29,40 @@ for (int x = 0; x < excelContent.Length; x++)
     excelContent[x] = Color.FromArgb(255, x * 37 % 256, x * 67 % 256, x * 97 % 256);
 }
 
-using Bitmap excelFirstFrame = CreateExcelFrame(excelContent, 0);
-using Bitmap excelSecondFrame = CreateExcelFrame(excelContent, 20);
-using Bitmap? excelCombined = ScrollingCaptureImageCombiner.Combine(
+using SKBitmap excelFirstFrame = CreateExcelFrame(excelContent, 0);
+using SKBitmap excelSecondFrame = CreateExcelFrame(excelContent, 20);
+using SKBitmap? excelCombined = ScrollingCaptureImageCombiner.Combine(
     excelFirstFrame, excelSecondFrame, ScrollingCaptureDirection.Horizontal);
 
 Assert(excelCombined != null, "Excel frames with fixed side chrome should combine.");
-Assert(excelCombined!.Size == new Size(320, 12), $"Expected 320x12 Excel output, got {excelCombined.Size}.");
+Assert(excelCombined!.Width == 320 && excelCombined.Height == 12, $"Expected 320x12 Excel output, got {excelCombined.Width}x{excelCombined.Height}.");
 for (int x = 0; x < excelContent.Length; x++)
 {
-    Assert(excelCombined.GetPixel(50 + x, 6).ToArgb() == excelContent[x].ToArgb(),
+    Assert(Argb(excelCombined.GetPixel(50 + x, 6)) == excelContent[x].ToArgb(),
         $"Unexpected Excel content pixel at x={x}.");
 }
 
 // Real scrolled frames differ slightly (re-rastered text, a hover highlight following the
 // pointer). Stitching must tolerate that instead of ending the capture early.
-using Bitmap noisyFirstFrame = CreateContentFrame(0, false, false, false);
-using Bitmap noisySecondFrame = CreateContentFrame(90, true, true, false);
-using Bitmap? noisyCombined = ScrollingCaptureImageCombiner.Combine(
+using SKBitmap noisyFirstFrame = CreateContentFrame(0, false, false, false);
+using SKBitmap noisySecondFrame = CreateContentFrame(90, true, true, false);
+using SKBitmap? noisyCombined = ScrollingCaptureImageCombiner.Combine(
     noisyFirstFrame, noisySecondFrame, ScrollingCaptureDirection.Horizontal);
 
 Assert(noisyCombined != null, "Slightly different scrolled frames should still combine.");
 Assert(noisyCombined!.Width == 690, $"Expected 690px noisy output, got {noisyCombined.Width}px.");
 
-using Bitmap unmovedNoisyFrame = CreateContentFrame(0, true, false, false);
+using SKBitmap unmovedNoisyFrame = CreateContentFrame(0, true, false, false);
 int unmovedShift = ScrollingCaptureImageCombiner.FindHorizontalShift(noisyFirstFrame, unmovedNoisyFrame);
 Assert(unmovedShift == 0, $"A noisy frame that did not scroll should report no movement, got {unmovedShift}.");
 
 // Selecting a whole window captures static sidebars and toolbars around the scrolled grid.
 // Mostly static frames must still count as moved and stitch at the grid's shift.
-using Bitmap chromeFirstFrame = CreateContentFrame(0, false, false, true);
-using Bitmap chromeSecondFrame = CreateContentFrame(40, true, false, true);
+using SKBitmap chromeFirstFrame = CreateContentFrame(0, false, false, true);
+using SKBitmap chromeSecondFrame = CreateContentFrame(40, true, false, true);
 int chromeShift = ScrollingCaptureImageCombiner.FindHorizontalShift(chromeFirstFrame, chromeSecondFrame);
 Assert(chromeShift == 40, $"A scrolled grid inside static chrome should shift 40px, got {chromeShift}.");
-using Bitmap? chromeCombined = ScrollingCaptureImageCombiner.CombineHorizontal(
+using SKBitmap? chromeCombined = ScrollingCaptureImageCombiner.CombineHorizontal(
     chromeFirstFrame, chromeFirstFrame, chromeSecondFrame, out Rectangle chromeMoving);
 Assert(chromeCombined != null && chromeCombined.Width == 640, "Grid inside static chrome should stitch to 640px.");
 Assert(chromeMoving.X >= 350 && chromeMoving.X < 362 && chromeMoving.Y >= 60 && chromeMoving.Y < 72 &&
@@ -85,13 +88,15 @@ using (Graphics graphics = Graphics.FromImage(windowStitched))
     graphics.Clear(Color.Magenta);
     graphics.FillRectangle(new SolidBrush(stitchedGrid), 0, 40, 700, 20);
 }
-using Bitmap? windowExtended = ScrollingCaptureImageCombiner.ExtendStaticRows(windowStitched, windowFirstFrame, 40, 60);
+using SKBitmap windowStitchedSk = ToSk(windowStitched, false);
+using SKBitmap windowFirstFrameSk = ToSk(windowFirstFrame, false);
+using SKBitmap? windowExtended = ScrollingCaptureImageCombiner.ExtendStaticRows(windowStitchedSk, windowFirstFrameSk, 40, 60);
 Assert(windowExtended != null, "Static rows of a whole-window capture should be rebuilt.");
-Assert(windowExtended!.GetPixel(20, 5).ToArgb() == leftIcon.ToArgb(), "Left-anchored items should stay in place.");
-Assert(windowExtended.GetPixel(660, 5).ToArgb() == closeButton.ToArgb(), "Right-anchored items should move to the new right edge.");
-Assert(windowExtended.GetPixel(560, 5).ToArgb() == windowBackground.ToArgb(), "Right-anchored items should not be repeated.");
-Assert(windowExtended.GetPixel(400, 80).ToArgb() == windowBackground.ToArgb(), "Blank space below the grid should be widened.");
-Assert(windowExtended.GetPixel(650, 50).ToArgb() == stitchedGrid.ToArgb(), "Scrolled rows should keep the stitched content.");
+Assert(Argb(windowExtended!.GetPixel(20, 5)) == leftIcon.ToArgb(), "Left-anchored items should stay in place.");
+Assert(Argb(windowExtended.GetPixel(660, 5)) == closeButton.ToArgb(), "Right-anchored items should move to the new right edge.");
+Assert(Argb(windowExtended.GetPixel(560, 5)) == windowBackground.ToArgb(), "Right-anchored items should not be repeated.");
+Assert(Argb(windowExtended.GetPixel(400, 80)) == windowBackground.ToArgb(), "Blank space below the grid should be widened.");
+Assert(Argb(windowExtended.GetPixel(650, 50)) == stitchedGrid.ToArgb(), "Scrolled rows should keep the stitched content.");
 
 Console.WriteLine("Horizontal scrolling capture image tests passed.");
 
@@ -106,8 +111,8 @@ const int verticalRight = 350;
 const int verticalAnchor = verticalHeight - 70 - 1;
 const int verticalShift = 60;
 
-using Bitmap verticalFirstFrame = CreateVerticalFrame(0, false);
-using Bitmap verticalSecondFrame = CreateVerticalFrame(verticalShift, true);
+using SKBitmap verticalFirstFrame = CreateVerticalFrame(0, false);
+using SKBitmap verticalSecondFrame = CreateVerticalFrame(verticalShift, true);
 int[] verticalTail = ScrollingCaptureImageCombiner.ReadPixels(verticalFirstFrame);
 int[] verticalCurrent = ScrollingCaptureImageCombiner.ReadPixels(verticalSecondFrame);
 int verticalExpectedIndex = verticalAnchor - verticalShift;
@@ -128,7 +133,7 @@ Assert(verticalMatchIndex == verticalExpectedIndex,
 Assert(verticalMatchCount > 100, $"Expected a long run of matching rows, got {verticalMatchCount}.");
 
 // Static chrome alone must never look like an overlap; an unscrolled frame has to stay put.
-using Bitmap verticalUnmovedFrame = CreateVerticalFrame(0, true);
+using SKBitmap verticalUnmovedFrame = CreateVerticalFrame(0, true);
 (_, int unmovedIndex) = ScrollingCaptureImageCombiner.FindVerticalOverlap(
     verticalTail, ScrollingCaptureImageCombiner.ReadPixels(verticalUnmovedFrame),
     verticalWidth, verticalHeight, verticalLeft, verticalRight, verticalAnchor, verticalHeight / 2);
@@ -199,7 +204,7 @@ static Bitmap CreateStripedBitmap(params Color[] colors)
     return bitmap;
 }
 
-static Bitmap CreateExcelFrame(Color[] content, int offset)
+static SKBitmap CreateExcelFrame(Color[] content, int offset)
 {
     Bitmap bitmap = new(300, 12);
 
@@ -217,10 +222,10 @@ static Bitmap CreateExcelFrame(Color[] content, int offset)
         }
     }
 
-    return bitmap;
+    return ToSk(bitmap);
 }
 
-static Bitmap CreateContentFrame(int offset, bool noisy, bool hoverBand, bool staticChrome)
+static SKBitmap CreateContentFrame(int offset, bool noisy, bool hoverBand, bool staticChrome)
 {
     Bitmap bitmap = new(600, 200);
 
@@ -254,12 +259,12 @@ static Bitmap CreateContentFrame(int offset, bool noisy, bool hoverBand, bool st
         }
     }
 
-    return bitmap;
+    return ToSk(bitmap);
 }
 
 // A navigation bar above the text and a status bar below it never scroll, like a document
 // pane in an IDE. Content rows show the document row that a scroll of `offset` brings up.
-static Bitmap CreateVerticalFrame(int offset, bool reRastered)
+static SKBitmap CreateVerticalFrame(int offset, bool reRastered)
 {
     Bitmap bitmap = new(400, 300);
 
@@ -283,7 +288,38 @@ static Bitmap CreateVerticalFrame(int offset, bool reRastered)
         }
     }
 
-    return bitmap;
+    return ToSk(bitmap);
+}
+
+static int Argb(SKColor color) => unchecked((int)(uint)color);
+
+// Fixtures are drawn with System.Drawing and handed to the combiner as the Skia bitmaps the app uses.
+static SKBitmap ToSk(Bitmap bitmap, bool dispose = true)
+{
+    SKBitmap result = new(new SKImageInfo(bitmap.Width, bitmap.Height, SKColorType.Bgra8888, SKAlphaType.Unpremul));
+    BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+    try
+    {
+        byte[] row = new byte[bitmap.Width * 4];
+
+        for (int y = 0; y < bitmap.Height; y++)
+        {
+            Marshal.Copy(data.Scan0 + y * data.Stride, row, 0, row.Length);
+            Marshal.Copy(row, 0, result.GetPixels() + y * result.RowBytes, row.Length);
+        }
+    }
+    finally
+    {
+        bitmap.UnlockBits(data);
+
+        if (dispose)
+        {
+            bitmap.Dispose();
+        }
+    }
+
+    return result;
 }
 
 static bool RowsAreIdentical(int[] first, int firstRow, int[] second, int secondRow, int width, int left, int right)

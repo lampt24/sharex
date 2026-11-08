@@ -8,6 +8,17 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -468,13 +479,32 @@ internal static class ImageMetadataReader
     {
         Dictionary<int, string> names = new()
         {
-            [5] = "Object Name", [7] = "Edit Status", [10] = "Urgency", [15] = "Category",
-            [20] = "Supplemental Category", [25] = "Keywords", [40] = "Special Instructions",
-            [55] = "Date Created", [60] = "Time Created", [65] = "Originating Program", [70] = "Program Version",
-            [80] = "By-line", [85] = "By-line Title", [90] = "City", [92] = "Sub-location", [95] = "Province/State",
-            [100] = "Country Code", [101] = "Country", [103] = "Original Transmission Reference",
-            [105] = "Headline", [110] = "Credit", [115] = "Source", [116] = "Copyright Notice",
-            [118] = "Contact", [120] = "Caption/Abstract", [122] = "Writer/Editor"
+            [5] = "Object Name",
+            [7] = "Edit Status",
+            [10] = "Urgency",
+            [15] = "Category",
+            [20] = "Supplemental Category",
+            [25] = "Keywords",
+            [40] = "Special Instructions",
+            [55] = "Date Created",
+            [60] = "Time Created",
+            [65] = "Originating Program",
+            [70] = "Program Version",
+            [80] = "By-line",
+            [85] = "By-line Title",
+            [90] = "City",
+            [92] = "Sub-location",
+            [95] = "Province/State",
+            [100] = "Country Code",
+            [101] = "Country",
+            [103] = "Original Transmission Reference",
+            [105] = "Headline",
+            [110] = "Credit",
+            [115] = "Source",
+            [116] = "Copyright Notice",
+            [118] = "Contact",
+            [120] = "Caption/Abstract",
+            [122] = "Writer/Editor"
         };
         int position = 0;
         while (position + 5 <= data.Length)
@@ -602,19 +632,33 @@ internal static class ImageMetadataReader
 
     private static string GetPngColorType(byte value) => value switch
     {
-        0 => "Grayscale", 2 => "Truecolor", 3 => "Indexed color", 4 => "Grayscale with alpha",
-        6 => "Truecolor with alpha", _ => $"Unknown ({value})"
+        0 => "Grayscale",
+        2 => "Truecolor",
+        3 => "Indexed color",
+        4 => "Grayscale with alpha",
+        6 => "Truecolor with alpha",
+        _ => $"Unknown ({value})"
     };
 
     private static string GetRenderingIntent(byte value) => value switch
     {
-        0 => "Perceptual", 1 => "Relative colorimetric", 2 => "Saturation", 3 => "Absolute colorimetric", _ => value.ToString()
+        0 => "Perceptual",
+        1 => "Relative colorimetric",
+        2 => "Saturation",
+        3 => "Absolute colorimetric",
+        _ => value.ToString()
     };
 
     private static string GetBmpCompression(uint value) => value switch
     {
-        0 => "Uncompressed", 1 => "RLE 8-bit", 2 => "RLE 4-bit", 3 => "Bit fields", 4 => "JPEG",
-        5 => "PNG", 6 => "Alpha bit fields", _ => $"Unknown ({value})"
+        0 => "Uncompressed",
+        1 => "RLE 8-bit",
+        2 => "RLE 4-bit",
+        3 => "Bit fields",
+        4 => "JPEG",
+        5 => "PNG",
+        6 => "Alpha bit fields",
+        _ => $"Unknown ({value})"
     };
 
     private static string ReadPngPoint(ReadOnlySpan<byte> data) =>

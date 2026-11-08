@@ -8,6 +8,17 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -17,16 +28,17 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
+using ShareX.AvaloniaUI.Integration;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+using ShareX.Icons;
 using ShareX.Localization;
 using ShareX.ScreenCaptureLib;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
-using WinFormsMouseEventArgs = System.Windows.Forms.MouseEventArgs;
-using WinFormsNotifyIcon = System.Windows.Forms.NotifyIcon;
+using Bitmap = SkiaSharp.SKBitmap;
 
 namespace ShareX;
 
@@ -35,8 +47,9 @@ public partial class AutoCaptureWindow : Window
     private readonly DispatcherTimer _screenshotTimer;
     private readonly DispatcherTimer _statusTimer;
     private readonly Stopwatch _stopwatch = new();
-    private readonly WinFormsNotifyIcon _trayIcon;
+    private readonly TrayIcon _trayIcon;
     private readonly IDisposable _trayIconBinding;
+    private readonly IDisposable _trayIconRegistration;
     private bool _isLoaded;
     private int _delay;
     private int _count;
@@ -56,18 +69,19 @@ public partial class AutoCaptureWindow : Window
         _statusTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(250) };
         _statusTimer.Tick += (_, _) => UpdateStatus();
 
-        _trayIcon = new WinFormsNotifyIcon
+        _trayIcon = new TrayIcon
         {
-            Text = Strings.AutoCaptureWindow_Title,
-            Visible = false
+            ToolTipText = Strings.AutoCaptureWindow_Title,
+            IsVisible = false
         };
-        _trayIconBinding = LucideTrayIcon.Bind(_trayIcon, LucideIcons.clock);
-        _trayIcon.MouseClick += OnTrayIconClick;
+        _trayIconBinding = TrayIconImage.Bind(_trayIcon, AppIcons.Clock);
+        _trayIcon.Clicked += OnTrayIconClick;
+        _trayIconRegistration = DesktopServices.RegisterTrayIcon(_trayIcon);
 
-        _customRegion = Program.Settings.AutoCaptureRegion;
-        RepeatTimeInput.Value = Program.Settings.AutoCaptureRepeatTime;
-        AutoMinimizeInput.IsChecked = Program.Settings.AutoCaptureMinimizeToTray;
-        WaitUploadsInput.IsChecked = Program.Settings.AutoCaptureWaitUpload;
+        _customRegion = ApplicationState.Settings.AutoCaptureRegion;
+        RepeatTimeInput.Value = ApplicationState.Settings.AutoCaptureRepeatTime;
+        AutoMinimizeInput.IsChecked = ApplicationState.Settings.AutoCaptureMinimizeToTray;
+        WaitUploadsInput.IsChecked = ApplicationState.Settings.AutoCaptureWaitUpload;
         UpdateRegion();
 
         PropertyChanged += OnWindowPropertyChanged;
@@ -102,16 +116,16 @@ public partial class AutoCaptureWindow : Window
     {
         IsRunning = true;
         ExecuteText.Text = Strings.AutoCaptureWindow_Stop;
-        ExecuteIcon.Text = LucideIcons.square;
-        StatusIcon.Text = LucideIcons.timer;
+        ExecuteIcon.Icon = AppIcons.Stop;
+        StatusIcon.Icon = AppIcons.Timer;
         _screenshotTimer.Interval = TimeSpan.FromSeconds(1);
-        _delay = (int)(Program.Settings.AutoCaptureRepeatTime * 1000);
-        _waitUploads = Program.Settings.AutoCaptureWaitUpload;
+        _delay = (int)(ApplicationState.Settings.AutoCaptureRepeatTime * 1000);
+        _waitUploads = ApplicationState.Settings.AutoCaptureWaitUpload;
 
         _screenshotTimer.Start();
         _statusTimer.Start();
 
-        if (Program.Settings.AutoCaptureMinimizeToTray)
+        if (ApplicationState.Settings.AutoCaptureMinimizeToTray)
         {
             HideToTray();
         }
@@ -125,10 +139,10 @@ public partial class AutoCaptureWindow : Window
         _stopwatch.Reset();
         StatusProgress.Value = 0;
         StatusText.Text = Strings.AutoCaptureWindow_Ready;
-        StatusIcon.Text = LucideIcons.timer;
+        StatusIcon.Icon = AppIcons.Timer;
         StatusIcon.Foreground = Avalonia.Media.Brushes.Gray;
         ExecuteText.Text = Strings.AutoCaptureWindow_Start;
-        ExecuteIcon.Text = LucideIcons.play;
+        ExecuteIcon.Icon = AppIcons.Play;
     }
 
     private void OnScreenshotTimerTick(object? sender, EventArgs e)
@@ -152,7 +166,7 @@ public partial class AutoCaptureWindow : Window
 
     private void TakeScreenshot()
     {
-        Rectangle rectangle = Program.Settings.AutoCaptureRegion;
+        Rectangle rectangle = ApplicationState.Settings.AutoCaptureRegion;
 
         if (rectangle.IsEmpty)
         {
@@ -166,7 +180,7 @@ public partial class AutoCaptureWindow : Window
             return;
         }
 
-        TaskSettings.AfterCaptureJob = TaskSettings.AfterCaptureJob.Remove(AfterCaptureTasks.AnnotateImage);
+        TaskSettings.AfterCaptureJob = TaskSettings.AfterCaptureJob.Remove(AfterCaptureTasks.AnnotateImage, AfterCaptureTasks.OpenInPhotoEditor);
         TaskSettings.GeneralSettings.PlaySoundAfterUpload = false;
         TaskSettings.GeneralSettings.PlaySoundAfterAction = false;
         TaskSettings.GeneralSettings.ShowToastNotificationAfterTaskCompleted = false;
@@ -194,17 +208,17 @@ public partial class AutoCaptureWindow : Window
 
     private async Task SelectRegionAsync()
     {
-        var selection = await RegionCaptureTasks.GetRectangleRegionAsync(TaskSettings.CaptureSettings.SurfaceOptions);
+        var selection = await RegionCaptureTasks.GetRectangleRegionAsync(TaskSettings.CaptureSettings.RegionCaptureOptions);
         if (selection != null)
         {
-            Program.Settings.AutoCaptureRegion = selection.Value.Rectangle;
+            ApplicationState.Settings.AutoCaptureRegion = selection.Value.Rectangle;
             UpdateRegion();
         }
     }
 
     private void UpdateRegion()
     {
-        Rectangle rectangle = Program.Settings.AutoCaptureRegion;
+        Rectangle rectangle = ApplicationState.Settings.AutoCaptureRegion;
         ExecuteButton.IsEnabled = !rectangle.IsEmpty;
 
         RegionText.Text = rectangle.IsEmpty
@@ -220,12 +234,12 @@ public partial class AutoCaptureWindow : Window
     private void HideToTray()
     {
         Hide();
-        _trayIcon.Visible = true;
+        _trayIcon.IsVisible = true;
     }
 
     private void RestoreFromTray()
     {
-        _trayIcon.Visible = false;
+        _trayIcon.IsVisible = false;
         ShowAndActivate();
     }
 
@@ -237,8 +251,8 @@ public partial class AutoCaptureWindow : Window
     {
         if (_isLoaded && FullscreenRadio.IsChecked == true)
         {
-            _customRegion = Program.Settings.AutoCaptureRegion;
-            Program.Settings.AutoCaptureRegion = CaptureHelpers.GetScreenBounds();
+            _customRegion = ApplicationState.Settings.AutoCaptureRegion;
+            ApplicationState.Settings.AutoCaptureRegion = CaptureHelpers.GetScreenBounds();
             SelectRegionButton.IsEnabled = false;
             UpdateRegion();
         }
@@ -248,7 +262,7 @@ public partial class AutoCaptureWindow : Window
     {
         if (_isLoaded && CustomRegionRadio.IsChecked == true)
         {
-            Program.Settings.AutoCaptureRegion = _customRegion;
+            ApplicationState.Settings.AutoCaptureRegion = _customRegion;
             SelectRegionButton.IsEnabled = true;
             UpdateRegion();
         }
@@ -258,7 +272,7 @@ public partial class AutoCaptureWindow : Window
     {
         if (_isLoaded && RepeatTimeInput.Value is decimal value)
         {
-            Program.Settings.AutoCaptureRepeatTime = value;
+            ApplicationState.Settings.AutoCaptureRepeatTime = value;
         }
     }
 
@@ -266,7 +280,7 @@ public partial class AutoCaptureWindow : Window
     {
         if (_isLoaded)
         {
-            Program.Settings.AutoCaptureMinimizeToTray = AutoMinimizeInput.IsChecked == true;
+            ApplicationState.Settings.AutoCaptureMinimizeToTray = AutoMinimizeInput.IsChecked == true;
         }
     }
 
@@ -274,21 +288,21 @@ public partial class AutoCaptureWindow : Window
     {
         if (_isLoaded)
         {
-            Program.Settings.AutoCaptureWaitUpload = WaitUploadsInput.IsChecked == true;
+            ApplicationState.Settings.AutoCaptureWaitUpload = WaitUploadsInput.IsChecked == true;
         }
     }
 
     private void OnWindowPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
         if (e.Property == WindowStateProperty
-            && Program.Settings.AutoCaptureMinimizeToTray
+            && ApplicationState.Settings.AutoCaptureMinimizeToTray
             && WindowState == Avalonia.Controls.WindowState.Minimized)
         {
             HideToTray();
         }
     }
 
-    private void OnTrayIconClick(object? sender, WinFormsMouseEventArgs e)
+    private void OnTrayIconClick(object? sender, EventArgs e)
     {
         Dispatcher.UIThread.Post(RestoreFromTray);
     }
@@ -296,9 +310,9 @@ public partial class AutoCaptureWindow : Window
     private void OnClosed(object? sender, EventArgs e)
     {
         Stop();
-        _trayIcon.Visible = false;
-        _trayIcon.MouseClick -= OnTrayIconClick;
+        _trayIcon.IsVisible = false;
+        _trayIcon.Clicked -= OnTrayIconClick;
         _trayIconBinding.Dispose();
-        _trayIcon.Dispose();
+        _trayIconRegistration.Dispose();
     }
 }

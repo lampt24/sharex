@@ -8,6 +8,17 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -15,9 +26,11 @@
 #nullable enable
 
 using Avalonia.Platform;
+using Avalonia.Threading;
 using ShareX.AvaloniaUI.Controls;
 using ShareX.AvaloniaUI.Theming;
 using ShareX.HelpersLib;
+using ShareX.Icons;
 using ShareX.Localization;
 using System;
 using System.Collections.Generic;
@@ -30,6 +43,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using AvaloniaBitmap = Avalonia.Media.Imaging.Bitmap;
 using AvaloniaColor = Avalonia.Media.Color;
+using Image = SkiaSharp.SKBitmap;
 using MessageBox = ShareX.AvaloniaUI.MessageBox;
 using MessageBoxButtons = ShareX.AvaloniaUI.MessageBoxButtons;
 using MessageBoxIcon = ShareX.AvaloniaUI.MessageBoxIcon;
@@ -49,6 +63,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     private string _startWithWindowsText = string.Empty;
     private bool _shellContextMenu;
     private bool _editWithShareX;
+    private bool _editWithShareXPhotoEditor;
     private bool _sendToMenu;
     private bool _chromeExtensionSupport;
     private bool _firefoxAddonSupport;
@@ -61,33 +76,40 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     private string _statusMessage = string.Empty;
     private bool _disposed;
 
-    private ApplicationConfig Settings => Program.Settings;
+    private ApplicationConfig Settings => ApplicationState.Settings;
 
     public ObservableCollection<SettingsNavigationItem> NavigationItems { get; private set; } = [];
     public ObservableCollection<ClipboardFormatItem> ClipboardFormats { get; private set; } = [];
     public IReadOnlyList<LanguageOption> LanguageOptions { get; } = CreateLanguageOptions();
     public IReadOnlyList<EnumOption<HotkeyType>> HotkeyTypeOptions { get; } = CreateEnumOptions<HotkeyType>();
     public IReadOnlyList<EnumOption<UpdateChannel>> UpdateChannelOptions { get; } = CreateEnumOptions<UpdateChannel>();
+    public IReadOnlyList<EnumOption<TaskViewMode>> TaskViewModeOptions { get; } = CreateEnumOptions<TaskViewMode>();
+    public IReadOnlyList<EnumOption<ImagePreviewVisibility>> ImagePreviewOptions { get; } = CreateEnumOptions<ImagePreviewVisibility>();
     public IReadOnlyList<EnumOption<ThumbnailTitleLocation>> ThumbnailTitleLocationOptions { get; } = CreateEnumOptions<ThumbnailTitleLocation>();
     public IReadOnlyList<EnumOption<ThumbnailViewClickAction>> ThumbnailClickActionOptions { get; } = CreateEnumOptions<ThumbnailViewClickAction>();
     public IReadOnlyList<EnumOption<ProxyMethod>> ProxyMethodOptions { get; } = CreateEnumOptions<ProxyMethod>();
-    public IReadOnlyList<EnumOption<ContentAlignment>> DropAlignmentOptions { get; } =
+    public IReadOnlyList<EnumOption<ImageContentAlignment>> DropAlignmentOptions { get; } =
     [
-        new(ContentAlignment.TopLeft, Strings.ApplicationSettingsWindow_TopLeft),
-        new(ContentAlignment.TopCenter, Strings.ApplicationSettingsWindow_TopCenter),
-        new(ContentAlignment.TopRight, Strings.ApplicationSettingsWindow_TopRight),
-        new(ContentAlignment.MiddleLeft, Strings.ApplicationSettingsWindow_MiddleLeft),
-        new(ContentAlignment.MiddleCenter, Strings.ApplicationSettingsWindow_MiddleCenter),
-        new(ContentAlignment.MiddleRight, Strings.ApplicationSettingsWindow_MiddleRight),
-        new(ContentAlignment.BottomLeft, Strings.ApplicationSettingsWindow_BottomLeft),
-        new(ContentAlignment.BottomCenter, Strings.ApplicationSettingsWindow_BottomCenter),
-        new(ContentAlignment.BottomRight, Strings.ApplicationSettingsWindow_BottomRight)
+        new(ImageContentAlignment.TopLeft, Strings.ApplicationSettingsWindow_TopLeft),
+        new(ImageContentAlignment.TopCenter, Strings.ApplicationSettingsWindow_TopCenter),
+        new(ImageContentAlignment.TopRight, Strings.ApplicationSettingsWindow_TopRight),
+        new(ImageContentAlignment.MiddleLeft, Strings.ApplicationSettingsWindow_MiddleLeft),
+        new(ImageContentAlignment.MiddleCenter, Strings.ApplicationSettingsWindow_MiddleCenter),
+        new(ImageContentAlignment.MiddleRight, Strings.ApplicationSettingsWindow_MiddleRight),
+        new(ImageContentAlignment.BottomLeft, Strings.ApplicationSettingsWindow_BottomLeft),
+        new(ImageContentAlignment.BottomCenter, Strings.ApplicationSettingsWindow_BottomCenter),
+        new(ImageContentAlignment.BottomRight, Strings.ApplicationSettingsWindow_BottomRight)
     ];
     public IReadOnlyList<EnumOption<int>> BufferSizeOptions { get; private set; } = [];
     public IReadOnlyList<EnumOption<string>> ThemeOptions { get; } =
     [
         new("Dark", Strings.ApplicationSettingsWindow_Dark),
         new("Light", Strings.ApplicationSettingsWindow_Light)
+    ];
+    public IReadOnlyList<EnumOption<IconPack>> IconPackOptions { get; } =
+    [
+        new(IconPack.Modern, Strings.ApplicationSettingsWindow_IconPackModern),
+        new(IconPack.Legacy, Strings.ApplicationSettingsWindow_IconPackLegacy)
     ];
 
     public SettingsNavigationItem? SelectedNavigationItem
@@ -215,7 +237,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
         {
             if (SetSetting(Settings.UseWhiteShareXIcon, value, x => Settings.UseWhiteShareXIcon = x))
             {
-                InvokeOnMainThread(Program.MainForm.UpdateTheme);
+                InvokeOnMainThread(ApplicationSettingsRuntime.UpdateTrayIcon);
             }
         }
     }
@@ -237,6 +259,110 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
 
     public bool CanEditTheme => !UseSystemTheme;
 
+    public bool CompactMode
+    {
+        get => Settings.ThemeOptions.CompactMode;
+        set
+        {
+            if (Settings.ThemeOptions.CompactMode == value)
+            {
+                return;
+            }
+
+            // Compact mode is a preset for the spacing sliders, so switching it drops any slider adjustments.
+            Settings.ThemeOptions.ResetSpacing();
+            SetSetting(Settings.ThemeOptions.CompactMode, value, x => Settings.ThemeOptions.CompactMode = x);
+            RaiseSpacingChanged();
+        }
+    }
+
+    public IReadOnlyList<EnumOption<SpacingArea>> SpacingPreviewOptions { get; } =
+    [
+        new(SpacingArea.Sidebar, Strings.ApplicationSettingsWindow_SpacingSidebar),
+        new(SpacingArea.Menus, Strings.ApplicationSettingsWindow_SpacingMenus),
+        new(SpacingArea.ToolMenus, Strings.ApplicationSettingsWindow_SpacingToolMenus)
+    ];
+
+    private EnumOption<SpacingArea>? _selectedSpacingPreview;
+
+    // Which part of the main window the spacing preview draws. Not saved; it follows the last slider moved.
+    public EnumOption<SpacingArea>? SelectedSpacingPreview
+    {
+        get => _selectedSpacingPreview ??= SpacingPreviewOptions[0];
+        set
+        {
+            if (value != null && !Equals(_selectedSpacingPreview, value))
+            {
+                _selectedSpacingPreview = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public double SpacingMinimum => ApplicationThemeOptions.CompactSpacing;
+    public double SpacingMaximum => ApplicationThemeOptions.MaximumSpacing;
+
+    public double SidebarSpacing { get => GetSpacing(SpacingArea.Sidebar); set => SetSpacing(SpacingArea.Sidebar, value); }
+    public double MenuSpacing { get => GetSpacing(SpacingArea.Menus); set => SetSpacing(SpacingArea.Menus, value); }
+    public double ToolMenuSpacing { get => GetSpacing(SpacingArea.ToolMenus); set => SetSpacing(SpacingArea.ToolMenus, value); }
+    public double SettingsSpacing { get => GetSpacing(SpacingArea.SettingsWindows); set => SetSpacing(SpacingArea.SettingsWindows, value); }
+
+    public string SidebarSpacingText => FormatSpacing(SpacingArea.Sidebar);
+    public string MenuSpacingText => FormatSpacing(SpacingArea.Menus);
+    public string ToolMenuSpacingText => FormatSpacing(SpacingArea.ToolMenus);
+    public string SettingsSpacingText => FormatSpacing(SpacingArea.SettingsWindows);
+
+    public void ResetSpacing()
+    {
+        Settings.ThemeOptions.ResetSpacing();
+        RaiseSpacingChanged();
+    }
+
+    private double GetSpacing(SpacingArea area) => Settings.ThemeOptions.GetSpacing(area);
+
+    private void SetSpacing(SpacingArea area, double value, [CallerMemberName] string? propertyName = null)
+    {
+        int spacing = (int)Math.Clamp(Math.Round(value / 5) * 5, ApplicationThemeOptions.CompactSpacing, ApplicationThemeOptions.MaximumSpacing);
+
+        if (Settings.ThemeOptions.GetSpacing(area) == spacing)
+        {
+            return;
+        }
+
+        Settings.ThemeOptions.SetSpacing(area, spacing);
+        OnPropertyChanged(propertyName);
+        OnPropertyChanged(propertyName + "Text");
+
+        // Show the part being adjusted. The settings windows have no preview because this window is one.
+        if (SpacingPreviewOptions.FirstOrDefault(x => x.Value == area) is { } preview)
+        {
+            SelectedSpacingPreview = preview;
+        }
+    }
+
+    private string FormatSpacing(SpacingArea area) => Settings.ThemeOptions.GetSpacing(area) switch
+    {
+        ApplicationThemeOptions.CompactSpacing => Strings.ApplicationSettingsWindow_SpacingCompact,
+        ApplicationThemeOptions.DefaultSpacing => Strings.ApplicationSettingsWindow_SpacingDefault,
+        int spacing => $"{spacing}%"
+    };
+
+    private void RaiseSpacingChanged()
+    {
+        foreach (string name in new[] { nameof(SidebarSpacing), nameof(MenuSpacing), nameof(ToolMenuSpacing), nameof(SettingsSpacing) })
+        {
+            OnPropertyChanged(name);
+            OnPropertyChanged(name + "Text");
+        }
+    }
+
+    public void RefreshThemeSettings()
+    {
+        OnPropertyChanged(nameof(UseSystemTheme));
+        OnPropertyChanged(nameof(CanEditTheme));
+        OnPropertyChanged(nameof(SelectedTheme));
+    }
+
     public EnumOption<string>? SelectedTheme
     {
         get => Find(ThemeOptions, NormalizeTheme(Settings.ThemeOptions.Theme));
@@ -245,6 +371,18 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
             if (value != null)
             {
                 SetSetting(Settings.ThemeOptions.Theme, value.Value, x => Settings.ThemeOptions.Theme = x);
+            }
+        }
+    }
+
+    public EnumOption<IconPack>? SelectedIconPack
+    {
+        get => Find(IconPackOptions, Settings.ThemeOptions.IconPack);
+        set
+        {
+            if (value != null)
+            {
+                SetSetting(Settings.ThemeOptions.IconPack, value.Value, x => Settings.ThemeOptions.IconPack = x);
             }
         }
     }
@@ -354,6 +492,18 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
             if (SetField(ref _editWithShareX, value))
             {
                 InvokeOnMainThread(() => IntegrationHelpers.CreateEditShellContextMenuButton(value));
+            }
+        }
+    }
+
+    public bool EditWithShareXPhotoEditor
+    {
+        get => _editWithShareXPhotoEditor;
+        set
+        {
+            if (SetField(ref _editWithShareXPhotoEditor, value))
+            {
+                InvokeOnMainThread(() => IntegrationHelpers.CreatePhotoEditorShellContextMenuButton(value));
             }
         }
     }
@@ -476,6 +626,20 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     public bool AutoCleanupBackupFiles { get => Settings.AutoCleanupBackupFiles; set => SetSetting(Settings.AutoCleanupBackupFiles, value, x => Settings.AutoCleanupBackupFiles = x); }
     public bool AutoCleanupLogFiles { get => Settings.AutoCleanupLogFiles; set => SetSetting(Settings.AutoCleanupLogFiles, value, x => Settings.AutoCleanupLogFiles = x); }
     public decimal CleanupKeepFileCount { get => Settings.CleanupKeepFileCount; set => SetSetting(Settings.CleanupKeepFileCount, decimal.ToInt32(value), x => Settings.CleanupKeepFileCount = x); }
+
+    public EnumOption<TaskViewMode>? SelectedTaskViewMode
+    {
+        get => Find(TaskViewModeOptions, Settings.TaskViewMode);
+        set { if (value != null) SetSetting(Settings.TaskViewMode, value.Value, x => Settings.TaskViewMode = x); }
+    }
+
+    public bool ShowColumns { get => Settings.ShowColumns; set => SetSetting(Settings.ShowColumns, value, x => Settings.ShowColumns = x); }
+
+    public EnumOption<ImagePreviewVisibility>? SelectedImagePreview
+    {
+        get => Find(ImagePreviewOptions, Settings.ImagePreview);
+        set { if (value != null) SetSetting(Settings.ImagePreview, value.Value, x => Settings.ImagePreview = x); }
+    }
 
     public bool ShowThumbnailTitle { get => Settings.ShowThumbnailTitle; set => SetSetting(Settings.ShowThumbnailTitle, value, x => Settings.ShowThumbnailTitle = x); }
 
@@ -612,6 +776,8 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     public bool RotateImageByExifOrientationData { get => Settings.RotateImageByExifOrientationData; set => SetSetting(Settings.RotateImageByExifOrientationData, value, x => Settings.RotateImageByExifOrientationData = x); }
     public bool PNGStripColorSpaceInformation { get => Settings.PNGStripColorSpaceInformation; set => SetSetting(Settings.PNGStripColorSpaceInformation, value, x => Settings.PNGStripColorSpaceInformation = x); }
 
+    public bool ShowFileDeleteConfirmation { get => Settings.ShowFileDeleteConfirmation; set => SetSetting(Settings.ShowFileDeleteConfirmation, value, x => Settings.ShowFileDeleteConfirmation = x); }
+
     public bool DisableUpload { get => Settings.DisableUpload; set => SetSetting(Settings.DisableUpload, value, x => Settings.DisableUpload = x); }
     public bool URLEncodeIgnoreEmoji { get => Settings.URLEncodeIgnoreEmoji; set => SetSetting(Settings.URLEncodeIgnoreEmoji, value, x => Settings.URLEncodeIgnoreEmoji = x); }
     public bool ShowMultiUploadWarning { get => Settings.ShowMultiUploadWarning; set => SetSetting(Settings.ShowMultiUploadWarning, value, x => Settings.ShowMultiUploadWarning = x); }
@@ -625,7 +791,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     public decimal DropSize { get => Settings.DropSize; set => SetSetting(Settings.DropSize, decimal.ToInt32(value), x => Settings.DropSize = x); }
     public decimal DropOffset { get => Settings.DropOffset; set => SetSetting(Settings.DropOffset, decimal.ToInt32(value), x => Settings.DropOffset = x); }
 
-    public EnumOption<ContentAlignment>? SelectedDropAlignment
+    public EnumOption<ImageContentAlignment>? SelectedDropAlignment
     {
         get => Find(DropAlignmentOptions, Settings.DropAlignment);
         set { if (value != null) SetSetting(Settings.DropAlignment, value.Value, x => Settings.DropAlignment = x); }
@@ -764,7 +930,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
             {
                 LanguageHelper.ChangeLanguage(Settings.Language);
                 Reload();
-                await UpdateMainFormAsync();
+                await UpdateApplicationAsync();
                 StatusMessage = string.Format(Strings.ApplicationSettingsWindow_BackupImportedFrom, path);
             }
             else
@@ -807,7 +973,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
             });
             LanguageHelper.ChangeLanguage(Settings.Language);
             Reload();
-            await UpdateMainFormAsync();
+            await UpdateApplicationAsync();
             StatusMessage = Strings.ApplicationSettingsWindow_SettingsReset;
         }
         catch (Exception e)
@@ -821,11 +987,11 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
         }
     }
 
-    public void Restart() => InvokeOnMainThread(() => Program.Restart());
+    public void Restart() => InvokeOnMainThread(() => ApplicationLifecycle.Restart());
 
     public void Reload()
     {
-        _personalFolderPath = Program.ReadPersonalPathConfig();
+        _personalFolderPath = PersonalPathManager.ReadConfig();
         UpdatePersonalFolderPreview();
         UpdateScreenshotsFolderPreview();
         RefreshIntegrations();
@@ -847,18 +1013,18 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
     {
         return
         [
-            Nav("general", Strings.ApplicationSettingsWindow_General, LucideIcons.settings),
-            Nav("theme", Strings.ApplicationSettingsWindow_Theme, LucideIcons.palette),
-            Nav("integration", Strings.ApplicationSettingsWindow_Integration, LucideIcons.plug),
-            Nav("paths", Strings.ApplicationSettingsWindow_Paths, LucideIcons.folder),
-            Nav("settings", Strings.ApplicationSettingsWindow_Settings, LucideIcons.database_backup),
-            Nav("main-window", Strings.ApplicationSettingsWindow_MainWindow, LucideIcons.monitor),
-            Nav("clipboard-formats", Strings.ApplicationSettingsWindow_ClipboardFormats, LucideIcons.clipboard_list),
-            Nav("upload", Strings.ApplicationSettingsWindow_Upload, LucideIcons.upload),
-            Nav("history", Strings.ApplicationSettingsWindow_History, LucideIcons.history),
-            Nav("print", Strings.ApplicationSettingsWindow_Print, LucideIcons.printer),
-            Nav("proxy", Strings.ApplicationSettingsWindow_Proxy, LucideIcons.network),
-            Nav("advanced", Strings.ApplicationSettingsWindow_Advanced, LucideIcons.sliders_horizontal)
+            Nav("general", Strings.ApplicationSettingsWindow_General, AppIcons.Settings),
+            Nav("theme", Strings.ApplicationSettingsWindow_Theme, AppIcons.Palette),
+            Nav("integration", Strings.ApplicationSettingsWindow_Integration, AppIcons.Plug),
+            Nav("paths", Strings.ApplicationSettingsWindow_Paths, AppIcons.Folder),
+            Nav("settings", Strings.ApplicationSettingsWindow_Settings, AppIcons.DatabaseBackup),
+            Nav("main-window", Strings.ApplicationSettingsWindow_MainWindow, AppIcons.Monitor),
+            Nav("clipboard-formats", Strings.ApplicationSettingsWindow_ClipboardFormats, AppIcons.ClipboardList),
+            Nav("upload", Strings.ApplicationSettingsWindow_Upload, AppIcons.Upload),
+            Nav("history", Strings.ApplicationSettingsWindow_History, AppIcons.History),
+            Nav("print", Strings.ApplicationSettingsWindow_Print, AppIcons.Printer),
+            Nav("proxy", Strings.ApplicationSettingsWindow_Proxy, AppIcons.Network),
+            Nav("advanced", Strings.ApplicationSettingsWindow_Advanced, AppIcons.Sliders)
         ];
     }
 
@@ -877,6 +1043,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
 #if !MicrosoftStore
         _shellContextMenu = IntegrationHelpers.CheckShellContextMenuButton();
         _editWithShareX = IntegrationHelpers.CheckEditShellContextMenuButton();
+        _editWithShareXPhotoEditor = IntegrationHelpers.CheckPhotoEditorShellContextMenuButton();
         _sendToMenu = IntegrationHelpers.CheckSendToMenuButton();
         _chromeExtensionSupport = IntegrationHelpers.CheckChromeExtensionSupport();
         _firefoxAddonSupport = IntegrationHelpers.CheckFirefoxAddonSupport();
@@ -928,7 +1095,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
             string path = FileHelpers.SanitizePath(_personalFolderPath);
             if (string.IsNullOrEmpty(path))
             {
-                path = Program.Portable ? Program.PortablePersonalFolder : Program.DefaultPersonalFolder;
+                path = StartupOptions.Portable ? AppPaths.PortablePersonalFolder : AppPaths.DefaultPersonalFolder;
             }
             else
             {
@@ -1005,7 +1172,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
 
         try
         {
-            bool changed = InvokeOnMainThread(() => Program.WritePersonalPathConfig(FileHelpers.SanitizePath(_personalFolderPath)));
+            bool changed = InvokeOnMainThread(() => PersonalPathManager.WriteConfig(FileHelpers.SanitizePath(_personalFolderPath)));
             if (changed)
             {
                 RestartRequired = true;
@@ -1018,9 +1185,9 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
         }
     }
 
-    private async Task UpdateMainFormAsync()
+    private async Task UpdateApplicationAsync()
     {
-        Task updateTask = InvokeOnMainThread(() => Program.MainForm.UpdateControls());
+        Task updateTask = InvokeOnMainThread(ApplicationSettingsRuntime.ReloadAsync);
         await updateTask;
     }
 
@@ -1033,7 +1200,7 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
                 x,
                 x.GetLocalizedDescription(),
                 LoadLanguageFlag(x),
-                x == SupportedLanguage.Automatic ? LucideIcons.languages : null))
+                x == SupportedLanguage.Automatic ? AppIcons.Language : null))
             .ToArray();
 
     private static AvaloniaBitmap? LoadLanguageFlag(SupportedLanguage language)
@@ -1057,34 +1224,24 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
 
     private static void InvokeOnMainThread(Action action)
     {
-        if (Program.MainForm == null || Program.MainForm.IsDisposed)
+        if (Dispatcher.UIThread.CheckAccess())
         {
-            return;
-        }
-
-        if (Program.MainForm.InvokeRequired)
-        {
-            Program.MainForm.Invoke(action);
+            action();
         }
         else
         {
-            action();
+            Dispatcher.UIThread.Invoke(action);
         }
     }
 
     private static T InvokeOnMainThread<T>(Func<T> action)
     {
-        if (Program.MainForm == null || Program.MainForm.IsDisposed)
+        if (Dispatcher.UIThread.CheckAccess())
         {
             return action();
         }
 
-        if (Program.MainForm.InvokeRequired)
-        {
-            return (T)Program.MainForm.Invoke(action);
-        }
-
-        return action();
+        return Dispatcher.UIThread.Invoke(action);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -1117,10 +1274,10 @@ public sealed class ApplicationSettingsViewModel : INotifyPropertyChanged, IDisp
             language.Flag?.Dispose();
         }
 
-        if (!Program.MainForm.IsClosing)
+        if (!ApplicationLifecycle.IsClosing)
         {
             FlushPersonalPath();
-            InvokeOnMainThread(Program.MainForm.ApplyApplicationSettings);
+            InvokeOnMainThread(ApplicationSettingsRuntime.Apply);
             SettingManager.SaveApplicationConfigAsync();
         }
     }

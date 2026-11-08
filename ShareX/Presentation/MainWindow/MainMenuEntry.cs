@@ -8,6 +8,17 @@
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
     of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -17,6 +28,7 @@
 using Avalonia.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShareX;
@@ -40,12 +52,16 @@ internal sealed class MainMenuEntry
     public byte[]? BitmapIcon { get; }
     public Func<Task>? ExecuteAsync { get; }
     public Func<IReadOnlyList<MainMenuEntry>>? CreateChildren { get; }
+    public Func<IReadOnlyList<MainMenuCategory>>? CreateCategories { get; }
+    public string? Id { get; }
+    public string? BadgeText { get; }
     public bool IsSeparator { get; }
     public bool IsEnabled { get; }
     public bool IsVisible { get; }
     public bool IsChecked { get; }
     public MainMenuToggleType ToggleType { get; }
     public bool StaysOpenOnClick { get; }
+    public bool BoldWhenChecked { get; }
     public KeyGesture? InputGesture { get; }
 
     public MainMenuEntry(
@@ -53,6 +69,7 @@ internal sealed class MainMenuEntry
         string icon,
         Action? execute = null,
         Func<IReadOnlyList<MainMenuEntry>>? createChildren = null,
+        Func<IReadOnlyList<MainMenuCategory>>? createCategories = null,
         bool isEnabled = true,
         bool isVisible = true,
         bool isChecked = false,
@@ -61,24 +78,31 @@ internal sealed class MainMenuEntry
         KeyGesture? inputGesture = null,
         byte[]? bitmapIcon = null,
         Func<string>? createHeader = null,
-        Func<string>? createAccentText = null)
+        Func<string>? createAccentText = null,
+        bool boldWhenChecked = false,
+        string? id = null,
+        string? badgeText = null)
     {
         _header = header;
         _createHeader = createHeader;
         _createAccentText = createAccentText;
         Icon = icon;
         BitmapIcon = bitmapIcon;
+        BadgeText = badgeText;
         ExecuteAsync = execute == null ? null : () =>
         {
             execute();
             return Task.CompletedTask;
         };
         CreateChildren = createChildren;
+        CreateCategories = createCategories;
+        Id = id;
         IsEnabled = isEnabled;
         IsVisible = isVisible;
         IsChecked = isChecked;
         ToggleType = toggleType;
         StaysOpenOnClick = staysOpenOnClick;
+        BoldWhenChecked = boldWhenChecked;
         InputGesture = inputGesture;
     }
 
@@ -87,6 +111,7 @@ internal sealed class MainMenuEntry
         string icon,
         Func<Task> executeAsync,
         Func<IReadOnlyList<MainMenuEntry>>? createChildren = null,
+        Func<IReadOnlyList<MainMenuCategory>>? createCategories = null,
         bool isEnabled = true,
         bool isVisible = true,
         bool isChecked = false,
@@ -95,20 +120,27 @@ internal sealed class MainMenuEntry
         KeyGesture? inputGesture = null,
         byte[]? bitmapIcon = null,
         Func<string>? createHeader = null,
-        Func<string>? createAccentText = null)
+        Func<string>? createAccentText = null,
+        bool boldWhenChecked = false,
+        string? id = null,
+        string? badgeText = null)
     {
         _header = header;
         _createHeader = createHeader;
         _createAccentText = createAccentText;
         Icon = icon;
         BitmapIcon = bitmapIcon;
+        BadgeText = badgeText;
         ExecuteAsync = executeAsync;
         CreateChildren = createChildren;
+        CreateCategories = createCategories;
+        Id = id;
         IsEnabled = isEnabled;
         IsVisible = isVisible;
         IsChecked = isChecked;
         ToggleType = toggleType;
         StaysOpenOnClick = staysOpenOnClick;
+        BoldWhenChecked = boldWhenChecked;
         InputGesture = inputGesture;
     }
 
@@ -129,14 +161,17 @@ internal sealed class MainNavigationSection
     public string Header { get; }
     public string Icon { get; }
     public Func<IReadOnlyList<MainMenuEntry>>? CreateChildren { get; }
+    public Func<IReadOnlyList<MainMenuCategory>>? CreateCategories { get; }
     public Action? Execute { get; }
     public bool IsVisible { get; }
 
-    public MainNavigationSection(string header, string icon, Func<IReadOnlyList<MainMenuEntry>> createChildren, bool isVisible = true)
+    public MainNavigationSection(string header, string icon, Func<IReadOnlyList<MainMenuEntry>> createChildren,
+        bool isVisible = true, Func<IReadOnlyList<MainMenuCategory>>? createCategories = null)
     {
         Header = header;
         Icon = icon;
         CreateChildren = createChildren;
+        CreateCategories = createCategories;
         IsVisible = isVisible;
     }
 
@@ -146,5 +181,17 @@ internal sealed class MainNavigationSection
         Icon = icon;
         Execute = execute;
         IsVisible = isVisible;
+    }
+}
+
+internal sealed class MainMenuCategory
+{
+    public string Header { get; }
+    public IReadOnlyList<MainMenuEntry> Entries { get; }
+
+    public MainMenuCategory(string header, IReadOnlyList<MainMenuEntry> entries)
+    {
+        Header = header;
+        Entries = entries.OrderBy(entry => entry.Header, StringComparer.CurrentCultureIgnoreCase).ToArray();
     }
 }

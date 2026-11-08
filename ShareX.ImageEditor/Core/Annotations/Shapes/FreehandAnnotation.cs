@@ -38,6 +38,11 @@ public partial class FreehandAnnotation : Annotation, IPointBasedAnnotation
     public BorderStyle BorderStyle { get; set; } = BorderStyle.Solid;
 
     /// <summary>
+    /// Draws a classic arrow head at the end of the stroke (the freehand arrow from ShareX 21).
+    /// </summary>
+    public bool ShowArrowHead { get; set; }
+
+    /// <summary>
     /// Simplification tolerance for smoothing
     /// </summary>
     public float SmoothingTolerance { get; set; } = 2.0f;
@@ -98,5 +103,19 @@ public partial class FreehandAnnotation : Annotation, IPointBasedAnnotation
     private float Distance(SKPoint p1, SKPoint p2)
     {
         return (float)Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+    }
+
+    internal override void TransformAdditionalPoints(Func<SKPoint, SKPoint> transformPoint)
+    {
+        for (int i = 0; i < Points.Count; i++)
+        {
+            Points[i] = transformPoint(Points[i]);
+        }
+    }
+
+    internal override void MoveBy(float deltaX, float deltaY)
+    {
+        // A freehand selection is positioned by its path points, not its drawing endpoints.
+        TransformAdditionalPoints(point => new SKPoint(point.X + deltaX, point.Y + deltaY));
     }
 }

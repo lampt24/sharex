@@ -24,7 +24,33 @@ namespace ShareX.Localization {
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
         
+        public static string MouseHighlighter => ResourceManager.GetString("MouseHighlighter", resourceCulture);
+
+        public static string MainMenuBuilder_MouseHighlighter => ResourceManager.GetString("MainMenuBuilder_MouseHighlighter", resourceCulture);
+
+        public static string TaskSettingsWindow_HighlightMouseWhileRecording => ResourceManager.GetString("TaskSettingsWindow_HighlightMouseWhileRecording", resourceCulture);
+
+        public static string TaskSettingsWindow_MouseHighlighterOptions => ResourceManager.GetString("TaskSettingsWindow_MouseHighlighterOptions", resourceCulture);
+
+        public static string ScreenRecorderBar_ShowBeforeRecording => ResourceManager.GetString("ScreenRecorderBar_ShowBeforeRecording", resourceCulture);
+        public static string ScreenRecorderBar_SystemAudio => ResourceManager.GetString("ScreenRecorderBar_SystemAudio", resourceCulture);
+        public static string ScreenRecorderBar_Microphone => ResourceManager.GetString("ScreenRecorderBar_Microphone", resourceCulture);
+        public static string ScreenRecorderBar_Camera => ResourceManager.GetString("ScreenRecorderBar_Camera", resourceCulture);
+        public static string ScreenRecorderBar_Cursor => ResourceManager.GetString("ScreenRecorderBar_Cursor", resourceCulture);
+        public static string ScreenRecorderBar_Options => ResourceManager.GetString("ScreenRecorderBar_Options", resourceCulture);
+        public static string ScreenRecorderBar_SourceOptions => ResourceManager.GetString("ScreenRecorderBar_SourceOptions", resourceCulture);
+        public static string ScreenRecorderBar_Record => ResourceManager.GetString("ScreenRecorderBar_Record", resourceCulture);
+        public static string ScreenRecorderBar_On => ResourceManager.GetString("ScreenRecorderBar_On", resourceCulture);
+        public static string ScreenRecorderBar_Off => ResourceManager.GetString("ScreenRecorderBar_Off", resourceCulture);
+        public static string ScreenRecorderBar_Volume => ResourceManager.GetString("ScreenRecorderBar_Volume", resourceCulture);
+        public static string ScreenRecorderBar_LayoutPreview => ResourceManager.GetString("ScreenRecorderBar_LayoutPreview", resourceCulture);
+        public static string ScreenRecorderBar_Overlay => ResourceManager.GetString("ScreenRecorderBar_Overlay", resourceCulture);
+        public static string ScreenRecorderBar_Capture => ResourceManager.GetString("ScreenRecorderBar_Capture", resourceCulture);
+        public static string ScreenRecorderBar_Bar => ResourceManager.GetString("ScreenRecorderBar_Bar", resourceCulture);
+        public static string ScreenRecorderBar_TargetUnavailable => ResourceManager.GetString("ScreenRecorderBar_TargetUnavailable", resourceCulture);
+
         private static global::System.Resources.ResourceManager resourceMan;
+        public static string ScreenRecorderBar_RefreshDevices => ResourceManager.GetString("ScreenRecorderBar_RefreshDevices", resourceCulture);
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
@@ -265,6 +291,15 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("MainMenuBuilder_DragAndDropUpload", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string MainMenuBuilder_EditTools {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_EditTools", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable add image effects.
@@ -285,6 +320,15 @@ namespace ShareX.Localization {
         public static string MainMenuBuilder_Exit {
             get {
                 return ResourceManager.GetString("MainMenuBuilder_Exit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string MainMenuBuilder_FinishEditingTools {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_FinishEditingTools", resourceCulture);
             }
         }
         
@@ -332,6 +376,15 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("MainMenuBuilder_HotkeySettings", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Animated GIF maker....
+        /// </summary>
+        public static string MainMenuBuilder_AnimatedGifMaker {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_AnimatedGifMaker", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Icon converter....
@@ -377,6 +430,15 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("MainMenuBuilder_ImageEditor", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Photo editor....
+        /// </summary>
+        public static string MainMenuBuilder_PhotoEditor {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_PhotoEditor", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Image effects....
@@ -393,6 +455,33 @@ namespace ShareX.Localization {
         public static string MainMenuBuilder_ImageHistory {
             get {
                 return ResourceManager.GetString("MainMenuBuilder_ImageHistory", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Image converter....
+        /// </summary>
+        public static string MainMenuBuilder_ImageConverter {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ImageConverter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Image watermark....
+        /// </summary>
+        public static string MainMenuBuilder_ImageWatermark {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ImageWatermark", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Image resizer....
+        /// </summary>
+        public static string MainMenuBuilder_ImageResizer {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ImageResizer", resourceCulture);
             }
         }
         
@@ -567,11 +656,20 @@ namespace ShareX.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ruler....
+        ///   Looks up a localized string similar to Measure....
         /// </summary>
         public static string MainMenuBuilder_Ruler {
             get {
                 return ResourceManager.GetString("MainMenuBuilder_Ruler", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Ruler....
+        /// </summary>
+        public static string MainMenuBuilder_ClassicRuler {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ClassicRuler", resourceCulture);
             }
         }
         
@@ -725,6 +823,51 @@ namespace ShareX.Localization {
         public static string MainMenuBuilder_TestUrlShortener {
             get {
                 return ResourceManager.GetString("MainMenuBuilder_TestUrlShortener", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Data &amp; text.
+        /// </summary>
+        public static string MainMenuBuilder_ToolCategoryData {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ToolCategoryData", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        public static string MainMenuBuilder_ToolCategoryImages {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ToolCategoryImages", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Screen &amp; color.
+        /// </summary>
+        public static string MainMenuBuilder_ToolCategoryScreen {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ToolCategoryScreen", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        public static string MainMenuBuilder_ToolCategorySystem {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ToolCategorySystem", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Video.
+        /// </summary>
+        public static string MainMenuBuilder_ToolCategoryVideo {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_ToolCategoryVideo", resourceCulture);
             }
         }
         
@@ -915,6 +1058,51 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("MainWindow_DeleteSelectedItem", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete item remotely....
+        /// </summary>
+        public static string MainWindow_DeleteItemRemotely {
+            get {
+                return ResourceManager.GetString("MainWindow_DeleteItemRemotely", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this item remotely?.
+        /// </summary>
+        public static string MainWindow_DeleteItemRemotelyConfirmation {
+            get {
+                return ResourceManager.GetString("MainWindow_DeleteItemRemotelyConfirmation", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Remote deletion.
+        /// </summary>
+        public static string MainWindow_RemoteDeletion {
+            get {
+                return ResourceManager.GetString("MainWindow_RemoteDeletion", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The item was deleted remotely..
+        /// </summary>
+        public static string MainWindow_RemoteDeleteSucceeded {
+            get {
+                return ResourceManager.GetString("MainWindow_RemoteDeleteSucceeded", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to delete the item remotely..
+        /// </summary>
+        public static string MainWindow_RemoteDeleteFailed {
+            get {
+                return ResourceManager.GetString("MainWindow_RemoteDeleteFailed", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Deletion URL.
@@ -940,6 +1128,33 @@ namespace ShareX.Localization {
         public static string MainWindow_EditImage {
             get {
                 return ResourceManager.GetString("MainWindow_EditImage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Edit in Photo editor....
+        /// </summary>
+        public static string MainWindow_EditImageInPhotoEditor {
+            get {
+                return ResourceManager.GetString("MainWindow_EditImageInPhotoEditor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Resize image....
+        /// </summary>
+        public static string MainWindow_ResizeImage {
+            get {
+                return ResourceManager.GetString("MainWindow_ResizeImage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Trim video....
+        /// </summary>
+        public static string MainWindow_TrimVideo {
+            get {
+                return ResourceManager.GetString("MainWindow_TrimVideo", resourceCulture);
             }
         }
         
@@ -1519,6 +1734,11 @@ namespace ShareX.Localization {
         public static string ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu {
             get {
                 return ResourceManager.GetString("ApplicationSettingsWindow_ShowEditWithShareXButtonInWindowsExplorerContextMenu", resourceCulture);
+            }
+        }
+        public static string ApplicationSettingsWindow_ShowEditWithShareXPhotoEditorButtonInWindowsExplorerContextMenu {
+            get {
+                return ResourceManager.GetString("ApplicationSettingsWindow_ShowEditWithShareXPhotoEditorButtonInWindowsExplorerContextMenu", resourceCulture);
             }
         }
         public static string ApplicationSettingsWindow_ShowShareXInSendToMenu {
@@ -2681,14 +2901,127 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("TaskSettingsWindow_ImageFormat", resourceCulture);
             }
         }
+        public static string TaskSettingsWindow_BMPBitDepth {
+            get { return ResourceManager.GetString("TaskSettingsWindow_BMPBitDepth", resourceCulture); }
+        }
         public static string TaskSettingsWindow_PNGBitDepth {
             get {
                 return ResourceManager.GetString("TaskSettingsWindow_PNGBitDepth", resourceCulture);
             }
         }
+        public static string TaskSettingsWindow_PNGCompressionLevel {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGCompressionLevel", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGCompressionHint {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGCompressionHint", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilter {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilter", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilterAutomatic {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilterAutomatic", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilterNone {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilterNone", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilterSub {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilterSub", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilterUp {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilterUp", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilterAverage {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilterAverage", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_PNGFilterPaeth {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_PNGFilterPaeth", resourceCulture);
+            }
+        }
         public static string TaskSettingsWindow_JPEGQuality {
             get {
                 return ResourceManager.GetString("TaskSettingsWindow_JPEGQuality", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_WebPQuality {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_WebPQuality", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_WebPLossless {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_WebPLossless", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_WebPCompressionEffort {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_WebPCompressionEffort", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_WebPCompressionEffortHint {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_WebPCompressionEffortHint", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to JPEG chroma subsampling:.
+        /// </summary>
+        public static string TaskSettingsWindow_JPEGSubsampling {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_JPEGSubsampling", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 4:2:0 (smaller files).
+        /// </summary>
+        public static string TaskSettingsWindow_JPEGSubsampling420 {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_JPEGSubsampling420", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 4:2:2 (balanced).
+        /// </summary>
+        public static string TaskSettingsWindow_JPEGSubsampling422 {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_JPEGSubsampling422", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 4:4:4 (full color resolution).
+        /// </summary>
+        public static string TaskSettingsWindow_JPEGSubsampling444 {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_JPEGSubsampling444", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 4:4:4 preserves more color detail around text and sharp edges, but usually produces larger files..
+        /// </summary>
+        public static string TaskSettingsWindow_JPEGSubsamplingHint {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_JPEGSubsamplingHint", resourceCulture);
             }
         }
         public static string TaskSettingsWindow_GIFQuality {
@@ -2821,9 +3154,9 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("TaskSettingsWindow_Add", resourceCulture);
             }
         }
-        public static string TaskSettingsWindow_UseMultiRegionMode {
+        public static string TaskSettingsWindow_QuickCapture {
             get {
-                return ResourceManager.GetString("TaskSettingsWindow_UseMultiRegionMode", resourceCulture);
+                return ResourceManager.GetString("TaskSettingsWindow_QuickCapture", resourceCulture);
             }
         }
         public static string TaskSettingsWindow_DetectWindowRegions {
@@ -2839,6 +3172,11 @@ namespace ShareX.Localization {
         public static string TaskSettingsWindow_BackgroundDimStrengthPercent {
             get {
                 return ResourceManager.GetString("TaskSettingsWindow_BackgroundDimStrengthPercent", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_DimHoveredWindowsAndControls {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_DimHoveredWindowsAndControls", resourceCulture);
             }
         }
         public static string TaskSettingsWindow_RightClick {
@@ -2881,9 +3219,9 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("TaskSettingsWindow_MagnifierPixelCount", resourceCulture);
             }
         }
-        public static string TaskSettingsWindow_MagnifierPixelSize {
+        public static string TaskSettingsWindow_MagnifierSize {
             get {
-                return ResourceManager.GetString("TaskSettingsWindow_MagnifierPixelSize", resourceCulture);
+                return ResourceManager.GetString("TaskSettingsWindow_MagnifierSize", resourceCulture);
             }
         }
         public static string TaskSettingsWindow_ShowCenterCrosshair {
@@ -2921,14 +3259,14 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("TaskSettingsWindow_ShowRecordingButtonLabels", resourceCulture);
             }
         }
-        public static string TaskSettingsWindow_StartRecordingAfterADelay {
-            get {
-                return ResourceManager.GetString("TaskSettingsWindow_StartRecordingAfterADelay", resourceCulture);
-            }
-        }
         public static string TaskSettingsWindow_StartDelaySeconds {
             get {
                 return ResourceManager.GetString("TaskSettingsWindow_StartDelaySeconds", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_UseStartDelay {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_UseStartDelay", resourceCulture);
             }
         }
         public static string TaskSettingsWindow_UseFixedDuration {
@@ -3316,6 +3654,66 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("TaskSettingsWindow_Tools", resourceCulture);
             }
         }
+        public static string TaskSettingsWindow_ImageEditor {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_ImageEditor", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_RememberWindowState {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_RememberWindowState", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_ShowExitConfirmation {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_ShowExitConfirmation", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_ZoomToFitOnOpen {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_ZoomToFitOnOpen", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_QuickCrop {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_QuickCrop", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_AutoCloseEditorOnTask {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_AutoCloseEditorOnTask", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_AutoCopyImageToClipboard {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_AutoCopyImageToClipboard", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_CanvasFillColor {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_CanvasFillColor", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_AutoExpandCanvas {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_AutoExpandCanvas", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_ShowInsertImageDialog {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_ShowInsertImageDialog", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_ShowNotifications {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_ShowNotifications", resourceCulture);
+            }
+        }
+        public static string TaskSettingsWindow_CustomizeToolbarWithEllipsis {
+            get {
+                return ResourceManager.GetString("TaskSettingsWindow_CustomizeToolbarWithEllipsis", resourceCulture);
+            }
+        }
         public static string TaskSettingsWindow_Advanced {
             get {
                 return ResourceManager.GetString("TaskSettingsWindow_Advanced", resourceCulture);
@@ -3686,61 +4084,6 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("DebugLogWindow_Upload", resourceCulture);
             }
         }
-        public static string FirstTimeConfigWindow_Heading {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_Heading", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_Subtitle {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_Subtitle", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_ShellContextMenu {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_ShellContextMenu", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_SendToMenu {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_SendToMenu", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_SteamInApp {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_SteamInApp", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_OptionsLater {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_OptionsLater", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_OK {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_OK", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_StartWithWindows {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_StartWithWindows", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_StartWithWindowsDisabledByUser {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_StartWithWindowsDisabledByUser", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_StartWithWindowsDisabledByPolicy {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_StartWithWindowsDisabledByPolicy", resourceCulture);
-            }
-        }
-        public static string FirstTimeConfigWindow_StartWithWindowsEnabledByPolicy {
-            get {
-                return ResourceManager.GetString("FirstTimeConfigWindow_StartWithWindowsEnabledByPolicy", resourceCulture);
-            }
-        }
         public static string ShortenURLWindow_Title {
             get {
                 return ResourceManager.GetString("ShortenURLWindow_Title", resourceCulture);
@@ -3979,6 +4322,76 @@ namespace ShareX.Localization {
         public static string AfterCaptureWindow_CopyPreviewImage {
             get {
                 return ResourceManager.GetString("AfterCaptureWindow_CopyPreviewImage", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalHeading {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalHeading", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalDescription {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalDescription", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyImage {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyImage", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyImageDescription {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyImageDescription", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyFile {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyFile", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyFileDescription {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyFileDescription", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyFilePath {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyFilePath", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyFilePathDescription {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyFilePathDescription", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyFolderPath {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyFolderPath", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyFolderPathDescription {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyFolderPathDescription", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyUrl {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyUrl", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_GoalCopyUrlDescription {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_GoalCopyUrlDescription", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_RequiredHeading {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_RequiredHeading", resourceCulture);
+            }
+        }
+        public static string AfterCaptureWindow_AlsoHeading {
+            get {
+                return ResourceManager.GetString("AfterCaptureWindow_AlsoHeading", resourceCulture);
             }
         }
         public static string AfterCaptureWindow_NoPreview {
@@ -5021,6 +5434,11 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("IntegrationHelpers_EditWithShareX", resourceCulture);
             }
         }
+        public static string IntegrationHelpers_EditWithShareXPhotoEditor {
+            get {
+                return ResourceManager.GetString("IntegrationHelpers_EditWithShareXPhotoEditor", resourceCulture);
+            }
+        }
         public static string ClipboardDoesNotContainAnImage {
             get {
                 return ResourceManager.GetString("ClipboardDoesNotContainAnImage", resourceCulture);
@@ -5236,5 +5654,167 @@ namespace ShareX.Localization {
                 return ResourceManager.GetString("UploadManager_DownloadAndUploadFile_Download_failed", resourceCulture);
             }
         }
+        public static string StartScreen_Welcome {
+            get {
+                return ResourceManager.GetString("StartScreen_Welcome", resourceCulture);
+            }
+        }
+        public static string StartScreen_WelcomeSubtitle {
+            get {
+                return ResourceManager.GetString("StartScreen_WelcomeSubtitle", resourceCulture);
+            }
+        }
+        public static string StartScreen_PlatformNote {
+            get {
+                return ResourceManager.GetString("StartScreen_PlatformNote", resourceCulture);
+            }
+        }
+        public static string StartScreen_PersonalizeTitle {
+            get {
+                return ResourceManager.GetString("StartScreen_PersonalizeTitle", resourceCulture);
+            }
+        }
+        public static string StartScreen_PersonalizeSubtitle {
+            get {
+                return ResourceManager.GetString("StartScreen_PersonalizeSubtitle", resourceCulture);
+            }
+        }
+        public static string StartScreen_SettingsNote {
+            get {
+                return ResourceManager.GetString("StartScreen_SettingsNote", resourceCulture);
+            }
+        }
+        public static string StartScreen_GetStarted {
+            get {
+                return ResourceManager.GetString("StartScreen_GetStarted", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Network monitor....
+        /// </summary>
+        public static string MainMenuBuilder_NetworkMonitor {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_NetworkMonitor", resourceCulture);
+            }
+        }
+        public static string MainMenuBuilder_RemoteStorageBrowser {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_RemoteStorageBrowser", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Video trimmer
+        /// </summary>
+        public static string MainMenuBuilder_VideoTrimmer {
+            get {
+                return ResourceManager.GetString("MainMenuBuilder_VideoTrimmer", resourceCulture);
+            }
+        }
+
+        public static string TaskHelpers_RemoteStorageNotConfigured {
+            get {
+                return ResourceManager.GetString("TaskHelpers_RemoteStorageNotConfigured", resourceCulture);
+            }
+        }
+
+        public static string MainWindow_AlwaysOnTop {
+            get {
+                return ResourceManager.GetString("MainWindow_AlwaysOnTop", resourceCulture);
+            }
+        }
+
+        public static string MainWindow_Minimize {
+            get {
+                return ResourceManager.GetString("MainWindow_Minimize", resourceCulture);
+            }
+        }
+
+        public static string MainWindow_MaximizeOrRestore {
+            get {
+                return ResourceManager.GetString("MainWindow_MaximizeOrRestore", resourceCulture);
+            }
+        }
+
+        public static string MainMenuBuilder_AnimatedGifTrimmer => ResourceManager.GetString("MainMenuBuilder_AnimatedGifTrimmer", resourceCulture);
+        public static string MainWindow_TrimAnimatedGif => ResourceManager.GetString("MainWindow_TrimAnimatedGif", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderEnabled => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderEnabled", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorder => ResourceManager.GetString("TaskSettingsWindow_NativeRecorder", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderSystemAudio => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderSystemAudio", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderSystemAudioDevice => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderSystemAudioDevice", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderDefaultSystemAudioDevice => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderDefaultSystemAudioDevice", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderUnavailableSystemAudioDevice => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderUnavailableSystemAudioDevice", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderMicrophone => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderMicrophone", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderMicrophoneDevice => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderMicrophoneDevice", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderDefaultMicrophone => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderDefaultMicrophone", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderUnavailableMicrophone => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderUnavailableMicrophone", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderHardware => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderHardware", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderBitrate => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderBitrate", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Enabled => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Enabled", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Device => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Device", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_DefaultDevice => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_DefaultDevice", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_UnavailableDevice => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_UnavailableDevice", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_NoDevices => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_NoDevices", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Resolution => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Resolution", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_FPS => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_FPS", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Width => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Width", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Margin => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Margin", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Shape => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Shape", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Rectangle => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Rectangle", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderCamera_Circle => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderCamera_Circle", resourceCulture);
+        public static string ScreenRecorderBar_StartDelay => ResourceManager.GetString("ScreenRecorderBar_StartDelay", resourceCulture);
+        public static string ScreenRecorderBar_StartDelay_1Second => ResourceManager.GetString("ScreenRecorderBar_StartDelay_1Second", resourceCulture);
+        public static string ScreenRecorderBar_StartDelay_2Seconds => ResourceManager.GetString("ScreenRecorderBar_StartDelay_2Seconds", resourceCulture);
+        public static string ScreenRecorderBar_StartDelay_3Seconds => ResourceManager.GetString("ScreenRecorderBar_StartDelay_3Seconds", resourceCulture);
+        public static string ScreenRecorderBar_StartDelay_4Seconds => ResourceManager.GetString("ScreenRecorderBar_StartDelay_4Seconds", resourceCulture);
+        public static string ScreenRecorderBar_StartDelay_5Seconds => ResourceManager.GetString("ScreenRecorderBar_StartDelay_5Seconds", resourceCulture);
+        public static string MainMenuBuilder_VideoPlayer => ResourceManager.GetString("MainMenuBuilder_VideoPlayer", resourceCulture);
+        public static string MainMenuBuilder_Stats => ResourceManager.GetString("MainMenuBuilder_Stats", resourceCulture);
+        public static string MainMenuBuilder_NewBadge => ResourceManager.GetString("MainMenuBuilder_NewBadge", resourceCulture);
+        public static string ApplicationSettingsWindow_IconPackLabel => ResourceManager.GetString("ApplicationSettingsWindow_IconPackLabel", resourceCulture);
+        public static string ApplicationSettingsWindow_IconPackLegacy => ResourceManager.GetString("ApplicationSettingsWindow_IconPackLegacy", resourceCulture);
+        public static string ApplicationSettingsWindow_IconPackModern => ResourceManager.GetString("ApplicationSettingsWindow_IconPackModern", resourceCulture);
+        public static string ApplicationSettingsWindow_Icons => ResourceManager.GetString("ApplicationSettingsWindow_Icons", resourceCulture);
+        public static string TaskSettingsWindow_MultiRegionMode => ResourceManager.GetString("TaskSettingsWindow_MultiRegionMode", resourceCulture);
+        public static string TaskSettingsWindow_CompactRegionCaptureToolbar => ResourceManager.GetString("TaskSettingsWindow_CompactRegionCaptureToolbar", resourceCulture);
+        public static string MainMenuBuilder_RegionTransparent => ResourceManager.GetString("MainMenuBuilder_RegionTransparent", resourceCulture);
+        public static string IconPackPrompt_ChangeLater => ResourceManager.GetString("IconPackPrompt_ChangeLater", resourceCulture);
+        public static string IconPackPrompt_LegacyDescription => ResourceManager.GetString("IconPackPrompt_LegacyDescription", resourceCulture);
+        public static string IconPackPrompt_ModernDescription => ResourceManager.GetString("IconPackPrompt_ModernDescription", resourceCulture);
+        public static string IconPackPrompt_Subtitle => ResourceManager.GetString("IconPackPrompt_Subtitle", resourceCulture);
+        public static string IconPackPrompt_Title => ResourceManager.GetString("IconPackPrompt_Title", resourceCulture);
+        public static string ApplicationSettingsWindow_ListView => ResourceManager.GetString("ApplicationSettingsWindow_ListView", resourceCulture);
+        public static string ApplicationSettingsWindow_ShowColumns => ResourceManager.GetString("ApplicationSettingsWindow_ShowColumns", resourceCulture);
+        public static string ApplicationSettingsWindow_TaskViewModeLabel => ResourceManager.GetString("ApplicationSettingsWindow_TaskViewModeLabel", resourceCulture);
+        public static string MainWindow_ClearTaskList => ResourceManager.GetString("MainWindow_ClearTaskList", resourceCulture);
+        public static string MainWindow_SwitchToListView => ResourceManager.GetString("MainWindow_SwitchToListView", resourceCulture);
+        public static string MainWindow_SwitchToThumbnailView => ResourceManager.GetString("MainWindow_SwitchToThumbnailView", resourceCulture);
+        public static string TaskListView_Elapsed => ResourceManager.GetString("TaskListView_Elapsed", resourceCulture);
+        public static string TaskListView_Filename => ResourceManager.GetString("TaskListView_Filename", resourceCulture);
+        public static string TaskListView_History => ResourceManager.GetString("TaskListView_History", resourceCulture);
+        public static string TaskListView_InQueue => ResourceManager.GetString("TaskListView_InQueue", resourceCulture);
+        public static string TaskListView_Progress => ResourceManager.GetString("TaskListView_Progress", resourceCulture);
+        public static string TaskListView_Remaining => ResourceManager.GetString("TaskListView_Remaining", resourceCulture);
+        public static string TaskListView_Speed => ResourceManager.GetString("TaskListView_Speed", resourceCulture);
+        public static string TaskListView_Status => ResourceManager.GetString("TaskListView_Status", resourceCulture);
+        public static string TaskListView_URL => ResourceManager.GetString("TaskListView_URL", resourceCulture);
+        public static string ApplicationSettingsWindow_CompactMode => ResourceManager.GetString("ApplicationSettingsWindow_CompactMode", resourceCulture);
+        public static string MainMenuBuilder_ScreenshotDelayJustOnce => ResourceManager.GetString("MainMenuBuilder_ScreenshotDelayJustOnce", resourceCulture);
+        public static string ApplicationSettingsWindow_ImagePreviewLabel => ResourceManager.GetString("ApplicationSettingsWindow_ImagePreviewLabel", resourceCulture);
+        public static string ApplicationSettingsWindow_Spacing => ResourceManager.GetString("ApplicationSettingsWindow_Spacing", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingCompact => ResourceManager.GetString("ApplicationSettingsWindow_SpacingCompact", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingDefault => ResourceManager.GetString("ApplicationSettingsWindow_SpacingDefault", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingMenusLabel => ResourceManager.GetString("ApplicationSettingsWindow_SpacingMenusLabel", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingMenus => ResourceManager.GetString("ApplicationSettingsWindow_SpacingMenus", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingPreviewLabel => ResourceManager.GetString("ApplicationSettingsWindow_SpacingPreviewLabel", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingSidebar => ResourceManager.GetString("ApplicationSettingsWindow_SpacingSidebar", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingToolMenus => ResourceManager.GetString("ApplicationSettingsWindow_SpacingToolMenus", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingSettingsWindowsLabel => ResourceManager.GetString("ApplicationSettingsWindow_SpacingSettingsWindowsLabel", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingSidebarLabel => ResourceManager.GetString("ApplicationSettingsWindow_SpacingSidebarLabel", resourceCulture);
+        public static string ApplicationSettingsWindow_SpacingToolMenusLabel => ResourceManager.GetString("ApplicationSettingsWindow_SpacingToolMenusLabel", resourceCulture);
+        public static string TaskSettingsWindow_NativeRecorderHDRToneMapping => ResourceManager.GetString("TaskSettingsWindow_NativeRecorderHDRToneMapping", resourceCulture);
+        public static string ApplicationSettingsWindow_ShowFileDeleteConfirmation => ResourceManager.GetString("ApplicationSettingsWindow_ShowFileDeleteConfirmation", resourceCulture);
+        public static string FileDeleteConfirmation_DontRemindAgain => ResourceManager.GetString("FileDeleteConfirmation_DontRemindAgain", resourceCulture);
     }
 }

@@ -71,6 +71,8 @@ public interface IAnnotationToolbarAdapter : INotifyPropertyChanged
     double ShadowOpacity { get; set; }
     double ShadowOffsetX { get; set; }
     double ShadowOffsetY { get; set; }
+    bool ArrowRoundedCorners { get; set; }
+    bool FreehandArrow { get; set; }
     bool SpeechBalloonTail { get; set; }
     bool EffectEllipse { get; set; }
     bool TextBold { get; set; }
@@ -99,11 +101,12 @@ public interface IAnnotationToolbarAdapter : INotifyPropertyChanged
     bool ShowTextStyle { get; }
     bool ShowTextItalic { get; }
     bool ShowShadow { get; }
+    bool ShowArrowRoundedCorners { get; }
+    bool ShowFreehandArrow { get; }
     bool ShowSpeechBalloonTail { get; }
     bool ShowEffectEllipse { get; }
     bool ShowToolOptions { get; }
     bool ShowToolOptionsSeparator { get; }
-    bool ShowOptionsButton { get; }
     ReadOnlyObservableCollection<MenuItem> RecentImageMenuItems { get; }
     ReadOnlyObservableCollection<string> RecentImageFiles { get; }
     bool HasRecentImageFiles { get; }
@@ -114,7 +117,6 @@ public interface IAnnotationToolbarAdapter : INotifyPropertyChanged
     ICommand SaveAsCommand { get; }
     ICommand ExitEditorCommand { get; }
     ICommand OpenRecentImageCommand { get; }
-    ICommand OpenOptionsPanelCommand { get; }
     void SelectTool(EditorTool tool);
     void Undo();
     void Redo();

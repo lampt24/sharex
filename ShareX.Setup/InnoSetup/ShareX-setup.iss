@@ -53,12 +53,60 @@ Name: "CreateStartupIcon"; Description: "Run ShareX when Windows starts"; GroupD
 Name: "EnableBrowserExtensionSupport"; Description: "Enable browser extension support"; GroupDescription: "Other tasks:"; Check: not IsUpdating
 Name: "DisablePrintScreenKeyForSnippingTool"; Description: "Disable Print Screen key for Snipping Tool"; GroupDescription: "Other tasks:"; Check: not IsUpdating
 
+[InstallDelete]
+; ShareX 18 installed languages next to the executable. .NET loads those before the Languages folder, so remove them.
+Type: files; Name: "{app}\ar-YE\*.resources.dll"
+Type: files; Name: "{app}\de\*.resources.dll"
+Type: files; Name: "{app}\es\*.resources.dll"
+Type: files; Name: "{app}\es-MX\*.resources.dll"
+Type: files; Name: "{app}\fa-IR\*.resources.dll"
+Type: files; Name: "{app}\fr\*.resources.dll"
+Type: files; Name: "{app}\he-IL\*.resources.dll"
+Type: files; Name: "{app}\hu\*.resources.dll"
+Type: files; Name: "{app}\id-ID\*.resources.dll"
+Type: files; Name: "{app}\it-IT\*.resources.dll"
+Type: files; Name: "{app}\ja-JP\*.resources.dll"
+Type: files; Name: "{app}\ko-KR\*.resources.dll"
+Type: files; Name: "{app}\nl-NL\*.resources.dll"
+Type: files; Name: "{app}\pl\*.resources.dll"
+Type: files; Name: "{app}\pt-BR\*.resources.dll"
+Type: files; Name: "{app}\pt-PT\*.resources.dll"
+Type: files; Name: "{app}\ro\*.resources.dll"
+Type: files; Name: "{app}\ru\*.resources.dll"
+Type: files; Name: "{app}\tr\*.resources.dll"
+Type: files; Name: "{app}\uk\*.resources.dll"
+Type: files; Name: "{app}\vi-VN\*.resources.dll"
+Type: files; Name: "{app}\zh-CN\*.resources.dll"
+Type: files; Name: "{app}\zh-TW\*.resources.dll"
+Type: dirifempty; Name: "{app}\ar-YE"
+Type: dirifempty; Name: "{app}\de"
+Type: dirifempty; Name: "{app}\es"
+Type: dirifempty; Name: "{app}\es-MX"
+Type: dirifempty; Name: "{app}\fa-IR"
+Type: dirifempty; Name: "{app}\fr"
+Type: dirifempty; Name: "{app}\he-IL"
+Type: dirifempty; Name: "{app}\hu"
+Type: dirifempty; Name: "{app}\id-ID"
+Type: dirifempty; Name: "{app}\it-IT"
+Type: dirifempty; Name: "{app}\ja-JP"
+Type: dirifempty; Name: "{app}\ko-KR"
+Type: dirifempty; Name: "{app}\nl-NL"
+Type: dirifempty; Name: "{app}\pl"
+Type: dirifempty; Name: "{app}\pt-BR"
+Type: dirifempty; Name: "{app}\pt-PT"
+Type: dirifempty; Name: "{app}\ro"
+Type: dirifempty; Name: "{app}\ru"
+Type: dirifempty; Name: "{app}\tr"
+Type: dirifempty; Name: "{app}\uk"
+Type: dirifempty; Name: "{app}\vi-VN"
+Type: dirifempty; Name: "{app}\zh-CN"
+Type: dirifempty; Name: "{app}\zh-TW"
+
 [Files]
 Source: "{#MyAppReleaseDirectory}\*.exe"; DestDir: {app}; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\*.dll"; DestDir: {app}; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\*.json"; DestDir: {app}; Flags: ignoreversion
 Source: "{#MyAppRootDirectory}\Licenses\*.txt"; DestDir: {app}\Licenses; Flags: ignoreversion
-Source: "{#MyAppOutputDirectory}\*.exe"; DestDir: {app}; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\ShareX_File_Icon.ico"; DestDir: {app}; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\ar-YE\*.resources.dll"; DestDir: {app}\Languages\ar-YE; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\de\*.resources.dll"; DestDir: {app}\Languages\de; Flags: ignoreversion
@@ -83,7 +131,6 @@ Source: "{#MyAppReleaseDirectory}\uk\*.resources.dll"; DestDir: {app}\Languages\
 Source: "{#MyAppReleaseDirectory}\vi-VN\*.resources.dll"; DestDir: {app}\Languages\vi-VN; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\zh-CN\*.resources.dll"; DestDir: {app}\Languages\zh-CN; Flags: ignoreversion
 Source: "{#MyAppReleaseDirectory}\zh-TW\*.resources.dll"; DestDir: {app}\Languages\zh-TW; Flags: ignoreversion
-Source: "puush"; DestDir: {app}; Check: IsPuushMode
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppFileName}"; WorkingDir: "{app}"
@@ -109,6 +156,7 @@ Root: "HKCU"; Subkey: "Software\Classes\ShareX.sxcu"; Flags: dontcreatekey unins
 Root: "HKCU"; Subkey: "Software\Classes\.sxie"; Flags: dontcreatekey uninsdeletekey
 Root: "HKCU"; Subkey: "Software\Classes\ShareX.sxie"; Flags: dontcreatekey uninsdeletekey
 Root: "HKCU"; Subkey: "Software\Classes\SystemFileAssociations\image\shell\ShareXImageEditor"; Flags: dontcreatekey uninsdeletekey
+Root: "HKCU"; Subkey: "Software\Classes\SystemFileAssociations\image\shell\ShareXPhotoEditor"; Flags: dontcreatekey uninsdeletekey
 Root: "HKCU"; Subkey: "SOFTWARE\Google\Chrome\NativeMessagingHosts\com.getsharex.sharex"; ValueType: string; ValueData: "{app}\host-manifest-chrome.json"; Flags: uninsdeletekey; Tasks: EnableBrowserExtensionSupport
 Root: "HKCU"; Subkey: "SOFTWARE\Mozilla\NativeMessagingHosts\ShareX"; ValueType: string; ValueData: "{app}\host-manifest-firefox.json"; Flags: uninsdeletekey; Tasks: EnableBrowserExtensionSupport
 Root: "HKCU"; Subkey: "Control Panel\Keyboard"; ValueType: dword; ValueName: "PrintScreenKeyForSnippingEnabled"; ValueData: "0"; Flags: uninsdeletevalue; Tasks: DisablePrintScreenKeyForSnippingTool
@@ -163,11 +211,6 @@ end;
 function IsNoRun(): Boolean;
 begin
   Result := CmdLineParamExists('/NORUN');
-end;
-
-function IsPuushMode(): Boolean;
-begin
-  Result := CmdLineParamExists('-puush');
 end;
 
 function DesktopIconExists(): Boolean;

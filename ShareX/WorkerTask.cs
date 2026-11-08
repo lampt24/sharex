@@ -25,18 +25,17 @@
 
 using ShareX.HelpersLib;
 using ShareX.Localization;
-using ShareX.Properties;
 using ShareX.UploadersLib;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows.Forms;
+using Bitmap = SkiaSharp.SKBitmap;
+using Image = SkiaSharp.SKBitmap;
 using MessageBox = ShareX.AvaloniaUI.MessageBox;
 using MessageBoxButtons = ShareX.AvaloniaUI.MessageBoxButtons;
 using MessageBoxIcon = ShareX.AvaloniaUI.MessageBoxIcon;
@@ -117,7 +116,7 @@ namespace ShareX
             if (task.Info.TaskSettings.AdvancedSettings.ProcessImagesDuringFileUpload && task.Info.DataType == EDataType.Image)
             {
                 task.Info.Job = TaskJob.Job;
-                task.Image = ImageHelpers.LoadImage(task.Info.FilePath);
+                task.Image = SkiaImageHelpers.LoadImage(task.Info.FilePath);
             }
             else
             {
@@ -298,7 +297,7 @@ namespace ShareX
                 if (!string.IsNullOrEmpty(errors))
                 {
                     ErrorWindowIntegration.Show(Strings.UploadInfoManager_ShowErrors_Upload_errors, errors,
-                        Program.LogsFilePath, Links.GitHubIssues, false);
+                        AppPaths.LogsFilePath, Links.GitHubIssues, false);
                 }
             }
         }
@@ -371,13 +370,13 @@ namespace ShareX
 
         private void DoUploadJob()
         {
-            if (Program.Settings.ShowLargeFileSizeWarning > 0)
+            if (ApplicationState.Settings.ShowLargeFileSizeWarning > 0)
             {
-                long dataSize = Program.Settings.BinaryUnits ? Program.Settings.ShowLargeFileSizeWarning * 1024 * 1024 : Program.Settings.ShowLargeFileSizeWarning * 1000 * 1000;
+                long dataSize = ApplicationState.Settings.BinaryUnits ? ApplicationState.Settings.ShowLargeFileSizeWarning * 1024 * 1024 : ApplicationState.Settings.ShowLargeFileSizeWarning * 1000 * 1000;
                 if (Data != null && Data.Length > dataSize)
                 {
                     LargeFileUploadWarningResult result = LargeFileUploadWarningWindowIntegration.Show();
-                    if (result.DontShowAgain) Program.Settings.ShowLargeFileSizeWarning = 0;
+                    if (result.DontShowAgain) ApplicationState.Settings.ShowLargeFileSizeWarning = 0;
                     if (!result.ShouldContinue) Stop();
                 }
             }
@@ -404,9 +403,9 @@ namespace ShareX
 
                     bool isError = DoUpload(Data, Info.FileName);
 
-                    if (isError && Program.Settings.MaxUploadFailRetry > 0)
+                    if (isError && ApplicationState.Settings.MaxUploadFailRetry > 0)
                     {
-                        for (int retry = 1; !StopRequested && isError && retry <= Program.Settings.MaxUploadFailRetry; retry++)
+                        for (int retry = 1; !StopRequested && isError && retry <= ApplicationState.Settings.MaxUploadFailRetry; retry++)
                         {
                             DebugHelper.WriteLine("Upload failed. Retrying upload.");
                             isError = DoUpload(Data, Info.FileName, retry);
@@ -529,7 +528,10 @@ namespace ShareX
                     return false;
                 }
 
-                DoFileJobs();
+                if (!DoFileJobs())
+                {
+                    return false;
+                }
             }
             else if (Info.Job == TaskJob.TextUpload && !string.IsNullOrEmpty(Text))
             {
@@ -537,7 +539,10 @@ namespace ShareX
             }
             else if (Info.Job == TaskJob.FileUpload && Info.TaskSettings.AdvancedSettings.UseAfterCaptureTasksDuringFileUpload)
             {
-                DoFileJobs();
+                if (!DoFileJobs())
+                {
+                    return false;
+                }
             }
 
             if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.DoOCR))
@@ -583,11 +588,29 @@ namespace ShareX
 
             if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.AnnotateImage))
             {
+                // The editor blocks the task until it closes, so copy the capture now and let the user paste it without having to edit it.
+                if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.CopyImageToClipboard))
+                {
+                    ClipboardHelpers.CopyImage(Image, Info.FileName);
+                    DebugHelper.WriteLine("Image copied to clipboard before opening the image editor.");
+                }
+
                 Image = TaskHelpers.AnnotateImage(Image, null, Info.TaskSettings, true);
 
                 if (Image == null)
                 {
                     return false;
+                }
+            }
+
+            if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.OpenInPhotoEditor))
+            {
+                Bitmap editedImage = TaskHelpers.OpenPhotoEditorTask(Image, Info.TaskSettings);
+
+                if (editedImage != null)
+                {
+                    Image.Dispose();
+                    Image = editedImage;
                 }
             }
 
@@ -599,7 +622,7 @@ namespace ShareX
 
             if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.PinToScreen))
             {
-                Image imageCopy = Image.CloneSafe();
+                Image imageCopy = Image?.Copy();
                 TaskHelpers.PinToScreen(imageCopy, Info.TaskSettings);
             }
 
@@ -615,7 +638,7 @@ namespace ShareX
             {
                 ImageData imageData = TaskHelpers.PrepareImage(Image, Info.TaskSettings);
                 Data = imageData.ImageStream;
-                Info.FileName = Path.ChangeExtension(Info.FileName, imageData.ImageFormat.GetDescription());
+                Info.FileName = Path.ChangeExtension(Info.FileName, imageData.ImageFormat.GetFileExtension());
 
                 if (Info.TaskSettings.AfterCaptureJob.HasFlagAny(AfterCaptureTasks.SaveImageToFile, AfterCaptureTasks.AnalyzeImage))
                 {
@@ -632,46 +655,21 @@ namespace ShareX
 
                 if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.SaveImageToFileWithDialog))
                 {
-                    using (SaveFileDialog sfd = new SaveFileDialog())
+                    string initialDirectory = Directory.Exists(HelpersOptions.LastSaveDirectory)
+                        ? HelpersOptions.LastSaveDirectory : TaskHelpers.GetScreenshotsFolder(Info.TaskSettings, Info.Metadata);
+                    bool imageSaved;
+                    do
                     {
-                        string initialDirectory = null;
-
-                        if (!string.IsNullOrEmpty(HelpersOptions.LastSaveDirectory) && Directory.Exists(HelpersOptions.LastSaveDirectory))
-                        {
-                            initialDirectory = HelpersOptions.LastSaveDirectory;
-                        }
-                        else
-                        {
-                            initialDirectory = TaskHelpers.GetScreenshotsFolder(Info.TaskSettings, Info.Metadata);
-                        }
-
-                        bool imageSaved;
-
-                        do
-                        {
-                            sfd.InitialDirectory = initialDirectory;
-                            sfd.FileName = Info.FileName;
-                            sfd.DefaultExt = Path.GetExtension(Info.FileName).Substring(1);
-                            sfd.Filter = string.Format("*{0}|*{0}|{1}|*.*", Path.GetExtension(Info.FileName), Strings.WorkerTask_AllFilesFilter);
-                            sfd.Title = Strings.UploadTask_DoAfterCaptureJobs_Choose_a_folder_to_save + " " + Path.GetFileName(Info.FileName);
-
-                            if (sfd.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(sfd.FileName))
-                            {
-                                Info.FilePath = sfd.FileName;
-                                HelpersOptions.LastSaveDirectory = Path.GetDirectoryName(Info.FilePath);
-                                imageSaved = imageData.Write(Info.FilePath);
-
-                                if (imageSaved)
-                                {
-                                    DebugHelper.WriteLine("Image saved to file with dialog: " + Info.FilePath);
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        } while (!imageSaved);
-                    }
+                        string selectedPath = FileDialogHelpers.SaveFile(
+                            Strings.UploadTask_DoAfterCaptureJobs_Choose_a_folder_to_save + " " + Path.GetFileName(Info.FileName),
+                            string.Format("*{0}|*{0}|{1}|*.*", Path.GetExtension(Info.FileName), Strings.WorkerTask_AllFilesFilter),
+                            Info.FileName, initialDirectory, Path.GetExtension(Info.FileName).TrimStart('.'));
+                        if (string.IsNullOrEmpty(selectedPath)) break;
+                        Info.FilePath = selectedPath;
+                        HelpersOptions.LastSaveDirectory = Path.GetDirectoryName(Info.FilePath);
+                        imageSaved = imageData.Write(Info.FilePath);
+                        if (imageSaved) DebugHelper.WriteLine("Image saved to file with dialog: " + Info.FilePath);
+                    } while (!imageSaved);
                 }
 
                 if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.SaveThumbnailImageToFile))
@@ -701,7 +699,7 @@ namespace ShareX
             return true;
         }
 
-        private void DoFileJobs()
+        private bool DoFileJobs()
         {
             if (!string.IsNullOrEmpty(Info.FilePath) && File.Exists(Info.FilePath))
             {
@@ -717,6 +715,14 @@ namespace ShareX
                         foreach (ExternalProgram fileAction in actions)
                         {
                             string modifiedPath = fileAction.Run(Info.FilePath);
+
+                            string resultPath = string.IsNullOrEmpty(modifiedPath) ? Info.FilePath : modifiedPath;
+
+                            if (!File.Exists(resultPath))
+                            {
+                                DebugHelper.WriteLine($"Action result file does not exist: \"{resultPath}\"");
+                                return false;
+                            }
 
                             if (!string.IsNullOrEmpty(modifiedPath))
                             {
@@ -737,7 +743,10 @@ namespace ShareX
                             string extension = FileHelpers.GetFileNameExtension(Info.FilePath);
                             Info.FileName = FileHelpers.ChangeFileNameExtension(fileName, extension);
 
-                            LoadFileStream();
+                            if (!LoadFileStream())
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -770,6 +779,8 @@ namespace ShareX
                     TaskHelpers.OpenQRCodeScanFromImageFile(Info.FilePath);
                 }
             }
+
+            return true;
         }
 
         private void DoTextJobs()
@@ -883,17 +894,17 @@ namespace ShareX
 
         public UploadResult UploadData(IGenericUploaderService service, Stream stream, string fileName)
         {
-            if (!service.CheckConfig(Program.UploadersConfig))
+            if (!service.CheckConfig(ApplicationState.UploadersConfig))
             {
                 return GetInvalidConfigResult(service);
             }
 
-            uploader = service.CreateUploader(Program.UploadersConfig, taskReferenceHelper);
+            uploader = service.CreateUploader(ApplicationState.UploadersConfig, taskReferenceHelper);
 
             if (uploader != null)
             {
                 uploader.Errors.DefaultTitle = string.Format(Strings.WorkerTask_ErrorTitle, service.ServiceName);
-                uploader.BufferSize = (int)Math.Pow(2, Program.Settings.BufferSizePower) * 1024;
+                uploader.BufferSize = (int)Math.Pow(2, ApplicationState.Settings.BufferSizePower) * 1024;
                 uploader.ProgressChanged += uploader_ProgressChanged;
 
                 if (Info.TaskSettings.AfterUploadJob.HasFlag(AfterUploadTasks.CopyURLToClipboard) && Info.TaskSettings.AdvancedSettings.EarlyCopyURL)
@@ -974,12 +985,12 @@ namespace ShareX
         {
             URLShortenerService service = UploaderFactory.URLShortenerServices[Info.TaskSettings.URLShortenerDestination];
 
-            if (!service.CheckConfig(Program.UploadersConfig))
+            if (!service.CheckConfig(ApplicationState.UploadersConfig))
             {
                 return GetInvalidConfigResult(service);
             }
 
-            URLShortener urlShortener = service.CreateShortener(Program.UploadersConfig, taskReferenceHelper);
+            URLShortener urlShortener = service.CreateShortener(ApplicationState.UploadersConfig, taskReferenceHelper);
 
             if (urlShortener != null)
             {
@@ -995,12 +1006,12 @@ namespace ShareX
             {
                 URLSharingService service = UploaderFactory.URLSharingServices[Info.TaskSettings.URLSharingServiceDestination];
 
-                if (!service.CheckConfig(Program.UploadersConfig))
+                if (!service.CheckConfig(ApplicationState.UploadersConfig))
                 {
                     return GetInvalidConfigResult(service);
                 }
 
-                URLSharer urlSharer = service.CreateSharer(Program.UploadersConfig, taskReferenceHelper);
+                URLSharer urlSharer = service.CreateSharer(ApplicationState.UploadersConfig, taskReferenceHelper);
 
                 if (urlSharer != null)
                 {
@@ -1130,7 +1141,7 @@ namespace ShareX
 
                 if (Image != null)
                 {
-                    image = (Bitmap)Image.Clone();
+                    image = (Bitmap)Image.Copy();
                 }
 
                 threadWorker.InvokeAsync(() =>

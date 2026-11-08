@@ -11,6 +11,8 @@ namespace ShareX.HelpersLib.Localization {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
+        public static string HotkeyType_MouseHighlighter => ResourceManager.GetString("HotkeyType_MouseHighlighter", resourceCulture);
+
         private static global::System.Resources.ResourceManager resourceMan;
         private static global::System.Globalization.CultureInfo resourceCulture;
 
@@ -227,6 +229,12 @@ namespace ShareX.HelpersLib.Localization {
         public static string DownloaderWindow_Download {
             get { return ResourceManager.GetString("DownloaderWindow_Download", resourceCulture); }
         }
+        public static string DownloaderWindow_InvalidSignatureTitle {
+            get { return ResourceManager.GetString("DownloaderWindow_InvalidSignatureTitle", resourceCulture); }
+        }
+        public static string DownloaderWindow_InvalidSignatureWarning {
+            get { return ResourceManager.GetString("DownloaderWindow_InvalidSignatureWarning", resourceCulture); }
+        }
         public static string UpdateMessageWindow_View_changelog {
             get { return ResourceManager.GetString("UpdateMessageWindow_View_changelog", resourceCulture); }
         }
@@ -398,18 +406,6 @@ namespace ShareX.HelpersLib.Localization {
         public static string ImageHelpers_Image_files {
             get { return ResourceManager.GetString("ImageHelpers_Image_files", resourceCulture); }
         }
-        public static string CssFileNameEditor_Cascading_Style_Sheets {
-            get { return ResourceManager.GetString("CssFileNameEditor_Cascading_Style_Sheets", resourceCulture); }
-        }
-        public static string JsonFileNameEditor_JavaScript_Object_Notation_files {
-            get { return ResourceManager.GetString("JsonFileNameEditor_JavaScript_Object_Notation_files", resourceCulture); }
-        }
-        public static string WavFileNameEditor_Sound_file {
-            get { return ResourceManager.GetString("WavFileNameEditor_Sound_file", resourceCulture); }
-        }
-        public static string ExeFileNameEditor_Applications {
-            get { return ResourceManager.GetString("ExeFileNameEditor_Applications", resourceCulture); }
-        }
         public static string AppVeyorUpdateChecker_Latest_build_unsuccessful {
             get { return ResourceManager.GetString("AppVeyorUpdateChecker_Latest_build_unsuccessful", resourceCulture); }
         }
@@ -536,17 +532,11 @@ namespace ShareX.HelpersLib.Localization {
         public static string CMYK_ToString_Cyan___0_0_0____Magenta___1_0_0____Yellow___2_0_0____Key___3_0_0__ {
             get { return ResourceManager.GetString("CMYK_ToString_Cyan___0_0_0____Magenta___1_0_0____Yellow___2_0_0____Key___3_0_0__", resourceCulture); }
         }
-        public static string CodeMenu_Create_Close {
-            get { return ResourceManager.GetString("CodeMenu_Create_Close", resourceCulture); }
-        }
         public static string CodeMenuEntryFilename_RandomAdjective {
             get { return ResourceManager.GetString("CodeMenuEntryFilename_RandomAdjective", resourceCulture); }
         }
         public static string CodeMenuEntryFilename_RandomAnimal {
             get { return ResourceManager.GetString("CodeMenuEntryFilename_RandomAnimal", resourceCulture); }
-        }
-        public static string CssFileNameEditor_EditValue_Browse_for_a_Cascading_Style_Sheet___ {
-            get { return ResourceManager.GetString("CssFileNameEditor_EditValue_Browse_for_a_Cascading_Style_Sheet___", resourceCulture); }
         }
         public static string CustomUploaderDestinationType_FileUploader {
             get { return ResourceManager.GetString("CustomUploaderDestinationType_FileUploader", resourceCulture); }
@@ -574,9 +564,6 @@ namespace ShareX.HelpersLib.Localization {
         }
         public static string CutOutEffectType_ZigZag {
             get { return ResourceManager.GetString("CutOutEffectType_ZigZag", resourceCulture); }
-        }
-        public static string DirectoryNameEditor_EditValue_Browse_for_a_folder___ {
-            get { return ResourceManager.GetString("DirectoryNameEditor_EditValue_Browse_for_a_folder___", resourceCulture); }
         }
         public static string DownloaderForm_ChangeStatus_Status___0_ {
             get { return ResourceManager.GetString("DownloaderForm_ChangeStatus_Status___0_", resourceCulture); }
@@ -641,30 +628,6 @@ namespace ShareX.HelpersLib.Localization {
         public static string Error {
             get { return ResourceManager.GetString("Error", resourceCulture); }
         }
-        public static string ExeFileNameEditor_EditValue_Browse_for_executable___ {
-            get { return ResourceManager.GetString("ExeFileNameEditor_EditValue_Browse_for_executable___", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_Copy {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_Copy", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_Cut {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_Cut", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_Delete {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_Delete", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_Paste {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_Paste", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_Redo {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_Redo", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_SelectAll {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_SelectAll", resourceCulture); }
-        }
-        public static string Extensions_AddContextMenu_Undo {
-            get { return ResourceManager.GetString("Extensions_AddContextMenu_Undo", resourceCulture); }
-        }
         public static string FileDestination_CustomFileUploader {
             get { return ResourceManager.GetString("FileDestination_CustomFileUploader", resourceCulture); }
         }
@@ -686,6 +649,9 @@ namespace ShareX.HelpersLib.Localization {
         public static string FileExistAction_UniqueName {
             get { return ResourceManager.GetString("FileExistAction_UniqueName", resourceCulture); }
         }
+        public static string GIFQuality_Adaptive {
+            get { return ResourceManager.GetString("GIFQuality_Adaptive", resourceCulture); }
+        }
         public static string GIFQuality_Bit4 {
             get { return ResourceManager.GetString("GIFQuality_Bit4", resourceCulture); }
         }
@@ -697,12 +663,6 @@ namespace ShareX.HelpersLib.Localization {
         }
         public static string GIFQuality_Grayscale {
             get { return ResourceManager.GetString("GIFQuality_Grayscale", resourceCulture); }
-        }
-        public static string Helpers_BrowseFile_Choose_file {
-            get { return ResourceManager.GetString("Helpers_BrowseFile_Choose_file", resourceCulture); }
-        }
-        public static string Helpers_BrowseFolder_Choose_folder {
-            get { return ResourceManager.GetString("Helpers_BrowseFolder_Choose_folder", resourceCulture); }
         }
         public static string Helpers_CreateDirectoryIfNotExist_Create_failed_ {
             get { return ResourceManager.GetString("Helpers_CreateDirectoryIfNotExist_Create_failed_", resourceCulture); }
@@ -736,6 +696,9 @@ namespace ShareX.HelpersLib.Localization {
         }
         public static string HotkeyType_AutoCapture {
             get { return ResourceManager.GetString("HotkeyType_AutoCapture", resourceCulture); }
+        }
+        public static string HotkeyType_BackgroundRemover {
+            get { return ResourceManager.GetString("HotkeyType_BackgroundRemover", resourceCulture); }
         }
         public static string HotkeyType_BorderlessWindow {
             get { return ResourceManager.GetString("HotkeyType_BorderlessWindow", resourceCulture); }
@@ -803,11 +766,23 @@ namespace ShareX.HelpersLib.Localization {
         public static string HotkeyType_ImageComparer {
             get { return ResourceManager.GetString("HotkeyType_ImageComparer", resourceCulture); }
         }
+        public static string HotkeyType_ImageConverter {
+            get { return ResourceManager.GetString("HotkeyType_ImageConverter", resourceCulture); }
+        }
+        public static string HotkeyType_ImageWatermark {
+            get { return ResourceManager.GetString("HotkeyType_ImageWatermark", resourceCulture); }
+        }
         public static string HotkeyType_ImageEditor {
             get { return ResourceManager.GetString("HotkeyType_ImageEditor", resourceCulture); }
         }
+        public static string HotkeyType_PhotoEditor {
+            get { return ResourceManager.GetString("HotkeyType_PhotoEditor", resourceCulture); }
+        }
         public static string HotkeyType_ImageEffects {
             get { return ResourceManager.GetString("HotkeyType_ImageEffects", resourceCulture); }
+        }
+        public static string HotkeyType_ImageResizer {
+            get { return ResourceManager.GetString("HotkeyType_ImageResizer", resourceCulture); }
         }
         public static string HotkeyType_ImageSplitter {
             get { return ResourceManager.GetString("HotkeyType_ImageSplitter", resourceCulture); }
@@ -832,6 +807,9 @@ namespace ShareX.HelpersLib.Localization {
         }
         public static string HotkeyType_MonitorTest {
             get { return ResourceManager.GetString("HotkeyType_MonitorTest", resourceCulture); }
+        }
+        public static string HotkeyType_NetworkMonitor {
+            get { return ResourceManager.GetString("HotkeyType_NetworkMonitor", resourceCulture); }
         }
         public static string HotkeyType_None {
             get { return ResourceManager.GetString("HotkeyType_None", resourceCulture); }
@@ -886,6 +864,9 @@ namespace ShareX.HelpersLib.Localization {
         }
         public static string HotkeyType_Ruler {
             get { return ResourceManager.GetString("HotkeyType_Ruler", resourceCulture); }
+        }
+        public static string HotkeyType_ClassicRuler {
+            get { return ResourceManager.GetString("HotkeyType_ClassicRuler", resourceCulture); }
         }
         public static string HotkeyType_ScreenColorPicker {
             get { return ResourceManager.GetString("HotkeyType_ScreenColorPicker", resourceCulture); }
@@ -1021,6 +1002,15 @@ namespace ShareX.HelpersLib.Localization {
         }
         public static string PastebinPrivacy_Unlisted {
             get { return ResourceManager.GetString("PastebinPrivacy_Unlisted", resourceCulture); }
+        }
+        public static string BMPBitDepth_Automatic {
+            get { return ResourceManager.GetString("BMPBitDepth_Automatic", resourceCulture); }
+        }
+        public static string BMPBitDepth_Bit24 {
+            get { return ResourceManager.GetString("BMPBitDepth_Bit24", resourceCulture); }
+        }
+        public static string BMPBitDepth_Bit32 {
+            get { return ResourceManager.GetString("BMPBitDepth_Bit32", resourceCulture); }
         }
         public static string PNGBitDepth_Automatic {
             get { return ResourceManager.GetString("PNGBitDepth_Automatic", resourceCulture); }
@@ -1349,9 +1339,6 @@ namespace ShareX.HelpersLib.Localization {
         public static string UrlShortenerType_CustomURLShortener {
             get { return ResourceManager.GetString("UrlShortenerType_CustomURLShortener", resourceCulture); }
         }
-        public static string WavFileNameEditor_EditValue_Browse_for_a_sound_file___ {
-            get { return ResourceManager.GetString("WavFileNameEditor_EditValue_Browse_for_a_sound_file___", resourceCulture); }
-        }
         public static string YouTubeVideoPrivacy_Private {
             get { return ResourceManager.GetString("YouTubeVideoPrivacy_Private", resourceCulture); }
         }
@@ -1361,5 +1348,22 @@ namespace ShareX.HelpersLib.Localization {
         public static string YouTubeVideoPrivacy_Unlisted {
             get { return ResourceManager.GetString("YouTubeVideoPrivacy_Unlisted", resourceCulture); }
         }
+        /// <summary>
+        ///   Video trimmer
+        /// </summary>
+        public static string HotkeyType_VideoTrimmer {
+            get {
+                return ResourceManager.GetString("HotkeyType_VideoTrimmer", resourceCulture);
+            }
+        }
+
+        public static string HotkeyType_AnimatedGifTrimmer => ResourceManager.GetString("HotkeyType_AnimatedGifTrimmer", resourceCulture);
+        public static string AfterCaptureTasks_OpenInPhotoEditor => ResourceManager.GetString("AfterCaptureTasks_OpenInPhotoEditor", resourceCulture);
+        public static string HotkeyType_RectangleTransparent => ResourceManager.GetString("HotkeyType_RectangleTransparent", resourceCulture);
+        public static string TaskViewMode_ListView => ResourceManager.GetString("TaskViewMode_ListView", resourceCulture);
+        public static string TaskViewMode_ThumbnailView => ResourceManager.GetString("TaskViewMode_ThumbnailView", resourceCulture);
+        public static string ImagePreviewVisibility_Automatic => ResourceManager.GetString("ImagePreviewVisibility_Automatic", resourceCulture);
+        public static string ImagePreviewVisibility_Hide => ResourceManager.GetString("ImagePreviewVisibility_Hide", resourceCulture);
+        public static string ImagePreviewVisibility_Show => ResourceManager.GetString("ImagePreviewVisibility_Show", resourceCulture);
     }
 }

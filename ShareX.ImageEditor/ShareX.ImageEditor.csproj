@@ -20,6 +20,12 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\emoji-catalog.json" />
+    <EmbeddedResource Include="Assets\Cursors\*.cur" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The Photo editor applies effect parameters through EffectParameter.Apply. -->
+    <InternalsVisibleTo Include="ShareX.PhotoEditor" />
   </ItemGroup>
 
   <ItemGroup>

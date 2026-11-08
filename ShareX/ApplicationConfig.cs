@@ -30,7 +30,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Design;
 
 namespace ShareX
 {
@@ -39,12 +38,15 @@ namespace ShareX
         public TaskSettings DefaultTaskSettings = new TaskSettings();
 
         public DateTime FirstTimeRunDate = DateTime.Now;
+        public bool ShowStartScreen = true;
+        public bool ShowIconPackPrompt = true;
         public string FileUploadDefaultDirectory = "";
         public int NameParserAutoIncrementNumber = 0;
         public List<QuickTaskInfo> QuickTaskPresets = QuickTaskInfo.DefaultPresets;
 
         // Main window
         public bool FirstTimeMinimizeToTray = true;
+        public bool ScreenshotDelayJustOnce = false;
 
         public ApplicationConfig()
         {
@@ -103,10 +105,20 @@ namespace ShareX
 
         #region Main window
 
+        public TaskViewMode TaskViewMode = TaskViewMode.ThumbnailView;
+
+        // List view
+        public bool ShowColumns = true;
+        public List<int> TaskListViewColumnWidths = new List<int>();
+        public ImagePreviewVisibility ImagePreview = ImagePreviewVisibility.Automatic;
+        public int ImagePreviewWidth = 300;
+
+        // Thumbnail view
         public bool ShowThumbnailTitle = true;
         public ThumbnailTitleLocation ThumbnailTitleLocation = ThumbnailTitleLocation.Top;
         public Size ThumbnailSize = new Size(200, 150);
         public ThumbnailViewClickAction ThumbnailClickAction = ThumbnailViewClickAction.Default;
+        public List<string> HiddenTools = new List<string>();
 
         #endregion Main window
 
@@ -169,7 +181,6 @@ namespace ShareX
         public bool TrayAutoExpandCaptureMenu { get; set; }
 
         [Category("Application"), DefaultValue(""), Description("URLs will open using this path instead of default browser. Example path: chrome.exe")]
-        [Editor(typeof(ExeFileNameEditor), typeof(UITypeEditor))]
         public string BrowserPath { get; set; }
 
         [Category("Application"), DefaultValue(false), Description("Save settings after task completed but only if there are no other active tasks.")]
@@ -217,6 +228,9 @@ namespace ShareX
         [Category("Image"), DefaultValue(false), Description("Strip color space information chunks from PNG image.")]
         public bool PNGStripColorSpaceInformation { get; set; }
 
+        [Category("Application"), DefaultValue(true), Description("Ask for confirmation before deleting a file locally from the notification or the main window.")]
+        public bool ShowFileDeleteConfirmation { get; set; }
+
         [Category("Upload"), DefaultValue(false), Description("Can be used to disable uploading application wide.")]
         public bool DisableUpload { get; set; }
 
@@ -233,15 +247,12 @@ namespace ShareX
         public bool UseMachineSpecificUploadersConfig { get; set; }
 
         [Category("Paths"), Description("Custom uploaders configuration path. If you have already configured this setting in another device and you are attempting to use the same location, then backup the file before configuring this setting and restore after exiting ShareX.")]
-        [Editor(typeof(DirectoryNameEditor), typeof(UITypeEditor))]
         public string CustomUploadersConfigPath { get; set; }
 
         [Category("Paths"), Description("Custom hotkeys configuration path. If you have already configured this setting in another device and you are attempting to use the same location, then backup the file before configuring this setting and restore after exiting ShareX.")]
-        [Editor(typeof(DirectoryNameEditor), typeof(UITypeEditor))]
         public string CustomHotkeysConfigPath { get; set; }
 
         [Category("Paths"), Description("Custom screenshot path (secondary location). If custom screenshot path is temporarily unavailable (e.g. network share), ShareX will use this location (recommended to be a local path).")]
-        [Editor(typeof(DirectoryNameEditor), typeof(UITypeEditor))]
         public string CustomScreenshotsPath2 { get; set; }
 
         [Category("Drag and drop window"), DefaultValue(150), Description("Size of drop window.")]
@@ -250,8 +261,8 @@ namespace ShareX
         [Category("Drag and drop window"), DefaultValue(5), Description("Position offset of drop window.")]
         public int DropOffset { get; set; }
 
-        [Category("Drag and drop window"), DefaultValue(ContentAlignment.BottomRight), Description("Where drop window will open.")]
-        public ContentAlignment DropAlignment { get; set; }
+        [Category("Drag and drop window"), DefaultValue(ImageContentAlignment.BottomRight), Description("Where drop window will open.")]
+        public ImageContentAlignment DropAlignment { get; set; }
 
         [Category("Drag and drop window"), DefaultValue(100), Description("Opacity of drop window.")]
         public int DropOpacity { get; set; }

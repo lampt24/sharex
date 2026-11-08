@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -10,13 +26,14 @@
 #nullable enable
 
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Threading;
 using ShareX.AvaloniaUI.Integration;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
-using DrawingImage = System.Drawing.Image;
+using DrawingImage = SkiaSharp.SKBitmap;
+using ImageFormat = SkiaSharp.SKEncodedImageFormat;
 
 namespace ShareX.HelpersLib;
 
@@ -24,18 +41,18 @@ public static class ImageViewerWindowIntegration
 {
     public static void ShowImage() => ShowWindow(() => new ImageViewerWindow());
 
-    public static void ShowImage(string? filePath)
+    public static void ShowImage(string? filePath, Window? owner = null)
     {
         if (string.IsNullOrWhiteSpace(filePath))
         {
-            ShowImage();
+            ShowWindow(() => new ImageViewerWindow(), owner);
             return;
         }
 
-        ShowWindow(() => new ImageViewerWindow(filePath));
+        ShowWindow(() => new ImageViewerWindow(filePath), owner);
     }
 
-    public static void ShowImage(IReadOnlyList<string> filePaths, int selectedIndex = 0)
+    public static void ShowImage(IReadOnlyList<string> filePaths, int selectedIndex = 0, Window? owner = null)
     {
         if (filePaths.Count > 0)
         {
@@ -45,7 +62,7 @@ public static class ImageViewerWindowIntegration
                 files[index] = filePaths[index];
             }
 
-            ShowWindow(() => new ImageViewerWindow(files, selectedIndex));
+            ShowWindow(() => new ImageViewerWindow(files, selectedIndex), owner);
         }
     }
 
@@ -72,7 +89,7 @@ public static class ImageViewerWindowIntegration
 
         try
         {
-            using DrawingImage? clonedImage = image.CloneSafe();
+            using DrawingImage? clonedImage = image.Copy();
             if (clonedImage == null)
             {
                 return;
@@ -97,9 +114,19 @@ public static class ImageViewerWindowIntegration
             try
             {
                 Window window = windowFactory();
-                if (owner is { IsVisible: true })
+                if (owner is { IsVisible: true } visibleOwner)
                 {
-                    window.Show(owner);
+                    IInputElement? focusedElement = visibleOwner.FocusManager?.GetFocusedElement();
+                    window.Closed += (_, _) => Dispatcher.UIThread.Post(() =>
+                    {
+                        if (visibleOwner.IsVisible)
+                        {
+                            visibleOwner.Activate();
+                            focusedElement?.Focus();
+                        }
+                    }, DispatcherPriority.Input);
+
+                    window.Show(visibleOwner);
                 }
                 else
                 {

@@ -1,6 +1,25 @@
 #region License Information (GPL v3)
 
-/* ShareX - Copyright (c) 2007-2026 ShareX Team - GPL v3 */
+/*
+    ShareX - A program that allows you to take screenshots and share any file type
+    Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
+*/
 
 #endregion License Information (GPL v3)
 
@@ -14,13 +33,12 @@ using Avalonia.Media;
 using ShareX.HelpersLib;
 using ShareX.ImageEffectsLib.Localization;
 using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
 using System.Reflection;
 using DrawingColor = System.Drawing.Color;
 using DrawingPoint = System.Drawing.Point;
 using DrawingSize = System.Drawing.Size;
-using FormsPadding = System.Windows.Forms.Padding;
+using EffectMargins = ShareX.HelpersLib.ImageMargins;
 
 namespace ShareX.ImageEffectsLib;
 
@@ -184,9 +202,9 @@ public partial class ImageEffectOptionsPanel : UserControl
                 (x, y) => Apply(property, new DrawingSize(x, y)));
         }
 
-        if (type == typeof(FormsPadding))
+        if (type == typeof(EffectMargins))
         {
-            FormsPadding padding = value is FormsPadding p ? p : FormsPadding.Empty;
+            EffectMargins padding = value is EffectMargins p ? p : EffectMargins.Empty;
             return CreatePaddingEditor(padding, result => Apply(property, result));
         }
 
@@ -323,7 +341,7 @@ public partial class ImageEffectOptionsPanel : UserControl
         return grid;
     }
 
-    private Control CreatePaddingEditor(FormsPadding padding, Action<FormsPadding> changed)
+    private Control CreatePaddingEditor(EffectMargins padding, Action<EffectMargins> changed)
     {
         Grid grid = new() { ColumnDefinitions = new ColumnDefinitions("*,*,*,*"), ColumnSpacing = 6 };
         int[] values = [padding.Left, padding.Top, padding.Right, padding.Bottom];
@@ -336,7 +354,7 @@ public partial class ImageEffectOptionsPanel : UserControl
         ];
         NumericUpDown[] inputs = new NumericUpDown[4];
 
-        void ApplyPadding() => changed(new FormsPadding((int)(inputs[0].Value ?? 0), (int)(inputs[1].Value ?? 0),
+        void ApplyPadding() => changed(new EffectMargins((int)(inputs[0].Value ?? 0), (int)(inputs[1].Value ?? 0),
             (int)(inputs[2].Value ?? 0), (int)(inputs[3].Value ?? 0)));
 
         for (int i = 0; i < inputs.Length; i++)

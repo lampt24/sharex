@@ -3,6 +3,22 @@
 /*
     ShareX - A program that allows you to take screenshots and share any file type
     Copyright (c) 2007-2026 ShareX Team
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+    Optionally you can also view the license at <http://www.gnu.org/licenses/>.
 */
 
 #endregion License Information (GPL v3)
@@ -11,17 +27,17 @@
 
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
-using ShareX.AvaloniaUI.Theming;
+using ShareX.AvaloniaUI.Imaging;
 using ShareX.HelpersLib;
+using ShareX.Icons;
 using ShareX.Localization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using DrawingBitmap = System.Drawing.Bitmap;
+using DrawingBitmap = SkiaSharp.SKBitmap;
 
 namespace ShareX;
 
@@ -33,18 +49,26 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
     private string _title = string.Empty;
     private string _status = string.Empty;
     private string _details = string.Empty;
-    private string _placeholderIcon = LucideIcons.file;
+    private string _placeholderIcon = AppIcons.File;
     private double _progress;
     private bool _isProgressVisible;
     private bool _isFailed;
     private bool _isCombineTarget;
+    private string _listStatus = string.Empty;
+    private string _listStatusIcon = AppIcons.Clock;
+    private string _listProgress = string.Empty;
+    private string _listSpeed = string.Empty;
+    private string _listElapsed = string.Empty;
+    private string _listRemaining = string.Empty;
+    private string _listUrl = string.Empty;
 
     public WorkerTask Task { get; }
-    public int Width => Math.Max(96, Program.Settings.ThumbnailSize.Width);
-    public int Height => Math.Max(72, Program.Settings.ThumbnailSize.Height);
-    public bool ShowTitle => Program.Settings.ShowThumbnailTitle;
-    public bool ShowTitleAbove => ShowTitle && Program.Settings.ThumbnailTitleLocation == ThumbnailTitleLocation.Top;
-    public bool ShowTitleBelow => ShowTitle && Program.Settings.ThumbnailTitleLocation == ThumbnailTitleLocation.Bottom;
+    private static bool IsListView => ApplicationState.Settings.TaskViewMode == TaskViewMode.ListView;
+    public int Width => Math.Max(96, ApplicationState.Settings.ThumbnailSize.Width);
+    public int Height => Math.Max(72, ApplicationState.Settings.ThumbnailSize.Height);
+    public bool ShowTitle => ApplicationState.Settings.ShowThumbnailTitle;
+    public bool ShowTitleAbove => ShowTitle && ApplicationState.Settings.ThumbnailTitleLocation == ThumbnailTitleLocation.Top;
+    public bool ShowTitleBelow => ShowTitle && ApplicationState.Settings.ThumbnailTitleLocation == ThumbnailTitleLocation.Bottom;
 
     public Bitmap? Thumbnail
     {
@@ -77,7 +101,7 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
             TaskInfo? info = Task.Info;
             string? filePath = info?.FilePath;
 
-            return Program.Settings.ThumbnailClickAction switch
+            return ApplicationState.Settings.ThumbnailClickAction switch
             {
                 ThumbnailViewClickAction.Default => !string.IsNullOrEmpty(filePath) && File.Exists(filePath),
                 ThumbnailViewClickAction.OpenImageViewer => !string.IsNullOrEmpty(filePath) &&
@@ -153,6 +177,58 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
         set => SetField(ref _isCombineTarget, value);
     }
 
+    public string ListStatus
+    {
+        get => _listStatus;
+        private set => SetField(ref _listStatus, value);
+    }
+
+    public string ListStatusIcon
+    {
+        get => _listStatusIcon;
+        private set => SetField(ref _listStatusIcon, value);
+    }
+
+    public string ListProgress
+    {
+        get => _listProgress;
+        private set => SetField(ref _listProgress, value);
+    }
+
+    public string ListSpeed
+    {
+        get => _listSpeed;
+        private set => SetField(ref _listSpeed, value);
+    }
+
+    public string ListElapsed
+    {
+        get => _listElapsed;
+        private set => SetField(ref _listElapsed, value);
+    }
+
+    public string ListRemaining
+    {
+        get => _listRemaining;
+        private set => SetField(ref _listRemaining, value);
+    }
+
+    public string ListUrl
+    {
+        get => _listUrl;
+        private set
+        {
+            if (_listUrl != value)
+            {
+                _listUrl = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ListUrlToolTip));
+            }
+        }
+    }
+
+    public string? ListUrlToolTip => string.IsNullOrEmpty(_listUrl) ? null : _listUrl;
+
     public ThumbnailItemViewModel(WorkerTask task)
     {
         Task = task;
@@ -162,6 +238,12 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
     public void Refresh()
     {
         RefreshMetadata();
+
+        // The list view never shows image content, so don't decode any.
+        if (IsListView)
+        {
+            return;
+        }
 
         string? filePath = Task.Info?.FilePath;
 
@@ -175,6 +257,13 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
     public void RefreshFromOwnedImage(DrawingBitmap image)
     {
         RefreshMetadata();
+
+        if (IsListView)
+        {
+            image.Dispose();
+            return;
+        }
+
         StartThumbnailRefresh(null, image);
     }
 
@@ -189,9 +278,69 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
         IsProgressVisible = Task.IsWorking && info?.Progress != null;
         IsFailed = Task.Status == TaskStatus.Failed;
         PlaceholderIcon = GetPlaceholderIcon(info?.FilePath ?? info?.FileName);
+        RefreshListColumns(info);
         OnPropertyChanged(nameof(IsVideo));
         OnPropertyChanged(nameof(ShowPlayIcon));
         OnPropertyChanged(nameof(IsClickable));
+    }
+
+    // Mirrors the ShareX 21 task list: transfer columns keep their last values once a task finishes.
+    private void RefreshListColumns(TaskInfo? info)
+    {
+        TaskStatus status = Task.Status;
+        ListStatusIcon = status switch
+        {
+            TaskStatus.InQueue => AppIcons.Clock,
+            TaskStatus.Preparing or TaskStatus.Working or TaskStatus.Stopping => AppIcons.Upload,
+            TaskStatus.Stopped => AppIcons.CircleStop,
+            TaskStatus.Failed => AppIcons.CircleX,
+            TaskStatus.History => AppIcons.History,
+            _ => AppIcons.CircleCheck
+        };
+
+        if (status == TaskStatus.History)
+        {
+            ListStatus = Strings.TaskListView_History;
+            ListProgress = info?.TaskEndTime.ToString() ?? string.Empty;
+            ListUrl = info?.ToString() ?? string.Empty;
+            return;
+        }
+
+        if (status == TaskStatus.InQueue)
+        {
+            ListStatus = Strings.TaskListView_InQueue;
+            return;
+        }
+
+        bool binaryUnits = ApplicationState.Settings.BinaryUnits;
+        var progress = info?.Progress;
+
+        if (status == TaskStatus.Working && progress != null && progress.Length > 0)
+        {
+            ListStatus = string.Format("{0:0.0}%", progress.Percentage);
+            ListProgress = string.Format("{0} / {1}", progress.Position.ToSizeString(binaryUnits), progress.Length.ToSizeString(binaryUnits));
+
+            if (progress.Speed > 0)
+            {
+                ListSpeed = ((long)progress.Speed).ToSizeString(binaryUnits) + "/s";
+            }
+
+            ListElapsed = Helpers.ProperTimeSpan(progress.Elapsed);
+            ListRemaining = Helpers.ProperTimeSpan(progress.Remaining);
+        }
+        else
+        {
+            ListStatus = !string.IsNullOrEmpty(info?.Status) ? info.Status : string.Empty;
+        }
+
+        if (status == TaskStatus.Failed)
+        {
+            ListUrl = string.Empty;
+        }
+        else if (status == TaskStatus.Completed || status == TaskStatus.Stopped)
+        {
+            ListUrl = info?.ToString() ?? string.Empty;
+        }
     }
 
     public void RefreshSettings()
@@ -201,6 +350,14 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
         OnPropertyChanged(nameof(ShowTitle));
         OnPropertyChanged(nameof(ShowTitleAbove));
         OnPropertyChanged(nameof(ShowTitleBelow));
+
+        if (IsListView)
+        {
+            // Release decoded previews when switching to the list view.
+            _refreshVersion++;
+            Thumbnail = null;
+        }
+
         Refresh();
     }
 
@@ -238,10 +395,7 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
         {
             if (image != null)
             {
-                using MemoryStream stream = new();
-                image.Save(stream, ImageFormat.Png);
-                stream.Position = 0;
-                return Bitmap.DecodeToWidth(stream, width, BitmapInterpolationMode.HighQuality);
+                return BitmapConversionHelpers.CreatePreview(image, new Avalonia.PixelSize(width, height));
             }
 
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath) && FileHelpers.IsImageFile(filePath))
@@ -256,10 +410,7 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
 
                 if (shellThumbnail != null)
                 {
-                    using MemoryStream stream = new();
-                    shellThumbnail.Save(stream, ImageFormat.Png);
-                    stream.Position = 0;
-                    return new Bitmap(stream);
+                    return BitmapConversionHelpers.CreatePreview(shellThumbnail, new Avalonia.PixelSize(width, height));
                 }
             }
         }
@@ -277,11 +428,11 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
 
     private static string GetPlaceholderIcon(string? filePath)
     {
-        if (string.IsNullOrEmpty(filePath)) return LucideIcons.file;
-        if (FileHelpers.IsVideoFile(filePath)) return LucideIcons.file_video;
-        if (FileHelpers.IsTextFile(filePath)) return LucideIcons.file_text;
-        if (FileHelpers.IsImageFile(filePath)) return LucideIcons.file_image;
-        return LucideIcons.file;
+        if (string.IsNullOrEmpty(filePath)) return AppIcons.File;
+        if (FileHelpers.IsVideoFile(filePath)) return AppIcons.FileVideo;
+        if (FileHelpers.IsTextFile(filePath)) return AppIcons.FileText;
+        if (FileHelpers.IsImageFile(filePath)) return AppIcons.FileImage;
+        return AppIcons.File;
     }
 
     public void Dispose()
