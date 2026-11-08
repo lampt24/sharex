@@ -129,9 +129,8 @@ jobs:
 
       - name: Azure login
         if: >-
-          (github.ref == 'refs/heads/develop' && matrix.configuration == 'Release') ||
-          (startsWith(github.ref, 'refs/tags/v') &&
-          (matrix.configuration == 'Release' || matrix.configuration == 'Steam' || matrix.configuration == 'MicrosoftStore'))
+          vars.SIGNING_ENDPOINT != '' &&
+          ((github.ref == 'refs/heads/develop' && matrix.configuration == 'Release') || (startsWith(github.ref, 'refs/tags/v') && (matrix.configuration == 'Release' || matrix.configuration == 'Steam' || matrix.configuration == 'MicrosoftStore')))
         uses: azure/login@v3
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -140,9 +139,8 @@ jobs:
 
       - name: Sign ShareX binaries
         if: >-
-          (github.ref == 'refs/heads/develop' && matrix.configuration == 'Release') ||
-          (startsWith(github.ref, 'refs/tags/v') &&
-          (matrix.configuration == 'Release' || matrix.configuration == 'Steam' || matrix.configuration == 'MicrosoftStore'))
+          vars.SIGNING_ENDPOINT != '' &&
+          ((github.ref == 'refs/heads/develop' && matrix.configuration == 'Release') || (startsWith(github.ref, 'refs/tags/v') && (matrix.configuration == 'Release' || matrix.configuration == 'Steam' || matrix.configuration == 'MicrosoftStore')))
         uses: azure/artifact-signing-action@v2
         with:
           endpoint: ${{ vars.SIGNING_ENDPOINT }}
@@ -156,8 +154,8 @@ jobs:
 
       - name: Sign Avalonia binaries
         if: >-
-          startsWith(github.ref, 'refs/tags/v') &&
-          (matrix.configuration == 'Release' || matrix.configuration == 'Steam' || matrix.configuration == 'MicrosoftStore')
+          vars.SIGNING_ENDPOINT != '' &&
+          (startsWith(github.ref, 'refs/tags/v') && (matrix.configuration == 'Release' || matrix.configuration == 'Steam' || matrix.configuration == 'MicrosoftStore'))
         uses: azure/artifact-signing-action@v2
         with:
           endpoint: ${{ vars.SIGNING_ENDPOINT }}
@@ -170,7 +168,9 @@ jobs:
           timestamp-digest: SHA256
 
       - name: Sign Steam launcher
-        if: startsWith(github.ref, 'refs/tags/v') && matrix.configuration == 'Steam'
+        if: >-
+          vars.SIGNING_ENDPOINT != '' &&
+          (startsWith(github.ref, 'refs/tags/v') && matrix.configuration == 'Steam')
         uses: azure/artifact-signing-action@v2
         with:
           endpoint: ${{ vars.SIGNING_ENDPOINT }}
@@ -194,8 +194,8 @@ jobs:
 
       - name: Sign setup
         if: >-
-          (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) &&
-          matrix.configuration == 'Release'
+          vars.SIGNING_ENDPOINT != '' &&
+          ((github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) && matrix.configuration == 'Release')
         uses: azure/artifact-signing-action@v2
         with:
           endpoint: ${{ vars.SIGNING_ENDPOINT }}
