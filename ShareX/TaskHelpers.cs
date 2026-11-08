@@ -2804,9 +2804,10 @@ namespace ShareX
 
         public static async Task DownloadDevBuild()
         {
-            GitHubUpdateChecker updateChecker = new GitHubUpdateChecker("ShareX", "DevBuilds")
+            GitHubUpdateChecker updateChecker = new GitHubUpdateChecker(ShareXUpdateManager.UpdateOwner, ShareXUpdateManager.UpdateRepo)
             {
                 IsDev = true,
+                IncludePreRelease = true,
                 IsPortable = StartupOptions.Portable
             };
 

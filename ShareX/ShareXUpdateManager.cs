@@ -29,22 +29,26 @@ namespace ShareX
 {
     internal class ShareXUpdateManager : GitHubUpdateManager
     {
+        public const string UpdateOwner = "lampt24";
+        public const string UpdateRepo = "sharex";
+
         public UpdateChannel UpdateChannel { get; set; }
 
         public override GitHubUpdateChecker CreateUpdateChecker()
         {
             if (UpdateChannel == UpdateChannel.Dev)
             {
-                return new GitHubUpdateChecker("ShareX", "DevBuilds")
+                return new GitHubUpdateChecker(UpdateOwner, UpdateRepo)
                 {
                     IsDev = true,
+                    IncludePreRelease = true,
                     IsPortable = StartupOptions.Portable,
                     IgnoreRevision = true
                 };
             }
             else
             {
-                return new GitHubUpdateChecker("ShareX", "ShareX")
+                return new GitHubUpdateChecker(UpdateOwner, UpdateRepo)
                 {
                     IsPortable = StartupOptions.Portable,
                     IncludePreRelease = UpdateChannel == UpdateChannel.PreRelease,
